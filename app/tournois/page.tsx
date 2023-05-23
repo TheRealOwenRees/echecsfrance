@@ -1,3 +1,5 @@
+import Layout from "@/components/Layout";
+
 export interface TournamentType {
   _id: string;
   location: string;
@@ -21,7 +23,7 @@ export default async function Tournaments() {
   console.log(data);
 
   const tournaments = data.map((t: TournamentType) => (
-    <tr>
+    <tr key={t._id}>
       <td>{t.date}</td>
       <td>{t.location}</td>
       <td>{t.tournament}</td>
@@ -30,18 +32,20 @@ export default async function Tournaments() {
   ));
 
   return (
-    <main className="">
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Ville</th>
-            <th>Tournois</th>
-            <th>Cadence</th>
-          </tr>
-        </thead>
-        <tbody>{tournaments}</tbody>
-      </table>
-    </main>
+    <Layout>
+      <main className="w-full">
+        <table className="table-auto">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Ville</th>
+              <th>Tournois</th>
+              <th>Cadence</th>
+            </tr>
+          </thead>
+          <tbody>{tournaments}</tbody>
+        </table>
+      </main>
+    </Layout>
   );
 }
