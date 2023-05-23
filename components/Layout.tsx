@@ -6,9 +6,9 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="bg-white font-sans leading-normal tracking-normal">
       <Navbar />
       {children}
-    </>
+    </div>
   );
 }

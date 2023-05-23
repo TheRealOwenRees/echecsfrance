@@ -1,16 +1,22 @@
+import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
+import TournamentTable from "@/components/TournamentTable";
 
-export interface TournamentType {
-  _id: string;
-  location: string;
-  department: string;
-  tournament: string;
-  url: string;
-  time_control: string;
-  date: string;
-  coordinates: [number, number];
-}
+/**
+ * Imports the tournament map component, ensuring CSR only.
+ * @remarks SSR is not supported by react-leaflet
+ */
+const TournamentMapNoSSR = dynamic(
+  () => import("../../components/TournamentMap"),
+  {
+    ssr: false,
+  }
+);
 
+/**
+ * Retrieves tournament data from /api/tournaments
+ * @remarks The result is cached for the revalidation period in seconds
+ */
 async function getTournaments() {
   const res = await fetch("http://localhost:3000/api/tournaments", {
     next: { revalidate: 300 },
@@ -19,33 +25,13 @@ async function getTournaments() {
 }
 
 export default async function Tournaments() {
-  const data = await getTournaments();
-  console.log(data);
-
-  const tournaments = data.map((t: TournamentType) => (
-    <tr key={t._id}>
-      <td>{t.date}</td>
-      <td>{t.location}</td>
-      <td>{t.tournament}</td>
-      <td>{t.time_control}</td>
-    </tr>
-  ));
+  const tournamentData = await getTournaments();
+  console.log(tournamentData);
 
   return (
     <Layout>
-      <main className="w-full">
-        <table className="table-auto">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Ville</th>
-              <th>Tournois</th>
-              <th>Cadence</th>
-            </tr>
-          </thead>
-          <tbody>{tournaments}</tbody>
-        </table>
-      </main>
+      <TournamentMapNoSSR />
+      <TournamentTable tournamentData={tournamentData} />
     </Layout>
   );
 }

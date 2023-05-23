@@ -1,13 +1,18 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "@/lib/mongodb";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
-  // TODO delete req / res ?
+/**
+ * Tournament data API endpoint
+ * @route /api/tournaments
+ * @internal
+ */
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
-    // const data = await db.collection("tournaments").find({}).toArray();
-    // converts date from string into a date and then orders by date
+
+    /**
+     * Converts date from string into a date to allow ordering
+     */
     const data = await db
       .collection("tournaments")
       .aggregate([
