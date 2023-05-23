@@ -1,38 +1,61 @@
-interface TournamentType {
-  _id: string;
-  location: string;
-  department: string;
-  tournament: string;
-  url: string;
-  time_control: string;
-  date: string;
-  coordinates: [number, number];
-}
+import { Tournament, TournamentTableProps } from "@/types";
 
-export default function TournamentTable({ tournamentData }) {
-  const tournaments = tournamentData.map((t: TournamentType) => (
+export default function TournamentTable({
+  tournamentData,
+}: TournamentTableProps) {
+  const tournaments = tournamentData.map((t: Tournament) => (
     <tr
-      className="border-b transition duration-300 ease-in-out hover:bg-neutral-100"
+      className="border-b border-gray-700 border-opacity-20 bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-400 hover:text-black"
       key={t._id}
     >
-      <td>{t.date}</td>
-      <td>{t.location}</td>
+      <td className="p-3">{t.date}</td>
+      <td className="p-3">{t.location}</td>
       <a href={t.url} target="_blank">
-        <td>{t.tournament}</td>
+        <td className="p-3">{t.tournament}</td>
       </a>
-      <td>{t.time_control}</td>
+      <td className="p-3">{t.time_control}</td>
     </tr>
   ));
 
   return (
-    <section id="tournament-table" className="">
-      <table className="min-w-full text-center">
-        <thead className="border-b">
-          <tr>
-            <th>Date</th>
-            <th>Ville</th>
-            <th>Tournois</th>
-            <th>Cadence</th>
+    <section
+      id="tournament-table"
+      className="w-full lg:col-start-2 lg:col-end-3"
+    >
+      <div className="p-3">
+        <label htmlFor="table-search" className="sr-only">
+          Search
+        </label>
+        <div className="relative mt-1">
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="table-search"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search for items"
+          />
+        </div>
+      </div>
+      <table className="w-full text-center text-xs">
+        <thead className="bg-gray-600 text-white">
+          <tr className="">
+            <th className="p-3">Date</th>
+            <th className="p-3">Ville</th>
+            <th className="p-3">Tournois</th>
+            <th className="p-3">Cadence</th>
           </tr>
         </thead>
         <tbody>{tournaments}</tbody>

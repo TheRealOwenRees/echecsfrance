@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
+import { Tournament } from "@/types";
 
 /**
  * Imports the tournament map component, ensuring CSR only.
@@ -25,13 +26,15 @@ async function getTournaments() {
 }
 
 export default async function Tournaments() {
-  const tournamentData = await getTournaments();
+  const tournamentData: Tournament[] = await getTournaments();
   console.log(tournamentData);
 
   return (
     <Layout>
-      <TournamentMapNoSSR />
-      <TournamentTable tournamentData={tournamentData} />
+      <main className="grid lg:grid-cols-2">
+        <TournamentMapNoSSR />
+        <TournamentTable tournamentData={tournamentData} />
+      </main>
     </Layout>
   );
 }
