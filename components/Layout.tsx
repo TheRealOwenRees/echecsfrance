@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Layout({
   children, // will be a page or nested layout
@@ -6,9 +7,10 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white font-sans leading-normal tracking-normal">
+    <div className="h-screen bg-white font-sans leading-normal tracking-normal">
       <Navbar />
       {children}
+      <Footer />
     </div>
   );
 }
