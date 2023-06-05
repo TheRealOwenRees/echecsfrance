@@ -7,12 +7,14 @@ import { Tournament } from "@/types";
  * Imports the tournament map component, ensuring CSR only.
  * @remarks SSR is not supported by react-leaflet
  */
-const TournamentMapNoSSR = dynamic(
-  () => import("../../components/TournamentMap"),
-  {
-    ssr: false,
-  }
-);
+const TournamentMap = dynamic(() => import("@/components/TournamentMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-screen grid text-black place-items-center">
+      <p>Loading map...</p>
+    </div>
+  ),
+});
 
 /**
  * Retrieves tournament data from /api/tournaments
@@ -27,13 +29,16 @@ async function getTournaments() {
 
 export default async function Tournaments() {
   const tournamentData: Tournament[] = await getTournaments();
-  console.log(tournamentData);
 
   return (
     <Layout>
       <main className="grid lg:grid-cols-2">
-        <TournamentMapNoSSR />
-        <TournamentTable tournamentData={tournamentData} />
+        <div className="relative h-screen">
+          <TournamentMap tournamentData={tournamentData} />
+        </div>
+        <div className="bg-gray-800">
+          <TournamentTable tournamentData={tournamentData} />
+        </div>
       </main>
     </Layout>
   );

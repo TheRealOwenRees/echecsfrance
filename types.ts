@@ -1,6 +1,6 @@
 export interface Tournament {
   _id: string;
-  location: string;
+  town: string;
   department: string;
   tournament: string;
   url: string;
@@ -9,6 +9,6 @@ export interface Tournament {
   coordinates: [number, number];
 }
 
-export interface TournamentTableProps {
+export interface TournamentDataProps {
   tournamentData: Tournament[];
 }

@@ -1,11 +1,12 @@
 "use client";
 
-import { Tournament, TournamentTableProps } from "@/types";
+import { TournamentDataProps } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function TournamentTable({
   tournamentData,
-}: TournamentTableProps) {
+}: TournamentDataProps) {
+  // TODO put most of this is a custom hook
   const [tournamentFilter, setTournamentFilter] = useState(""); // text from search bar
   const [filteredTournamentData, setFilteredTournamentData] =
     useState(tournamentData);
@@ -13,22 +14,36 @@ export default function TournamentTable({
   useEffect(() => {
     setFilteredTournamentData(
       tournamentData.filter((t) =>
-        t.location.includes(tournamentFilter.toUpperCase())
+        t.town.includes(tournamentFilter.toUpperCase())
       )
     );
   }, [tournamentFilter]);
 
-  const tournaments = filteredTournamentData.map((t: Tournament) => (
+  const tournaments = filteredTournamentData.map((t) => (
     <tr
       className="border-b border-gray-700 border-opacity-20 bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-400 hover:text-black"
       key={t._id}
     >
-      <td className="p-3">{t.date}</td>
-      <td className="p-3">{t.location}</td>
-      <a href={t.url} target="_blank">
-        <td className="p-3">{t.tournament}</td>
-      </a>
-      <td className="p-3">{t.time_control}</td>
+      <td className="p-3">
+        <a href={t.url} target="_blank">
+          {t.date}
+        </a>
+      </td>
+      <td className="p-3">
+        <a href={t.url} target="_blank">
+          {t.town}
+        </a>
+      </td>
+      <td className="p-3">
+        <a href={t.url} target="_blank">
+          {t.tournament}
+        </a>
+      </td>
+      <td className="p-3">
+        <a href={t.url} target="_blank">
+          {t.time_control}
+        </a>
+      </td>
     </tr>
   ));
 
