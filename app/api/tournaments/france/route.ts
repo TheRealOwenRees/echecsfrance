@@ -1,8 +1,10 @@
 import clientPromise from "@/lib/mongodb";
 
+// TODO collate only the country of France - redundant for now but will be needed when new countries are added
+// probably do this by passing the country name as parameter
 /**
  * Tournament data API endpoint
- * @route /api/tournaments
+ * @route /api/tournaments/france
  * @internal
  */
 export async function GET() {

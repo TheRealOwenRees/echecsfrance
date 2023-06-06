@@ -1,0 +1,51 @@
+import { TournamentDataProps } from "@/types";
+
+import L from "leaflet";
+import { LayerGroup, LayersControl, Marker, Popup } from "react-leaflet";
+
+export const createLayerGroups = (
+  timeControl: string,
+  colour: string,
+  { tournamentData }: TournamentDataProps
+) => {
+  const filteredTournaments = tournamentData.filter(
+    (t) => t.time_control === timeControl
+  );
+
+  const iconOptions = new L.Icon({
+    iconUrl: `images/leaflet/marker-icon-2x-${colour}.png`,
+    shadowUrl: "images/leaflet/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
+  return (
+    <LayersControl.Overlay checked name={timeControl}>
+      <LayerGroup>
+        {filteredTournaments.map((t) => {
+          const coordinates = {
+            lat: t.coordinates[0] + Math.random() * (-0.01 - 0.01) + 0.01,
+            lng: t.coordinates[1] + Math.random() * (-0.01 - 0.01) + 0.01,
+          };
+
+          return (
+            <Marker position={coordinates} key={t._id} icon={iconOptions}>
+              <Popup>
+                <p>
+                  {t.date}
+                  <br />
+                  <a href={t.url} target="_blank" rel="noopener noreferrer">
+                    {t.tournament}
+                  </a>
+                </p>
+                géolocalisation approximative
+              </Popup>
+            </Marker>
+          );
+        })}
+      </LayerGroup>
+    </LayersControl.Overlay>
+  );
+};
