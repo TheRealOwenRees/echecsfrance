@@ -25,7 +25,7 @@ export default function Navbar() {
             <li className="mr-3">
               <Link
                 className="inline-block hover:text-gray-200 hover:text-underline py-2 px-4"
-                href="#"
+                href="/about"
               >
                 About
               </Link>
@@ -33,7 +33,7 @@ export default function Navbar() {
             <li className="mr-3">
               <Link
                 className="inline-block hover:text-gray-200 hover:text-underline py-2 px-4"
-                href="#"
+                href="/contact"
               >
                 Contact
               </Link>

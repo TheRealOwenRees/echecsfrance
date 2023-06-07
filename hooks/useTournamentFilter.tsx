@@ -13,8 +13,6 @@ const useTournamentDataFilter = (
     );
   };
 
-  console.log(filtered);
-
   if (filtered.length === 0) {
     state = (
       <tr className="border-b border-gray-700 border-opacity-20 bg-gray-800 text-white">
@@ -52,7 +50,6 @@ const useTournamentDataFilter = (
       </tr>
     ));
   }
-
   return [state, setState];
 };
 

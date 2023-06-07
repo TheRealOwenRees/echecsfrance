@@ -22,17 +22,16 @@ export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   const otherMarkers = createLayerGroups("1h KO", "red", { tournamentData });
 
   return (
-    <section id="tournament-map" className="w-full lg:col-start-1 lg:col-end-2">
+    <section
+      id="tournament-map"
+      className="grid h-[calc(100vh-96px)] md:h-[calc(100vh-64px)]"
+    >
       <MapContainer
         center={center}
         zoom={5}
         scrollWheelZoom={false}
         style={{
           height: "100%",
-          width: "100%",
-          position: "absolute",
-          top: 0,
-          bottom: 0,
         }}
       >
         <TileLayer

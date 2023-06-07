@@ -24,11 +24,11 @@ export default async function Tournaments() {
 
   return (
     <Layout>
-      <main className="relative grid lg:grid-cols-2">
-        <div className="relative h-screen">
+      <main className="grid lg:grid-cols-2">
+        <div className="">
           <TournamentMap tournamentData={tournamentData} />
         </div>
-        <div className="bg-gray-800">
+        <div className="bg-gray-800 lg:overflow-y-auto">
           <TournamentTable tournamentData={tournamentData} />
         </div>
       </main>
