@@ -12,6 +12,7 @@ export const createLayerGroups = (
     (t) => t.time_control === timeControl
   );
 
+  // TODO consider moving this into its own function
   const iconOptions = new L.Icon({
     iconUrl: `images/leaflet/marker-icon-2x-${colour}.png`,
     shadowUrl: "images/leaflet/marker-shadow.png",
@@ -21,31 +22,31 @@ export const createLayerGroups = (
     shadowSize: [41, 41],
   });
 
+  const layerGroup = filteredTournaments.map((t) => {
+    // TODO move this coorindate randomisation into its own function to follow SRP
+    const coordinates = {
+      lat: t.coordinates[0] + Math.random() * (-0.01 - 0.01) + 0.01,
+      lng: t.coordinates[1] + Math.random() * (-0.01 - 0.01) + 0.01,
+    };
+    return (
+      <Marker position={coordinates} key={t._id} icon={iconOptions}>
+        <Popup>
+          <p>
+            {t.date}
+            <br />
+            <a href={t.url} target="_blank" rel="noopener noreferrer">
+              {t.tournament}
+            </a>
+          </p>
+          géolocalisation approximative
+        </Popup>
+      </Marker>
+    );
+  });
+
   return (
     <LayersControl.Overlay checked name={timeControl}>
-      <LayerGroup>
-        {filteredTournaments.map((t) => {
-          const coordinates = {
-            lat: t.coordinates[0] + Math.random() * (-0.01 - 0.01) + 0.01,
-            lng: t.coordinates[1] + Math.random() * (-0.01 - 0.01) + 0.01,
-          };
-
-          return (
-            <Marker position={coordinates} key={t._id} icon={iconOptions}>
-              <Popup>
-                <p>
-                  {t.date}
-                  <br />
-                  <a href={t.url} target="_blank" rel="noopener noreferrer">
-                    {t.tournament}
-                  </a>
-                </p>
-                géolocalisation approximative
-              </Popup>
-            </Marker>
-          );
-        })}
-      </LayerGroup>
+      <LayerGroup>{layerGroup}</LayerGroup>
     </LayersControl.Overlay>
   );
 };
