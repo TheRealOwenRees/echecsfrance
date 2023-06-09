@@ -1,0 +1,26 @@
+footer
+
+light/dark theme
+
+tests for tournois, testing the loading of map and table, then counting the markers
+
+logo for navbar and favicon
+
+tournament table scroll
+
+hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook
+
+document my new hook
+
+error handling
+
+e2e tests for tournament page:
+    - make sure number of markers = tournamentData.length
+
+home page
+
+about page
+
+contact page
+
+SEO

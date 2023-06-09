@@ -7,7 +7,7 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
-
+  chromeWebSecurity: false,
   component: {
     devServer: {
       framework: "next",

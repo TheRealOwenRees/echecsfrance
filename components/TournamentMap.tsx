@@ -24,7 +24,7 @@ export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   return (
     <section
       id="tournament-map"
-      className="grid h-[calc(100vh-96px)] md:h-[calc(100vh-64px)]"
+      className="grid h-[calc(100vh-108px)] md:h-[calc(100vh-76px)]"
     >
       <MapContainer
         center={center}

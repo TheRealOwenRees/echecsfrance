@@ -12,38 +12,40 @@ const navbarFooterCheck = () => {
   });
 };
 
-describe("Verify home page", () => {
-  beforeEach(() => {
-    cy.mount(<Home />);
+describe("Verify component mount", () => {
+  describe("Verify home page", () => {
+    beforeEach(() => {
+      cy.mount(<Home />);
+    });
+
+    it("correct h1 tags with website name included", () => {
+      cy.get("h1").contains("echecs france", { matchCase: false });
+    });
+
+    navbarFooterCheck();
   });
 
-  it("should have the correct h1 tags with website name included", () => {
-    cy.get("h1").contains("echecs france", { matchCase: false });
+  describe("Verify about page", () => {
+    beforeEach(() => {
+      cy.mount(<About />);
+    });
+
+    it("correct h1 tags with page title included", () => {
+      cy.get("h1").contains("about", { matchCase: false });
+    });
+
+    navbarFooterCheck();
   });
 
-  navbarFooterCheck();
-});
+  describe("Verify contact page", () => {
+    beforeEach(() => {
+      cy.mount(<Contact />);
+    });
 
-describe("Verify about page", () => {
-  beforeEach(() => {
-    cy.mount(<About />);
+    it("correct h1 tags with page title included", () => {
+      cy.get("h1").contains("contact", { matchCase: false });
+    });
+
+    navbarFooterCheck();
   });
-
-  it("should have the correct h1 tags with page title included", () => {
-    cy.get("h1").contains("about", { matchCase: false });
-  });
-
-  navbarFooterCheck();
-});
-
-describe("Verify contact page", () => {
-  beforeEach(() => {
-    cy.mount(<Contact />);
-  });
-
-  it("should have the correct h1 tags with page title included", () => {
-    cy.get("h1").contains("contact", { matchCase: false });
-  });
-
-  navbarFooterCheck();
 });

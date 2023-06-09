@@ -7,7 +7,7 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen bg-white font-sans leading-normal tracking-normal">
+    <div className="h-screen min-h-[400px] bg-white font-sans leading-normal tracking-normal">
       <Navbar />
       {children}
       <Footer />

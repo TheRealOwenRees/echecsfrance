@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "test:e2e": "cypress run",
+    "test:component": "cypress run --component",
+    "test": "npm run test:component && npm run test:e2e",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@types/node": "20.2.3",

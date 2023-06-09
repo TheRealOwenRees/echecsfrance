@@ -1,7 +1,16 @@
 import { TournamentDataProps } from "@/types";
+import { LatLngLiteral } from "leaflet";
 
 import L from "leaflet";
 import { LayerGroup, LayersControl, Marker, Popup } from "react-leaflet";
+
+const coordinateRandomisation = (lat: number, lng: number): LatLngLiteral => {
+  const randomisation = () => Math.random() * (-0.01 - 0.01) + 0.01;
+  return {
+    lat: lat + randomisation(),
+    lng: lng + randomisation(),
+  };
+};
 
 export const createLayerGroups = (
   timeControl: string,
@@ -12,7 +21,6 @@ export const createLayerGroups = (
     (t) => t.time_control === timeControl
   );
 
-  // TODO consider moving this into its own function
   const iconOptions = new L.Icon({
     iconUrl: `images/leaflet/marker-icon-2x-${colour}.png`,
     shadowUrl: "images/leaflet/marker-shadow.png",
@@ -23,13 +31,12 @@ export const createLayerGroups = (
   });
 
   const layerGroup = filteredTournaments.map((t) => {
-    // TODO move this coorindate randomisation into its own function to follow SRP
-    const coordinates = {
-      lat: t.coordinates[0] + Math.random() * (-0.01 - 0.01) + 0.01,
-      lng: t.coordinates[1] + Math.random() * (-0.01 - 0.01) + 0.01,
-    };
     return (
-      <Marker position={coordinates} key={t._id} icon={iconOptions}>
+      <Marker
+        position={coordinateRandomisation(t.coordinates[0], t.coordinates[1])}
+        key={t._id}
+        icon={iconOptions}
+      >
         <Popup>
           <p>
             {t.date}
