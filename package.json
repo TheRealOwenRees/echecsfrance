@@ -7,12 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "jest": "jest",
-    "jest:watch": "jest --watch",
+    "test": "jest",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "test": "npm run cypress:run && npm run jest",
-    "test:watch": "npm run cypress:open && npm run jest:watch"
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@types/node": "20.2.3",

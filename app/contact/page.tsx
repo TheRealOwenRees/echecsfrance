@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 
-export default function Home() {
+export default function Contact() {
   return (
     <Layout>
       <header className="grid h-[calc(100%-144px)] md:h-[calc(100%-112px)] place-items-center">

@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "1",
+    "town": "Testville",
+    "department": "55",
+    "tournament": "Test Tournament 1",
+    "url": "https://www.google.com",
+    "time_control": "Cadence Lente",
+    "date": "01/01/29",
+    "coordinates": [55, 1]
+  },
+  {
+    "_id": "2",
+    "town": "Testville 2",
+    "department": "55",
+    "tournament": "Test Tournament 2",
+    "url": "https://www.google.com",
+    "time_control": "Rapide",
+    "date": "01/01/29",
+    "coordinates": [55, 0.5]
+  },
+  {
+    "_id": "3",
+    "town": "Testville 3",
+    "department": "55",
+    "tournament": "Test Tournament 3",
+    "url": "https://www.google.com",
+    "time_control": "BLitz",
+    "date": "01/01/28",
+    "coordinates": [55.5, 0.5]
+  }
+]
