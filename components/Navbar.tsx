@@ -13,7 +13,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="flex w-full pt-2 justify-center md:w-1/2 md:justify-end">
-          <ul className="list-reset text-white no-underline flex flex-1 md:flex-none items-center">
+          <ul className="list-reset text-white no-underline flex flex-1 justify-around md:flex-none items-center">
             <li className="mr-10">
               <Link
                 className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
