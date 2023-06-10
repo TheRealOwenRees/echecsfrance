@@ -1,5 +1,7 @@
 footer
 
+need a 'return to top' arrow button on smaller screens
+
 light/dark theme
 
 tests for tournois, testing the loading of map and table, then counting the markers

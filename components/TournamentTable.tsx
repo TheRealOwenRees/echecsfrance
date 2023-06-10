@@ -19,19 +19,19 @@ export default function TournamentTable({
   return (
     <section
       id="tournament-table"
-      className="w-full lg:col-start-2 lg:col-end-3"
+      className="w-full grid h-[calc(100vh-176px)] md:h-[calc(100vh-82px)] lg:h-[calc(100vh-132px)] lg:col-start-2 lg:col-end-3"
     >
       <SearchBar
         tournamentFilter={tournamentFilter}
         setTournamentFilter={setTournamentFilter}
       />
-      <table className="table-fixed w-full text-center text-xs">
+      <table className="relative table-fixed w-full text-center text-xs">
         <thead className="bg-gray-600 text-white">
-          <tr className="">
-            <th className="p-3">Date</th>
-            <th className="p-3">Ville</th>
-            <th className="p-3">Tournois</th>
-            <th className="p-3">Cadence</th>
+          <tr>
+            <th className="sticky top-0 p-3 bg-gray-600">Date</th>
+            <th className="sticky top-0 p-3 bg-gray-600">Ville</th>
+            <th className="sticky top-0 p-3 bg-gray-600">Tournois</th>
+            <th className="sticky top-0 p-3 bg-gray-600">Cadence</th>
           </tr>
         </thead>
         <tbody>{filteredTournamentData}</tbody>

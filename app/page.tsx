@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 export default function Home() {
   return (
     <Layout>
-      <header className="grid h-[calc(100%-156px)] md:h-[calc(100%-124px)] place-items-center">
+      <header className="grid h-[calc(100%-176px)] md:h-[calc(100%-132px)] place-items-center">
         <div className="relative h-full w-full bg-[url('/images/map-bg.jpg')] bg-cover bg-center brightness-[0.2]"></div>
         <div className="absolute text-center">
           <h1 className="text-5xl p-5">Echecs France</h1>
