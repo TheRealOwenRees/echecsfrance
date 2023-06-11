@@ -1,6 +1,6 @@
-footer
-
 need a 'return to top' arrow button on smaller screens
+
+muti-language i18n support
 
 light/dark theme
 
@@ -16,8 +16,6 @@ error handling
 
 e2e tests for tournament page:
     - make sure number of markers = tournamentData.length
-
-home page
 
 about page
 

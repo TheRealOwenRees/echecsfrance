@@ -21,7 +21,7 @@ export default function TournamentTable({
   const stickyHeader = "sticky top-0 p-3 bg-gray-600";
 
   return (
-    <section className="w-full grid auto-rows-max h-[calc(100vh-176px)] md:h-[calc(100vh-82px)] lg:h-[calc(100vh-132px)] lg:col-start-2 lg:col-end-3">
+    <section className="w-full grid auto-rows-max lg:h-[calc(100vh-172px)] lg:col-start-2 lg:col-end-3">
       <SearchBar
         tournamentFilter={tournamentFilter}
         setTournamentFilter={setTournamentFilter}

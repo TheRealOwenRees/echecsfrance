@@ -25,17 +25,17 @@ export default function Navbar() {
             <li className="mr-10">
               <Link
                 className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
-                href="/about"
+                href="/qui-sommes-nous"
               >
-                About
+                Qui Sommes-Nous
               </Link>
             </li>
             <li className="">
               <Link
                 className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
-                href="/contact"
+                href="/contactez-nous"
               >
-                Contact
+                Contactez-Nous
               </Link>
             </li>
           </ul>

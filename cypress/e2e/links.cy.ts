@@ -1,18 +1,22 @@
 describe("Test all links", () => {
-  const pages = ["tournois", "about", "contact"];
+  const pages = ["tournois", "qui sommes-nous", "contactez-nous"];
 
-  it("Check navbar links point to correct pathname", () => {
+  const navLinkToSlug = (navLink: string) => {
+    return navLink.replace(/\s+/g, "-");
+  };
+
+  it("Check navbar links point to correct pathname as a slug", () => {
     cy.visit("/");
     pages.forEach((page) => {
       cy.contains(page, { matchCase: false }).click();
-      cy.location("pathname").should("eq", `/${page}`); // url path matches link name
+      cy.location("pathname").should("eq", `/${navLinkToSlug(page)}`); // url path matches link name, replacing whitespace with hyphens
       cy.go("back");
     });
   });
 
   it("Check dead links", () => {
     pages.forEach((page) => {
-      cy.visit(`/${page}`);
+      cy.visit(`/${navLinkToSlug(page)}`);
       cy.get("a:not([href*='mailto:']").each((link) => {
         if (
           !link

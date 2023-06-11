@@ -1,6 +1,6 @@
 import Home from "@/app/page";
-import About from "@/app/about/page";
-import Contact from "@/app/contact/page";
+import About from "@/app/qui-sommes-nous/page";
+import Contact from "@/app/contactez-nous/page";
 
 const navbarFooterCheck = () => {
   it("includes navbar", () => {
@@ -31,7 +31,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("h1").contains("about", { matchCase: false });
+      cy.get("h1").contains("qui sommes-nous", { matchCase: false });
     });
 
     navbarFooterCheck();
@@ -43,7 +43,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("h1").contains("contact", { matchCase: false });
+      cy.get("h1").contains("contactez-nous", { matchCase: false });
     });
 
     navbarFooterCheck();

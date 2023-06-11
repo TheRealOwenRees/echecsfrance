@@ -15,6 +15,7 @@ export async function GET() {
     /**
      * Converts date from string into a date to allow ordering
      */
+    // TODO add into a middleware?
     const data = await db
       .collection("tournaments")
       .aggregate([
