@@ -11,7 +11,7 @@ const SearchBar = ({
 }: SearchBarProps) => {
   return (
     <>
-      <div className="p-3 bg-gray-800">
+      <div className="p-3 bg-white dark:bg-gray-800">
         <label htmlFor="table-search" className="sr-only">
           Search
         </label>

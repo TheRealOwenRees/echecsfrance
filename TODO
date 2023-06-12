@@ -1,14 +1,14 @@
 need a 'return to top' arrow button on smaller screens
 
-muti-language i18n support
+muti-language i18n support- https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
-light/dark theme
+light/dark theme in all components
 
 tests for tournois, testing the loading of map and table, then counting the markers
 
 logo for navbar and favicon
 
-hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook
+hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occuring on all hovers at the moment. Client/SSR issue?
 
 document my new hook
 

@@ -18,16 +18,16 @@ export default function TournamentTable({
 
   console.log(filteredTournamentData.length);
 
-  const stickyHeader = "sticky top-0 p-3 bg-gray-600";
+  const stickyHeader = "sticky top-0 p-3 bg-teal-600 dark:bg-gray-600";
 
   return (
-    <section className="w-full grid auto-rows-max lg:h-[calc(100vh-172px)] lg:col-start-2 lg:col-end-3">
+    <section className="w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-174px)] lg:col-start-2 lg:col-end-3">
       <SearchBar
         tournamentFilter={tournamentFilter}
         setTournamentFilter={setTournamentFilter}
       />
       <table className="relative table-fixed w-full text-center text-xs">
-        <thead className="bg-gray-600 text-white">
+        <thead>
           <tr>
             <th className={stickyHeader}>Date</th>
             <th className={stickyHeader}>Ville</th>

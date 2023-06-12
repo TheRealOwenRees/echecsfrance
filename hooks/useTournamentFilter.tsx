@@ -25,7 +25,7 @@ const useTournamentDataFilter = (
   } else {
     state = filtered.map((t) => (
       <tr
-        className="border-b border-gray-700 border-opacity-20 bg-gray-800 text-white transition duration-300 ease-in-out hover:bg-gray-400 hover:text-black"
+        className="text-gray-900 bg-white dark:bg-gray-800 dark:text-white hover:bg-gray-400 hover:text-black"
         key={t._id}
       >
         <td className="p-3">

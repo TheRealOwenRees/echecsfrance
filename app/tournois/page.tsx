@@ -13,7 +13,7 @@ import getTournaments from "@/utils/getTournamentData";
 const TournamentMap = dynamic(() => import("@/components/TournamentMap"), {
   ssr: false,
   loading: () => (
-    <div className="h-screen grid text-black place-items-center">
+    <div className="h-screen grid place-items-center text-gray-900 bg-white dark:bg-gray-800 dark:text-white">
       <p>Loading map...</p>
     </div>
   ),
@@ -28,7 +28,7 @@ export default async function Tournaments() {
         <div className="">
           <TournamentMap tournamentData={tournamentData} />
         </div>
-        <div className="bg-gray-800 lg:overflow-y-auto">
+        <div className="bg-white dark:bg-gray-800 lg:overflow-y-auto">
           <TournamentTable tournamentData={tournamentData} />
         </div>
       </main>

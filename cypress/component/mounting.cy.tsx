@@ -31,7 +31,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("h1").contains("qui sommes-nous", { matchCase: false });
+      cy.get("h2").contains("qui sommes-nous", { matchCase: false });
     });
 
     navbarFooterCheck();
@@ -43,7 +43,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("h1").contains("contactez-nous", { matchCase: false });
+      cy.get("h2").contains("contactez-nous", { matchCase: false });
     });
 
     navbarFooterCheck();
