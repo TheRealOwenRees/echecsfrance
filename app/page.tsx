@@ -9,11 +9,11 @@ export default function Home() {
         <div className="absolute text-center">
           <h1 className="text-5xl p-5">Echecs France</h1>
           <h2 className="text-3xl p-5">
-            Trouvez Vos Tournois d'Echecs en France Sur Une Carte
+            Trouvez Vos Tournois d&apos;Echecs en France Sur Une Carte
           </h2>
           <h3 className="text-xl p-5 mb-5">
-            Une représentation visuelle de tous les tournois d'échecs publiés
-            par la{" "}
+            Une représentation visuelle de tous les tournois d&apos;échecs
+            publiés par la{" "}
             <Link href="http://www.echecs.asso.fr/" target="_blank">
               <abbr title="Fédération Française des Échecs">FFE</abbr>
             </Link>

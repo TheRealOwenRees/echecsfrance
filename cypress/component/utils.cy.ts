@@ -4,7 +4,6 @@ import { createLayerGroups } from "@/utils/layerGroups";
 
 // TODO cy.wrap() for promise resolution
 // TODO DRY - variables and data fetching can be done before tests under the first describe block
-
 describe("Unit tests of utils directory", () => {
   describe("Retrieve tournament data from DB", () => {
     let response: Tournament[];
