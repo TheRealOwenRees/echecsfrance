@@ -16,7 +16,7 @@ const useTournamentDataFilter = (
 
   if (filtered.length === 0) {
     state = (
-      <tr className="border-b border-gray-700 border-opacity-20 bg-gray-800 text-white">
+      <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
         <td colSpan={4} className="p-3">
           No tournaments found
         </td>
