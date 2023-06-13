@@ -3,7 +3,7 @@
  * @remarks The result is cached for the revalidation period in seconds
  */
 export default async function getTournaments(country: string) {
-  const server = process.env.SERVER;
+  const server = process.env.NEXT_PUBLIC_SITE_URL;
   const res = await fetch(`${server}/api/tournaments/${country}`, {
     next: { revalidate: 300 },
   });
