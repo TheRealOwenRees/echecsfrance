@@ -14,5 +14,5 @@ export default async function getTournaments(country: string) {
   if (res.status !== 200) {
     throw new Error("Failed to fetch tournament data");
   }
-  return res.json();
+  return await res.json();
 }
