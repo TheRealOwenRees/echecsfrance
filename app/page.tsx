@@ -15,7 +15,7 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="absolute text-center">
+        <div className="absolute text-center text-white">
           <h1 className="text-5xl p-5">Echecs France</h1>
           <h2 className="text-3xl p-5">
             Trouvez Vos Tournois d&apos;Echecs en France Sur Une Carte

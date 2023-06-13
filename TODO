@@ -2,8 +2,6 @@ need a 'return to top' arrow button on smaller screens
 
 muti-language i18n support- https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
-light/dark theme in all components
-
 tests for tournois, testing the loading of map and table, then counting the markers
 
 logo for navbar and favicon
@@ -19,6 +17,6 @@ e2e tests for tournament page:
 
 about page
 
-contact page
+contact page needs working mailer
 
 SEO
