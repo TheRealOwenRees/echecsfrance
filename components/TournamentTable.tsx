@@ -16,7 +16,8 @@ export default function TournamentTable({
     setFilteredTournamentData(tournamentFilter);
   }, [tournamentFilter]);
 
-  const stickyHeader = "sticky top-0 p-3 bg-teal-600 dark:bg-gray-600";
+  const stickyHeader =
+    "sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600";
 
   return (
     <section className="w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-174px)] lg:col-start-2 lg:col-end-3">
