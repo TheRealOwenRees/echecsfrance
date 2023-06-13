@@ -3,11 +3,11 @@
  * @remarks The result is cached for the revalidation period in seconds
  */
 export default async function getTournaments(country: string) {
-  const baseUrl =
-    process.env.NODE_ENV === "production"
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : "http://localhost:3000";
-  const res = await fetch(`${baseUrl}/api/tournaments/${country}`, {
+  const server = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? process.env.NEXT_PUBLIC_VERCEL_URL
+    : process.env.SERVER;
+
+  const res = await fetch(`${server}/api/tournaments/${country}`, {
     next: { revalidate: 300 },
   });
 

@@ -1,9 +1,11 @@
+import { Tournament } from "@/types";
+
 import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
+import getTournaments from "@/utils/getTournamentData";
 
-const server = process.env.SERVER;
-
+// TODO can these functions be put into a custom hook?
 /**
  * Imports the tournament map component, ensuring CSR only.
  * @remarks SSR is not supported by react-leaflet
@@ -18,17 +20,7 @@ const TournamentMap = dynamic(() => import("@/components/TournamentMap"), {
 });
 
 export default async function Tournaments() {
-  /**
-   * Retrieves tournament data from /api/tournaments/:country
-   * @remarks The result is cached for the revalidation period in seconds
-   */
-  const res = await fetch(`${server}/api/tournaments/france`, {
-    next: { revalidate: 300 },
-  });
-  if (res.status !== 200) {
-    throw new Error("Failed to fetch tournament data");
-  }
-  const tournamentData = await res.json();
+  const tournamentData = await getTournaments("france");
 
   return (
     <Layout>
