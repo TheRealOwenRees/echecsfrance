@@ -1,11 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import Layout from "@/components/Layout";
+import bgImage from "@/public/images/map-bg.jpg";
 
 export default function Home() {
   return (
     <Layout>
       <header className="grid h-[calc(100%-153px)] md:h-[calc(100%-173px)] place-items-center">
-        <div className="relative h-full w-full bg-[url('/images/map-bg.jpg')] bg-cover bg-center brightness-[0.2]"></div>
+        <div className="relative h-full w-full brightness-[0.2]">
+          <Image
+            src={bgImage}
+            alt="Background image of France"
+            fill={true}
+            style={{ objectFit: "cover" }}
+          />
+        </div>
         <div className="absolute text-center">
           <h1 className="text-5xl p-5">Echecs France</h1>
           <h2 className="text-3xl p-5">
