@@ -4,6 +4,8 @@ import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
 
+export const revalidate = 86400; // cache for 24 hours
+
 /**
  * Imports the tournament map component, ensuring CSR only.
  * @remarks SSR is not supported by react-leaflet
@@ -16,8 +18,6 @@ const TournamentMap = dynamic(() => import("@/components/TournamentMap"), {
     </div>
   ),
 });
-
-export const revalidate = 86400; // cache for 24 hours
 
 const getTournaments = async () => {
   try {
