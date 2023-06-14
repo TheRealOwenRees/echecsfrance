@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { cache } from "react";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
 
 /**
@@ -6,8 +7,8 @@ import { dateOrderingFrance } from "@/utils/dbDateOrdering";
  * @route /api/tournaments/france
  * @internal
  */
-// TODO cache this result for 24 hours - using cache()
-export async function GET() {
+export const revalidate = 86400;
+export const GET = cache(async function () {
   try {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
@@ -18,4 +19,4 @@ export async function GET() {
   } catch (error) {
     return new Response(JSON.stringify(error), { status: 500 });
   }
-}
+});
