@@ -1,10 +1,14 @@
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ menuVisible }: { menuVisible: boolean }) => {
   return (
-    <div className="hamburgerMenu absolute top-16 right-0 z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600">
-      <ul className="list-reset text-white p-5">
+    <div
+      className={`absolute top-0 ${
+        menuVisible ? "right-0" : "-right-[173px]"
+      } z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600 transition-all duration-500 ease-linear`}
+    >
+      <ul className="list-reset text-white mt-16 p-5">
         <li className="py-5">
           <Link href="/tournois">Tournois</Link>
         </li>

@@ -2,8 +2,6 @@ improve hamburger menu - button and menu <- menu hidden off page to the right an
 
 create readme
 
-consider moving themetoggle css out of global and into its own css file
-
 need a 'return to top' arrow button on smaller screens
 
 mobile map needs improving
