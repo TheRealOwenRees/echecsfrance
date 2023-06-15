@@ -2,11 +2,21 @@
 
 import { MdBrightness2, MdCircle } from "react-icons/md";
 import useDarkMode from "@/hooks/useDarkMode";
+import { useEffect, useState} from 'react'
 
 // TODO write tests for light/mode
 // TODO fix TS error on setTheme
 const ThemeSwitcher = () => {
+  const [mounted, setMounted] = useState(false);
   const [colorTheme, setTheme] = useDarkMode();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if(!mounted) {
+    return null;
+  }
 
   return (
     <div>
