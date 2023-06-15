@@ -2,10 +2,8 @@
 
 import { MdBrightness2, MdCircle } from "react-icons/md";
 import useDarkMode from "@/hooks/useDarkMode";
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from "react";
 
-// TODO write tests for light/mode
-// TODO fix TS error on setTheme
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const [colorTheme, setTheme] = useDarkMode();
@@ -14,22 +12,26 @@ const ThemeSwitcher = () => {
     setMounted(true);
   }, []);
 
-  if(!mounted) {
+  if (!mounted) {
     return null;
   }
 
   return (
     <div>
       {colorTheme === "light" ? (
-        <div className="toggle-dark" onClick={() => setTheme("light")}>
-          <MdBrightness2 className="theme-icon-dark"  />
+        <div
+          className="relative cursor-pointer h-8 w-12 rounded-[50px] margin-auto bg-gradient-to-r from-blue-900 to-purple-900"
+          onClick={() => setTheme("light")}
+        >
+          <MdBrightness2 className="ml-auto h-8 w-5" />
         </div>
-        
       ) : (
-        <div className="toggle" onClick={() => setTheme("dark")}>
-          <MdCircle className="theme-icon"  />
+        <div
+          className="relative cursor-pointer h-8 w-12 rounded-[50px] margin-auto bg-gradient-to-r from-teal-300 to-sky-500"
+          onClick={() => setTheme("dark")}
+        >
+          <MdCircle className="ml-1 h-8 w-5 text-yellow-300" />
         </div>
-        
       )}
     </div>
   );

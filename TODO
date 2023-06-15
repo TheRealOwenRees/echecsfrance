@@ -1,4 +1,8 @@
-improve hamburger menu - button and menu
+improve hamburger menu - button and menu <- menu hidden off page to the right and eases in, button needs animation
+
+create readme
+
+consider moving themetoggle css out of global and into its own css file
 
 need a 'return to top' arrow button on smaller screens
 
