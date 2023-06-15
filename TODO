@@ -1,14 +1,18 @@
+improve hamburger menu - button and menu
+
 need a 'return to top' arrow button on smaller screens
 
-muti-language i18n support- https://nextjs.org/docs/app/building-your-application/routing/internationalization
+mobile map needs improving
+
+multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
 tests for tournois, testing the loading of map and table, then counting the markers
 
 logo for navbar and favicon
 
-hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occuring on all hovers at the moment. Client/SSR issue?
+hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment. Client/SSR issue?
 
-document my new hook
+document my new hook <- consider removing as I believe this is the reason hover is broken
 
 error handling
 
@@ -20,3 +24,5 @@ about page
 contact page needs working mailer
 
 SEO
+
+consider offering GraphQL support

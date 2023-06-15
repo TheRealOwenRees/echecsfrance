@@ -6,9 +6,8 @@ import { dateOrderingFrance } from "@/utils/dbDateOrdering";
  * @route /api/tournaments/france
  * @internal
  */
-// TODO add headers to response content-type application/json
 export const revalidate = 3600; // revalidate cache every 6 hours
-async function GET() {
+export async function GET() {
   const headers = {
     "Content-Type": "application/json",
   };
