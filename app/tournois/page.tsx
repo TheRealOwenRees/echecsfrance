@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
 
-export const revalidate = 86400; // cache for 24 hours
+export const revalidate = 3600; // revalidate cache every 6 hours
 
 /**
  * Imports the tournament map component, ensuring CSR only.
