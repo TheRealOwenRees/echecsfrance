@@ -1,22 +1,27 @@
 "use client";
 
-import { MdOutlineDarkMode, MdLightbulbOutline } from "react-icons/md";
+import { MdBrightness2, MdCircle } from "react-icons/md";
 import useDarkMode from "@/hooks/useDarkMode";
 
 // TODO write tests for light/mode
-// TODO new SVG for light/dark theme
 // TODO fix TS error on setTheme
 const ThemeSwitcher = () => {
   const [colorTheme, setTheme] = useDarkMode();
 
   return (
-    <>
+    <div>
       {colorTheme === "light" ? (
-        <MdOutlineDarkMode onClick={() => setTheme("light")} />
+        <div className="toggle-dark" onClick={() => setTheme("light")}>
+          <MdBrightness2 className="theme-icon-dark"  />
+        </div>
+        
       ) : (
-        <MdLightbulbOutline onClick={() => setTheme("dark")} />
+        <div className="toggle" onClick={() => setTheme("dark")}>
+          <MdCircle className="theme-icon"  />
+        </div>
+        
       )}
-    </>
+    </div>
   );
 };
 
