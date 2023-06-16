@@ -1,38 +1,33 @@
-hamburger menu timeout / close when clicking elsewhere
-
-hamburger tests - does it appear on smaller screens, does the menu appear on click
-
-readme
-
+//TODO readme
 ----------------------------------------------------------------
 
-hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment. Client/SSR issue?
+//TODO hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment. Client/SSR issue?
 
-font size on mobile screen
+//TODO font size on mobile screen
 
-need a 'return to top' arrow button on smaller screens
+//TODO need a 'return to top' arrow button on smaller screens
 
-mobile map needs improving
+//TODO mobile map needs improving
 
-multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
+//TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
-tests for tournois, testing the loading of map and table, then counting the markers
+//TODO tests for tournois, testing the loading of map and table, then counting the markers
 
-logo for navbar and favicon
+//TODO logo for navbar and favicon
 
-document my new hook <- consider removing as I believe this is the reason hover is broken
+//TODO document my new hook <- consider removing as I believe this is the reason hover is broken
 
-error handling
+//TODO error handling
 
-e2e tests for tournament page:
+//TODO e2e tests for tournament page:
     - make sure number of markers = tournamentData.length
 
-about page
+//TODO about page
 
-contact page needs working mailer
+//TODO contact page needs working mailer
 
-SEO
+//TODO SEO
 
-consider offering GraphQL support
+//TODO consider offering GraphQL support
 
-move smaller ui components into a new folder, and make them reusable - such as using generic prop names
+//TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names

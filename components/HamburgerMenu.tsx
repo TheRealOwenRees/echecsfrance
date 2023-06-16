@@ -1,57 +1,29 @@
-import Link from "next/link";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-
-type hamburgerMenuState = {
+interface HamburgerMenuState {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
   hamburgerButtonRef: RefObject<HTMLDivElement>;
-};
+}
+
+import Link from "next/link";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
+import useHamburgerClose from "@/hooks/useHamburgerClose";
 
 const HamburgerMenu = ({
   menuVisible,
   setMenuVisible,
   hamburgerButtonRef,
-}: hamburgerMenuState) => {
+}: HamburgerMenuState) => {
   const [mouseOverMenu, setMouseOverMenu] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | undefined>();
   const menuRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleMouseDownOutsideMenu = (event: MouseEvent) => {
-      if (
-        menuVisible &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        hamburgerButtonRef.current &&
-        !hamburgerButtonRef.current.contains(event.target as Node)
-      ) {
-        setMenuVisible(false);
-        setMouseOverMenu(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleMouseDownOutsideMenu);
-
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDownOutsideMenu);
-    };
-  }, [menuVisible]);
-
-  useEffect(() => {
-    if (menuVisible && !mouseOverMenu) {
-      menuTimeout();
-    } else {
-      clearTimeout(timeoutRef.current);
-    }
-  }, [mouseOverMenu, menuVisible]);
+  const menuTimeout = () => {
+    timeoutRef.current = setTimeout(() => {
+      setMenuVisible(false);
+      setMouseOverMenu(false);
+    }, 2000);
+  };
 
   const handleMouseEnterMenu = () => {
     setMouseOverMenu(true);
@@ -63,12 +35,16 @@ const HamburgerMenu = ({
     clearTimeout(timeoutRef.current);
   };
 
-  const menuTimeout = () => {
-    timeoutRef.current = setTimeout(() => {
-      setMenuVisible(false);
-      setMouseOverMenu(false);
-    }, 2000);
-  };
+  useHamburgerClose({
+    menuVisible,
+    setMenuVisible,
+    menuRef,
+    hamburgerButtonRef,
+    mouseOverMenu,
+    setMouseOverMenu,
+    timeoutRef,
+    menuTimeout,
+  });
 
   return (
     <div

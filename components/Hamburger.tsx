@@ -10,7 +10,7 @@ const Hamburger = () => {
     <>
       <div
         ref={hamburgerButtonRef}
-        className="space-y-2 relative z-[99999]"
+        className="hamburger-button space-y-2 relative z-[99999]"
         onClick={() => setMenuVisible(!menuVisible)}
       >
         <div

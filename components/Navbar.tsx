@@ -14,11 +14,11 @@ export default function Navbar() {
             <span className="text-2xl">Echecs France</span>
           </Link>
         </div>
-        <div className="pb-2 md:hidden">
+        <div className="mobile-menu pb-2 md:hidden">
           <Hamburger />
         </div>
 
-        <div className="hidden pt-2 justify-center md:flex md:w-1/2 md:justify-end">
+        <div className="desktop-menu hidden pt-2 justify-center md:flex md:w-1/2 md:justify-end">
           <ul className="list-reset text-gray-900 dark:text-white no-underline flex flex-1 justify-around md:flex-none items-center">
             <li className="mr-10">
               <Link
