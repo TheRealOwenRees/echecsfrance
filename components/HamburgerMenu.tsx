@@ -1,15 +1,49 @@
 import Link from "next/link";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-type menuState = {
+type hamburgerMenuState = {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
+  hamburgerButtonRef: RefObject<HTMLDivElement>;
 };
 
-const HamburgerMenu = ({ menuVisible, setMenuVisible }: menuState) => {
+const HamburgerMenu = ({
+  menuVisible,
+  setMenuVisible,
+  hamburgerButtonRef,
+}: hamburgerMenuState) => {
   const [mouseOverMenu, setMouseOverMenu] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | undefined>();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseDownOutsideMenu = (event: MouseEvent) => {
+      if (
+        menuVisible &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        hamburgerButtonRef.current &&
+        !hamburgerButtonRef.current.contains(event.target as Node)
+      ) {
+        setMenuVisible(false);
+        setMouseOverMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleMouseDownOutsideMenu);
+
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDownOutsideMenu);
+    };
+  }, [menuVisible]);
 
   useEffect(() => {
     if (menuVisible && !mouseOverMenu) {
@@ -17,7 +51,7 @@ const HamburgerMenu = ({ menuVisible, setMenuVisible }: menuState) => {
     } else {
       clearTimeout(timeoutRef.current);
     }
-  }, [mouseOverMenu]);
+  }, [mouseOverMenu, menuVisible]);
 
   const handleMouseEnterMenu = () => {
     setMouseOverMenu(true);
@@ -38,6 +72,7 @@ const HamburgerMenu = ({ menuVisible, setMenuVisible }: menuState) => {
 
   return (
     <div
+      ref={menuRef}
       className={`absolute top-0 -right-[173px] ${
         menuVisible ? "-translate-x-full" : ""
       } z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600 transition-transform duration-500 ease-linear`}

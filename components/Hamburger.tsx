@@ -1,13 +1,15 @@
 "use client";
 
 import HamburgerMenu from "@/components/HamburgerMenu";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Hamburger = () => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const hamburgerButtonRef = useRef<HTMLDivElement>(null);
   return (
     <>
       <div
+        ref={hamburgerButtonRef}
         className="space-y-2 relative z-[99999]"
         onClick={() => setMenuVisible(!menuVisible)}
       >
@@ -31,6 +33,7 @@ const Hamburger = () => {
         <HamburgerMenu
           menuVisible={menuVisible}
           setMenuVisible={setMenuVisible}
+          hamburgerButtonRef={hamburgerButtonRef}
         />
       }
     </>
