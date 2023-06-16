@@ -10,13 +10,28 @@ const HamburgerMenu = ({ menuVisible }: { menuVisible: boolean }) => {
     >
       <ul className="list-reset text-white mt-16 p-5">
         <li className="py-5">
-          <Link href="/tournois">Tournois</Link>
+          <Link
+            href="/tournois"
+            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+          >
+            Tournois
+          </Link>
         </li>
         <li className="py-5">
-          <Link href="/qui-sommes-nous">Qui Sommes-Nous</Link>
+          <Link
+            href="/qui-sommes-nous"
+            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+          >
+            Qui Sommes-Nous
+          </Link>
         </li>
         <li className="py-5">
-          <Link href="/contactez-nous">Contactez-Nous</Link>
+          <Link
+            href="/contactez-nous"
+            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+          >
+            Contactez-Nous
+          </Link>
         </li>
         <li className="py-5">
           <ThemeSwitcher />
