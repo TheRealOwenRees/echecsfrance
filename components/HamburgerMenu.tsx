@@ -4,9 +4,9 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 const HamburgerMenu = ({ menuVisible }: { menuVisible: boolean }) => {
   return (
     <div
-      className={`absolute top-0 ${
-        menuVisible ? "right-0" : "-right-[173px]"
-      } z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600 transition-all duration-500 ease-linear`}
+      className={`absolute top-0 -right-[173px] ${
+        menuVisible ? "-translate-x-full" : ""
+      } z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600 transition-transform duration-500 ease-linear`}
     >
       <ul className="list-reset text-white mt-16 p-5">
         <li className="py-5">
