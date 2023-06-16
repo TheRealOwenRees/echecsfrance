@@ -6,8 +6,10 @@ describe("Test all links", () => {
   };
 
   it("Check navbar links point to correct pathname as a slug", () => {
+    cy.viewport(600, 600);
     cy.visit("/");
     pages.forEach((page) => {
+      cy.get(".hamburger-button").click();
       cy.contains(page, { matchCase: false }).click();
       cy.location("pathname").should("eq", `/${navLinkToSlug(page)}`); // url path matches link name, replacing whitespace with hyphens
       cy.go("back");

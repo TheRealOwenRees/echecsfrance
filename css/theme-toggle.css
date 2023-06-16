@@ -1,0 +1,30 @@
+.toggle {
+    height: 2em;
+    width: 3em;
+    border-radius: 50px;
+    margin: auto;
+    background-image: linear-gradient(aqua, skyblue);
+    position: relative;
+    cursor: pointer;
+}
+.toggle-dark {
+    height: 2em;
+    width: 3em;
+    border-radius: 50px;
+    margin: auto;
+    background-image: linear-gradient(midnightblue, rebeccapurple);
+    position: relative;
+    cursor: pointer;
+}
+.theme-icon{
+    margin-left: 0.2em;
+    height: 2em;
+    width: 1.2em;
+    color: yellow;
+}
+
+.theme-icon-dark{
+    height: 2em;
+    width: 1.2em;
+    margin-left: auto;
+}

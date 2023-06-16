@@ -4,7 +4,7 @@ import Hamburger from "@/components/Hamburger";
 
 export default function Navbar() {
   return (
-    <nav className="w-full relative border-b-[1px] pt-5 mt-0 px-5 md:pt-2 bg-white dark:bg-gray-800 dark:border-gray-700">
+    <nav className="w-full relative border-b-[1px] pt-5 mt-0 px-5 md:pt-2 bg-white dark:bg-gray-800 dark:border-gray-700 overflow-x-clip">
       <div className="container mx-auto flex items-center">
         <div className="pb-3 justify-center flex w-full md:w-1/2 md:pb-0 md:justify-start font-extrabold">
           <Link
@@ -14,11 +14,11 @@ export default function Navbar() {
             <span className="text-2xl">Echecs France</span>
           </Link>
         </div>
-        <div className="pb-2 md:hidden">
+        <div className="mobile-menu pb-2 md:hidden">
           <Hamburger />
         </div>
 
-        <div className="hidden pt-2 justify-center md:flex md:w-1/2 md:justify-end">
+        <div className="desktop-menu hidden pt-2 justify-center md:flex md:w-1/2 md:justify-end">
           <ul className="list-reset text-gray-900 dark:text-white no-underline flex flex-1 justify-around md:flex-none items-center">
             <li className="mr-10">
               <Link
