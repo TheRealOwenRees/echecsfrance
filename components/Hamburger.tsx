@@ -27,7 +27,12 @@ const Hamburger = () => {
           }`}
         ></div>
       </div>
-      {<HamburgerMenu menuVisible={menuVisible} />}
+      {
+        <HamburgerMenu
+          menuVisible={menuVisible}
+          setMenuVisible={setMenuVisible}
+        />
+      }
     </>
   );
 };
