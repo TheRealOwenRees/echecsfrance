@@ -3,8 +3,8 @@ import { dateOrderingFrance } from "@/utils/dbDateOrdering";
 
 /**
  * Tournament data API endpoint
- * @route /api/tournaments/france
- * @internal
+ * @route /api/v1/tournaments/france
+ * @public
  */
 export const revalidate = 3600; // revalidate cache every 6 hours
 export async function GET() {

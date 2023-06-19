@@ -1,8 +1,7 @@
 import { Tournament } from "@/types";
 import { useState } from "react";
 
-// TODO change 'any'
-// TODO document this hook with TSDoc
+// TODO delete after testing
 const useTournamentDataFilter = (
   initialState: Tournament[]
 ): (any | ((searchQuery: string) => void))[] => {

@@ -1,33 +1,25 @@
-//TODO readme
+// TODO change tests to follow best practices https://docs.cypress.io/guides/references/best-practices
+// TODO tests for tournament page:
+    - map and table mounts in tournament page <- get data to send to map/table
 ----------------------------------------------------------------
-
-//TODO hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment. Client/SSR issue?
-
+//TODO hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment.
+//TODO fix table hover colours
+-----------------------------------------------------------------
+//TODO about page
+//TODO contact page needs working mailer
 //TODO font size on mobile screen
-
 //TODO need a 'return to top' arrow button on smaller screens
-
+//TODO SEO - next headers etc
+----------------------------------------------------------------
+//TODO logo for navbar and favicon
 //TODO mobile map needs improving
 
 //TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 
-//TODO tests for tournois, testing the loading of map and table, then counting the markers
-
-//TODO logo for navbar and favicon
-
-//TODO document my new hook <- consider removing as I believe this is the reason hover is broken
-
 //TODO error handling
-
-//TODO e2e tests for tournament page:
-    - make sure number of markers = tournamentData.length
-
-//TODO about page
-
-//TODO contact page needs working mailer
-
-//TODO SEO
 
 //TODO consider offering GraphQL support
 
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
+
+//TODO readme
