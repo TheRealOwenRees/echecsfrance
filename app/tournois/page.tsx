@@ -37,7 +37,7 @@ export default async function Tournaments() {
 
   return (
     <Layout>
-      <main className="grid lg:grid-cols-2">
+      <main className="relative grid lg:grid-cols-2">
         <div className="">
           <TournamentMap tournamentData={JSON.parse(tournamentData)} />
         </div>

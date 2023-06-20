@@ -5,7 +5,8 @@
 //TODO about page
 //TODO contact page needs working mailer
 //TODO font size on mobile screen
-//TODO need a 'return to top' arrow button on smaller screens
+//TODO scroll to top button positioning
+//TODO add test for return to top button
 //TODO SEO - next headers etc
 ----------------------------------------------------------------
 //TODO logo for navbar and favicon

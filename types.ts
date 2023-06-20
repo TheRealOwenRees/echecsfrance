@@ -12,3 +12,5 @@ export interface Tournament {
 export interface TournamentDataProps {
   tournamentData: Tournament[];
 }
+
+export type ScrollableElement = Window | HTMLElement;

@@ -4,7 +4,7 @@ import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer
-      className="grid w-full fixed bottom-0 justify-items-center py-2 px-5 text-white bg-teal-600 text-gray-900 dark:bg-gray-700"
+      className="grid w-full fixed bottom-0 justify-items-center py-2 px-5 text-white bg-teal-600 text-gray-900 dark:bg-gray-700 z-30"
       data-cy="footer"
     >
       <div className="p-2">

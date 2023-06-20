@@ -3,6 +3,7 @@
 import { TournamentDataProps } from "@/types";
 import { useEffect, useState } from "react";
 import SearchBar from "@/components/SearchBar";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function TournamentTable({
   tournamentData,
@@ -11,12 +12,25 @@ export default function TournamentTable({
   const [searchQuery, setSearchQuery] = useState(""); // text from search bar
   const [filteredTournamentData, setFilteredTournamentData] =
     useState(tournamentData);
+  const [isLgScreen, setIsLgScreen] = useState(false);
 
   useEffect(() => {
     setFilteredTournamentData(
       tournamentData.filter((t) => t.town.includes(searchQuery.toUpperCase()))
     );
   }, [searchQuery]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLgScreen(window.innerWidth >= 1024);
+    };
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // TODO move this section into its own function
   if (filteredTournamentData.length === 0) {
@@ -57,25 +71,34 @@ export default function TournamentTable({
     ));
   }
 
-  const stickyHeader =
-    "sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600";
-
   return (
-    <section className="w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-174px)] lg:col-start-2 lg:col-end-3">
+    <section
+      className="tournament-table w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-174px)] lg:col-start-2 lg:col-end-3 lg:overflow-y-scroll"
+      id="tournament-table"
+    >
       <SearchBar
         tournamentFilter={searchQuery}
         setTournamentFilter={setSearchQuery}
       />
+      <ScrollToTopButton isLgScreen={isLgScreen} />
       <table
         className="relative table-fixed w-full text-center text-xs"
         data-cy="tournament-table"
       >
         <thead>
           <tr>
-            <th className={stickyHeader}>Date</th>
-            <th className={stickyHeader}>Ville</th>
-            <th className={stickyHeader}>Tournois</th>
-            <th className={stickyHeader}>Cadence</th>
+            <th className="sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600">
+              Date
+            </th>
+            <th className="sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600">
+              Ville
+            </th>
+            <th className="sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600">
+              Tournois
+            </th>
+            <th className="sticky top-0 p-3 bg-teal-600 text-white dark:bg-gray-600">
+              Cadence
+            </th>
           </tr>
         </thead>
         <tbody>{tableData}</tbody>
