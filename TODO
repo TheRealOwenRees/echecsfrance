@@ -2,7 +2,6 @@
     - map and table mounts in tournament page <- get data to send to map/table
 ----------------------------------------------------------------
 //TODO SRP for web and API data fetching
-//TODO API should not display __v and _id should just be id
 //TODO about page
 //TODO contact page needs working mailer
 //TODO font size on mobile screen

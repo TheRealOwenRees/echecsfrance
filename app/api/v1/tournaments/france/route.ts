@@ -15,7 +15,11 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
 
-    const data = await dateOrderingFrance(db);
+    const results = await dateOrderingFrance(db);
+    const data = results.map(({ _id, __v, ...rest }) => ({
+      id: _id,
+      ...rest,
+    }));
 
     return new Response(JSON.stringify(data), { status: 200, headers });
   } catch (error) {
