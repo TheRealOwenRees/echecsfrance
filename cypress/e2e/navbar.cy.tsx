@@ -5,12 +5,12 @@ describe("Mobile Navbar", () => {
   });
 
   it("hamburger menu on mobile screens", () => {
-    cy.get(".mobile-menu").should("be.not.hidden");
-    cy.get(".desktop-menu").should("be.hidden");
+    cy.get("[data-cy='mobile-menu']").should("be.visible");
+    cy.get("[data-cy='desktop-menu']").should("be.not.visible");
   });
 
   it("hamburger button available", () => {
-    cy.get(".hamburger-button").should("be.visible");
+    cy.get("[data-cy='hamburger-button']").should("be.visible");
   });
 });
 
@@ -21,11 +21,11 @@ describe("Desktop Navbar", () => {
   });
 
   it("desktop menu on larger screens", () => {
-    cy.get(".mobile-menu").should("be.hidden");
-    cy.get(".desktop-menu").should("be.not.hidden");
+    cy.get("[data-cy='mobile-menu']").should("be.hidden");
+    cy.get("[data-cy='desktop-menu']").should("be.not.hidden");
   });
 
   it("hamburger button hidden", () => {
-    cy.get(".hamburger-button").should("be.not.visible");
+    cy.get("[data-cy='hamburger-button']").should("be.not.visible");
   });
 });

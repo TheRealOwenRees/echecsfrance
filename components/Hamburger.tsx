@@ -11,6 +11,7 @@ const Hamburger = () => {
       <div
         ref={hamburgerButtonRef}
         className="hamburger-button space-y-2 relative z-[99999]"
+        data-cy="hamburger-button"
         onClick={() => setMenuVisible(!menuVisible)}
       >
         <div
