@@ -1,13 +1,10 @@
 import React from "react";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
-import Home from "@/app/page";
 import "@/css/theme-toggle.css";
 
 describe("ThemeSwitcher component", () => {
   it("should toggle between light and dark mode", () => {
-    cy.mount(<Home />);
     cy.mount(<ThemeSwitcher />);
-    cy.wait(100);
 
     // checking that the toggle is there and light mode is active
     cy.get("[data-cy='toggle']").should("exist");
