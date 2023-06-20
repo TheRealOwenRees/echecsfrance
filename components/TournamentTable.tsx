@@ -76,11 +76,15 @@ export default function TournamentTable({
       className="tournament-table w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-174px)] lg:col-start-2 lg:col-end-3 lg:overflow-y-scroll"
       id="tournament-table"
     >
-      <SearchBar
-        tournamentFilter={searchQuery}
-        setTournamentFilter={setSearchQuery}
-      />
-      <ScrollToTopButton isLgScreen={isLgScreen} />
+      <div className="flex z-10">
+        <SearchBar
+          tournamentFilter={searchQuery}
+          setTournamentFilter={setSearchQuery}
+        />
+        <div>
+          <ScrollToTopButton isLgScreen={isLgScreen} />
+        </div>
+      </div>
       <table
         className="relative table-fixed w-full text-center text-xs"
         data-cy="tournament-table"
