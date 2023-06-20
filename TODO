@@ -1,10 +1,8 @@
-// TODO change tests to follow best practices https://docs.cypress.io/guides/references/best-practices
 // TODO tests for tournament page:
     - map and table mounts in tournament page <- get data to send to map/table
 ----------------------------------------------------------------
-//TODO hover on table needs fixing - this only seemed to happen once I moved the logic into its own hook <- error is occurring on all hovers at the moment.
-//TODO fix table hover colours
------------------------------------------------------------------
+//TODO SRP for web and API data fetching
+//TODO API should not display __v and _id should just be id
 //TODO about page
 //TODO contact page needs working mailer
 //TODO font size on mobile screen
@@ -13,13 +11,8 @@
 ----------------------------------------------------------------
 //TODO logo for navbar and favicon
 //TODO mobile map needs improving
-
 //TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
-
 //TODO error handling
-
 //TODO consider offering GraphQL support
-
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
-
 //TODO readme

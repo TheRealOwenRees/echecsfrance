@@ -10,17 +10,17 @@ describe("ThemeSwitcher component", () => {
     cy.wait(100);
 
     // checking that the toggle is there and light mode is active
-    cy.get(".toggle").should("exist");
-    cy.get(".toggle").should(($toggle) => {
+    cy.get("[data-cy='toggle']").should("exist");
+    cy.get("[data-cy='toggle']").should(($toggle) => {
       const backgroundImage = $toggle.css("background-image");
       expect(backgroundImage).to.include(
         "linear-gradient(rgb(0, 255, 255), rgb(135, 206, 235)"
       );
     });
     // checking that the toggle is clickable and dark mode is active
-    cy.get(".toggle").click();
-    cy.get(".toggle-dark").should("exist");
-    cy.get(".toggle-dark").should(($toggle) => {
+    cy.get("[data-cy='toggle']").click();
+    cy.get("[data-cy='toggle-dark']").should("exist");
+    cy.get("[data-cy='toggle-dark']").should(($toggle) => {
       const backgroundImage = $toggle.css("background-image");
       expect(backgroundImage).to.include(
         "linear-gradient(rgb(25, 25, 112), rgb(102, 51, 153)"
