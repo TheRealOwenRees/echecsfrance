@@ -12,25 +12,12 @@ export default function TournamentTable({
   const [searchQuery, setSearchQuery] = useState(""); // text from search bar
   const [filteredTournamentData, setFilteredTournamentData] =
     useState(tournamentData);
-  const [isLgScreen, setIsLgScreen] = useState(false);
 
   useEffect(() => {
     setFilteredTournamentData(
       tournamentData.filter((t) => t.town.includes(searchQuery.toUpperCase()))
     );
   }, [searchQuery]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLgScreen(window.innerWidth >= 1024);
-    };
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   // TODO move this section into its own function
   if (filteredTournamentData.length === 0) {
@@ -83,7 +70,7 @@ export default function TournamentTable({
           setTournamentFilter={setSearchQuery}
         />
         <div>
-          <ScrollToTopButton isLgScreen={isLgScreen} />
+          <ScrollToTopButton />
         </div>
       </div>
       <table

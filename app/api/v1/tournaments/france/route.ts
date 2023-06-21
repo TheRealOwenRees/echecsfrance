@@ -16,7 +16,7 @@ export async function GET() {
     const db = client.db("tournamentsFranceDB");
 
     const results = await dateOrderingFrance(db);
-    const data = results.map(({ _id, __v, ...rest }) => ({
+    const data = results.map(({ _id, ...rest }) => ({
       id: _id,
       ...rest,
     }));

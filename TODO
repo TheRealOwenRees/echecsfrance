@@ -1,18 +1,37 @@
+TESTS
 // TODO tests for tournament page:
     - map and table mounts in tournament page <- get data to send to map/table
-----------------------------------------------------------------
-//TODO SRP for web and API data fetching
-//TODO about page
-//TODO contact page needs working mailer
-//TODO font size on mobile screen
-//TODO SEO - next headers etc
 //TODO data fetching tests
 //TODO redo layer groups tests
+
+-----------------------------------------------------------------
+BUGS
+//TODO small screen scroll to top button only works after a refresh. The bug appears after a screen resize - TournamentTable.tsx useEffect
+//TODO about page is not centred in Safari
+//TODO tournament page load is weird on 2nd click. On safari it pauses for a few seconds. Is it trying to load the entire page before displaying?
+
 ----------------------------------------------------------------
+PAGES
+//TODO about page
+//TODO contact page needs working mailer
+
+----------------------------------------------------------------
+DESIGN CHANGES
+//TODO font size on mobile screen
+//TODO bottom of map is a few pixels short
+//TODO mobile navbar is creeping into the page by a few pixels when hidden - move it to the right a bit. It is easier to see in light mode
 //TODO logo for navbar and favicon
 //TODO mobile map needs improving
-//TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
+
+----------------------------------------------------------------
+LOGIC
+//TODO SRP for web and API data fetching
 //TODO error handling
 //TODO consider offering GraphQL support
+
+MISC
+----------------------------------------------------------------
+//TODO SEO - next headers etc
+//TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
 //TODO readme
