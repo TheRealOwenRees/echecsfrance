@@ -1,17 +1,32 @@
 "use client";
 
+import { ScrollableElement } from "@/types";
+
 import { FaArrowUp } from "react-icons/fa";
 import { handleScrollToTop } from "@/handlers/scrollHandlers";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const ScrollToTopButton = ({ isLgScreen }: { isLgScreen: boolean }) => {
-  const scrollToTopElementRef = useRef<HTMLElement | null>(null);
+const ScrollToTopButton = () => {
+  const scrollToTopElementRef = useRef<ScrollableElement | null>(null);
+  const [isLgScreen, setIsLgScreen] = useState(false);
+
+  // calculate screen size
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLgScreen(window.innerWidth >= 1024);
+    };
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
   // determine scrollable element based on screen size - window or div
   useEffect(() => {
-    if (isLgScreen) {
-      scrollToTopElementRef.current =
-        document.getElementById("tournament-table");
-    }
+    isLgScreen
+      ? (scrollToTopElementRef.current =
+          document.getElementById("tournament-table"))
+      : (scrollToTopElementRef.current = window);
   }, [isLgScreen]);
 
   const scrollToTopButtonClass = isLgScreen
@@ -24,9 +39,7 @@ const ScrollToTopButton = ({ isLgScreen }: { isLgScreen: boolean }) => {
       data-cy="scroll-to-top-button"
     >
       <FaArrowUp
-        onClick={() =>
-          handleScrollToTop(scrollToTopElementRef.current || window)
-        }
+        onClick={() => handleScrollToTop(scrollToTopElementRef.current)}
       />
     </button>
   );

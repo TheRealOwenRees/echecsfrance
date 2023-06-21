@@ -6,7 +6,7 @@ import { LatLngLiteral } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { MapContainer, TileLayer, LayersControl, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 
 import { createLayerGroups } from "@/utils/layerGroups";
 import Legend from "@/components/Legend";
