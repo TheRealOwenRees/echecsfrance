@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const mailContent = {
       from: email,
       to: process.env.GMAIL_USER,
-      subject: subject,
+      subject: `${subject} from ${email}`,
       text: message,
       html: `<p>${message}</p>`,
     };

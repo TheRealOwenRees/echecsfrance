@@ -17,7 +17,12 @@ const useContactForm = () => {
       };
     });
   };
-  return { values, handleChange };
+
+  const resetForm = () => {
+    setValues({ email: "", subject: "", message: "" });
+  };
+
+  return { values, handleChange, resetForm };
 };
 
 export default useContactForm;
