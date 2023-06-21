@@ -1,3 +1,5 @@
+// TODO is this really a hook? I think it is more of a util function
+
 interface HamburgerClose {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;

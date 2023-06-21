@@ -6,14 +6,13 @@ TESTS
 
 -----------------------------------------------------------------
 BUGS
-//TODO small screen scroll to top button only works after a refresh. The bug appears after a screen resize - TournamentTable.tsx useEffect
 //TODO about page is not centred in Safari
 //TODO tournament page load is weird on 2nd click. On safari it pauses for a few seconds. Is it trying to load the entire page before displaying?
+//TODO Nodemailer 'from' reverts to echecsfrance@gmail.com
 
 ----------------------------------------------------------------
 PAGES
 //TODO about page
-//TODO contact page needs working mailer
 
 ----------------------------------------------------------------
 DESIGN CHANGES
@@ -31,6 +30,7 @@ LOGIC
 
 MISC
 ----------------------------------------------------------------
+//TODO write logger (fullstack open examples)
 //TODO SEO - next headers etc
 //TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
