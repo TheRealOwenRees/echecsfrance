@@ -10,7 +10,7 @@ TESTS
 BUGS
 //TODO about page is not centred in Safari
 //TODO tournament page load is weird on 2nd click. On safari it pauses for a few seconds. Is it trying to load the entire page before displaying?
-//TODO Nodemailer 'from' reverts to echecsfrance@gmail.com
+//TODO Nodemailer 'from' reverts to echecsfrance@gmail.com - quick fix done with sender address in subject line
 
 ----------------------------------------------------------------
 PAGES
@@ -20,9 +20,7 @@ PAGES
 DESIGN CHANGES
 //TODO test entire site for english to french translations
 //TODO success and error messages into french - mailer
-//TODO disable send message button while sending - isSending = true
 //TODO font size on mobile screen
-//TODO bottom of map is a few pixels short
 //TODO mobile navbar is creeping into the page by a few pixels when hidden - move it to the right a bit. It is easier to see in light mode
 //TODO logo for navbar and favicon
 //TODO mobile map needs improving
