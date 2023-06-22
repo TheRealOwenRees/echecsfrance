@@ -4,11 +4,11 @@ import Contact from "@/app/contactez-nous/page";
 
 const navbarFooterCheck = () => {
   it("includes navbar", () => {
-    cy.get("[data-cy='navbar']");
+    cy.getByData("navbar");
   });
 
   it("includes footer", () => {
-    cy.get("[data-cy='footer']");
+    cy.getByData("footer");
   });
 };
 
@@ -19,7 +19,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with website name included", () => {
-      cy.get("[data-cy='header1']").contains("echecs france", {
+      cy.getByData("header1").contains("echecs france", {
         matchCase: false,
       });
     });
@@ -33,7 +33,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("[data-cy='header2']").contains("qui sommes-nous", {
+      cy.getByData("header2").contains("qui sommes-nous", {
         matchCase: false,
       });
     });
@@ -47,7 +47,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with page title included", () => {
-      cy.get("[data-cy='header2']").contains("contactez-nous", {
+      cy.getByData("header2").contains("contactez-nous", {
         matchCase: false,
       });
     });

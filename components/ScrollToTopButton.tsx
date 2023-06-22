@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
   return (
     <button
       className={`${scrollToTopButtonClass} z-10 text-2xl text-teal-900 dark:text-white`}
-      data-cy="scroll-to-top-button"
+      data-test="scroll-to-top-button"
     >
       <FaArrowUp
         onClick={() => handleScrollToTop(scrollToTopElementRef.current)}

@@ -17,6 +17,7 @@ const ContactForm = () => {
       className={`${
         responseMessage.isSuccessful ? "text-green-600" : "text-red-600"
       } italic`}
+      data-test="info-message"
     >
       {responseMessage.message}
     </p>
@@ -51,6 +52,7 @@ const ContactForm = () => {
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
             placeholder="nom@exemple.com"
             required
+            data-test="email-input"
           />
         </div>
         <div>
@@ -68,6 +70,7 @@ const ContactForm = () => {
             className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
             placeholder="Le motif de ma demande"
             required
+            data-test="subject-input"
           />
         </div>
         <div className="sm:col-span-2">
@@ -84,12 +87,15 @@ const ContactForm = () => {
             rows={6}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
             placeholder="Détaillez ici votre demande..."
+            data-test="message-input"
+            required
           ></textarea>
         </div>
         <button
           disabled={isSending}
           type="submit"
           className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-teal-600 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:text-white disabled:opacity-25"
+          data-test="submit-button"
         >
           {isSending ? "Sending..." : "Send Message"}
         </button>

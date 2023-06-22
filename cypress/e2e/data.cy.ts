@@ -2,7 +2,7 @@ let tableRows: number;
 describe("Data fetching for map", () => {
   it("map markers is equal to table rows", () => {
     cy.visit("/tournois");
-    cy.get('[data-cy="tournament-table"]')
+    cy.getByData("tournament-table")
       .find("tr")
       .then((rows) => {
         tableRows = rows.length - 1;

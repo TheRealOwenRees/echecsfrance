@@ -16,7 +16,7 @@ export default function Home() {
           />
         </div>
         <div className="absolute text-center text-white">
-          <h1 className="text-5xl p-5" data-cy="header1">
+          <h1 className="text-5xl p-5" data-test="header1">
             Echecs France
           </h1>
           <h2 className="text-3xl p-5">

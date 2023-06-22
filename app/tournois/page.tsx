@@ -23,9 +23,7 @@ const getTournaments = async () => {
   try {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
-
     const data = await dateOrderingFrance(db);
-
     return JSON.stringify(data);
   } catch (error) {
     throw new Error("Error fetching tournament data");

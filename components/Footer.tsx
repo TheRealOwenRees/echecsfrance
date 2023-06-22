@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer
       className="grid w-full fixed bottom-0 justify-items-center py-2 px-5 text-white bg-teal-600 text-gray-900 dark:bg-gray-700 z-30"
-      data-cy="footer"
+      data-test="footer"
     >
       <div className="p-2">
         <p>&copy; {new Date().getFullYear()} - Owen Rees</p>

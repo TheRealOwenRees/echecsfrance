@@ -8,7 +8,7 @@ export default function About() {
         <div className="absolute">
           <h2
             className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
-            data-cy="header2"
+            data-test="header2"
           >
             Qui Sommes-Nous?
           </h2>
