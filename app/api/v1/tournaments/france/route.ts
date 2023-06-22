@@ -14,7 +14,6 @@ export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
-
     const results = await dateOrderingFrance(db);
     const data = results.map(({ _id, ...rest }) => ({
       id: _id,

@@ -1,10 +1,6 @@
 TESTS
 // TODO tests for tournament page:
     - map and table mounts in tournament page <- get data to send to map/table
-//TODO data fetching tests
-//TODO redo layer groups tests
-//TODO write tests for contact form
-//TODO dead link tests take too long, split them into separate tests per page
 
 -----------------------------------------------------------------
 BUGS
@@ -21,20 +17,18 @@ DESIGN CHANGES
 //TODO test entire site for english to french translations
 //TODO success and error messages into french - mailer
 //TODO font size on mobile screen
-//TODO mobile navbar is creeping into the page by a few pixels when hidden - move it to the right a bit. It is easier to see in light mode
+//TODO mobile navbar is creeping into the page by a few pixels when hidden - move it to the right a bit. It is easier to see in light mode. I cant see this on Linux
 //TODO logo for navbar and favicon
 //TODO mobile map needs improving
 
 ----------------------------------------------------------------
 LOGIC
-//TODO SRP for web and API data fetching
 //TODO error handling
 //TODO consider offering GraphQL support
 
 MISC
 ----------------------------------------------------------------
 //TODO write logger (fullstack open examples)
-//TODO SEO - next headers etc
 //TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
 //TODO readme
