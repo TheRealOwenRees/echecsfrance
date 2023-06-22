@@ -5,7 +5,7 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add("getByData", (selector) => {
-  return cy.get(`[data-cy=${selector}]`);
+  return cy.get(`[data-test=${selector}]`);
 });
 
 /// <reference types="cypress" />

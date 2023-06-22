@@ -9,7 +9,7 @@ export default function Contact() {
         <div className="pt-8 pb-32 lg:pt-16 px-4 mx-auto max-w-screen-md">
           <h2
             className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
-            data-cy="header2"
+            data-test="header2"
           >
             Contactez-Nous
           </h2>

@@ -25,7 +25,7 @@ describe("Test links", () => {
     cy.viewport(600, 600);
     cy.visit("/");
     pages.forEach((page) => {
-      cy.get("[data-cy='hamburger-button']").click();
+      cy.getByData("hamburger-button").click();
       cy.contains(page, { matchCase: false }).click();
       cy.location("pathname").should("eq", `/${navLinkToSlug(page)}`); // url path matches link name, replacing whitespace with hyphens
       cy.go("back");

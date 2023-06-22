@@ -22,7 +22,7 @@ const ThemeSwitcher = () => {
       {colorTheme === "light" ? (
         <div
           className="toggle-dark"
-          data-cy="toggle-dark"
+          data-test="toggle-dark"
           onClick={() => setTheme("light")}
         >
           <MdBrightness2 className="theme-icon-dark" />
@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
       ) : (
         <div
           className="toggle"
-          data-cy="toggle"
+          data-test="toggle"
           onClick={() => setTheme("dark")}
         >
           <MdCircle className="theme-icon" />

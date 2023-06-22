@@ -62,7 +62,7 @@ export default function TournamentTable({
     <section
       className="tournament-table w-full grid auto-rows-max pb-20 lg:h-[calc(100vh-173px)] lg:col-start-2 lg:col-end-3 lg:overflow-y-scroll"
       id="tournament-table"
-      data-cy="tournament-table-div"
+      data-test="tournament-table-div"
     >
       <div className="flex z-10">
         <SearchBar
@@ -75,7 +75,7 @@ export default function TournamentTable({
       </div>
       <table
         className="relative table-fixed w-full text-center text-xs"
-        data-cy="tournament-table"
+        data-test="tournament-table"
       >
         <thead>
           <tr>
