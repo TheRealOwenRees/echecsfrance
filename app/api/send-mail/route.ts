@@ -1,5 +1,6 @@
 import NodeMailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { infoLog, errorLog } from "@/utils/logger";
 
 export async function POST(req: Request) {
   const { email, subject, message } = await req.json();
@@ -21,14 +22,15 @@ export async function POST(req: Request) {
       },
     });
 
-    const info = await transporter.sendMail(mailContent);
-    console.log(info);
+    const mailInfo = await transporter.sendMail(mailContent);
+    infoLog(mailInfo);
 
     return NextResponse.json(
-      { success: `Message delivered to ${info.accepted}` },
+      { success: `Message delivered to ${mailInfo.accepted}` },
       { status: 250 }
     );
   } catch (error) {
+    errorLog(error);
     return NextResponse.json({ error: `Connection refused` }, { status: 404 });
   }
 }

@@ -1,5 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import sendMail from "@/lib/sendMail";
+import { errorLog } from "@/utils/logger";
 
 export const handleEmailSubmit = async (
   e: FormEvent<HTMLFormElement>,
@@ -34,7 +35,7 @@ export const handleEmailSubmit = async (
       setIsSending(false);
     }
   } catch (error) {
-    console.log(error); //TODO add to logger
+    errorLog(error);
     setResponseMessage({
       isSuccessful: false,
       message: "Oops something went wrong. Please try again.",

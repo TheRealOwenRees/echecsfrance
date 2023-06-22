@@ -1,5 +1,6 @@
 import clientPromise from "@/lib/mongodb";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
+import { errorLog } from "@/utils/logger";
 
 /**
  * Tournament data API endpoint
@@ -22,6 +23,7 @@ export async function GET() {
 
     return new Response(JSON.stringify(data), { status: 200, headers });
   } catch (error) {
+    errorLog(error);
     return new Response(JSON.stringify(error), { status: 500, headers });
   }
 }

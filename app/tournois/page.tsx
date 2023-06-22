@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
+import { errorLog } from "@/utils/logger";
 
 export const revalidate = 3600; // revalidate cache every 6 hours
 
@@ -26,6 +27,7 @@ const getTournaments = async () => {
     const data = await dateOrderingFrance(db);
     return JSON.stringify(data);
   } catch (error) {
+    errorLog(error);
     throw new Error("Error fetching tournament data");
   }
 };
