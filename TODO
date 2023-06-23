@@ -30,4 +30,4 @@ MISC
 ----------------------------------------------------------------
 //TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
-//TODO readme
+//TODO readme badges
