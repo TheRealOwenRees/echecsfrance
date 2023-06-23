@@ -17,7 +17,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
-    "@types/node": "20.2.3",
+    "@types/node": "20.2.5",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.0.1",
