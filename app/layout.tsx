@@ -6,9 +6,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Echecs France",
+  title: "Echecs France- Tournois d'Echecs",
   description: "Trouvez Vos Tournois d'Echecs en France Sur Une Carte",
-  keywords: "echecs, France, tournoi, tournois, FFE",
+  keywords: "echecs, France, tournoi, tournois, FFE, carte",
 };
 
 export default function RootLayout({
