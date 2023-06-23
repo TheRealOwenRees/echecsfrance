@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 export default function Contact() {
   return (
     <Layout>
-      <section className="grid  place-items-center bg-white dark:bg-gray-800">
+      <section className="grid place-items-center bg-white dark:bg-gray-800">
         <div className="pt-8 pb-32 lg:pt-16 px-4 mx-auto max-w-screen-md">
           <h2
             className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
