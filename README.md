@@ -5,6 +5,7 @@
 ![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance)
 [![Depfu](https://badges.depfu.com/badges/9c033bb722da0655f2a0e31ed9d228bc/status.svg)](https://depfu.com)
 ![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance)
+[![Cypress.io](https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg)](https://www.cypress.io/)
 
 ## A website displaying upcoming chess tournaments for the [FFE](http://www.echecs.asso.fr/) on a map
 
