@@ -2,6 +2,7 @@
 [![fr](https://img.shields.io/badge/lang-fr-blue.svg)](https://github.com/TheRealOwenRees/echecsfrance/blob/main/README-fr.md)
 
 ![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance)
+![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance)
 [![Depfu](https://badges.depfu.com/badges/9c033bb722da0655f2a0e31ed9d228bc/status.svg)](https://depfu.com)
 ![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance)
 
