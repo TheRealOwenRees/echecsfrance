@@ -13,6 +13,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+         # Add a conditional step to check if the affected path is /api/v1/tournaments/france
+      - name: Check Affected Path
+        id: check-path
+        run: |
+          affectedPath=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | grep "/api/v1/tournaments/france")
+          echo "::set-output name=affected::${{ steps.check-path.outputs.affectedPath }}"
+      
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
@@ -33,3 +41,6 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+       # Add a conditional expression to skip Cypress run if the affected path is /api/v1/tournaments/france
+        if: steps.check-path.outputs.affectedPath != '/api/v1/tournaments/france'
