@@ -1,11 +1,11 @@
-# [Echecs France](https://www.echecsfrance.com/)
-[![fr](https://img.shields.io/badge/lang-fr-blue.svg)](https://github.com/TheRealOwenRees/echecsfrance/blob/main/README-fr.md)
+<h1 align="center">Echecs France</h1>
 
-![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance)
-![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance)
-[![Depfu](https://badges.depfu.com/badges/9c033bb722da0655f2a0e31ed9d228bc/status.svg)](https://depfu.com)
-![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance)
-[![Echecs France](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/1nghs5&style=flat&logo=cypress)](https://cloud.cypress.io/projects/1nghs5/runs)
+[![fr](https://img.shields.io/badge/lang-fr-blue.svg?style=for-the-badge)](https://github.com/TheRealOwenRees/echecsfrance/blob/main/README-fr.md)
+
+![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance?style=for-the-badge)
+![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance?style=for-the-badge)
+![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance?style=for-the-badge)
+[![Echecs France](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/1nghs5&style=for-the-badge&logo=cypress)](https://cloud.cypress.io/projects/1nghs5/runs)
 
 ## A website displaying upcoming chess tournaments for the [FFE](http://www.echecs.asso.fr/) on a map
 
