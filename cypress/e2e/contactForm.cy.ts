@@ -43,7 +43,7 @@ describe("Contact form", () => {
       cy.getByData("message-input").type(message);
       cy.getByData("submit-button").click().should("be.disabled");
       cy.wait(3000);
-      cy.getByData("info-message").contains("Thank you");
+      cy.getByData("info-message").contains("Merci pour votre message.");
       cy.getByData("submit-button").click().should("be.not.disabled");
     });
   });
