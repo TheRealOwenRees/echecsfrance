@@ -97,7 +97,7 @@ const ContactForm = () => {
           className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-teal-600 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:text-white disabled:opacity-25"
           data-test="submit-button"
         >
-          {isSending ? "Sending..." : "Send Message"}
+          {isSending ? "Envoi en cours..." : "Envoi Message"}
         </button>
         {infoMessage}
       </form>

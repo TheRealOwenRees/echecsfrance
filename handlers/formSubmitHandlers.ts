@@ -28,7 +28,7 @@ export const handleEmailSubmit = async (
     if (response.status === 250) {
       setResponseMessage({
         isSuccessful: true,
-        message: "Thank you for your message.",
+        message: "Merci pour votre message.",
       });
       resetForm();
       clearMessage();
@@ -38,7 +38,7 @@ export const handleEmailSubmit = async (
     errorLog(error);
     setResponseMessage({
       isSuccessful: false,
-      message: "Oops something went wrong. Please try again.",
+      message: "Oops, quelque chose ne va pas. Veuillez réessayer SVP.",
     });
     clearMessage();
     setIsSending(false);
