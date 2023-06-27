@@ -42,9 +42,17 @@ export default function About() {
             This project is what it is thanks to the contributions of the wider
             community. In particular I would like to thank the following for
             their contributions so far:
-            <ul>
-              <li>Alvaro</li>
-              <li>Flo</li>
+            <ul className="text-teal-600">
+              <li>
+                <Link href="#" target="_blank">
+                  Alvaro
+                </Link>
+              </li>
+              <li>
+                <Link href="#" target="_blank">
+                  Flo
+                </Link>
+              </li>
             </ul>
           </p>
           <h3
