@@ -1,9 +1,12 @@
+// noinspection HttpUrlsUsage,HtmlUnknownTarget
+
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "@/components/Layout";
 import bgImage from "@/public/images/map-bg.jpg";
 
 export default function Home() {
+  // noinspection HtmlUnknownTarget
   return (
     <Layout>
       <header className="grid h-[calc(100%-153px)] md:h-[calc(100%-173px)] place-items-center">

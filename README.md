@@ -1,4 +1,4 @@
-<h1 align="center">Echecs France</h1>
+<h1 style="text-align: center">Echecs France</h1>
 
 [![fr](https://img.shields.io/badge/lang-fr-blue.svg?style=for-the-badge)](https://github.com/TheRealOwenRees/echecsfrance/blob/main/README-fr.md)
 
@@ -20,11 +20,11 @@ and is deployed on [Vercel](https://vercel.com/)
 
 ## Dependencies
 - [Leaflet](https://leafletjs.com/) - a Javascript library for interactive maps
-- [Nodemailer](https://nodemailer.com/about/) - a module for Node.js applications to allow easy as cake email sending
+- [Nodemailer](https://nodemailer.com/) - a module for Node.js applications to allow easy as cake email sending
 
 ## Contributions
 Contributions are encouraged. Please open an issue to discuss your ideas.  
-Add your code into a feature branch such as `feature/feature-name`. We utilise a [Github Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy. 
+Add your code into a feature branch such as `feature/feature-name`. We utilise a [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy. 
 
 
 Please see the [TODO](https://github.com/TheRealOwenRees/echecsfrance/blob/main/TODO) file for a list of suggestions.

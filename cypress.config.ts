@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { defineConfig } from "cypress";
 
 export default defineConfig({

@@ -1,3 +1,5 @@
+// noinspection HtmlUnknownTarget
+
 interface HamburgerMenuState {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
@@ -46,6 +48,7 @@ const HamburgerMenu = ({
     menuTimeout,
   });
 
+  // noinspection HtmlUnknownTarget
   return (
     <div
       ref={menuRef}
