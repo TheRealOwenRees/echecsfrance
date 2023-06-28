@@ -4,13 +4,8 @@ TESTS
 
 -----------------------------------------------------------------
 BUGS
-//TODO about page is not centred in Safari
 //TODO tournament page load is weird on 2nd click. On safari it pauses for a few seconds. Is it trying to load the entire page before displaying?
 //TODO Nodemailer 'from' reverts to echecsfrance@gmail.com - quick fix done with sender address in subject line
-
-----------------------------------------------------------------
-PAGES
-//TODO about page
 
 ----------------------------------------------------------------
 DESIGN CHANGES
