@@ -1,3 +1,5 @@
+// noinspection HttpUrlsUsage
+
 "use client";
 
 import { TournamentDataProps } from "@/types";

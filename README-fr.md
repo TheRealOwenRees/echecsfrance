@@ -1,4 +1,4 @@
-<h1 align="center">Echecs France</h1>
+<h1 style="text-align: center">Echecs France</h1>
 
 [![en](https://img.shields.io/badge/lang-en-blue.svg?style=for-the-badge)](https://github.com/TheRealOwenRees/echecsfrance/blob/main/README.md)
 

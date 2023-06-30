@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Cache npm and NextJs build
         uses: actions/cache@v3
         with:
-          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples#node---yarn or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
+          # See here for caching with `yarn` https://github.com/actions/cache/blob/main/examples#node---yarn, or you can leverage caching with actions/setup-node https://github.com/actions/setup-node
           path: |
             ~/.npm
             ${{ github.workspace }}/.next/cache
@@ -26,7 +26,7 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-      
+
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v4
@@ -37,7 +37,7 @@ jobs:
           build: npm run build
           start: npm start
           wait-on: echo ${{ env.NEXT_PUBLIC_URL }}# Waits for above
-          # Records to Cypress Cloud 
+          # Records to Cypress Cloud
           # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
           parallel: true # Runs test in parallel using settings above
