@@ -14,14 +14,14 @@ export default function About() {
           </h2>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
             Ce projet a vu le jour début 2022 afin de permettre une
-            visualisation sur une carte des tournois d'échecs en France. Ayant
-            déménagé en France en 2019, je ne connaissais alors pas la
+            visualisation sur une carte des tournois d&apos;échecs en France.
+            Ayant déménagé en France en 2019, je ne connaissais alors pas la
             géographie française et je souhaitais savoir quels tournois avaient
             lieu près de chez moi.
           </p>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle
-            je lui ai redonné vie. Reconstruit à partir de zéro,{" "}
+            Le projet a été mis de côté jusqu&apos;au printemps 2023; date à
+            laquelle je lui ai redonné vie. Reconstruit à partir de zéro,{" "}
             <Link href="/" className="text-teal-600">
               Echecs France
             </Link>{" "}
@@ -41,9 +41,9 @@ export default function About() {
             Remerciements
           </h3>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            Ce projet est ce qu'il est grâce aux contributions de vous tous. Je
-            souhaite en particulier remercier les personnes suivantes pour leurs
-            contributions:
+            Ce projet est ce qu&apos;il est grâce aux contributions de vous
+            tous. Je souhaite en particulier remercier les personnes suivantes
+            pour leurs contributions:
           </p>
           <ul className="mb-4 text-center text-teal-600">
             <li>
@@ -107,8 +107,8 @@ export default function About() {
             </li>
           </ul>
           <p className="mb-16 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            Pour plus d'informations sur les moyens de contribution, veuillez
-            visiter notre{" "}
+            Pour plus d&apos;informations sur les moyens de contribution,
+            veuillez visiter notre{" "}
             <Link
               href="https://github.com/TheRealOwenRees/echecsfrance"
               target="_blank"
