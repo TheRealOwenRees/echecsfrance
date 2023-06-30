@@ -13,45 +13,47 @@ export default function About() {
             Qui Sommes-Nous?
           </h2>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            This project was first started in early 2022 as a means to visualise
-            where chess tournaments were taking place in France. Having moved to
-            France in 2019, I did not know my way around the country and wanted
-            to know which tournaments were happening near me.
+            Ce projet a vu le jour début 2022 afin de permettre une
+            visualisation sur une carte des tournois d'échecs en France. Ayant
+            déménagé en France en 2019, je ne connaissais alors pas la
+            géographie française et je souhaitais savoir quels tournois avaient
+            lieu près de chez moi.
           </p>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            The project was shelved until Spring 2023 when it was given a new
-            lease of life. Rebuilt from the ground up,{" "}
+            Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle
+            je lui ai redonné vie. Reconstruit à partir de zéro,{" "}
             <Link href="/" className="text-teal-600">
               Echecs France
             </Link>{" "}
-            is now open source and open to contributions.
+            est désormais open source et ouvert aux contributions.
           </p>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            I will be setting up a donation link if you wish to help cover some
-            of the costs of running this website. After costs, and remaining
-            funds will put back into the chess community by means of sponsoring
-            events or by donations.
+            Je compte mettre en place un bouton de don en ligne pour ceux qui
+            souhaitent participer aux frais associés au site. Une fois les coûts
+            de fonctionnement déduits, tous les fonds restant seront redirigés
+            vers le monde des échecs soit en sponsorant des événements ou par la
+            création de dons.
           </p>
           <h3
             className="mt-8 mb-4 text-2xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
             data-test="header2"
           >
-            Credits
+            Remerciements
           </h3>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            This project is what it is thanks to the contributions of the wider
-            community. In particular I would like to thank the following for
-            their contributions so far:
+            Ce projet est ce qu'il est grâce aux contributions de vous tous. Je
+            souhaite en particulier remercier les personnes suivantes pour leurs
+            contributions:
           </p>
           <ul className="mb-4 text-center text-teal-600">
             <li>
-              <Link href="#" target="_blank">
-                Alvaro
+              <Link href="https://github.com/AlvaroNW" target="_blank">
+                AlvaroNW
               </Link>
             </li>
             <li>
-              <Link href="#" target="_blank">
-                Flo
+              <Link href="https://github.com/Florifourchette" target="_blank">
+                Florifourchette
               </Link>
             </li>
           </ul>
@@ -65,7 +67,7 @@ export default function About() {
             <Link href="/" className="text-teal-600">
               Echecs France
             </Link>{" "}
-            is built on the following tech stack:
+            utilise:
           </p>
           <ul className="mb-4 flex justify-around text-teal-600">
             <li>
@@ -90,7 +92,7 @@ export default function About() {
             </li>
           </ul>
           <p className="mb-4 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            with the following core dependencies:
+            avec
           </p>
           <ul className="mb-4 flex justify-around text-teal-600">
             <li>
@@ -105,14 +107,14 @@ export default function About() {
             </li>
           </ul>
           <p className="mb-16 font-light text-center text-gray-500 dark:text-gray-400 md:text-xl">
-            For more information and details on how to contribute, please visit
-            our{" "}
+            Pour plus d'informations sur les moyens de contribution, veuillez
+            visiter notre{" "}
             <Link
               href="https://github.com/TheRealOwenRees/echecsfrance"
               target="_blank"
               className="text-teal-600"
             >
-              GitHub repository.
+              GitHub.
             </Link>
           </p>
         </div>
