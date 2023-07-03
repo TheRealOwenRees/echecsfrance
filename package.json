@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "ANALYZE=true next build",
     "start": "next start",
     "lint": "next lint",
     "test:e2e": "cypress run",
@@ -13,6 +13,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^13.4.7",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
