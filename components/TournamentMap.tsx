@@ -18,7 +18,7 @@ export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   const classicalMarkers = createLayerGroups("Cadence Lente", "green", {
     tournamentData,
   });
-  const rapidMarkers = createLayerGroups("Rapidly", "blue", {
+  const rapidMarkers = createLayerGroups("Rapide", "blue", {
     tournamentData,
   });
   const blitzMarkers = createLayerGroups("Blitz", "yellow", {
