@@ -12,9 +12,7 @@ DESIGN CHANGES
 ----------------------------------------------------------------
 LOGIC
 //TODO error handling - check everything, wrap in try/catch or use library to handle, log errors
-//TODO consider offering GraphQL support
 
 MISC
 ----------------------------------------------------------------
-//TODO multi-language i18n support - https://nextjs.org/docs/app/building-your-application/routing/internationalization
 //TODO move smaller ui components into a new folder, and make them reusable - such as using generic prop names
