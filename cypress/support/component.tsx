@@ -13,13 +13,14 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
+import { mount } from "cypress/react18";
+import { NextIntlClientProvider } from "next-intl";
+
+import messages from "@/messages/fr.json";
 import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-import { mount } from "cypress/react18";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -34,7 +35,15 @@ declare global {
   }
 }
 
-Cypress.Commands.add("mount", mount);
+Cypress.Commands.add("mount", (component, options) => {
+  const wrapped = (
+    <NextIntlClientProvider locale="fr" messages={messages}>
+      {component}
+    </NextIntlClientProvider>
+  );
+
+  return mount(wrapped, options);
+});
 
 // Example use:
 // cy.mount(<MyComponent />)

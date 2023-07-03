@@ -1,12 +1,12 @@
 {
   "Metadata": {
-    "title": "Echecs France - Tournois d'Echecs",
-    "description": "Trouvez Vos Tournois d'Echecs en France Sur Une Carte",
+    "title": "Echecs France - Tournois d'Échecs",
+    "description": "Trouvez Vos Tournois d'Échecs en France Sur Une Carte",
     "keywords": "echecs, France, tournoi, tournois, FFE, carte"
   },
 
   "Nav": {
-    "title": "Echecs France",
+    "title": "Échecs France",
     "competitions": "Tournois",
     "about": "Qui Sommes-Nous",
     "contact": "Contactez-Nous"
@@ -25,8 +25,8 @@
   },
 
   "Home": {
-    "title": "France Echecs",
-    "purpose": "Trouvez Vos Tournois d'Echecs en France Sur Une Carte",
+    "title": "Échecs France",
+    "purpose": "Trouvez Vos Tournois d'Échecs en France Sur Une Carte",
     "how": "Une représentation visuelle de tous les tournois d'échecs publiés par la <link>FFE</link>",
     "mapLink": "Voir La Carte"
   },
@@ -50,7 +50,7 @@
     "thanksTitle": "Remerciements",
     "thanksInfo": "Ce projet est ce qu'il est grâce aux contributions de vous tous. Je souhaite en particulier remercier les personnes suivantes pour leurs contributions\u00a0:",
     "techTitle": "Tech Blurb",
-    "techInfo": "<homeLink>Echecs France</homeLink> utilise\u00a0:",
+    "techInfo": "<homeLink>Échecs France</homeLink> utilise\u00a0:",
     "techWith": "avec",
     "contribInfo": "Pour plus d'informations sur les moyens de contribution, veuillez visiter notre <link>GitHub</link>."
   },
@@ -64,6 +64,8 @@
     "messageLabel": "Votre message",
     "messagePlaceholder": "Détaillez ici votre demande...",
     "sendButton": "Envoi Message",
-    "sending": "Envoi en cours..."
+    "sending": "Envoi en cours...",
+    "success": "Merci pour votre message.",
+    "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
    }
 }

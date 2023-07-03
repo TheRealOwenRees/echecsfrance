@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useTranslations } from "next-intl";
 
-import { handleEmailSubmit } from "@/handlers/formSubmitHandlers";
+import sendMail from "@/lib/sendMail";
+import { errorLog } from "@/utils/logger";
 import useContactForm from "@/hooks/useContactForm";
 
 const ContactForm = () => {
@@ -14,6 +15,41 @@ const ContactForm = () => {
     message: "",
   });
   const [isSending, setIsSending] = useState(false);
+
+  const clearMessage = () => {
+    setTimeout(() => {
+      setResponseMessage({
+        isSuccessful: false,
+        message: "",
+      });
+    }, 10000);
+  };
+
+  const handleEmailSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSending(true);
+    try {
+      const response = await sendMail(values);
+      if (response.status === 250) {
+        setResponseMessage({
+          isSuccessful: true,
+          message: t("success"),
+        });
+
+        resetForm();
+        clearMessage();
+        setIsSending(false);
+      }
+    } catch (error) {
+      errorLog(error);
+      setResponseMessage({
+        isSuccessful: false,
+        message: t("failure"),
+      });
+      clearMessage();
+      setIsSending(false);
+    }
+  };
 
   const infoMessage = (
     <p
@@ -28,18 +64,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <form
-        onSubmit={(e) =>
-          handleEmailSubmit(
-            e,
-            values,
-            setResponseMessage,
-            resetForm,
-            setIsSending
-          )
-        }
-        className="space-y-8"
-      >
+      <form onSubmit={handleEmailSubmit} className="space-y-8">
         <div>
           <label
             htmlFor="email"
