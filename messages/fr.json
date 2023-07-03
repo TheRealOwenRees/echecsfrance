@@ -39,7 +39,8 @@
     "date": "Date",
     "town": "Ville",
     "competition": "Tournois",
-    "timeControl": "Cadence"
+    "timeControl": "Cadence",
+    "approx": "Géolocalisation approximative"
   },
 
   "About": {

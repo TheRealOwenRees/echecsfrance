@@ -39,7 +39,8 @@
     "date": "Date",
     "town": "Town",
     "competition": "Competition",
-    "timeControl": "Time Control"
+    "timeControl": "Time Control",
+    "approx": "Géo-localisation is approximative"
   },
 
   "About": {
@@ -64,6 +65,8 @@
     "messageLabel": "Your Message",
     "messagePlaceholder": "Please provide the details of your request here...",
     "sendButton": "Envoi Message",
-    "sending": "Sending..."
+    "sending": "Sending...",
+    "success": "Thank you for your message.",
+    "failure": "Sorry, something went wrong.  Please try again."
    }
 }
