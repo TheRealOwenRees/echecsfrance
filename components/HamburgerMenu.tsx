@@ -1,5 +1,3 @@
-// noinspection HtmlUnknownTarget
-
 interface HamburgerMenuState {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
-
 export default function Footer() {
   return (
     <footer
@@ -14,10 +13,11 @@ export default function Footer() {
         <Link
           href="https://github.com/TheRealOwenRees/echecsfrance"
           target="_blank"
+          aria-label="Lien vers le dépôt GitHub"
         >
           <FaGithub />
         </Link>
-        <Link href="/contactez-nous">
+        <Link href="/contactez-nous" aria-label="Contactez-nous">
           <FaRegEnvelope />
         </Link>
       </div>
