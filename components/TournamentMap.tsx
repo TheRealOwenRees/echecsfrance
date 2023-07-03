@@ -6,20 +6,27 @@ import { LatLngLiteral } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import { useTranslations } from "next-intl";
+
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 
 import { createLayerGroups } from "@/utils/layerGroups";
 import Legend from "@/components/Legend";
 
 export default function TournamentMap({ tournamentData }: TournamentDataProps) {
+  const t = useTranslations("App");
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
-  const classicalMarkers = createLayerGroups("Cadence Lente", "green", {
+  const classicalMarkers = createLayerGroups(t("tcClassic"), "green", {
     tournamentData,
   });
-  const rapidMarkers = createLayerGroups("Rapide", "blue", { tournamentData });
-  const blitzMarkers = createLayerGroups("Blitz", "yellow", { tournamentData });
-  const otherMarkers = createLayerGroups("1h KO", "red", { tournamentData });
+  const rapidMarkers = createLayerGroups(t("tcRapid"), "blue", {
+    tournamentData,
+  });
+  const blitzMarkers = createLayerGroups(t("tcBlitz"), "yellow", {
+    tournamentData,
+  });
+  const otherMarkers = createLayerGroups(t("tcKO"), "red", { tournamentData });
 
   return (
     <section

@@ -4,9 +4,11 @@ interface HamburgerMenuState {
   hamburgerButtonRef: RefObject<HTMLDivElement>;
 }
 
-import Link from "next/link";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
+import Link from "next-intl/link";
+import { useTranslations } from "next-intl";
+
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 import useHamburgerClose from "@/hooks/useHamburgerClose";
 
 const HamburgerMenu = ({
@@ -14,6 +16,7 @@ const HamburgerMenu = ({
   setMenuVisible,
   hamburgerButtonRef,
 }: HamburgerMenuState) => {
+  const t = useTranslations("Nav");
   const [mouseOverMenu, setMouseOverMenu] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | undefined>();
   const menuRef = useRef<HTMLDivElement>(null);
@@ -50,35 +53,35 @@ const HamburgerMenu = ({
   return (
     <div
       ref={menuRef}
-      className={`absolute top-0 -right-[173px] ${
+      className={`absolute -right-[173px] top-0 ${
         menuVisible ? "-translate-x-full" : ""
-      } z-[9999] bg-teal-600 flex md:hidden dark:bg-gray-600 transition-transform duration-500 ease-linear`}
+      } z-[9999] flex bg-teal-600 transition-transform duration-500 ease-linear dark:bg-gray-600 md:hidden`}
       onMouseEnter={handleMouseEnterMenu}
       onMouseLeave={handleMouseLeaveMenu}
     >
-      <ul className="list-reset text-white mt-16 p-5">
+      <ul className="list-reset mt-16 p-5 text-white">
         <li className="py-5">
           <Link
             href="/tournois"
-            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
-            Tournois
+            {t("competitions")}
           </Link>
         </li>
         <li className="py-5">
           <Link
             href="/qui-sommes-nous"
-            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
-            Qui Sommes-Nous
+            {t("about")}
           </Link>
         </li>
         <li className="py-5">
           <Link
             href="/contactez-nous"
-            className="border-b-2 border-transparent hover:border-white transition-all ease-in-out duration-300"
+            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
-            Contactez-Nous
+            {t("contact")}
           </Link>
         </li>
         <li className="py-5">

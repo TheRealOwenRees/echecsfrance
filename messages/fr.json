@@ -1,0 +1,69 @@
+{
+  "Metadata": {
+    "title": "Echecs France - Tournois d'Echecs",
+    "description": "Trouvez Vos Tournois d'Echecs en France Sur Une Carte",
+    "keywords": "echecs, France, tournoi, tournois, FFE, carte"
+  },
+
+  "Nav": {
+    "title": "Echecs France",
+    "competitions": "Tournois",
+    "about": "Qui Sommes-Nous",
+    "contact": "Contactez-Nous"
+  },
+
+  "Footer": {
+    "githubAria": "Lien vers le dépôt GitHub",
+    "contactAria": "Contactez-nous"
+  },
+
+  "App": {
+    "tcClassic": "Cadence Lente",
+    "tcRapid": "Rapide",
+    "tcBlitz": "Blitz",
+    "tcKO": "1h KO"
+  },
+
+  "Home": {
+    "title": "France Echecs",
+    "purpose": "Trouvez Vos Tournois d'Echecs en France Sur Une Carte",
+    "how": "Une représentation visuelle de tous les tournois d'échecs publiés par la <link>FFE</link>",
+    "mapLink": "Voir La Carte"
+  },
+
+  "Competitions": {
+    "loading": "Téléchargement...",
+    "searchLabel": "Rechercher",
+    "searchPlaceholder": "Rechercher",
+    "noneFound": "Pas de tournois trouvé",
+    "date": "Date",
+    "town": "Ville",
+    "competition": "Tournois",
+    "timeControl": "Cadence"
+  },
+
+  "About": {
+    "title": "Qui Sommes-Nous?",
+    "p1": "Ce projet a vu le jour début 2022 afin de permettre une visualisation sur une carte des tournois d'échecs en France. Ayant déménagé en France en 2019, je ne connaissais alors pas la géographie française et je souhaitais savoir quels tournois avaient lieu près de chez moi.",
+    "p2":  "Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle je lui ai redonné vie. Reconstruit à partir de zéro, <homeLink>Echecs France</homeLink> est désormais open source et ouvert aux contributions.",
+    "p3": "Je compte mettre en place un bouton de don en ligne pour ceux qui souhaitent participer aux frais associés au site. Une fois les coûts de fonctionnement déduits, tous les fonds restant seront redirigés vers le monde des échecs soit en sponsorant des événements ou par la création de dons.",
+    "thanksTitle": "Remerciements",
+    "thanksInfo": "Ce projet est ce qu'il est grâce aux contributions de vous tous. Je souhaite en particulier remercier les personnes suivantes pour leurs contributions\u00a0:",
+    "techTitle": "Tech Blurb",
+    "techInfo": "<homeLink>Echecs France</homeLink> utilise\u00a0:",
+    "techWith": "avec",
+    "contribInfo": "Pour plus d'informations sur les moyens de contribution, veuillez visiter notre <link>GitHub</link>."
+  },
+
+  "Contact": {
+    "title": "Contactez-Nous",
+    "info": "Vous souhaitez ajouter les tournois de votre fédération sur ce site\u00a0? Vous avez un problème technique? Vous aimeriez participer à ce projet? Contactez-nous.",
+    "emailLabel": "Adresse e-mail",
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "Le motif de ma demande",
+    "messageLabel": "Votre message",
+    "messagePlaceholder": "Détaillez ici votre demande...",
+    "sendButton": "Envoi Message",
+    "sending": "Envoi en cours..."
+   }
+}

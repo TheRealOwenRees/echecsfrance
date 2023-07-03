@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { useTranslations } from "next-intl";
 
 type SearchBarProps = {
   tournamentFilter: string;
@@ -9,15 +10,17 @@ const SearchBar = ({
   tournamentFilter,
   setTournamentFilter,
 }: SearchBarProps) => {
+  const t = useTranslations("Competitions");
+
   return (
-    <div className="p-3 bg-white dark:bg-gray-800">
+    <div className="bg-white p-3 dark:bg-gray-800">
       <label htmlFor="table-search" className="sr-only">
-        Search
+        {t("searchLabel")}
       </label>
       <div className="relative mt-1">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
-            className="w-5 h-5 text-gray-500 dark:text-gray-400"
+            className="h-5 w-5 text-gray-500 dark:text-gray-400"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -32,8 +35,8 @@ const SearchBar = ({
         <input
           type="text"
           id="table-search"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Recherche"
+          className="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder={t("searchPlaceholder")}
           value={tournamentFilter}
           onChange={(e) => setTournamentFilter(e.target.value)}
         />

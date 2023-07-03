@@ -1,6 +1,6 @@
 import Home from "@/app/page";
 import About from "@/app/qui-sommes-nous/page";
-import Contact from "@/app/contactez-nous/page";
+import Contact from "@/app/[lang]/contactez-nous/page";
 
 const navbarFooterCheck = () => {
   it("includes navbar", () => {

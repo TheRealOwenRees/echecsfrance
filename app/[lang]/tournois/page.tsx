@@ -1,11 +1,22 @@
 import clientPromise from "@/lib/mongodb";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
+
 import Layout from "@/components/Layout";
 import TournamentTable from "@/components/TournamentTable";
 import { dateOrderingFrance } from "@/utils/dbDateOrdering";
 import { errorLog } from "@/utils/logger";
 
-export const revalidate = 3600; // revalidate cache every 6 hours
+export const revalidate = 3600; // revalidate cache every 6 hours;
+
+const LoadingMap = () => {
+  const t = useTranslations("Competitions");
+  return (
+    <div className="grid h-screen place-items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+      <p>{t("loading")}</p>
+    </div>
+  );
+};
 
 /**
  * Imports the tournament map component, ensuring CSR only.
@@ -13,11 +24,7 @@ export const revalidate = 3600; // revalidate cache every 6 hours
  */
 const TournamentMap = dynamic(() => import("@/components/TournamentMap"), {
   ssr: false,
-  loading: () => (
-    <div className="h-screen grid place-items-center text-gray-900 bg-white dark:bg-gray-800 dark:text-white">
-      <p>Loading map...</p>
-    </div>
-  ),
+  loading: LoadingMap,
 });
 
 const getTournaments = async () => {
