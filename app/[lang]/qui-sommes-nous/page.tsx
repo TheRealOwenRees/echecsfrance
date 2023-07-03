@@ -37,9 +37,6 @@ export default function About() {
           >
             {t("thanksTitle")}
           </h3>
-          <p className="mb-4 text-center font-light text-gray-500 dark:text-gray-400 md:text-xl">
-            {t("thanksTitle")}
-          </p>
           <ul className="mb-4 text-center text-teal-600">
             <li>
               <Link href="https://github.com/AlvaroNW" target="_blank">
