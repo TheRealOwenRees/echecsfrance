@@ -1,20 +1,24 @@
-import Link from "next/link";
+import Link from "next-intl/link";
+import { useTranslations } from "next-intl";
+
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import Hamburger from "@/components/Hamburger";
 
 export default function Navbar() {
+  const t = useTranslations("Nav");
+
   return (
     <nav
-      className="w-full relative border-b-[1px] pt-5 mt-0 px-5 md:pt-2 bg-white dark:bg-gray-800 dark:border-gray-700 overflow-x-clip"
+      className="relative mt-0 w-full overflow-x-clip border-b-[1px] bg-white px-5 pt-5 dark:border-gray-700 dark:bg-gray-800 md:pt-2"
       data-test="navbar"
     >
       <div className="container mx-auto flex items-center">
-        <div className="pb-3 justify-center flex w-full md:w-1/2 md:pb-0 md:justify-start font-extrabold">
+        <div className="flex w-full justify-center pb-3 font-extrabold md:w-1/2 md:justify-start md:pb-0">
           <Link
-            className="text-gray-900 dark:text-white no-underline hover:no-underline"
+            className="text-gray-900 no-underline hover:no-underline dark:text-white"
             href="/"
           >
-            <span className="text-2xl">Echecs France</span>
+            <span className="text-2xl">{t("title")}</span>
           </Link>
         </div>
         <div className="pb-2 md:hidden" data-test="mobile-menu">
@@ -22,32 +26,32 @@ export default function Navbar() {
         </div>
 
         <div
-          className="hidden pt-2 justify-center md:flex md:w-1/2 md:justify-end"
+          className="hidden justify-center pt-2 md:flex md:w-1/2 md:justify-end"
           data-test="desktop-menu"
         >
-          <ul className="list-reset text-gray-900 dark:text-white no-underline flex flex-1 justify-around md:flex-none items-center">
+          <ul className="list-reset flex flex-1 items-center justify-around text-gray-900 no-underline dark:text-white md:flex-none">
             <li className="mr-10">
               <Link
-                className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
+                className="inline-block border-b-4 border-transparent py-5 transition-all duration-300 ease-in-out hover:border-teal-600"
                 href="/tournois"
               >
-                Tournois
+                {t("competitions")}
               </Link>
             </li>
             <li className="mr-10">
               <Link
-                className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
+                className="inline-block border-b-4 border-transparent py-5 transition-all duration-300 ease-in-out hover:border-teal-600"
                 href="/qui-sommes-nous"
               >
-                Qui Sommes-Nous
+                {t("about")}
               </Link>
             </li>
             <li className="mr-10">
               <Link
-                className="inline-block border-b-4 py-5 border-transparent hover:border-teal-600 transition-all ease-in-out duration-300"
+                className="inline-block border-b-4 border-transparent py-5 transition-all duration-300 ease-in-out hover:border-teal-600"
                 href="/contactez-nous"
               >
-                Contactez-Nous
+                {t("contact")}
               </Link>
             </li>
             <li>

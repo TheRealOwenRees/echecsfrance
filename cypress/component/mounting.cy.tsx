@@ -1,6 +1,6 @@
-import Home from "@/app/page";
-import About from "@/app/qui-sommes-nous/page";
-import Contact from "@/app/contactez-nous/page";
+import Home from "@/app/[lang]/page";
+import About from "@/app/[lang]/qui-sommes-nous/page";
+import Contact from "@/app/[lang]/contactez-nous/page";
 
 const navbarFooterCheck = () => {
   it("includes navbar", () => {
@@ -19,7 +19,7 @@ describe("Verify component mount", () => {
     });
 
     it("correct h1 tags with website name included", () => {
-      cy.getByData("header1").contains("echecs france", {
+      cy.getByData("header1").contains("échecs france", {
         matchCase: false,
       });
     });

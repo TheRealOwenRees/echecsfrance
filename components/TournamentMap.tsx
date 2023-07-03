@@ -6,6 +6,7 @@ import { LatLngLiteral } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 
 import { createLayerGroups } from "@/utils/layerGroups";
@@ -17,8 +18,13 @@ export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   const classicalMarkers = createLayerGroups("Cadence Lente", "green", {
     tournamentData,
   });
-  const rapidMarkers = createLayerGroups("Rapide", "blue", { tournamentData });
-  const blitzMarkers = createLayerGroups("Blitz", "yellow", { tournamentData });
+  const rapidMarkers = createLayerGroups("Rapide", "blue", {
+    tournamentData,
+  });
+  const blitzMarkers = createLayerGroups("Blitz", "yellow", {
+    tournamentData,
+  });
+
   const otherMarkers = createLayerGroups("1h KO", "red", { tournamentData });
 
   return (

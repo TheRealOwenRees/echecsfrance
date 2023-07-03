@@ -10,23 +10,23 @@ const Hamburger = () => {
     <>
       <div
         ref={hamburgerButtonRef}
-        className="hamburger-button space-y-2 relative z-[99999]"
+        className="hamburger-button relative z-[99999] space-y-2"
         data-test="hamburger-button"
         onClick={() => setMenuVisible(!menuVisible)}
       >
         <div
-          className={`w-8 h-0.5 bg-gray-600 dark:bg-white transition-transform duration-300 ease-in-out ${
-            menuVisible ? "rotate-45 translate-y-2.5 translate-x-[1px]" : ""
+          className={`h-0.5 w-8 bg-gray-600 transition-transform duration-300 ease-in-out dark:bg-white ${
+            menuVisible ? "translate-x-[1px] translate-y-2.5 rotate-45" : ""
           }`}
         ></div>
         <div
-          className={`w-8 h-0.5 bg-gray-600 dark:bg-white transition-transform duration-300 ease-linear ${
-            menuVisible ? "opacity-0 rotate-0 scale-0" : ""
+          className={`h-0.5 w-8 bg-gray-600 transition-transform duration-300 ease-linear dark:bg-white ${
+            menuVisible ? "rotate-0 scale-0 opacity-0" : ""
           }`}
         ></div>
         <div
-          className={`w-8 h-0.5 bg-gray-600 dark:bg-white transition-transform duration-300 ease-in-out ${
-            menuVisible ? "-rotate-45 -translate-y-2.5" : ""
+          className={`h-0.5 w-8 bg-gray-600 transition-transform duration-300 ease-in-out dark:bg-white ${
+            menuVisible ? "-translate-y-2.5 -rotate-45" : ""
           }`}
         ></div>
       </div>

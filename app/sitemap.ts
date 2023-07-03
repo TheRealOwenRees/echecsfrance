@@ -1,22 +1,24 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  return ['fr', 'en'].flatMap(locale => {
+    const prefix = `https://echecsfrance.com/${locale === 'fr' ? '' : `${locale}/`}`
+    return [
     {
-      url: "https://echecsfrance.com",
+      url: prefix,
       lastModified: new Date(),
     },
     {
-      url: "https://echecsfrance.com/tournois",
+      url: `${prefix}tournois`,
       lastModified: new Date(),
     },
     {
-      url: "https://echecsfrance.com/qui-sommes-nous",
+      url: `${prefix}qui-sommes-nous`,
       lastModified: new Date(),
     },
     {
-      url: "https://echecsfrance.com/contactez-nous",
+      url: `${prefix}contactez-nous`,
       lastModified: new Date(),
     },
-  ];
+  ]});
 }
