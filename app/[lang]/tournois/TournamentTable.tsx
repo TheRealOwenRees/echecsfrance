@@ -4,14 +4,14 @@ import { TournamentDataProps } from "@/types";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import SearchBar from "@/components/SearchBar";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
+import SearchBar from "./SearchBar";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function TournamentTable({
   tournamentData,
 }: TournamentDataProps) {
   let tableData;
-  const t = useTranslations("Competitions");
+  const t = useTranslations("Tournaments");
   const [searchQuery, setSearchQuery] = useState(""); // text from search bar
   const [filteredTournamentData, setFilteredTournamentData] =
     useState(tournamentData);
@@ -63,7 +63,7 @@ export default function TournamentTable({
 
   return (
     <section
-      className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-[calc(100vh-173px)] lg:overflow-y-scroll"
+      className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-[calc(100vh-144px)] lg:overflow-y-scroll"
       id="tournament-table"
       data-test="tournament-table-div"
     >
@@ -89,7 +89,7 @@ export default function TournamentTable({
               {t("town")}
             </th>
             <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
-              {t("competition")}
+              {t("tournament")}
             </th>
             <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
               {t("timeControl")}

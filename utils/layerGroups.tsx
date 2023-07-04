@@ -22,12 +22,12 @@ type TournamentMarkerProps = {
   colour: string;
 } & Omit<MarkerProps, "position">;
 
-export const CompetitionMarker = ({
+export const TournamentMarker = ({
   tournament,
   colour,
   ...markerProps
 }: TournamentMarkerProps) => {
-  const t = useTranslations("Competitions");
+  const t = useTranslations("Tournaments");
 
   const iconOptions = new L.Icon({
     iconUrl: `/images/leaflet/marker-icon-2x-${colour}.png`,
@@ -72,7 +72,7 @@ export const createLayerGroups = (
 
   const layerGroup = filteredTournaments.map((tournament) => {
     return (
-      <CompetitionMarker
+      <TournamentMarker
         key={tournament._id}
         tournament={tournament}
         colour={colour}

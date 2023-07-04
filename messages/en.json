@@ -1,13 +1,13 @@
 {
   "Metadata": {
     "title": "Echecs France - Tournois d'Echecs",
-    "description": "Find chess competitions, in France, on a map",
-    "keywords": "chess, France, competition, competitions, FFE, map"
+    "description": "Find chess tournaments, in France, on a map",
+    "keywords": "chess, France, tournament, tournaments, FFE, map"
   },
 
   "Nav": {
     "title": "Echecs France",
-    "competitions": "Competitions",
+    "tournaments": "Tournaments",
     "about": "About Us",
     "contact": "Contact"
   },
@@ -26,19 +26,19 @@
 
   "Home": {
     "title": "France Echecs",
-    "purpose": "Find chess competitions, in France, on a map",
-    "how": "A graphical representation of all the chess competitions published by the <link>FFE</link>",
+    "purpose": "Find chess tournaments, in France, on a map",
+    "how": "A graphical representation of all the chess tournaments published by the <link>FFE</link>",
     "mapLink": "See the Map"
   },
 
-  "Competitions": {
+  "Tournaments": {
     "loading": "Loading...",
     "searchLabel": "Search",
     "searchPlaceholder": "Search",
     "noneFound": "No tournaments found",
     "date": "Date",
     "town": "Town",
-    "competition": "Competition",
+    "tournament": "Tournament",
     "timeControl": "Time Control",
     "approx": "Géo-localisation is approximative"
   },

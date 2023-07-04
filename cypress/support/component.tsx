@@ -14,8 +14,8 @@
 // ***********************************************************
 
 import { mount } from "cypress/react18";
-import { NextIntlClientProvider } from "next-intl";
 
+import ClientLayout from "@/app/[lang]/components/ClientLayout";
 import messages from "@/messages/fr.json";
 import "./commands";
 
@@ -37,9 +37,9 @@ declare global {
 
 Cypress.Commands.add("mount", (component, options) => {
   const wrapped = (
-    <NextIntlClientProvider locale="fr" messages={messages}>
+    <ClientLayout locale="fr" messages={messages}>
       {component}
-    </NextIntlClientProvider>
+    </ClientLayout>
   );
 
   return mount(wrapped, options);
