@@ -2,7 +2,6 @@ import { useTranslations } from "next-intl";
 
 import ContactForm from "./ContactForm";
 
-// TODO fix page sizing
 export default function Contact() {
   const t = useTranslations("Contact");
 
