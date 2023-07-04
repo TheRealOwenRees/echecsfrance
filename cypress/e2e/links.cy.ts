@@ -1,5 +1,3 @@
-// noinspection HttpUrlsUsage
-
 describe("Test links", () => {
   const pages = ["tournois", "qui sommes-nous", "contactez-nous"];
 

@@ -49,7 +49,6 @@ const HamburgerMenu = ({
     menuTimeout,
   });
 
-  // noinspection HtmlUnknownTarget
   return (
     <div
       ref={menuRef}
