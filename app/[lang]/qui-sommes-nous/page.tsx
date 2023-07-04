@@ -6,7 +6,7 @@ export default function About() {
 
   return (
     <header className="mb-16 grid place-items-center bg-white dark:bg-gray-800">
-      <div className="h-full max-w-5xl bg-white px-4 pt-8 dark:bg-gray-800">
+      <div className="h-full max-w-5xl bg-white px-4 pt-8 lg:pt-16 dark:bg-gray-800">
         <h2
           className="mb-8 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white"
           data-test="header2"
