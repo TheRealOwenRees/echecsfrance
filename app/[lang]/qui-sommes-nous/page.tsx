@@ -36,6 +36,11 @@ export default function About() {
         </h3>
         <ul className="mb-4 text-center text-teal-600">
           <li>
+            <Link href="https://github.com/timothyarmes" target="_blank">
+              timothyarmes
+            </Link>
+          </li>
+          <li>
             <Link href="https://github.com/AlvaroNW" target="_blank">
               AlvaroNW
             </Link>
