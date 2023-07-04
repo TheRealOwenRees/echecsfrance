@@ -1,11 +1,12 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
-import { useLocale, NextIntlClientProvider } from "next-intl";
+import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
 import "@/app/globals.css";
+import TestableLayout from "./components/TestableLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,9 +50,9 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <TestableLayout locale={locale} messages={messages}>
           {children}
-        </NextIntlClientProvider>
+        </TestableLayout>
         <Analytics />
       </body>
     </html>

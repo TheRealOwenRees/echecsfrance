@@ -1,6 +1,6 @@
 "use client";
 
-import HamburgerMenu from "@/components/HamburgerMenu";
+import HamburgerMenu from "./HamburgerMenu";
 import { useRef, useState } from "react";
 
 const Hamburger = () => {
@@ -30,13 +30,12 @@ const Hamburger = () => {
           }`}
         ></div>
       </div>
-      {
-        <HamburgerMenu
-          menuVisible={menuVisible}
-          setMenuVisible={setMenuVisible}
-          hamburgerButtonRef={hamburgerButtonRef}
-        />
-      }
+
+      <HamburgerMenu
+        menuVisible={menuVisible}
+        setMenuVisible={setMenuVisible}
+        hamburgerButtonRef={hamburgerButtonRef}
+      />
     </>
   );
 };

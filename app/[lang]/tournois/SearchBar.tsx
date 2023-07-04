@@ -10,7 +10,7 @@ const SearchBar = ({
   tournamentFilter,
   setTournamentFilter,
 }: SearchBarProps) => {
-  const t = useTranslations("Competitions");
+  const t = useTranslations("Tournaments");
 
   return (
     <div className="bg-white p-3 dark:bg-gray-800">

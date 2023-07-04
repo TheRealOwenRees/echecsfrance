@@ -10,7 +10,7 @@ import "leaflet-defaulticon-compatibility";
 import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
 
 import { createLayerGroups } from "@/utils/layerGroups";
-import Legend from "@/components/Legend";
+import Legend from "./Legend";
 
 export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
@@ -28,10 +28,7 @@ export default function TournamentMap({ tournamentData }: TournamentDataProps) {
   const otherMarkers = createLayerGroups("1h KO", "red", { tournamentData });
 
   return (
-    <section
-      id="tournament-map"
-      className="grid h-[calc(100vh-153px)] md:h-[calc(100vh-83px)] lg:h-[calc(100vh-173px)]"
-    >
+    <section id="tournament-map" className="grid h-[calc(100vh-144px)]">
       <MapContainer
         center={center}
         zoom={5}

@@ -1,4 +1,4 @@
-import ScrollToTopButton from "@/components/ScrollToTopButton";
+import ScrollToTopButton from "@/app/[lang]/tournois/ScrollToTopButton";
 
 describe("Scroll to top button", () => {
   it("desktop scroll button clickable", () => {

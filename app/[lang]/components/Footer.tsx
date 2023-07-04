@@ -7,12 +7,13 @@ export default function Footer() {
 
   return (
     <footer
-      className="fixed bottom-0 z-30 grid w-full justify-items-center bg-teal-600 px-5 py-2 text-white dark:bg-gray-700"
+      className="fixed bottom-0 z-30 flex h-20 w-full flex-col items-center justify-center justify-items-center bg-teal-600 px-5 py-2 text-white dark:bg-gray-700"
       data-test="footer"
     >
-      <div className="p-2">
+      <div>
         <p>&copy; {new Date().getFullYear()} - Owen Rees</p>
       </div>
+
       <div className="flex space-x-4 p-2">
         <Link
           href="https://github.com/TheRealOwenRees/echecsfrance"

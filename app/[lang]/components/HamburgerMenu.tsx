@@ -8,8 +8,8 @@ import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
 import Link from "next-intl/link";
 import { useTranslations } from "next-intl";
 
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 import useHamburgerClose from "@/hooks/useHamburgerClose";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const HamburgerMenu = ({
   menuVisible,
@@ -53,9 +53,9 @@ const HamburgerMenu = ({
   return (
     <div
       ref={menuRef}
-      className={`absolute -right-[173px] top-0 ${
-        menuVisible ? "-translate-x-full" : ""
-      } z-[9999] flex bg-teal-600 transition-transform duration-500 ease-linear dark:bg-gray-600 md:hidden`}
+      className={`fixed right-0 top-0 ${
+        menuVisible ? "" : "translate-x-full"
+      } z-[9999] flex bg-teal-600 transition-transform duration-200 ease-linear dark:bg-gray-600 md:hidden`}
       onMouseEnter={handleMouseEnterMenu}
       onMouseLeave={handleMouseLeaveMenu}
     >
@@ -65,7 +65,7 @@ const HamburgerMenu = ({
             href="/tournois"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
-            {t("competitions")}
+            {t("tournaments")}
           </Link>
         </li>
         <li className="py-5">

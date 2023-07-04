@@ -7,7 +7,7 @@
 
   "Nav": {
     "title": "Échecs France",
-    "competitions": "Tournois",
+    "tournaments": "Tournois",
     "about": "Qui Sommes-Nous",
     "contact": "Contactez-Nous"
   },
@@ -31,14 +31,14 @@
     "mapLink": "Voir La Carte"
   },
 
-  "Competitions": {
+  "Tournaments": {
     "loading": "Téléchargement...",
     "searchLabel": "Rechercher",
     "searchPlaceholder": "Rechercher",
     "noneFound": "Pas de tournois trouvé",
     "date": "Date",
     "town": "Ville",
-    "competition": "Tournois",
+    "tournament": "Tournois",
     "timeControl": "Cadence",
     "approx": "Géolocalisation approximative"
   },

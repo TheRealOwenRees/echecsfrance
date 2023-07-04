@@ -1,5 +1,5 @@
 import React from "react";
-import ThemeSwitcher from "../../components/ThemeSwitcher";
+import ThemeSwitcher from "@/app/[lang]/components/ThemeSwitcher";
 import "@/css/theme-toggle.css";
 
 describe("ThemeSwitcher component", () => {
@@ -14,8 +14,9 @@ describe("ThemeSwitcher component", () => {
         "linear-gradient(rgb(0, 255, 255), rgb(135, 206, 235)"
       );
     });
+
     // checking that the toggle is clickable and dark mode is active
-    cy.getByData("toggle").click();
+    cy.getByData("toggle").last().click();
     cy.getByData("toggle-dark").should("exist");
     cy.getByData("toggle-dark").should(($toggle) => {
       const backgroundImage = $toggle.css("background-image");
