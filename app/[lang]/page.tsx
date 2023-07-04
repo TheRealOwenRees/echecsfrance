@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <header className="grid h-[calc(100%-153px)] md:h-[calc(100%-173px)] place-items-center">
+      <header className="grid h-[calc(100%-153px)] md:h-[calc(100%-173px)] items-center">
         <div className="relative h-full w-full brightness-[0.2]">
           <Image
             src={bgImage}
@@ -19,7 +19,7 @@ export default function Home() {
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="absolute w-full text-center text-white">
+        <div className="absolute flex flex-col items-center w-full text-center text-white">
           <h1 className="p-5 text-5xl" data-test="header1">
             {t("title")}
           </h1>
