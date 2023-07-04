@@ -47,6 +47,9 @@ const useHamburgerClose = ({
 
     return () => {
       document.removeEventListener("mousedown", handleMouseDownOutsideMenu);
+      links.forEach((link) => {
+        link.removeEventListener("click", handleLinkClick);
+      });
     };
   }, [menuVisible]);
 
