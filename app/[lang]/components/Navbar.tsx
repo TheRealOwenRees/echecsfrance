@@ -54,9 +54,6 @@ export default function Navbar() {
                 {t("contact")}
               </Link>
             </li>
-            <li>
-              <ThemeSwitcher />
-            </li>
           </ul>
         </div>
       </div>
