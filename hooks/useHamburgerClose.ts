@@ -1,5 +1,3 @@
-// TODO is this really a hook? I think it is more of a util function
-
 interface HamburgerClose {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
@@ -36,10 +34,22 @@ const useHamburgerClose = ({
         setMouseOverMenu(false);
       }
     };
+
+    const handleLinkClick = () => {
+      setMenuVisible(false);
+    };
+
     document.addEventListener("mousedown", handleMouseDownOutsideMenu);
+    const links = document.querySelectorAll("a");
+    links.forEach((link) => {
+      link.addEventListener("click", handleLinkClick);
+    });
 
     return () => {
       document.removeEventListener("mousedown", handleMouseDownOutsideMenu);
+      links.forEach((link) => {
+        link.removeEventListener("click", handleLinkClick);
+      });
     };
   }, [menuVisible]);
 
