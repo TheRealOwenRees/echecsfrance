@@ -43,7 +43,7 @@ export default async function Tournaments() {
   const tournamentData = await getTournaments();
 
   return (
-    <main className="relative grid h-full lg:grid-cols-2">
+    <main className="relative grid h-full w-full lg:grid-cols-2">
       <div className="">
         <TournamentMap tournamentData={JSON.parse(tournamentData)} />
       </div>
