@@ -15,7 +15,7 @@
 
 import { mount } from "cypress/react18";
 
-import ClientLayout from "@/app/[lang]/components/ClientLayout";
+import TestableLayout from "@/app/[lang]/components/TestableLayout";
 import messages from "@/messages/fr.json";
 import "./commands";
 
@@ -37,9 +37,9 @@ declare global {
 
 Cypress.Commands.add("mount", (component, options) => {
   const wrapped = (
-    <ClientLayout locale="fr" messages={messages}>
+    <TestableLayout locale="fr" messages={messages}>
       {component}
-    </ClientLayout>
+    </TestableLayout>
   );
 
   return mount(wrapped, options);
