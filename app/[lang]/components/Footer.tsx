@@ -1,7 +1,7 @@
 import Link from "next-intl/link";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import ThemeSwitcherSVG from "@/app/[lang]/components/ThemeSwitcherSVG";
+import ThemeSwitcher from "@/app/[lang]/components/ThemeSwitcher";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -36,7 +36,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="text-xs">
-          <ThemeSwitcherSVG />
+          <ThemeSwitcher />
         </div>
       </div>
     </footer>
