@@ -1,11 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useAtomValue, useSetAtom, useAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
 
 import {
-  filteredTournamentsAtom,
+  filteredTournamentsListAtom,
   syncVisibleAtom,
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
@@ -13,13 +14,13 @@ import {
 } from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
+import TimeControlFilters from "./TimeControlFilters";
 import ScrollToTopButton from "./ScrollToTopButton";
-import { useEffect } from "react";
 
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
 
-  const filteredTournaments = useAtomValue(filteredTournamentsAtom);
+  const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
   const debouncedHoveredMapTournamentId = useAtomValue(
@@ -50,11 +51,16 @@ export default function TournamentTable() {
           <label>
             <input
               type="checkbox"
+              className="mr-2"
               checked={syncVisible}
               onChange={() => setSyncVisible(!syncVisible)}
-            />{" "}
+            />
             {t("syncWithMapCheckbox")}
           </label>
+        </div>
+
+        <div className="hidden lg:block">
+          <TimeControlFilters />
         </div>
       </div>
 
@@ -117,7 +123,7 @@ export default function TournamentTable() {
                 </td>
                 <td className="p-3">
                   <a href={tournament.url} target="_blank">
-                    {tournament.time_control}
+                    {tournament.timeControl}
                   </a>
                 </td>
               </tr>

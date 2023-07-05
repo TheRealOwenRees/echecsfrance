@@ -1,11 +1,10 @@
 "use client";
 
-import { Tournament } from "@/types";
+import { TimeControl, Tournament } from "@/types";
 import { LatLngLiteral } from "leaflet";
 import {
   MapContainer,
   TileLayer,
-  LayersControl,
   LayerGroup,
   useMapEvent,
 } from "react-leaflet";
@@ -15,10 +14,14 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-import { tournamentsAtom, mapBoundsAtom } from "@/app/atoms";
+import {
+  filteredTournamentsByTimeControlAtom,
+  mapBoundsAtom,
+} from "@/app/atoms";
 
 import Legend from "./Legend";
 import { TournamentMarker } from "./TournamentMarker";
+import TimeControlFilters from "./TimeControlFilters";
 
 const MapEvents = () => {
   const setMapBounds = useSetAtom(mapBoundsAtom);
@@ -30,16 +33,17 @@ const MapEvents = () => {
 };
 
 export default function TournamentMap() {
-  const tournaments = useAtomValue(tournamentsAtom);
+  const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
+  const setMapBounds = useSetAtom(mapBoundsAtom);
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
   const createLayerGroups = (
-    timeControl: string,
+    timeControl: TimeControl,
     colour: string,
     tournaments: Tournament[]
   ) => {
     const filteredTournaments = tournaments.filter(
-      (t) => t.time_control === timeControl
+      (t) => t.timeControl === timeControl
     );
 
     const layerGroup = filteredTournaments.map((tournament) => {
@@ -52,30 +56,46 @@ export default function TournamentMap() {
       );
     });
 
-    return (
-      <LayersControl.Overlay checked name={timeControl}>
-        <LayerGroup>{layerGroup}</LayerGroup>
-      </LayersControl.Overlay>
-    );
+    return <LayerGroup>{layerGroup}</LayerGroup>;
   };
 
   const classicalMarkers = createLayerGroups(
-    "Cadence Lente",
+    TimeControl.Classic,
     "green",
     tournaments
   );
-  const rapidMarkers = createLayerGroups("Rapide", "blue", tournaments);
-  const blitzMarkers = createLayerGroups("Blitz", "yellow", tournaments);
-  const otherMarkers = createLayerGroups("1h KO", "red", tournaments);
+  const rapidMarkers = createLayerGroups(
+    TimeControl.Rapid,
+    "blue",
+    tournaments
+  );
+  const blitzMarkers = createLayerGroups(
+    TimeControl.Blitz,
+    "yellow",
+    tournaments
+  );
+  const otherMarkers = createLayerGroups(TimeControl.KO, "red", tournaments);
 
   return (
-    <section id="tournament-map" className="grid h-[calc(100vh-144px)]">
+    <section
+      id="tournament-map"
+      className="flex h-[calc(100vh-144px)] flex-col"
+    >
+      <div className="p-3 lg:hidden">
+        <TimeControlFilters />
+      </div>
+
       <MapContainer
         center={center}
         zoom={5}
         scrollWheelZoom={false}
         style={{
-          height: "100%",
+          flexGrow: 1,
+        }}
+        ref={(map) => {
+          if (map) {
+            setMapBounds(map.getBounds());
+          }
         }}
       >
         <MapEvents />
@@ -84,12 +104,11 @@ export default function TournamentMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Legend />
-        <LayersControl>
-          {classicalMarkers}
-          {rapidMarkers}
-          {blitzMarkers}
-          {otherMarkers}
-        </LayersControl>
+
+        {classicalMarkers}
+        {rapidMarkers}
+        {blitzMarkers}
+        {otherMarkers}
       </MapContainer>
     </section>
   );

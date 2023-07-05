@@ -38,7 +38,7 @@ export default async function TournamentsDisplay({
 
   return (
     <main className="relative grid h-full w-full lg:grid-cols-2">
-      <div className="">
+      <div>
         <TournamentMap />
       </div>
       <div className="relative bg-white dark:bg-gray-800 lg:overflow-y-auto">

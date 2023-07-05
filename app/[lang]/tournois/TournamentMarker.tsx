@@ -13,11 +13,11 @@ import {
   debouncedHoveredMapTournamentIdAtom,
 } from "@/app/atoms";
 
-const coordinateRandomisation = (lat: number, lng: number): LatLngLiteral => {
+const coordinateRandomisation = (latLng: LatLngLiteral): LatLngLiteral => {
   const randomisation = () => Math.random() * (-0.01 - 0.01) + 0.01;
   return {
-    lat: lat + randomisation(),
-    lng: lng + randomisation(),
+    lat: latLng.lat + randomisation(),
+    lng: latLng.lng + randomisation(),
   };
 };
 
@@ -33,12 +33,7 @@ export const TournamentMarker = ({
 }: TournamentMarkerProps) => {
   const t = useTranslations("Tournaments");
   const markerRef = useRef<L.Marker<any> | null>(null);
-  const position = useRef(
-    coordinateRandomisation(
-      tournament.coordinates[0],
-      tournament.coordinates[1]
-    )
-  );
+  const position = useRef(coordinateRandomisation(tournament.latLng));
 
   const hoveredListTournamentId = useAtomValue(
     debouncedHoveredListTournamentIdAtom
