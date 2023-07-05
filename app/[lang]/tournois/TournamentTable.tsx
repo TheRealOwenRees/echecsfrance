@@ -11,12 +11,13 @@ import {
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
-  searchStringAtom,
 } from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
 import TimeControlFilters from "./TimeControlFilters";
 import ScrollToTopButton from "./ScrollToTopButton";
+
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
@@ -85,6 +86,7 @@ export default function TournamentTable() {
             <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
               {t("timeControl")}
             </th>
+            <th className="sticky w-[50px] top-0 bg-teal-600 p-3 text-white dark:bg-gray-600"></th>
           </tr>
         </thead>
 
@@ -126,6 +128,11 @@ export default function TournamentTable() {
                 <td className="p-3">
                   <a href={tournament.url} target="_blank">
                     {t("timeControlEnum", { tc: tournament.timeControl })}
+                  </a>
+                </td>
+                <td className="p-3">
+                  <a href={tournament.url} target="_blank">
+                    <FaExternalLinkAlt />
                   </a>
                 </td>
               </tr>
