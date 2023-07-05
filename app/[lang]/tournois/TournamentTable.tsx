@@ -21,7 +21,6 @@ import ScrollToTopButton from "./ScrollToTopButton";
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
 
-  const [searchString, setSearchString] = useAtom(searchStringAtom);
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
@@ -41,10 +40,6 @@ export default function TournamentTable() {
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapTournamentId]);
 
-  const handleClearSearch = () => {
-    setSearchString("");
-  };
-
   return (
     <section
       className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-[calc(100vh-144px)] lg:overflow-y-scroll"
@@ -52,16 +47,7 @@ export default function TournamentTable() {
       data-test="tournament-table-div"
     >
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
-        <SearchBar
-          searchString={searchString}
-          setSearchString={setSearchString}
-        />
-        <button
-          className="mr-auto rounded-full bg-teal-600 px-3 py-1 text-white hover:bg-teal-700"
-          onClick={() => handleClearSearch()}
-        >
-          {t("clearButton")}
-        </button>
+        <SearchBar />
         <div className="text-gray-900 dark:text-white">
           <label>
             <input
