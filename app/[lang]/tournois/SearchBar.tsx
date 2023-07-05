@@ -1,10 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
-
-interface SearchBarProps {
-  searchString: string;
-  setSearchString: Dispatch<SetStateAction<string>>;
-}
+import { useAtom } from "jotai/index";
+import { searchStringAtom } from "@/app/atoms";
 
 const SearchBar = ({ searchString, setSearchString }: SearchBarProps) => {
   const t = useTranslations("Tournaments");
