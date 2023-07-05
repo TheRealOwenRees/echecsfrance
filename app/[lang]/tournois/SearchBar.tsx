@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { useAtom } from "jotai/index";
+import { IoCloseOutline } from "react-icons/io5";
 import { searchStringAtom } from "@/app/atoms";
 
 const SearchBar = () => {
@@ -26,10 +27,19 @@ const SearchBar = () => {
             ></path>
           </svg>
         </div>
+
+        {searchString !== "" && (
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-900 dark:text-white">
+            <button onClick={() => setSearchString("")}>
+              <IoCloseOutline className="h-5 w-5" />
+            </button>
+          </div>
+        )}
+
         <input
-          type="text"
+          type="search"
           id="table-search"
-          className="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder={t("searchPlaceholder")}
           value={searchString}
           onChange={(e) => setSearchString(e.target.value)}
