@@ -57,7 +57,7 @@ export default function TournamentTable() {
           setSearchString={setSearchString}
         />
         <button
-          className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded-full mr-auto"
+          className="mr-auto rounded-full bg-teal-600 px-3 py-1 text-white hover:bg-teal-700"
           onClick={() => handleClearSearch()}
         >
           {t("clearButton")}
@@ -101,6 +101,7 @@ export default function TournamentTable() {
             </th>
           </tr>
         </thead>
+
         <tbody>
           {filteredTournaments.length === 0 ? (
             <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
@@ -138,7 +139,7 @@ export default function TournamentTable() {
                 </td>
                 <td className="p-3">
                   <a href={tournament.url} target="_blank">
-                    {tournament.timeControl}
+                    {t("timeControlEnum", { tc: tournament.timeControl })}
                   </a>
                 </td>
               </tr>
