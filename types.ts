@@ -9,8 +9,4 @@ export interface Tournament {
   coordinates: [number, number];
 }
 
-export interface TournamentDataProps {
-  tournamentData: Tournament[];
-}
-
 export type ScrollableElement = Window | HTMLElement;

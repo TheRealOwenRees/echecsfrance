@@ -21,8 +21,10 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.43.0",
     "eslint-config-next": "^13.4.7",
+    "jotai": "^2.2.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "leaflet.smooth_marker_bouncing": "^3.0.3",
     "mongodb": "^5.6.0",
     "next": "^13.4.7",
     "next-intl": "^3.0.0-beta.7",
@@ -33,10 +35,12 @@
     "react-icons": "^4.10.1",
     "react-leaflet": "^4.2.1",
     "sharp": "^0.32.1",
+    "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@swc-jotai/react-refresh": "^0.0.8",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/leaflet": "^1.9.3",

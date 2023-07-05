@@ -1,31 +1,63 @@
 "use client";
 
-import { TournamentDataProps } from "@/types";
+import { Tournament } from "@/types";
 import { LatLngLiteral } from "leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  LayersControl,
+  LayerGroup,
+} from "react-leaflet";
+import { useAtomValue } from "jotai";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-import { MapContainer, TileLayer, LayersControl } from "react-leaflet";
+import { tournamentsAtom } from "@/app/atoms";
 
-import { createLayerGroups } from "@/utils/layerGroups";
 import Legend from "./Legend";
+import { TournamentMarker } from "./TournamentMarker";
 
-export default function TournamentMap({ tournamentData }: TournamentDataProps) {
+export default function TournamentMap() {
+  const tournaments = useAtomValue(tournamentsAtom);
+  console.log("here");
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
-  const classicalMarkers = createLayerGroups("Cadence Lente", "green", {
-    tournamentData,
-  });
-  const rapidMarkers = createLayerGroups("Rapide", "blue", {
-    tournamentData,
-  });
-  const blitzMarkers = createLayerGroups("Blitz", "yellow", {
-    tournamentData,
-  });
+  const createLayerGroups = (
+    timeControl: string,
+    colour: string,
+    tournaments: Tournament[]
+  ) => {
+    const filteredTournaments = tournaments.filter(
+      (t) => t.time_control === timeControl
+    );
 
-  const otherMarkers = createLayerGroups("1h KO", "red", { tournamentData });
+    const layerGroup = filteredTournaments.map((tournament) => {
+      return (
+        <TournamentMarker
+          key={tournament._id}
+          tournament={tournament}
+          colour={colour}
+        />
+      );
+    });
+
+    return (
+      <LayersControl.Overlay checked name={timeControl}>
+        <LayerGroup>{layerGroup}</LayerGroup>
+      </LayersControl.Overlay>
+    );
+  };
+
+  const classicalMarkers = createLayerGroups(
+    "Cadence Lente",
+    "green",
+    tournaments
+  );
+  const rapidMarkers = createLayerGroups("Rapide", "blue", tournaments);
+  const blitzMarkers = createLayerGroups("Blitz", "yellow", tournaments);
+  const otherMarkers = createLayerGroups("1h KO", "red", tournaments);
 
   return (
     <section id="tournament-map" className="grid h-[calc(100vh-144px)]">
