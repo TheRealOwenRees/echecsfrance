@@ -11,7 +11,6 @@ import {
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
-  searchStringAtom,
 } from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
