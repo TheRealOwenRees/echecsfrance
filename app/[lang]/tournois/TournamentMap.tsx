@@ -31,6 +31,7 @@ const MapEvents = () => {
 
 export default function TournamentMap() {
   const tournaments = useAtomValue(tournamentsAtom);
+  const setMapBounds = useSetAtom(mapBoundsAtom);
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
   const createLayerGroups = (
@@ -64,6 +65,7 @@ export default function TournamentMap() {
     "green",
     tournaments
   );
+
   const rapidMarkers = createLayerGroups("Rapide", "blue", tournaments);
   const blitzMarkers = createLayerGroups("Blitz", "yellow", tournaments);
   const otherMarkers = createLayerGroups("1h KO", "red", tournaments);
@@ -76,6 +78,11 @@ export default function TournamentMap() {
         scrollWheelZoom={false}
         style={{
           height: "100%",
+        }}
+        ref={(map) => {
+          if (map) {
+            setMapBounds(map.getBounds());
+          }
         }}
       >
         <MapEvents />
