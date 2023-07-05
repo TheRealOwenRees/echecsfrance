@@ -12,7 +12,7 @@ const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <>
+    <div className="cursor-pointer">
       {colorTheme === "light" ? (
         <div data-test="toggle-dark" onClick={() => setTheme("light")}>
           <svg
@@ -40,7 +40,7 @@ const ThemeSwitcher = () => {
           </svg>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

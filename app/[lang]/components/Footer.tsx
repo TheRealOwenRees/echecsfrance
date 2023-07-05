@@ -15,18 +15,23 @@ export default function Footer() {
         <p>&copy; {new Date().getFullYear()} - Owen Rees</p>
       </div>
 
-      <div className="flex space-x-4 p-2">
+      <div className="flex items-center py-2">
         <Link
           href="https://github.com/TheRealOwenRees/echecsfrance"
           target="_blank"
           aria-label={t("githubAria")}
+          className="mr-4"
         >
           <FaGithub />
         </Link>
-        <Link href="/contactez-nous" aria-label={t("contactAria")}>
+        <Link
+          href="/contactez-nous"
+          aria-label={t("contactAria")}
+          className="mr-4"
+        >
           <FaRegEnvelope />
         </Link>
-        <div className="space-x-2 text-xs">
+        <div className="space-x-2 mr-4 text-xs">
           <Link href="/" locale="fr">
             FR
           </Link>
