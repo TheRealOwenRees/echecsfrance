@@ -60,7 +60,7 @@ export default function TournamentTable() {
           className="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded-full mr-auto"
           onClick={() => handleClearSearch()}
         >
-          Clear
+          {t("clearButton")}
         </button>
         <div className="text-gray-900 dark:text-white">
           <label>
