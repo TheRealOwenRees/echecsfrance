@@ -35,6 +35,7 @@
     "loading": "Loading...",
     "searchLabel": "Search",
     "searchPlaceholder": "Search",
+    "syncWithMapCheckbox": "Tournaments visible on the map",
     "noneFound": "No tournaments found",
     "date": "Date",
     "town": "Town",

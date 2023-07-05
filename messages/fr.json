@@ -35,6 +35,7 @@
     "loading": "Téléchargement...",
     "searchLabel": "Rechercher",
     "searchPlaceholder": "Rechercher",
+    "syncWithMapCheckbox": "Tournois visibles sur la carte",
     "noneFound": "Pas de tournois trouvé",
     "date": "Date",
     "town": "Ville",

@@ -7,17 +7,27 @@ import {
   TileLayer,
   LayersControl,
   LayerGroup,
+  useMapEvent,
 } from "react-leaflet";
-import { useAtomValue } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-import { tournamentsAtom } from "@/app/atoms";
+import { tournamentsAtom, mapBoundsAtom } from "@/app/atoms";
 
 import Legend from "./Legend";
 import { TournamentMarker } from "./TournamentMarker";
+
+const MapEvents = () => {
+  const setMapBounds = useSetAtom(mapBoundsAtom);
+  const map = useMapEvent("moveend", () => {
+    setMapBounds(map.getBounds());
+  });
+
+  return null;
+};
 
 export default function TournamentMap() {
   const tournaments = useAtomValue(tournamentsAtom);
@@ -68,6 +78,7 @@ export default function TournamentMap() {
           height: "100%",
         }}
       >
+        <MapEvents />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
