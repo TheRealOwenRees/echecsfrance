@@ -1,65 +1,40 @@
 "use client";
 
-import { TournamentDataProps } from "@/types";
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useAtomValue, useSetAtom } from "jotai";
+import { twMerge } from "tailwind-merge";
+
+import {
+  filteredTournamentsAtom,
+  hoveredMapTournamentIdAtom,
+  debouncedHoveredMapTournamentIdAtom,
+  debouncedHoveredListTournamentIdAtom,
+} from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
 import ScrollToTopButton from "./ScrollToTopButton";
+import { useEffect } from "react";
 
-export default function TournamentTable({
-  tournamentData,
-}: TournamentDataProps) {
-  let tableData;
+export default function TournamentTable() {
   const t = useTranslations("Tournaments");
-  const [searchQuery, setSearchQuery] = useState(""); // text from search bar
-  const [filteredTournamentData, setFilteredTournamentData] =
-    useState(tournamentData);
+
+  const filteredTournaments = useAtomValue(filteredTournamentsAtom);
+  const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
+  const debouncedHoveredMapTournamentId = useAtomValue(
+    debouncedHoveredMapTournamentIdAtom
+  );
+  const setHoveredListTournamentId = useSetAtom(
+    debouncedHoveredListTournamentIdAtom
+  );
 
   useEffect(() => {
-    setFilteredTournamentData(
-      tournamentData.filter((t) => t.town.includes(searchQuery.toUpperCase()))
-    );
-  }, [searchQuery, tournamentData]);
+    if (debouncedHoveredMapTournamentId === null) return;
 
-  // TODO move this section into its own function
-  if (filteredTournamentData.length === 0) {
-    tableData = (
-      <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
-        <td colSpan={4} className="p-3">
-          {t("noneFound")}
-        </td>
-      </tr>
+    const tournamentRow = document.getElementById(
+      debouncedHoveredMapTournamentId
     );
-  } else {
-    tableData = filteredTournamentData.map((data) => (
-      <tr
-        className="bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900"
-        key={data._id}
-      >
-        <td className="p-3">
-          <a href={data.url} target="_blank">
-            {data.date}
-          </a>
-        </td>
-        <td className="p-3">
-          <a href={data.url} target="_blank">
-            {data.town}
-          </a>
-        </td>
-        <td className="p-3">
-          <a href={data.url} target="_blank">
-            {data.tournament}
-          </a>
-        </td>
-        <td className="p-3">
-          <a href={data.url} target="_blank">
-            {data.time_control}
-          </a>
-        </td>
-      </tr>
-    ));
-  }
+    tournamentRow?.scrollIntoView({ behavior: "smooth" });
+  }, [debouncedHoveredMapTournamentId]);
 
   return (
     <section
@@ -68,10 +43,7 @@ export default function TournamentTable({
       data-test="tournament-table-div"
     >
       <div className="z-10 flex">
-        <SearchBar
-          tournamentFilter={searchQuery}
-          setTournamentFilter={setSearchQuery}
-        />
+        <SearchBar />
         <div>
           <ScrollToTopButton />
         </div>
@@ -96,7 +68,50 @@ export default function TournamentTable({
             </th>
           </tr>
         </thead>
-        <tbody>{tableData}</tbody>
+        <tbody>
+          {filteredTournaments.length === 0 ? (
+            <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+              <td colSpan={4} className="p-3">
+                {t("noneFound")}
+              </td>
+            </tr>
+          ) : (
+            filteredTournaments.map((tournament) => (
+              <tr
+                key={tournament._id}
+                id={tournament._id}
+                onMouseEnter={() => setHoveredListTournamentId(tournament._id)}
+                onMouseLeave={() => setHoveredListTournamentId(null)}
+                className={twMerge(
+                  "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
+                  hoveredMapTournamentId === tournament._id &&
+                    "bg-gray-200 dark:bg-gray-900"
+                )}
+              >
+                <td className="p-3">
+                  <a href={tournament.url} target="_blank">
+                    {tournament.date}
+                  </a>
+                </td>
+                <td className="p-3">
+                  <a href={tournament.url} target="_blank">
+                    {tournament.town}
+                  </a>
+                </td>
+                <td className="p-3">
+                  <a href={tournament.url} target="_blank">
+                    {tournament.tournament}
+                  </a>
+                </td>
+                <td className="p-3">
+                  <a href={tournament.url} target="_blank">
+                    {tournament.time_control}
+                  </a>
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
       </table>
     </section>
   );

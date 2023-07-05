@@ -1,16 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
+import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
 
-type SearchBarProps = {
-  tournamentFilter: string;
-  setTournamentFilter: Dispatch<SetStateAction<string>>;
-};
+import { searchStringAtom } from "@/app/atoms";
 
-const SearchBar = ({
-  tournamentFilter,
-  setTournamentFilter,
-}: SearchBarProps) => {
+const SearchBar = () => {
   const t = useTranslations("Tournaments");
+  const [searchString, setSearchString] = useAtom(searchStringAtom);
 
   return (
     <div className="bg-white p-3 dark:bg-gray-800">
@@ -37,8 +32,8 @@ const SearchBar = ({
           id="table-search"
           className="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder={t("searchPlaceholder")}
-          value={tournamentFilter}
-          onChange={(e) => setTournamentFilter(e.target.value)}
+          value={searchString}
+          onChange={(e) => setSearchString(e.target.value)}
         />
       </div>
     </div>

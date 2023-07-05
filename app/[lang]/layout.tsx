@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
 import "@/app/globals.css";
+import Providers from "./providers";
 import TestableLayout from "./components/TestableLayout";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -50,9 +51,11 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <TestableLayout locale={locale} messages={messages}>
-          {children}
-        </TestableLayout>
+        <Providers>
+          <TestableLayout locale={locale} messages={messages}>
+            {children}
+          </TestableLayout>
+        </Providers>
         <Analytics />
       </body>
     </html>
