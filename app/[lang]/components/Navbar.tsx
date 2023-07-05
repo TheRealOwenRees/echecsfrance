@@ -1,7 +1,6 @@
 import Link from "next-intl/link";
 import { useTranslations } from "next-intl";
 
-import ThemeSwitcher from "./ThemeSwitcher";
 import Hamburger from "./Hamburger";
 
 export default function Navbar() {
