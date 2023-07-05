@@ -8,7 +8,7 @@ const SearchBar = () => {
   const [searchString, setSearchString] = useAtom(searchStringAtom);
 
   return (
-    <div className="bg-white p-3 dark:bg-gray-800">
+    <div className="bg-white dark:bg-gray-800">
       <label htmlFor="table-search" className="sr-only">
         {t("searchLabel")}
       </label>

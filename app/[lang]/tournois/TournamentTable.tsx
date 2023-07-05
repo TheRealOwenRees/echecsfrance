@@ -1,11 +1,12 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom, useAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
 
 import {
   filteredTournamentsAtom,
+  syncVisibleAtom,
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
@@ -19,6 +20,7 @@ export default function TournamentTable() {
   const t = useTranslations("Tournaments");
 
   const filteredTournaments = useAtomValue(filteredTournamentsAtom);
+  const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
   const debouncedHoveredMapTournamentId = useAtomValue(
     debouncedHoveredMapTournamentIdAtom
@@ -42,12 +44,22 @@ export default function TournamentTable() {
       id="tournament-table"
       data-test="tournament-table-div"
     >
-      <div className="z-10 flex">
+      <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
         <SearchBar />
-        <div>
-          <ScrollToTopButton />
+        <div className="text-gray-900 dark:text-white">
+          <label>
+            <input
+              type="checkbox"
+              checked={syncVisible}
+              onChange={() => setSyncVisible(!syncVisible)}
+            />{" "}
+            {t("syncWithMapCheckbox")}
+          </label>
         </div>
       </div>
+
+      <ScrollToTopButton />
+
       <table
         className="relative w-full table-fixed text-center text-xs"
         data-test="tournament-table"
