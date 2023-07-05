@@ -8,6 +8,7 @@ import {
   LayerGroup,
   useMapEvent,
 } from "react-leaflet";
+import { FaChevronDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
 
 import "leaflet/dist/leaflet.css";
@@ -36,6 +37,11 @@ export default function TournamentMap() {
   const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
+
+  const onScrollToTable = () => {
+    const tournamentTable = document.getElementById("tournament-table");
+    tournamentTable?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const createLayerGroups = (
     timeControl: TimeControl,
@@ -110,6 +116,15 @@ export default function TournamentMap() {
         {blitzMarkers}
         {otherMarkers}
       </MapContainer>
+
+      <div className="flex items-center justify-center lg:hidden">
+        <button
+          className="p-3 text-teal-900 dark:text-white"
+          onClick={onScrollToTable}
+        >
+          <FaChevronDown />
+        </button>
+      </div>
     </section>
   );
 }
