@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Tournament } from "@/types";
-import L, { LatLngLiteral } from "leaflet";
+import L, { LatLngLiteral, DomUtil } from "leaflet";
 import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
 import { useAtomValue, useSetAtom } from "jotai";
@@ -50,22 +50,45 @@ export const TournamentMarker = ({
   useEffect(() => {
     if (!markerRef.current) return;
     if (hoveredListTournamentId === tournament._id) {
-      // @ts-ignore (bounce comes from leaflet.smooth_marker_bouncing and isn't defined by the Typescript class)
+      // @ts-ignore (the various bounce commands come from leaflet.smooth_marker_bouncing and aren't defined by the Typescript definitions)
+      markerRef.current.setBouncingOptions({ exclusive: true });
+
+      // @ts-ignore
       markerRef.current.bounce();
     } else {
       // @ts-ignore
-      markerRef.current.stopBouncing();
+      if (markerRef.current.isBouncing()) {
+        // @ts-ignore
+        markerRef.current.stopBouncing();
+
+        // The plugin keeps bouncing until the end of the animation.  We want to stop it immediately
+        // An issue has been raised on the project (https://github.com/hosuaby/Leaflet.SmoothMarkerBouncing/issues/52), until then we have this hack.
+        // We remove the class and reset some internal state
+        // @ts-ignore
+        DomUtil.removeClass(markerRef.current._icon, "bouncing");
+
+        if (
+          // @ts-ignore
+          markerRef.current?._bouncingMotion?.bouncingAnimationPlaying === true
+        )
+          // @ts-ignore
+          markerRef.current._bouncingMotion.bouncingAnimationPlaying = false;
+      }
     }
   }, [hoveredListTournamentId, tournament._id]);
 
-  const iconOptions = new L.Icon({
-    iconUrl: `/images/leaflet/marker-icon-2x-${colour}.png`,
-    shadowUrl: "/images/leaflet/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
+  const iconOptions = useMemo(
+    () =>
+      new L.Icon({
+        iconUrl: `/images/leaflet/marker-icon-2x-${colour}.png`,
+        shadowUrl: "/images/leaflet/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+      }),
+    [colour]
+  );
 
   return (
     <Marker
