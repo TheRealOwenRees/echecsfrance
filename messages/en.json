@@ -58,14 +58,15 @@
   },
 
   "Contact": {
-    "title": "Contactez-Nous",
+    "title": "Contact Us",
     "info": "Would you like to add tournaments from your federation to this website? Are you experiencing any technical issues? Would you like to participate in this project? Please feel free to contact us.",
     "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
     "subjectLabel": "Subject",
     "subjectPlaceholder": "Your reason for contacting us",
     "messageLabel": "Your Message",
     "messagePlaceholder": "Please provide the details of your request here...",
-    "sendButton": "Envoi Message",
+    "sendButton": "Send Message",
     "sending": "Sending...",
     "success": "Thank you for your message.",
     "failure": "Sorry, something went wrong.  Please try again."

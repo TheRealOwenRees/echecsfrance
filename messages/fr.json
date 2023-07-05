@@ -1,6 +1,6 @@
 {
   "Metadata": {
-    "title": "Echecs France - Tournois d'Échecs",
+    "title": "Échecs France - Tournois d'Échecs",
     "description": "Trouvez Vos Tournois d'Échecs en France Sur Une Carte",
     "keywords": "echecs, France, tournoi, tournois, FFE, carte"
   },
@@ -61,6 +61,7 @@
     "title": "Contactez-Nous",
     "info": "Vous souhaitez ajouter les tournois de votre fédération sur ce site\u00a0? Vous avez un problème technique? Vous aimeriez participer à ce projet? Contactez-nous.",
     "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "nom@exemple.com",
     "subjectLabel": "Sujet",
     "subjectPlaceholder": "Le motif de ma demande",
     "messageLabel": "Votre message",
