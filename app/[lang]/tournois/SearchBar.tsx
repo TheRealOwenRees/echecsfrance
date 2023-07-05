@@ -1,11 +1,13 @@
-import { useAtom } from "jotai";
+import { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
 
-import { searchStringAtom } from "@/app/atoms";
+interface SearchBarProps {
+  searchString: string;
+  setSearchString: Dispatch<SetStateAction<string>>;
+}
 
-const SearchBar = () => {
+const SearchBar = ({ searchString, setSearchString }: SearchBarProps) => {
   const t = useTranslations("Tournaments");
-  const [searchString, setSearchString] = useAtom(searchStringAtom);
 
   return (
     <div className="bg-white dark:bg-gray-800">

@@ -11,6 +11,7 @@ import {
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
+  searchStringAtom,
 } from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
@@ -20,6 +21,7 @@ import ScrollToTopButton from "./ScrollToTopButton";
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
 
+  const [searchString, setSearchString] = useAtom(searchStringAtom);
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
@@ -39,6 +41,10 @@ export default function TournamentTable() {
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapTournamentId]);
 
+  const handleClearSearch = () => {
+    setSearchString("");
+  };
+
   return (
     <section
       className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-[calc(100vh-144px)] lg:overflow-y-scroll"
@@ -46,7 +52,16 @@ export default function TournamentTable() {
       data-test="tournament-table-div"
     >
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
-        <SearchBar />
+        <SearchBar
+          searchString={searchString}
+          setSearchString={setSearchString}
+        />
+        <button
+          className="mr-auto rounded-full bg-teal-600 px-3 py-1 text-white hover:bg-teal-700"
+          onClick={() => handleClearSearch()}
+        >
+          {t("clearButton")}
+        </button>
         <div className="text-gray-900 dark:text-white">
           <label>
             <input
@@ -86,6 +101,7 @@ export default function TournamentTable() {
             </th>
           </tr>
         </thead>
+
         <tbody>
           {filteredTournaments.length === 0 ? (
             <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
@@ -123,7 +139,7 @@ export default function TournamentTable() {
                 </td>
                 <td className="p-3">
                   <a href={tournament.url} target="_blank">
-                    {tournament.timeControl}
+                    {t("timeControlEnum", { tc: tournament.timeControl })}
                   </a>
                 </td>
               </tr>
