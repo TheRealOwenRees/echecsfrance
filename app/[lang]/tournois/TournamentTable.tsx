@@ -57,7 +57,7 @@ export default function TournamentTable() {
           setSearchString={setSearchString}
         />
         <button
-          className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+          className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-auto"
           onClick={() => handleClearSearch()}
         >
           Clear
