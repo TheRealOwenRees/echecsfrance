@@ -21,7 +21,6 @@ import { TournamentMarker } from "./TournamentMarker";
 
 export default function TournamentMap() {
   const tournaments = useAtomValue(tournamentsAtom);
-  console.log("here");
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
   const createLayerGroups = (

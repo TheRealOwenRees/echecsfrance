@@ -9,8 +9,6 @@ import { tournamentsAtom } from "@/app/atoms";
 
 import TournamentTable from "./TournamentTable";
 
-export const revalidate = 3600; // revalidate cache every 6 hours;
-
 const LoadingMap = () => {
   const t = useTranslations("Tournaments");
   return (

@@ -5,7 +5,7 @@ import { Tournament } from "@/types";
 
 import TournamentsDisplay from "./TournamentsDisplay";
 
-export const revalidate = 3600; // revalidate cache every 6 hours;
+export const revalidate = 3600; // Revalidate cache every 6 hours
 
 const getTournaments = async () => {
   try {
@@ -35,7 +35,7 @@ const getTournaments = async () => {
       ])
       .toArray();
 
-    // We map the ObjectId it a string so that it va ce serialized and sent to a client component
+    // We map the ObjectId to a string so that it can be serialized and sent to a client component
     return data.map((t) => ({
       ...t,
       _id: t._id.toString(),
