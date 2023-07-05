@@ -17,13 +17,6 @@
     "contactAria": "Contactez-nous"
   },
 
-  "App": {
-    "tcClassic": "Cadence Lente",
-    "tcRapid": "Rapide",
-    "tcBlitz": "Blitz",
-    "tcKO": "1h KO"
-  },
-
   "Home": {
     "title": "Échecs France",
     "purpose": "Trouvez Vos Tournois d'Échecs en France Sur Une Carte",
@@ -41,7 +34,8 @@
     "town": "Ville",
     "tournament": "Tournois",
     "timeControl": "Cadence",
-    "approx": "Géolocalisation approximative"
+    "approx": "Géolocalisation approximative",
+    "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} KO {1h KO} other {{tc}}}"
   },
 
   "About": {

@@ -17,13 +17,6 @@
     "contactAria": "Contact Us"
   },
 
-  "App": {
-    "tcClassic": "Classic",
-    "tcRapid": "Rapid",
-    "tcBlitz": "Blitz",
-    "tcKO": "1h KO"
-  },
-
   "Home": {
     "title": "France Echecs",
     "purpose": "Find chess tournaments, in France, on a map",
@@ -41,7 +34,8 @@
     "town": "Town",
     "tournament": "Tournament",
     "timeControl": "Time Control",
-    "approx": "Géo-localisation is approximative"
+    "approx": "Géo-localisation is approximative",
+    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} KO {1h KO} other {{tc}}}"
   },
 
   "About": {
