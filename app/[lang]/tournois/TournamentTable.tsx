@@ -11,6 +11,7 @@ import {
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
+  searchStringAtom,
 } from "@/app/atoms";
 
 import SearchBar from "./SearchBar";
@@ -20,6 +21,7 @@ import ScrollToTopButton from "./ScrollToTopButton";
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
 
+  const [searchString, setSearchString] = useAtom(searchStringAtom);
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
@@ -39,6 +41,10 @@ export default function TournamentTable() {
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapTournamentId]);
 
+  const handleClearSearch = () => {
+    setSearchString("");
+  };
+
   return (
     <section
       className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-[calc(100vh-144px)] lg:overflow-y-scroll"
@@ -46,7 +52,16 @@ export default function TournamentTable() {
       data-test="tournament-table-div"
     >
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
-        <SearchBar />
+        <SearchBar
+          searchString={searchString}
+          setSearchString={setSearchString}
+        />
+        <button
+          className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={() => handleClearSearch()}
+        >
+          Clear
+        </button>
         <div className="text-gray-900 dark:text-white">
           <label>
             <input
