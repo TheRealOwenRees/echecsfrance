@@ -1,0 +1,31 @@
+.marker-cluster-Classic {
+    background-color: rgba(145, 231, 135, 0.6);
+}
+
+.marker-cluster-Classic div {
+    background-color: rgba(36, 171, 33, 0.6)
+}
+
+.marker-cluster-Rapid {
+    background-color: rgba(85, 150, 201, 0.6)
+}
+
+.marker-cluster-Rapid div {
+    background-color: rgba(39, 128, 201, 0.6)
+}
+
+.marker-cluster-Blitz {
+    background-color: rgba(217, 211, 84, 0.6);
+}
+
+.marker-cluster-Blitz div {
+    background-color: rgba(202, 196, 39, 0.6)
+}
+
+.marker-cluster-KO {
+    background-color: rgba(211, 67, 84, 0.6);
+}
+
+.marker-cluster-KO div {
+    background-color: rgba(203, 41, 60, 0.6);
+}
