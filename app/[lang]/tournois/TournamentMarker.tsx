@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useMemo, useRef } from "react";
-import { Tournament } from "@/types";
+import { TimeControl, Tournament } from "@/types";
 import L from "leaflet";
 import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
@@ -19,7 +19,20 @@ export const TournamentMarker = forwardRef<
   TournamentMarkerProps
 >(({ tournament, colour, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
-  const position = useRef(tournament.latLng);
+
+  // We add shifts based on the time control, so that they don't hide each other
+  const position = useRef({
+    lat: tournament.latLng.lat,
+    lng:
+      tournament.latLng.lng +
+      (tournament.timeControl === TimeControl.Rapid
+        ? -0.01
+        : tournament.timeControl === TimeControl.Blitz
+        ? 0.01
+        : tournament.timeControl === TimeControl.KO
+        ? 0.02
+        : 0),
+  });
 
   const setHoveredMapTournamentId = useSetAtom(
     debouncedHoveredMapTournamentIdAtom
