@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
 
   const scrollToTopButtonClass = isLgScreen
     ? "absolute bottom-0 right-3 p-10"
-    : "fixed top-20 right-3";
+    : "fixed bottom-20 right-3 py-10";
 
   return (
     <button
