@@ -11,7 +11,7 @@ import {
   LayerGroup,
   useMapEvent,
 } from "react-leaflet";
-import { FaChevronDown } from "react-icons/fa";
+import { FaAngleDoubleDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
 
 import "leaflet/dist/leaflet.css";
@@ -265,10 +265,7 @@ export default function TournamentMap() {
   };
 
   return (
-    <section
-      id="tournament-map"
-      className="flex h-[calc(100vh-144px)] flex-col"
-    >
+    <section id="tournament-map" className="flex h-screen flex-col pb-[144px]">
       <div className="p-3 lg:hidden">
         <TimeControlFilters />
       </div>
@@ -312,7 +309,7 @@ export default function TournamentMap() {
           className="p-3 text-teal-900 dark:text-white"
           onClick={onScrollToTable}
         >
-          <FaChevronDown />
+          <FaAngleDoubleDown />
         </button>
       </div>
     </section>
