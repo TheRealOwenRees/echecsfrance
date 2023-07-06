@@ -83,9 +83,6 @@ const HamburgerMenu = ({
             {t("contact")}
           </Link>
         </li>
-        <li className="py-5">
-          <ThemeSwitcher />
-        </li>
       </ul>
     </div>
   );
