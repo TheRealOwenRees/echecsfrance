@@ -1,76 +1,42 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import { Tournament } from "@/types";
-import L, { LatLngLiteral, DomUtil } from "leaflet";
+import { forwardRef, useMemo, useRef } from "react";
+import { TimeControl, Tournament } from "@/types";
+import L from "leaflet";
 import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
-import { useAtomValue, useSetAtom } from "jotai";
-import "leaflet.smooth_marker_bouncing";
+import { useSetAtom } from "jotai";
 
-import {
-  debouncedHoveredListTournamentIdAtom,
-  debouncedHoveredMapTournamentIdAtom,
-} from "@/app/atoms";
-
-const coordinateRandomisation = (latLng: LatLngLiteral): LatLngLiteral => {
-  const randomisation = () => Math.random() * (-0.01 - 0.01) + 0.01;
-  return {
-    lat: latLng.lat + randomisation(),
-    lng: latLng.lng + randomisation(),
-  };
-};
+import { debouncedHoveredMapTournamentIdAtom } from "@/app/atoms";
 
 type TournamentMarkerProps = {
   tournament: Tournament;
   colour: string;
 } & Omit<MarkerProps, "position">;
 
-export const TournamentMarker = ({
-  tournament,
-  colour,
-  ...markerProps
-}: TournamentMarkerProps) => {
+export const TournamentMarker = forwardRef<
+  L.Marker<any> | null,
+  TournamentMarkerProps
+>(({ tournament, colour, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
-  const markerRef = useRef<L.Marker<any> | null>(null);
-  const position = useRef(coordinateRandomisation(tournament.latLng));
 
-  const hoveredListTournamentId = useAtomValue(
-    debouncedHoveredListTournamentIdAtom
-  );
+  // We add shifts based on the time control, so that they don't hide each other
+  const position = useRef({
+    lat: tournament.latLng.lat,
+    lng:
+      tournament.latLng.lng +
+      (tournament.timeControl === TimeControl.Rapid
+        ? -0.01
+        : tournament.timeControl === TimeControl.Blitz
+        ? 0.01
+        : tournament.timeControl === TimeControl.KO
+        ? 0.02
+        : 0),
+  });
+
   const setHoveredMapTournamentId = useSetAtom(
     debouncedHoveredMapTournamentIdAtom
   );
-
-  useEffect(() => {
-    if (!markerRef.current) return;
-    if (hoveredListTournamentId === tournament._id) {
-      // @ts-ignore (the various bounce commands come from leaflet.smooth_marker_bouncing and aren't defined by the Typescript definitions)
-      markerRef.current.setBouncingOptions({ exclusive: true });
-
-      // @ts-ignore
-      markerRef.current.bounce();
-    } else {
-      // @ts-ignore
-      if (markerRef.current.isBouncing()) {
-        // @ts-ignore
-        markerRef.current.stopBouncing();
-
-        // The plugin keeps bouncing until the end of the animation.  We want to stop it immediately
-        // An issue has been raised on the project (https://github.com/hosuaby/Leaflet.SmoothMarkerBouncing/issues/52), until then we have this hack.
-        // We remove the class and reset some internal state
-        // @ts-ignore
-        DomUtil.removeClass(markerRef.current._icon, "bouncing");
-
-        if (
-          // @ts-ignore
-          markerRef.current?._bouncingMotion?.bouncingAnimationPlaying === true
-        )
-          // @ts-ignore
-          markerRef.current._bouncingMotion.bouncingAnimationPlaying = false;
-      }
-    }
-  }, [hoveredListTournamentId, tournament._id]);
 
   const iconOptions = useMemo(
     () =>
@@ -87,7 +53,7 @@ export const TournamentMarker = ({
 
   return (
     <Marker
-      ref={markerRef}
+      ref={ref}
       position={position.current}
       icon={iconOptions}
       eventHandlers={{
@@ -108,4 +74,6 @@ export const TournamentMarker = ({
       </Popup>
     </Marker>
   );
-};
+});
+
+TournamentMarker.displayName = "TournamentMarker";
