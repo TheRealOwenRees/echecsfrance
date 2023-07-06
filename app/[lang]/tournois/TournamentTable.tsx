@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useAtomValue, useSetAtom, useAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import {
   filteredTournamentsListAtom,
@@ -12,12 +13,11 @@ import {
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
 } from "@/app/atoms";
+import { useBreakpoint } from "@/hooks/tailwind";
 
 import SearchBar from "./SearchBar";
 import TimeControlFilters from "./TimeControlFilters";
 import ScrollToTopButton from "./ScrollToTopButton";
-
-import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
@@ -32,15 +32,17 @@ export default function TournamentTable() {
     debouncedHoveredListTournamentIdAtom
   );
 
+  const isLg = useBreakpoint("lg");
+
   useEffect(() => {
-    if (debouncedHoveredMapTournamentId === null) return;
+    if (!isLg || debouncedHoveredMapTournamentId === null) return;
 
     const tournamentRow = document.getElementById(
       debouncedHoveredMapTournamentId
     );
 
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
-  }, [debouncedHoveredMapTournamentId]);
+  }, [debouncedHoveredMapTournamentId, isLg]);
 
   return (
     <section
@@ -87,7 +89,7 @@ export default function TournamentTable() {
             <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
               {t("timeControl")}
             </th>
-            <th className="sticky w-[50px] top-0 bg-teal-600 p-3 text-white dark:bg-gray-600"></th>
+            <th className="sticky top-0 w-[50px] bg-teal-600 p-3 text-white dark:bg-gray-600"></th>
           </tr>
         </thead>
 

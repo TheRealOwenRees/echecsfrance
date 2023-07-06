@@ -13,6 +13,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@kodingdotninja/use-tailwind-breakpoint": "^0.0.5",
     "@next/bundle-analyzer": "^13.4.7",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
