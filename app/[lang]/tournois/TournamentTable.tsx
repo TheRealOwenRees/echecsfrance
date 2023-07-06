@@ -38,6 +38,7 @@ export default function TournamentTable() {
     const tournamentRow = document.getElementById(
       debouncedHoveredMapTournamentId
     );
+
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapTournamentId]);
 
