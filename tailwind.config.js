@@ -6,6 +6,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      height: {
+        // We use 100svh, falling back to vh for old browsers
+        screen: ['100vh', '100svh'],
+      }
+    }
+  },
   plugins: [],
 };
