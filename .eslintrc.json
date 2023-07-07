@@ -6,8 +6,5 @@
   ],
   "globals": {
     "React": "readonly"
-  },
-  "rules": {
-    "no-unused-vars": "warn"
   }
 }
