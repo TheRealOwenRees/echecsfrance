@@ -55,7 +55,7 @@ const Legend = () => {
 
       legend.addTo(map);
     }
-  }, [map, t, timeControls]);
+  }, [map, t]); // eslint-disable-line react-hooks/exhaustive-deps
   return null;
 };
 
