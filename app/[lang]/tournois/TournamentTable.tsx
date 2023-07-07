@@ -113,25 +113,11 @@ export default function TournamentTable() {
                     "bg-gray-200 dark:bg-gray-900"
                 )}
               >
+                <td className="p-3">{tournament.date}</td>
+                <td className="p-3">{tournament.town}</td>
+                <td className="p-3">{tournament.tournament}</td>
                 <td className="p-3">
-                  <a href={tournament.url} target="_blank">
-                    {tournament.date}
-                  </a>
-                </td>
-                <td className="p-3">
-                  <a href={tournament.url} target="_blank">
-                    {tournament.town}
-                  </a>
-                </td>
-                <td className="p-3">
-                  <a href={tournament.url} target="_blank">
-                    {tournament.tournament}
-                  </a>
-                </td>
-                <td className="p-3">
-                  <a href={tournament.url} target="_blank">
-                    {t("timeControlEnum", { tc: tournament.timeControl })}
-                  </a>
+                  {t("timeControlEnum", { tc: tournament.timeControl })}
                 </td>
                 <td className="p-3">
                   <a href={tournament.url} target="_blank">
