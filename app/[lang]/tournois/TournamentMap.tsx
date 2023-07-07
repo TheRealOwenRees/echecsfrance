@@ -229,6 +229,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
           ref={clusterRef}
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
+          maxClusterRadius={40}
         >
           {markers}
         </MarkerClusterGroup>
