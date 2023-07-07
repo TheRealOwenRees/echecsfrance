@@ -14,7 +14,7 @@ export interface TournamentData {
   department: string;
   tournament: string;
   url: string;
-  time_control: "Cadence Lente" | "Rapide" | "Blitz" | "1h KO";
+  time_control: "Cadence Lente" | "Rapide" | "Blitz" | string;
   date: string;
   coordinates: [number, number];
 }
@@ -23,7 +23,6 @@ const tcMap: Record<TournamentData["time_control"], TimeControl> = {
   "Cadence Lente": TimeControl.Classic,
   Rapide: TimeControl.Rapid,
   Blitz: TimeControl.Blitz,
-  "1h KO": TimeControl.KO,
 };
 
 const getTournaments = async () => {
@@ -57,7 +56,7 @@ const getTournaments = async () => {
     return data.map<Tournament>((t) => ({
       ...t,
       _id: t._id.toString(),
-      timeControl: tcMap[t.time_control],
+      timeControl: tcMap[t.time_control] ?? TimeControl.Other,
       latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
     }));
   } catch (error) {

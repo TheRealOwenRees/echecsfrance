@@ -35,7 +35,7 @@
     "tournament": "Tournament",
     "timeControl": "Time Control",
     "approx": "Géo-localisation is approximative",
-    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} KO {1h KO} other {{tc}}}",
+    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}",
     "clearButton": "Clear"
   },
 

@@ -25,5 +25,7 @@
     "tournois",
     "unspiderfied",
     "unspiderfy"
-  ]
+  ],
+
+  "css.customData": [".vscode/tailwindcss.json"],
 }

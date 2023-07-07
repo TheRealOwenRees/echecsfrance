@@ -27,7 +27,7 @@ import {
   classicAtom,
   rapidAtom,
   blitzAtom,
-  oneHourKOAtom,
+  otherAtom,
 } from "@/app/atoms";
 
 import Legend from "./Legend";
@@ -249,7 +249,7 @@ export default function TournamentMap() {
   const classic = useAtomValue(classicAtom);
   const rapid = useAtomValue(rapidAtom);
   const blitz = useAtomValue(blitzAtom);
-  const other = useAtomValue(oneHourKOAtom);
+  const other = useAtomValue(otherAtom);
 
   useEffect(() => {
     if (hoveredListTournamentId === null) {
@@ -300,7 +300,7 @@ export default function TournamentMap() {
           <TimeControlGroup timeControl={TimeControl.Blitz} colour="yellow" />
         )}
         {other && (
-          <TimeControlGroup timeControl={TimeControl.KO} colour="red" />
+          <TimeControlGroup timeControl={TimeControl.Other} colour="red" />
         )}
       </MapContainer>
 

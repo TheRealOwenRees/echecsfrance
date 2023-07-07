@@ -6,6 +6,12 @@ import Hamburger from "./Hamburger";
 export default function Navbar() {
   const t = useTranslations("Nav");
 
+  const links = [
+    { title: t("tournaments"), route: "/tournois" },
+    { title: t("about"), route: "/qui-sommes-nous" },
+    { title: t("contact"), route: "/contactez-nous" },
+  ];
+
   return (
     <nav
       className="relative mt-0 h-16 w-full overflow-x-clip border-b-[1px] bg-white px-5 dark:border-gray-700 dark:bg-gray-800"
@@ -29,30 +35,16 @@ export default function Navbar() {
           data-test="desktop-menu"
         >
           <ul className="list-reset flex h-full flex-1 items-center justify-around text-gray-900 no-underline dark:text-white md:flex-none">
-            <li className="mr-10 h-full">
-              <Link
-                className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
-                href="/tournois"
-              >
-                {t("tournaments")}
-              </Link>
-            </li>
-            <li className="mr-10 h-full">
-              <Link
-                className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
-                href="/qui-sommes-nous"
-              >
-                {t("about")}
-              </Link>
-            </li>
-            <li className="mr-10 h-full">
-              <Link
-                className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
-                href="/contactez-nous"
-              >
-                {t("contact")}
-              </Link>
-            </li>
+            {links.map(({ title, route }) => (
+              <li key={route} className="mr-10 h-full">
+                <Link
+                  className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
+                  href={route}
+                >
+                  {title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

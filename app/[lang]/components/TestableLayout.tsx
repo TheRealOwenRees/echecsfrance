@@ -1,7 +1,8 @@
 import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
 import { ReactNode } from "react";
 
-import "@/app/globals.css";
+import "@/css/globals.css";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 

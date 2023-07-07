@@ -35,7 +35,7 @@
     "tournament": "Tournois",
     "timeControl": "Cadence",
     "approx": "Géolocalisation approximative",
-    "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} KO {1h KO} other {{tc}}}",
+    "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} Other {Autres} other {{tc}}}",
     "clearButton": "Effacer"
   },
 

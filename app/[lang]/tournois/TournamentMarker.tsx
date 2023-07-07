@@ -29,7 +29,7 @@ export const TournamentMarker = forwardRef<
         ? -0.01
         : tournament.timeControl === TimeControl.Blitz
         ? 0.01
-        : tournament.timeControl === TimeControl.KO
+        : tournament.timeControl === TimeControl.Other
         ? 0.02
         : 0),
   });
