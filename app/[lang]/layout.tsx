@@ -5,7 +5,8 @@ import { getTranslator } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
-import "@/app/globals.css";
+import "@/css/globals.css";
+
 import Providers from "./providers";
 import TestableLayout from "./components/TestableLayout";
 
