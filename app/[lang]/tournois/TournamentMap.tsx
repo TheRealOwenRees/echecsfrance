@@ -265,7 +265,7 @@ export default function TournamentMap() {
   };
 
   return (
-    <section id="tournament-map" className="flex h-screen flex-col pb-[144px]">
+    <section id="tournament-map" className="flex h-content flex-col">
       <div className="p-3 lg:hidden">
         <TimeControlFilters />
       </div>

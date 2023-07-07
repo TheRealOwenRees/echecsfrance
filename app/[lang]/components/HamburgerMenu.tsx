@@ -9,7 +9,6 @@ import Link from "next-intl/link";
 import { useTranslations } from "next-intl";
 
 import useHamburgerClose from "@/hooks/useHamburgerClose";
-import ThemeSwitcher from "./ThemeSwitcher";
 
 const HamburgerMenu = ({
   menuVisible,
@@ -25,7 +24,7 @@ const HamburgerMenu = ({
     timeoutRef.current = setTimeout(() => {
       setMenuVisible(false);
       setMouseOverMenu(false);
-    }, 2000);
+    }, 4000);
   };
 
   const handleMouseEnterMenu = () => {

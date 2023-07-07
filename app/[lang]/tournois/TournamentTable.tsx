@@ -46,7 +46,7 @@ export default function TournamentTable() {
 
   return (
     <section
-      className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-screen lg:overflow-y-scroll lg:pb-[144px]"
+      className="tournament-table grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-content lg:overflow-y-scroll lg:pb-0"
       id="tournament-table"
       data-test="tournament-table-div"
     >
