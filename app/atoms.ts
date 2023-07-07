@@ -12,7 +12,7 @@ export const searchStringAtom = atom('');
 export const classicAtom = atom(true);
 export const rapidAtom = atom(true);
 export const blitzAtom = atom(true);
-export const oneHourKOAtom = atom(true);
+export const otherAtom = atom(true);
 
 export const {
   currentValueAtom: hoveredMapTournamentIdAtom,
@@ -29,13 +29,13 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
   const classic = get(classicAtom);
   const rapid = get(rapidAtom);
   const blitz = get(blitzAtom);
-  const oneHourKO = get(oneHourKOAtom);
+  const other = get(otherAtom);
 
   return tournaments.filter(tournament =>
     (tournament.timeControl === TimeControl.Classic && classic) ||
     (tournament.timeControl === TimeControl.Rapid && rapid) ||
     (tournament.timeControl === TimeControl.Blitz && blitz) ||
-    (tournament.timeControl === TimeControl.KO && oneHourKO));
+    (tournament.timeControl === TimeControl.Other && other));
 });
 
 export const filteredTournamentsListAtom = atom((get) => {

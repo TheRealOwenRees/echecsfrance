@@ -4,7 +4,7 @@ export enum TimeControl {
   Classic = "Classic",
   Rapid = "Rapid",
   Blitz = "Blitz",
-  KO = "KO",
+  Other = "Other",
 };
 
 export interface Tournament {
