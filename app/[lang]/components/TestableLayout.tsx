@@ -19,7 +19,7 @@ const TestableLayout = ({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div className="bg-white font-sans leading-normal tracking-normal dark:bg-gray-800">
         <Navbar />
-        <div className="relative h-content overflow-scroll">{children}</div>
+        <div className="relative min-h-content overflow-scroll">{children}</div>
         <Footer />
       </div>
     </NextIntlClientProvider>

@@ -8,7 +8,7 @@ export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <header className="relative flex h-full items-center justify-center">
+    <header className="relative flex h-content items-center justify-center">
       <div className="absolute h-full w-full brightness-[0.2]">
         <Image
           src={bgImage}
