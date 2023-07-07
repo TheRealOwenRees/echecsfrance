@@ -55,6 +55,13 @@ const MapEvents = () => {
     setMapBounds(map.getBounds());
   });
 
+  // Set the maximum bounds of the map to prevent moving past the world
+  useEffect(() => {
+    const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
+    map.setMaxBounds(worldBounds);
+    map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
+  }, [map]);
+
   return null;
 };
 
