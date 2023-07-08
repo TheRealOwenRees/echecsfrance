@@ -42,7 +42,7 @@
   "About": {
     "title": "Qui Sommes-Nous?",
     "p1": "Ce projet a vu le jour début 2022 afin de permettre une visualisation sur une carte des tournois d'échecs en France. Ayant déménagé en France en 2019, je ne connaissais alors pas la géographie française et je souhaitais savoir quels tournois avaient lieu près de chez moi.",
-    "p2":  "Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle je lui ai redonné vie. Reconstruit à partir de zéro, <homeLink>Echecs France</homeLink> est désormais open source et ouvert aux contributions.",
+    "p2":  "Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle je lui ai redonné vie. Reconstruit à partir de zéro, <homeLink>Échecs France</homeLink> est désormais open source et ouvert aux contributions.",
     "p3": "Je compte mettre en place un bouton de don en ligne pour ceux qui souhaitent participer aux frais associés au site. Une fois les coûts de fonctionnement déduits, tous les fonds restant seront redirigés vers le monde des échecs soit en sponsorant des événements ou par la création de dons.",
     "thanksTitle": "Remerciements",
     "thanksInfo": "Ce projet est ce qu'il est grâce aux contributions de vous tous. Je souhaite en particulier remercier les personnes suivantes pour leurs contributions\u00a0:",
