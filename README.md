@@ -25,6 +25,3 @@ and is deployed on [Vercel](https://vercel.com/)
 ## Contributions
 Contributions are encouraged. Please open an issue to discuss your ideas.  
 Add your code into a feature branch such as `feature/feature-name`. We utilise a [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy. 
-
-
-Please see the [TODO](https://github.com/TheRealOwenRees/echecsfrance/blob/main/TODO) file for a list of suggestions.
