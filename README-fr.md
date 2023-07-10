@@ -30,5 +30,3 @@ et est déployé sur [Vercel](https://vercel.com/)
 Les contributions sont encouragées. Veuillez ouvrir une nouvelle 'issue' sur GitHub pour discuter de vos idées.
 
 Nous utilisons une stratégie de branchement [Github Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations). Créez une nouvelle branche en utilisant Git et ajoutez votre code dedans. Vous pouvez utiliser: `fonctionalité/nom_de_la_fonctionnalité` comme nom de branche.
-
-Veuillez consulter le fichier [TODO](https://github.com/TheRealOwenRees/echecsfrance/blob/main/TODO) pour une liste de suggestions.
