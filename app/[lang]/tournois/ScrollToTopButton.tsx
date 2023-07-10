@@ -5,21 +5,11 @@ import { ScrollableElement } from "@/types";
 import { FaArrowUp } from "react-icons/fa";
 import { handleScrollToTop } from "@/handlers/scrollHandlers";
 import { useEffect, useRef, useState } from "react";
+import {useBreakpoint} from "@/hooks/tailwind";
 
 const ScrollToTopButton = () => {
   const scrollToTopElementRef = useRef<ScrollableElement | null>(null);
-  const [isLgScreen, setIsLgScreen] = useState(false);
-
-  // calculate screen size
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLgScreen(window.innerWidth >= 1024);
-    };
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  });
+  const isLgScreen = useBreakpoint("lg");
 
   // determine scrollable element based on screen size - window or div
   useEffect(() => {
