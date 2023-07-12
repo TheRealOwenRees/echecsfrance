@@ -2,7 +2,8 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "prettier"
   ],
   "globals": {
     "React": "readonly"
