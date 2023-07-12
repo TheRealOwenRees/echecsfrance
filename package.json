@@ -20,8 +20,6 @@
     "@types/react-dom": "18.2.6",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
-    "eslint": "8.43.0",
-    "eslint-config-next": "^13.4.7",
     "jotai": "^2.2.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.1",
@@ -50,6 +48,11 @@
     "@types/leaflet.markercluster": "^1.5.1",
     "@types/nodemailer": "^6.4.8",
     "cypress": "^12.16.0",
-    "eslint-plugin-cypress": "^2.13.3"
+    "eslint": "8.43.0",
+    "eslint-config-next": "^13.4.7",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-cypress": "^2.13.3",
+    "prettier": "3.0.0",
+    "prettier-plugin-tailwindcss": "^0.4.0"
   }
 }
