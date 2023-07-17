@@ -1,16 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import {
-  Inter,
-  Faster_One, // no
-  Codystar, // no
-  Bungee, // no
-  Pacifico, // no
-  Forum,
-  Julius_Sans_One,
-  Poiret_One,
-  Ledger,
-  Raleway,
-} from "next/font/google";
+import { Inter, Julius_Sans_One } from "next/font/google";
 import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { notFound } from "next/navigation";
