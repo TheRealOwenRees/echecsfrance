@@ -35,7 +35,7 @@
     "town": "Town",
     "tournament": "Tournament",
     "timeControl": "Time Control",
-    "approx": "Géo-localisation is approximative",
+    "approx": "Geolocation is approximative",
     "norm": "Norm Tournament",
     "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}",
     "clearButton": "Clear"
