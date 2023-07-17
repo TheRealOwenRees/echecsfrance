@@ -66,7 +66,7 @@ export default function About() {
             ),
           })}
         </p>
-        <ul className="mb-4 flex justify-around text-primary-600">
+        <ul className="mx-auto mb-4 flex max-w-lg justify-around text-primary-600">
           <li>
             <Link href="https://nextjs.org/" target="_blank">
               NextJS
@@ -91,7 +91,7 @@ export default function About() {
         <p className="mb-4 text-center font-light text-gray-500 dark:text-gray-400 md:text-xl">
           {t("techWith")}
         </p>
-        <ul className="mb-4 flex justify-around text-primary-600">
+        <ul className="mx-auto mb-8 flex max-w-md justify-around text-primary-600">
           <li>
             <Link href="https://leafletjs.com/" target="_blank">
               Leaflet
