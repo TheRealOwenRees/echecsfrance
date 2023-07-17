@@ -18,7 +18,7 @@ const Legend = () => {
         { tc: TimeControl.Classic, colour: "#00ac39" },
         { tc: TimeControl.Rapid, colour: "#0086c7" },
         { tc: TimeControl.Blitz, colour: "#cec348" },
-        { tc: TimeControl.Other, colour: "#d10c3e" },
+        { tc: TimeControl.Other, colour: "#cb8429" },
       ].filter(({ tc }) => tournaments.some((t) => t.timeControl === tc)),
     [tournaments],
   );

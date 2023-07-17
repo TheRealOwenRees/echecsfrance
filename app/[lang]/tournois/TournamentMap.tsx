@@ -314,7 +314,7 @@ export default function TournamentMap() {
           <TimeControlGroup timeControl={TimeControl.Blitz} colour="yellow" />
         )}
         {other && (
-          <TimeControlGroup timeControl={TimeControl.Other} colour="red" />
+          <TimeControlGroup timeControl={TimeControl.Other} colour="orange" />
         )}
       </MapContainer>
 
