@@ -33,7 +33,7 @@ const TimeControlFilters = () => {
           <label>
             <input
               type="checkbox"
-              className="mr-2"
+              className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
               checked={atom[0]}
               onChange={() => atom[1](!atom[0])}
             />

@@ -19,7 +19,7 @@ export default function About() {
         <p className="mb-4 text-center font-light text-gray-500 dark:text-gray-400 md:text-xl">
           {t.rich("p2", {
             homeLink: (chunks) => (
-              <Link href="/" className="text-teal-600">
+              <Link href="/" className="text-primary-600">
                 {chunks}
               </Link>
             ),
@@ -34,7 +34,7 @@ export default function About() {
         >
           {t("thanksTitle")}
         </h3>
-        <ul className="mb-4 text-center text-teal-600">
+        <ul className="mb-4 text-center text-primary-600">
           <li>
             <Link href="https://github.com/timothyarmes" target="_blank">
               timothyarmes
@@ -60,13 +60,13 @@ export default function About() {
         <p className="mb-4 text-center font-light text-gray-500 dark:text-gray-400 md:text-xl">
           {t.rich("techInfo", {
             homeLink: (chunks) => (
-              <Link href="/" className="text-teal-600">
+              <Link href="/" className="text-primary-600">
                 {chunks}
               </Link>
             ),
           })}
         </p>
-        <ul className="mb-4 flex justify-around text-teal-600">
+        <ul className="mb-4 flex justify-around text-primary-600">
           <li>
             <Link href="https://nextjs.org/" target="_blank">
               NextJS
@@ -91,7 +91,7 @@ export default function About() {
         <p className="mb-4 text-center font-light text-gray-500 dark:text-gray-400 md:text-xl">
           {t("techWith")}
         </p>
-        <ul className="mb-4 flex justify-around text-teal-600">
+        <ul className="mb-4 flex justify-around text-primary-600">
           <li>
             <Link href="https://leafletjs.com/" target="_blank">
               Leaflet
@@ -109,7 +109,7 @@ export default function About() {
               <Link
                 href="https://github.com/TheRealOwenRees/echecsfrance"
                 target="_blank"
-                className="text-teal-600"
+                className="text-primary-600"
               >
                 {chunks}
               </Link>

@@ -61,7 +61,7 @@ export default function TournamentTable() {
           <label>
             <input
               type="checkbox"
-              className="mr-2"
+              className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
               checked={syncVisible}
               onChange={() => setSyncVisible(!syncVisible)}
             />
@@ -71,7 +71,7 @@ export default function TournamentTable() {
           <label>
             <input
               type="checkbox"
-              className="mr-2"
+              className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
               checked={normsOnly}
               onChange={() => setNormsOnly(!normsOnly)}
             />
@@ -92,19 +92,19 @@ export default function TournamentTable() {
       >
         <thead>
           <tr>
-            <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
+            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
               {t("date")}
             </th>
-            <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
+            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
               {t("town")}
             </th>
-            <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
+            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
               {t("tournament")}
             </th>
-            <th className="sticky top-0 bg-teal-600 p-3 text-white dark:bg-gray-600">
+            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
               {t("timeControl")}
             </th>
-            <th className="sticky top-0 w-[50px] bg-teal-600 p-3 text-white dark:bg-gray-600"></th>
+            <th className="sticky top-0 w-[50px] bg-primary-600 p-3 text-white dark:bg-gray-600"></th>
           </tr>
         </thead>
 

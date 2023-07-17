@@ -53,7 +53,7 @@ const HamburgerMenu = ({
       ref={menuRef}
       className={`fixed right-0 top-0 ${
         menuVisible ? "" : "translate-x-full"
-      } z-[9999] flex bg-teal-600 transition-transform duration-200 ease-linear dark:bg-gray-600 md:hidden`}
+      } z-[9999] flex bg-primary-600 transition-transform duration-200 ease-linear dark:bg-gray-600 md:hidden`}
       onMouseEnter={handleMouseEnterMenu}
       onMouseLeave={handleMouseLeaveMenu}
     >

@@ -38,7 +38,7 @@ export default function Navbar() {
             {links.map(({ title, route }) => (
               <li key={route} className="mr-10 h-full">
                 <Link
-                  className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
+                  className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-primary-600"
                   href={route}
                 >
                   {title}

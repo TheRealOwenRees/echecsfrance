@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`${scrollToTopButtonClass} z-10 text-2xl text-teal-900 dark:text-white`}
+      className={`${scrollToTopButtonClass} z-10 text-2xl text-primary-900 dark:text-white`}
       data-test="scroll-to-top-button"
     >
       <FaArrowUp
