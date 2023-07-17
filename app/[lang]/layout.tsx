@@ -1,12 +1,15 @@
 import { Analytics } from "@vercel/analytics/react";
 import {
   Inter,
-  Faster_One,
+  Faster_One, // no
+  Codystar, // no
+  Bungee, // no
+  Pacifico, // no
+  Forum,
   Julius_Sans_One,
   Poiret_One,
-  Codystar,
-  Bungee,
-  Pacifico,
+  Ledger,
+  Raleway,
 } from "next/font/google";
 import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
@@ -19,7 +22,7 @@ import Providers from "./providers";
 import TestableLayout from "./components/TestableLayout";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const title = Faster_One({
+const title = Julius_Sans_One({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-title",
