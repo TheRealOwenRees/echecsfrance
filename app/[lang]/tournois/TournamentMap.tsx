@@ -101,8 +101,11 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
   const expandedClusterMarkerRef = useRef<L.MarkerCluster | null>(null);
 
   const filteredTournaments = useMemo(
-    () => tournaments.filter((t) => t.timeControl === timeControl),
-    [timeControl, tournaments],
+    () =>
+      tournaments
+        .filter((t) => t.timeControl === timeControl)
+        .filter((t) => (normsOnly ? t.norm : true)),
+    [normsOnly, timeControl, tournaments],
   );
 
   const hoveredListTournamentId = useAtomValue(
