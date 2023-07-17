@@ -7,6 +7,7 @@ import atomWithDebounce from "@/utils/atomWithDebounce";
 export const tournamentsAtom = atom<Tournament[]>([]);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
 export const syncVisibleAtom = atom(true);
+export const normsOnlyAtom = atom(false);
 
 export const searchStringAtom = atom("");
 export const classicAtom = atom(true);
@@ -43,20 +44,24 @@ export const filteredTournamentsListAtom = atom((get) => {
   const tournaments = get(filteredTournamentsByTimeControlAtom);
   const mapBounds = get(mapBoundsAtom);
   const syncVisible = get(syncVisibleAtom);
-
+  const normsOnly = get(normsOnlyAtom);
   const searchString = get(searchStringAtom).trim();
+
+  const filteredByNorm = normsOnly
+    ? tournaments.filter((t) => t.norm)
+    : tournaments;
 
   // When searching, we search all the tournament, regardless of the map display
   if (searchString !== "")
-    return tournaments.filter((t) =>
+    return filteredByNorm.filter((t) =>
       t.town.includes(searchString.toUpperCase()),
     );
 
   // If we not syncing to the map, return all tournaments
-  if (mapBounds === null || !syncVisible) return tournaments;
+  if (mapBounds === null || !syncVisible) return filteredByNorm;
 
   // Filter by those in the current map bounds
-  return tournaments.filter((tournament) =>
+  return filteredByNorm.filter((tournament) =>
     mapBounds.contains(tournament.latLng),
   );
 });

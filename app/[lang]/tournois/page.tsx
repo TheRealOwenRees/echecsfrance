@@ -15,6 +15,7 @@ export interface TournamentData {
   tournament: string;
   url: string;
   time_control: "Cadence Lente" | "Rapide" | "Blitz" | string;
+  norm_tournament: boolean;
   date: string;
   coordinates: [number, number];
 }
@@ -58,6 +59,7 @@ const getTournaments = async () => {
       _id: t._id.toString(),
       timeControl: tcMap[t.time_control] ?? TimeControl.Other,
       latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
+      norm: t.norm_tournament,
     }));
   } catch (error) {
     errorLog(error);

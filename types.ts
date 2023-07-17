@@ -16,6 +16,7 @@ export interface Tournament {
   timeControl: TimeControl;
   date: string;
   latLng: LatLngLiteral;
+  norm: boolean;
 }
 
 export type ScrollableElement = Window | HTMLElement;

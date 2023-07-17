@@ -6,6 +6,7 @@ import L from "leaflet";
 import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
 import { useSetAtom } from "jotai";
+import { FaTrophy } from "react-icons/fa";
 
 import { debouncedHoveredMapTournamentIdAtom } from "@/app/atoms";
 
@@ -63,14 +64,20 @@ export const TournamentMarker = forwardRef<
       {...markerProps}
     >
       <Popup>
-        <p>
-          {tournament.date}
-          <br />
+        <div className="flex flex-col gap-3">
+          <b>{tournament.date}</b>
+
           <a href={tournament.url} target="_blank" rel="noopener noreferrer">
             {tournament.tournament}
           </a>
-        </p>
-        {t("approx")}
+          {tournament.norm && (
+            <div className="flex items-center">
+              <FaTrophy className="mr-3 h-4 w-4" />
+              {t("norm")}
+            </div>
+          )}
+          {t("approx")}
+        </div>
       </Popup>
     </Marker>
   );
