@@ -66,7 +66,7 @@ describe("Test links", () => {
           });
           cy.log(link.prop("href"));
         }
-      }
+      },
     );
   });
 });

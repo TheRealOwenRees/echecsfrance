@@ -42,7 +42,7 @@
   "About": {
     "title": "Who are we?",
     "p1": "This project came to life in early 2022 with the aim of providing a visualization of chess tournaments on a map in France. Having moved to France in 2019, I was not familiar with the geography of the country and wanted to know which tournaments were taking place near my location.",
-    "p2":  "The project was put on hold until spring 2023, when I revived it. Rebuilt from scratch, Échecs France is now open source and open to contributions. You can find more information and access the project at <homeLink>Échecs France</homeLink>",
+    "p2": "The project was put on hold until spring 2023, when I revived it. Rebuilt from scratch, Échecs France is now open source and open to contributions. You can find more information and access the project at <homeLink>Échecs France</homeLink>",
     "p3": " I plan to implement an online donation button for those who wish to contribute to the expenses associated with the website. Once the operating costs are deducted, any remaining funds will be redirected to the chess community, either by sponsoring events or through the creation of donations.",
     "thanksTitle": "Thanks",
     "thanksInfo": "This project is what it is thanks to the contributions of all of you. I would like to extend special thanks to the following individuals for their contributions:",
@@ -65,5 +65,5 @@
     "sending": "Sending...",
     "success": "Thank you for your message.",
     "failure": "Sorry, something went wrong.  Please try again."
-   }
+  }
 }

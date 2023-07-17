@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       { success: `Message delivered to ${mailInfo.accepted}` },
-      { status: 250 }
+      { status: 250 },
     );
   } catch (error) {
     errorLog(error);

@@ -35,7 +35,7 @@ export const TournamentMarker = forwardRef<
   });
 
   const setHoveredMapTournamentId = useSetAtom(
-    debouncedHoveredMapTournamentIdAtom
+    debouncedHoveredMapTournamentIdAtom,
   );
 
   const iconOptions = useMemo(
@@ -48,7 +48,7 @@ export const TournamentMarker = forwardRef<
         popupAnchor: [1, -34],
         shadowSize: [41, 41],
       }),
-    [colour]
+    [colour],
   );
 
   return (

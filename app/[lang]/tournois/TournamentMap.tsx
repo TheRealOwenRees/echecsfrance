@@ -99,11 +99,11 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
 
   const filteredTournaments = useMemo(
     () => tournaments.filter((t) => t.timeControl === timeControl),
-    [timeControl, tournaments]
+    [timeControl, tournaments],
   );
 
   const hoveredListTournamentId = useAtomValue(
-    debouncedHoveredListTournamentIdAtom
+    debouncedHoveredListTournamentIdAtom,
   );
 
   const expandAndBounceIfNeeded = useCallback(() => {
@@ -167,7 +167,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
         }
       }
     },
-    [hoveredListTournamentId]
+    [hoveredListTournamentId],
   );
 
   const onUnSpiderified = useCallback(
@@ -178,7 +178,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
       // Once closed, we can expand the next group if needed
       expandAndBounceIfNeeded();
     },
-    [expandAndBounceIfNeeded]
+    [expandAndBounceIfNeeded],
   );
 
   useEffect(() => {
@@ -215,7 +215,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
         iconSize: new L.Point(40, 40),
       });
     },
-    [timeControl]
+    [timeControl],
   );
 
   const markers = filteredTournaments.map((tournament) => {
@@ -242,7 +242,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
         </MarkerClusterGroup>
       </LayerGroup>
     ),
-    [createClusterCustomIcon, markers]
+    [createClusterCustomIcon, markers],
   );
 
   return group;
@@ -251,7 +251,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
 export default function TournamentMap() {
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const hoveredListTournamentId = useAtomValue(
-    debouncedHoveredListTournamentIdAtom
+    debouncedHoveredListTournamentIdAtom,
   );
 
   const classic = useAtomValue(classicAtom);

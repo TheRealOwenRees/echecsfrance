@@ -11,7 +11,7 @@ describe("ThemeSwitcher component", () => {
     cy.getByData("toggle").should(($toggle) => {
       const backgroundImage = $toggle.css("background-image");
       expect(backgroundImage).to.include(
-        "linear-gradient(rgb(0, 255, 255), rgb(135, 206, 235)"
+        "linear-gradient(rgb(0, 255, 255), rgb(135, 206, 235)",
       );
     });
 
@@ -21,7 +21,7 @@ describe("ThemeSwitcher component", () => {
     cy.getByData("toggle-dark").should(($toggle) => {
       const backgroundImage = $toggle.css("background-image");
       expect(backgroundImage).to.include(
-        "linear-gradient(rgb(25, 25, 112), rgb(102, 51, 153)"
+        "linear-gradient(rgb(25, 25, 112), rgb(102, 51, 153)",
       );
     });
   });

@@ -1,15 +1,15 @@
-import createMiddleware from 'next-intl/middleware';
+import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ['fr', 'en'],
+  locales: ["fr", "en"],
 
   // If this locale is matched, pathnames work without a prefix (e.g. `/tournois`)
-  defaultLocale: 'fr'
+  defaultLocale: "fr",
 });
 
 export const config = {
   // Skip all paths that should not be internationalized. This example skips certain folders
   // such as "api", and all files with an extension (e.g. favicon.ico)
-  matcher: ['/((?!api|_next|robots|.*\\..*).*)']
-}
+  matcher: ["/((?!api|_next|robots|.*\\..*).*)"],
+};

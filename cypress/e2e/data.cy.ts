@@ -21,7 +21,7 @@ describe("Data fetching from API endpoints", () => {
         const responseData = response.body;
         const itemCount = responseData.length;
         expect(itemCount).to.eq(tableRows);
-      }
+      },
     );
   });
 });
