@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        title: ['var(--font-title)'],
+      },
       colors: {
         'primary': {
           DEFAULT: '#0086C7',

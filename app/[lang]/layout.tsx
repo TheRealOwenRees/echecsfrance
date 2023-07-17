@@ -1,5 +1,13 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Inter } from "next/font/google";
+import {
+  Inter,
+  Faster_One,
+  Julius_Sans_One,
+  Poiret_One,
+  Codystar,
+  Bungee,
+  Pacifico,
+} from "next/font/google";
 import { useLocale } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -10,7 +18,12 @@ import "@/css/globals.css";
 import Providers from "./providers";
 import TestableLayout from "./components/TestableLayout";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const title = Faster_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-title",
+});
 
 export async function generateMetadata({
   params: { locale },
@@ -50,8 +63,8 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale}>
-      <body className={inter.className}>
+    <html lang={locale} className={`${inter.variable} ${title.variable}`}>
+      <body>
         <Providers>
           <TestableLayout locale={locale} messages={messages}>
             {children}

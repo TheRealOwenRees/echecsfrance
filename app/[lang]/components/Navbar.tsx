@@ -23,7 +23,9 @@ export default function Navbar() {
             className="text-gray-900 no-underline hover:no-underline dark:text-white"
             href="/"
           >
-            <span className="text-2xl">{t("title")}</span>
+            <span className="font-title text-2xl text-gray-800 dark:text-white">
+              {t("title")}
+            </span>
           </Link>
         </div>
         <div className="pb-2 md:hidden" data-test="mobile-menu">

@@ -18,7 +18,7 @@ export default function Home() {
         />
       </div>
       <div className="z-10 text-center text-white">
-        <h1 className="p-5 text-5xl" data-test="header1">
+        <h1 className="p-5 font-title text-5xl" data-test="header1">
           {t("title")}
         </h1>
         <h2 className="p-5 text-3xl">{t("purpose")}</h2>
