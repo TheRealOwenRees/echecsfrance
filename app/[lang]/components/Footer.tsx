@@ -12,7 +12,7 @@ export default function Footer() {
       data-test="footer"
     >
       <div>
-        <p>&copy; {new Date().getFullYear()} - Owen Rees</p>
+        <p>&copy; {new Date().getFullYear()} - Owen Rees & Timothy Armes</p>
       </div>
 
       <div className="flex items-center py-2">
