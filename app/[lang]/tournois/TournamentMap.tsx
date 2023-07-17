@@ -28,6 +28,7 @@ import {
   rapidAtom,
   blitzAtom,
   otherAtom,
+  normsOnlyAtom,
 } from "@/app/atoms";
 
 import Legend from "./Legend";
@@ -93,6 +94,8 @@ const stopBouncingMarkers = () => {
 
 const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
   const tournaments = useAtomValue(tournamentsAtom);
+  const normsOnly = useAtomValue(normsOnlyAtom);
+
   const markerRefs = useRef<Record<string, L.Marker<any> | null>>({});
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const expandedClusterMarkerRef = useRef<L.MarkerCluster | null>(null);

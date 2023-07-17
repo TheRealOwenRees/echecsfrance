@@ -5,10 +5,13 @@ import { useTranslations } from "next-intl";
 import { useAtomValue, useSetAtom, useAtom } from "jotai";
 import { twMerge } from "tailwind-merge";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaTrophy } from "react-icons/fa";
+import { Tooltip } from "react-tooltip";
 
 import {
   filteredTournamentsListAtom,
   syncVisibleAtom,
+  normsOnlyAtom,
   hoveredMapTournamentIdAtom,
   debouncedHoveredMapTournamentIdAtom,
   debouncedHoveredListTournamentIdAtom,
@@ -24,6 +27,7 @@ export default function TournamentTable() {
 
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
+  const [normsOnly, setNormsOnly] = useAtom(normsOnlyAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
   const debouncedHoveredMapTournamentId = useAtomValue(
     debouncedHoveredMapTournamentIdAtom,
@@ -52,7 +56,8 @@ export default function TournamentTable() {
     >
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
         <SearchBar />
-        <div className="text-gray-900 dark:text-white">
+
+        <div className="flex flex-col gap-0 text-gray-900 dark:text-white">
           <label>
             <input
               type="checkbox"
@@ -61,6 +66,16 @@ export default function TournamentTable() {
               onChange={() => setSyncVisible(!syncVisible)}
             />
             {t("syncWithMapCheckbox")}
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              className="mr-2"
+              checked={normsOnly}
+              onChange={() => setNormsOnly(!normsOnly)}
+            />
+            {t("normsOnly")}
           </label>
         </div>
 
@@ -115,7 +130,17 @@ export default function TournamentTable() {
               >
                 <td className="p-3">{tournament.date}</td>
                 <td className="p-3">{tournament.town}</td>
-                <td className="p-3">{tournament.tournament}</td>
+                <td className="p-3">
+                  <span>
+                    {tournament.norm && (
+                      <FaTrophy
+                        className="mr-2 inline-block h-4 w-4"
+                        data-norm="norm"
+                      />
+                    )}
+                    {tournament.tournament}
+                  </span>
+                </td>
                 <td className="p-3">
                   {t("timeControlEnum", { tc: tournament.timeControl })}
                 </td>
@@ -129,6 +154,13 @@ export default function TournamentTable() {
           )}
         </tbody>
       </table>
+
+      <Tooltip anchorSelect="[data-norm='norm']">
+        <div className="flex items-center">
+          <FaTrophy className="mr-3 h-4 w-4" />
+          {t("norm")}
+        </div>
+      </Tooltip>
     </section>
   );
 }
