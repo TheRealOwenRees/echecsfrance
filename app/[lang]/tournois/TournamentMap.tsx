@@ -317,7 +317,7 @@ export default function TournamentMap() {
 
       <div className="flex items-center justify-center lg:hidden">
         <button
-          className="p-3 text-teal-900 dark:text-white"
+          className="p-3 text-primary-900 dark:text-white"
           onClick={onScrollToTable}
         >
           <FaAngleDoubleDown />

@@ -8,7 +8,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="fixed bottom-0 z-30 flex h-20 w-full flex-col items-center justify-center justify-items-center bg-teal-600 px-5 py-2 text-white dark:bg-gray-700"
+      className="fixed bottom-0 z-30 flex h-20 w-full flex-col items-center justify-center justify-items-center bg-primary-600 px-5 py-2 text-white dark:bg-gray-700"
       data-test="footer"
     >
       <div>

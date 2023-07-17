@@ -23,7 +23,9 @@ export default function Navbar() {
             className="text-gray-900 no-underline hover:no-underline dark:text-white"
             href="/"
           >
-            <span className="text-2xl">{t("title")}</span>
+            <span className="font-title text-2xl text-gray-800 dark:text-white">
+              {t("title")}
+            </span>
           </Link>
         </div>
         <div className="pb-2 md:hidden" data-test="mobile-menu">
@@ -38,7 +40,7 @@ export default function Navbar() {
             {links.map(({ title, route }) => (
               <li key={route} className="mr-10 h-full">
                 <Link
-                  className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-teal-600"
+                  className="inline-flex h-full items-center border-b-4 border-t-4 border-transparent transition-all duration-300 ease-in-out hover:border-b-primary-600"
                   href={route}
                 >
                   {title}
