@@ -26,10 +26,10 @@ export default function TournamentTable() {
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
   const debouncedHoveredMapTournamentId = useAtomValue(
-    debouncedHoveredMapTournamentIdAtom
+    debouncedHoveredMapTournamentIdAtom,
   );
   const setHoveredListTournamentId = useSetAtom(
-    debouncedHoveredListTournamentIdAtom
+    debouncedHoveredListTournamentIdAtom,
   );
 
   const isLg = useBreakpoint("lg");
@@ -38,7 +38,7 @@ export default function TournamentTable() {
     if (!isLg || debouncedHoveredMapTournamentId === null) return;
 
     const tournamentRow = document.getElementById(
-      debouncedHoveredMapTournamentId
+      debouncedHoveredMapTournamentId,
     );
 
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
@@ -110,7 +110,7 @@ export default function TournamentTable() {
                 className={twMerge(
                   "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
                   hoveredMapTournamentId === tournament._id &&
-                    "bg-gray-200 dark:bg-gray-900"
+                    "bg-gray-200 dark:bg-gray-900",
                 )}
               >
                 <td className="p-3">{tournament.date}</td>

@@ -8,7 +8,7 @@ function useDarkMode(): [string, Dispatch<SetStateAction<string>>] {
   const [theme, setTheme] = useState(
     typeof window !== "undefined"
       ? localStorage.theme || (prefersDarkMode ? "dark" : "light")
-      : "dark"
+      : "dark",
   );
 
   const colorTheme = theme === "dark" ? "light" : "dark";

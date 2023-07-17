@@ -5,7 +5,7 @@ export enum TimeControl {
   Rapid = "Rapid",
   Blitz = "Blitz",
   Other = "Other",
-};
+}
 
 export interface Tournament {
   _id: string;

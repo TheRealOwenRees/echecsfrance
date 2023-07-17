@@ -10,18 +10,22 @@
 ## A website displaying upcoming chess tournaments for the [FFE](http://www.echecs.asso.fr/) on a map
 
 ## Tech Stack
+
 This website is built in Typescript using:
+
 - [Next.js](https://nextjs.org/)
 - [Tailwind](https://tailwindcss.com/)
 - [MongoDB](https://www.mongodb.com/)
-- [Cypress](https://www.cypress.io/) 
+- [Cypress](https://www.cypress.io/)
 
 and is deployed on [Vercel](https://vercel.com/)
 
 ## Dependencies
+
 - [Leaflet](https://leafletjs.com/) - a Javascript library for interactive maps
 - [Nodemailer](https://nodemailer.com/) - a module for Node.js applications to allow easy as cake email sending
 
 ## Contributions
+
 Contributions are encouraged. Please open an issue to discuss your ideas.  
-Add your code into a feature branch such as `feature/feature-name`. We utilise a [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy. 
+Add your code into a feature branch such as `feature/feature-name`. We utilise a [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy.

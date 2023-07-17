@@ -20,7 +20,7 @@ const Legend = () => {
         { tc: TimeControl.Blitz, colour: "#cec348" },
         { tc: TimeControl.Other, colour: "#d10c3e" },
       ].filter(({ tc }) => tournaments.some((t) => t.timeControl === tc)),
-    [tournaments]
+    [tournaments],
   );
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Legend = () => {
         const div = L.DomUtil.create("div", "map-legend");
         div.setAttribute(
           "style",
-          "background: white; color: black; border: 2px solid grey; border-radius: 6px; padding: 10px;"
+          "background: white; color: black; border: 2px solid grey; border-radius: 6px; padding: 10px;",
         );
 
         div.innerHTML = `
@@ -42,11 +42,11 @@ const Legend = () => {
                 ({ tc, colour }) => `
                   <li>
                     <span class="block h-4 w-7 border border-[#999] float-left mr-1" style="background: ${colour}"></span>${t(
-                  "timeControlEnum",
-                  { tc }
-                )}
+                      "timeControlEnum",
+                      { tc },
+                    )}
                   </li>
-                `
+                `,
               )
               .join("")}
           </ul>`;

@@ -31,7 +31,7 @@ export default function Footer() {
         >
           <FaRegEnvelope />
         </Link>
-        <div className="space-x-2 mr-4 text-xs">
+        <div className="mr-4 space-x-2 text-xs">
           <Link href="/" locale="fr">
             FR
           </Link>

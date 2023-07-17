@@ -27,5 +27,5 @@
     "unspiderfy"
   ],
 
-  "css.customData": [".vscode/tailwindcss.json"],
+  "css.customData": [".vscode/tailwindcss.json"]
 }
