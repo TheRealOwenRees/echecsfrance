@@ -2,7 +2,7 @@
 
 import { TimeControl } from "@/types";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useCallback, useEffect } from "react";
 import L, { LatLngLiteral, Marker, DomUtil } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {
@@ -13,6 +13,7 @@ import {
 } from "react-leaflet";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
+import { groupBy } from "lodash";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
@@ -34,7 +35,6 @@ import {
 import Legend from "./Legend";
 import { TournamentMarker } from "./TournamentMarker";
 import TimeControlFilters from "./TimeControlFilters";
-import { useCallback, useEffect } from "react";
 
 // Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
 // to keep Typescript happy
@@ -108,16 +108,24 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
     [normsOnly, timeControl, tournaments],
   );
 
+  const groupedTournaments = groupBy(filteredTournaments, (t) => t.groupId);
+
   const hoveredListTournamentId = useAtomValue(
     debouncedHoveredListTournamentIdAtom,
   );
 
   const expandAndBounceIfNeeded = useCallback(() => {
     if (hoveredListTournamentId) {
-      const markerRef = markerRefs.current[hoveredListTournamentId];
+      const tournament = filteredTournaments.find(
+        (t) => t.id === hoveredListTournamentId,
+      );
+      if (!tournament) return false;
+
+      const markerRef = markerRefs.current[tournament.groupId];
       if (markerRef) {
         if (clusterRef.current) {
           const visibleMarker = clusterRef.current.getVisibleParent(markerRef);
+          if (!visibleMarker) return;
 
           // @ts-ignore
           if (visibleMarker.__proto__ === L.MarkerCluster.prototype) {
@@ -155,16 +163,21 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
     }
 
     return false;
-  }, [hoveredListTournamentId]);
+  }, [filteredTournaments, hoveredListTournamentId]);
 
   const onSpiderified = useCallback(
     (e: L.MarkerClusterSpiderfyEvent) => {
       // Once expanded, bounce the appropriate marker
 
       if (hoveredListTournamentId) {
+        const tournament = filteredTournaments.find(
+          (t) => t.id === hoveredListTournamentId,
+        );
+        if (!tournament) return;
+
         expandedClusterMarkerRef.current = e.cluster;
         const markerRef = markerRefs.current[
-          hoveredListTournamentId
+          tournament.groupId
         ] as BouncingMarker;
 
         if (markerRef && e.markers.includes(markerRef)) {
@@ -173,7 +186,7 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
         }
       }
     },
-    [hoveredListTournamentId],
+    [filteredTournaments, hoveredListTournamentId],
   );
 
   const onUnSpiderified = useCallback(
@@ -224,12 +237,12 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
     [timeControl],
   );
 
-  const markers = filteredTournaments.map((tournament) => {
+  const markers = Object.values(groupedTournaments).map((tournamentGroup) => {
     return (
       <TournamentMarker
-        ref={(ref) => (markerRefs.current[tournament._id] = ref)}
-        key={tournament._id}
-        tournament={tournament}
+        ref={(ref) => (markerRefs.current[tournamentGroup[0].groupId] = ref)}
+        key={tournamentGroup[0].groupId}
+        tournamentGroup={tournamentGroup}
         colour={colour}
       />
     );

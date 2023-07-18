@@ -16,8 +16,8 @@ export const blitzAtom = atom(true);
 export const otherAtom = atom(true);
 
 export const {
-  currentValueAtom: hoveredMapTournamentIdAtom,
-  debouncedValueAtom: debouncedHoveredMapTournamentIdAtom,
+  currentValueAtom: hoveredMapTournamentGroupIdAtom,
+  debouncedValueAtom: debouncedHoveredMapTournamentGroupIdAtom,
 } = atomWithDebounce<string | null>(null);
 
 export const { debouncedValueAtom: debouncedHoveredListTournamentIdAtom } =

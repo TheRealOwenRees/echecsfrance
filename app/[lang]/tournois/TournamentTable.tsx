@@ -12,8 +12,8 @@ import {
   filteredTournamentsListAtom,
   syncVisibleAtom,
   normsOnlyAtom,
-  hoveredMapTournamentIdAtom,
-  debouncedHoveredMapTournamentIdAtom,
+  hoveredMapTournamentGroupIdAtom,
+  debouncedHoveredMapTournamentGroupIdAtom,
   debouncedHoveredListTournamentIdAtom,
 } from "@/app/atoms";
 import { useBreakpoint } from "@/hooks/tailwind";
@@ -28,9 +28,11 @@ export default function TournamentTable() {
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const [normsOnly, setNormsOnly] = useAtom(normsOnlyAtom);
-  const hoveredMapTournamentId = useAtomValue(hoveredMapTournamentIdAtom);
-  const debouncedHoveredMapTournamentId = useAtomValue(
-    debouncedHoveredMapTournamentIdAtom,
+  const hoveredMapTournamentGroupId = useAtomValue(
+    hoveredMapTournamentGroupIdAtom,
+  );
+  const debouncedHoveredMapTournamentGroupId = useAtomValue(
+    debouncedHoveredMapTournamentGroupIdAtom,
   );
   const setHoveredListTournamentId = useSetAtom(
     debouncedHoveredListTournamentIdAtom,
@@ -39,14 +41,13 @@ export default function TournamentTable() {
   const isLg = useBreakpoint("lg");
 
   useEffect(() => {
-    if (!isLg || debouncedHoveredMapTournamentId === null) return;
-
-    const tournamentRow = document.getElementById(
-      debouncedHoveredMapTournamentId,
+    if (!isLg || debouncedHoveredMapTournamentGroupId === null) return;
+    const tournamentRow = document.querySelector(
+      `[data-group-id="${debouncedHoveredMapTournamentGroupId}"]`,
     );
 
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
-  }, [debouncedHoveredMapTournamentId, isLg]);
+  }, [debouncedHoveredMapTournamentGroupId, isLg]);
 
   return (
     <section
@@ -118,13 +119,15 @@ export default function TournamentTable() {
           ) : (
             filteredTournaments.map((tournament) => (
               <tr
-                key={tournament._id}
-                id={tournament._id}
-                onMouseEnter={() => setHoveredListTournamentId(tournament._id)}
+                key={tournament.id}
+                id={tournament.id}
+                data-group-id={`${tournament.groupId}_${tournament.timeControl}`}
+                onMouseEnter={() => setHoveredListTournamentId(tournament.id)}
                 onMouseLeave={() => setHoveredListTournamentId(null)}
                 className={twMerge(
                   "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
-                  hoveredMapTournamentId === tournament._id &&
+                  hoveredMapTournamentGroupId ===
+                    `${tournament.groupId}_${tournament.timeControl}` &&
                     "bg-gray-200 dark:bg-gray-900",
                 )}
               >
