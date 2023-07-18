@@ -7,36 +7,39 @@ import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
 import { useSetAtom } from "jotai";
 import { FaTrophy } from "react-icons/fa";
+import { last } from "lodash";
 
-import { debouncedHoveredMapTournamentIdAtom } from "@/app/atoms";
+import { debouncedHoveredMapTournamentGroupIdAtom } from "@/app/atoms";
 
 type TournamentMarkerProps = {
-  tournament: Tournament;
+  tournamentGroup: Tournament[];
   colour: string;
 } & Omit<MarkerProps, "position">;
 
 export const TournamentMarker = forwardRef<
   L.Marker<any> | null,
   TournamentMarkerProps
->(({ tournament, colour, ...markerProps }, ref) => {
+>(({ tournamentGroup, colour, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
+
+  const baseTournament = tournamentGroup[0];
 
   // We add shifts based on the time control, so that they don't hide each other
   const position = useRef({
-    lat: tournament.latLng.lat,
+    lat: baseTournament.latLng.lat,
     lng:
-      tournament.latLng.lng +
-      (tournament.timeControl === TimeControl.Rapid
+      baseTournament.latLng.lng +
+      (baseTournament.timeControl === TimeControl.Rapid
         ? -0.01
-        : tournament.timeControl === TimeControl.Blitz
+        : baseTournament.timeControl === TimeControl.Blitz
         ? 0.01
-        : tournament.timeControl === TimeControl.Other
+        : baseTournament.timeControl === TimeControl.Other
         ? 0.02
         : 0),
   });
 
-  const setHoveredMapTournamentId = useSetAtom(
-    debouncedHoveredMapTournamentIdAtom,
+  const setHoveredMapTournamentGroupId = useSetAtom(
+    debouncedHoveredMapTournamentGroupIdAtom,
   );
 
   const iconOptions = useMemo(
@@ -52,30 +55,50 @@ export const TournamentMarker = forwardRef<
     [colour],
   );
 
+  const startDate = baseTournament.date;
+  const endDate = last(tournamentGroup)!.date;
+
   return (
     <Marker
       ref={ref}
       position={position.current}
       icon={iconOptions}
       eventHandlers={{
-        mouseover: () => setHoveredMapTournamentId(tournament._id),
-        mouseout: () => setHoveredMapTournamentId(null),
+        mouseover: () =>
+          setHoveredMapTournamentGroupId(
+            `${baseTournament.groupId}_${baseTournament.timeControl}`,
+          ),
+        mouseout: () => setHoveredMapTournamentGroupId(null),
       }}
       {...markerProps}
     >
-      <Popup>
-        <div className="flex flex-col gap-3">
-          <b>{tournament.date}</b>
+      <Popup maxWidth={10000}>
+        <div className="flex max-w-[calc(100vw-80px)] flex-col gap-3 lg:max-w-[calc(100vw/2-80px)]">
+          <b>
+            {baseTournament.date}
+            {endDate !== startDate && ` - ${endDate}`}
+          </b>
 
-          <a href={tournament.url} target="_blank" rel="noopener noreferrer">
-            {tournament.tournament}
-          </a>
-          {tournament.norm && (
+          <div className="flex flex-col gap-0">
+            {tournamentGroup.map((tournament) => (
+              <a
+                key={tournament.id}
+                href={tournament.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {tournament.tournament}
+              </a>
+            ))}
+          </div>
+
+          {tournamentGroup.some((t) => t.norm) && (
             <div className="flex items-center">
               <FaTrophy className="mr-3 h-4 w-4" />
               {t("norm")}
             </div>
           )}
+
           {t("approx")}
         </div>
       </Popup>

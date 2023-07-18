@@ -8,7 +8,8 @@ export enum TimeControl {
 }
 
 export interface Tournament {
-  _id: string;
+  id: string;
+  groupId: string;
   town: string;
   department: string;
   tournament: string;
