@@ -1,7 +1,7 @@
 "use client";
 
-import { forwardRef, useMemo, useRef } from "react";
-import { TimeControl, Tournament } from "@/types";
+import { forwardRef, useMemo, useImperativeHandle, useRef } from "react";
+import { Tournament } from "@/types";
 import L from "leaflet";
 import { Marker, Popup, MarkerProps } from "react-leaflet";
 import { useTranslations } from "next-intl";
@@ -9,7 +9,13 @@ import { useSetAtom } from "jotai";
 import { FaTrophy } from "react-icons/fa";
 import { last } from "lodash";
 
+import type { BouncingMarker } from "@/leafletTypes";
 import { debouncedHoveredMapTournamentGroupIdAtom } from "@/app/atoms";
+
+export type TournamentMarkerRef = {
+  getMarker: () => L.Marker<any>;
+  bounce: () => void;
+};
 
 type TournamentMarkerProps = {
   tournamentGroup: Tournament[];
@@ -17,10 +23,24 @@ type TournamentMarkerProps = {
 } & Omit<MarkerProps, "position">;
 
 export const TournamentMarker = forwardRef<
-  L.Marker<any> | null,
+  TournamentMarkerRef,
   TournamentMarkerProps
 >(({ tournamentGroup, colour, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
+  const markerRef = useRef<L.Marker<any> | null>(null);
+
+  useImperativeHandle(
+    ref,
+    () => ({
+      getMarker: () => markerRef.current!,
+      bounce: () => {
+        const bouncingMarker = markerRef.current as BouncingMarker;
+        bouncingMarker.setBouncingOptions({ contractHeight: 0 });
+        bouncingMarker.bounce();
+      },
+    }),
+    [],
+  );
 
   const { date, latLng, groupId, timeControl } = tournamentGroup[0];
 
@@ -32,11 +52,10 @@ export const TournamentMarker = forwardRef<
     () =>
       new L.Icon({
         iconUrl: `/images/leaflet/marker-icon-2x-${colour}.png`,
-        shadowUrl: "/images/leaflet/marker-shadow.png",
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
-        shadowSize: [41, 41],
+
         timeControl,
       }),
     [colour, timeControl],
@@ -47,7 +66,7 @@ export const TournamentMarker = forwardRef<
 
   return (
     <Marker
-      ref={ref}
+      ref={markerRef}
       position={latLng}
       icon={iconOptions}
       eventHandlers={{
