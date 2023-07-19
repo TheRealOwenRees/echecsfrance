@@ -26,10 +26,11 @@ import {
   filteredTournamentsByTimeControlAtom,
   normsOnlyAtom,
 } from "@/app/atoms";
-import { pie } from "@/lib/pie";
+import { generatePieSVG } from "@/lib/pie";
+import { TimeControlColours } from "@/app/constants";
 
 import Legend from "./Legend";
-import { TournamentMarker } from "./TournamentMarker";
+import { TournamentMarker, TournamentMarkerRef } from "./TournamentMarker";
 import TimeControlFilters from "./TimeControlFilters";
 
 // Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
@@ -99,7 +100,7 @@ export default function TournamentMap() {
     debouncedHoveredListTournamentIdAtom,
   );
 
-  const markerRefs = useRef<Record<string, L.Marker<any> | null>>({});
+  const markerRefs = useRef<Record<string, TournamentMarkerRef>>({});
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const expandedClusterMarkerRef = useRef<L.MarkerCluster | null>(null);
 
@@ -133,7 +134,9 @@ export default function TournamentMap() {
       const markerRef = markerRefs.current[tournament.groupId];
       if (markerRef) {
         if (clusterRef.current) {
-          const visibleMarker = clusterRef.current.getVisibleParent(markerRef);
+          const visibleMarker = clusterRef.current.getVisibleParent(
+            markerRef.getMarker(),
+          );
           if (!visibleMarker) return;
 
           // @ts-ignore
@@ -162,7 +165,7 @@ export default function TournamentMap() {
             if (!marker.isBouncing()) {
               stopBouncingMarkers();
 
-              marker.bounce();
+              markerRef.bounce();
             }
           }
 
@@ -185,11 +188,9 @@ export default function TournamentMap() {
         if (!tournament) return;
 
         expandedClusterMarkerRef.current = e.cluster;
-        const markerRef = markerRefs.current[
-          tournament.groupId
-        ] as BouncingMarker;
+        const markerRef = markerRefs.current[tournament.groupId];
 
-        if (markerRef && e.markers.includes(markerRef)) {
+        if (markerRef && e.markers.includes(markerRef.getMarker())) {
           stopBouncingMarkers();
           markerRef.bounce();
         }
@@ -234,37 +235,30 @@ export default function TournamentMap() {
   }, [expandAndBounceIfNeeded, hoveredListTournamentId]);
 
   const createClusterCustomIcon = useCallback((cluster: any) => {
-    let childCount = cluster.getChildCount();
-
+    const childCount = cluster.getChildCount();
     const children = cluster.getAllChildMarkers();
 
-    // We added the time control to the icon options when creating the marker
+    // We added the time control as the class name when creating the marker
     const timeControlCounts = countBy(
       children,
-      (child: any) => child.options.icon.options.timeControl,
+      (child: any) => child.options.icon.options.className,
     );
 
     const html = `
       <div>
-
-        ${pie("absolute w-[30px] -z-10", 15, [
-          {
-            value: timeControlCounts[TimeControl.Classic] ?? 0,
-            colour: "#00ac39",
-          },
-          {
-            value: timeControlCounts[TimeControl.Rapid] ?? 0,
-            colour: "#0086c7",
-          },
-          {
-            value: timeControlCounts[TimeControl.Blitz] ?? 0,
-            colour: "#cec348",
-          },
-          {
-            value: timeControlCounts[TimeControl.Other] ?? 0,
-            colour: "#d10c3e",
-          },
-        ])}
+        ${generatePieSVG(
+          "absolute w-[30px]",
+          15,
+          [
+            TimeControl.Classic,
+            TimeControl.Rapid,
+            TimeControl.Blitz,
+            TimeControl.Other,
+          ].map((tc) => ({
+            value: timeControlCounts[tc] ?? 0,
+            colour: TimeControlColours[tc],
+          })),
+        )}
         <span class="text-white font-semibold relative z-[300]">${childCount}</span>
       </div>
     `;
@@ -290,10 +284,11 @@ export default function TournamentMap() {
 
         return (
           <TournamentMarker
-            ref={(ref) => (markerRefs.current[groupId] = ref)}
+            ref={(ref) => {
+              markerRefs.current[groupId] = ref!;
+            }}
             key={groupId}
             tournamentGroup={tournamentGroup}
-            colour={colours[timeControl]}
           />
         );
       }),

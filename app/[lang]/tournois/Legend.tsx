@@ -6,6 +6,7 @@ import { useAtomValue } from "jotai";
 
 import { TimeControl } from "@/types";
 import { filteredTournamentsByTimeControlAtom } from "@/app/atoms";
+import { TimeControlColours } from "@/app/constants";
 
 const Legend = () => {
   const t = useTranslations("Tournaments");
@@ -15,11 +16,11 @@ const Legend = () => {
   const timeControls = useMemo(
     () =>
       [
-        { tc: TimeControl.Classic, colour: "#00ac39" },
-        { tc: TimeControl.Rapid, colour: "#0086c7" },
-        { tc: TimeControl.Blitz, colour: "#cec348" },
-        { tc: TimeControl.Other, colour: "#d10c3e" },
-      ].filter(({ tc }) => tournaments.some((t) => t.timeControl === tc)),
+        TimeControl.Classic,
+        TimeControl.Rapid,
+        TimeControl.Blitz,
+        TimeControl.Other,
+      ].filter((tc) => tournaments.some((t) => t.timeControl === tc)),
     [tournaments],
   );
 
@@ -39,12 +40,11 @@ const Legend = () => {
           <ul>
             ${timeControls
               .map(
-                ({ tc, colour }) => `
+                (tc) => `
                   <li>
-                    <span class="block h-4 w-7 border border-[#999] float-left mr-1" style="background: ${colour}"></span>${t(
-                      "timeControlEnum",
-                      { tc },
-                    )}
+                    <span class="block h-4 w-7 border border-[#999] float-left mr-1" style="background: ${
+                      TimeControlColours[tc]
+                    }"></span>${t("timeControlEnum", { tc })}
                   </li>
                 `,
               )
