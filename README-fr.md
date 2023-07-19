@@ -5,7 +5,6 @@
 ![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance?style=for-the-badge)
 ![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance?style=for-the-badge)
 ![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance?style=for-the-badge)
-[![Echecs France](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/1nghs5&style=for-the-badge&logo=cypress)](https://cloud.cypress.io/projects/1nghs5/runs)
 
 ## Un site web indiquant sur une carte les prochains tournois d'échecs de la [FFE](http://www.echecs.asso.fr/)
 
@@ -16,7 +15,6 @@ Ce site utilise Typescript avec :
 - [Next.js](https://nextjs.org/)
 - [Tailwind](https://tailwindcss.com/)
 - [MongoDB](https://www.mongodb.com/)
-- [Cypress](https://www.cypress.io/)
 
 et est déployé sur [Vercel](https://vercel.com/)
 

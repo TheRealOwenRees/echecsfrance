@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter, Julius_Sans_One } from "next/font/google";
-import { useLocale } from "next-intl";
+import { useLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
@@ -8,7 +8,8 @@ import { ReactNode } from "react";
 import "@/css/globals.css";
 
 import Providers from "./providers";
-import TestableLayout from "./components/TestableLayout";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({
@@ -58,9 +59,13 @@ export default async function RootLayout({
     <html lang={locale} className={`${inter.variable} ${title.variable}`}>
       <body>
         <Providers>
-          <TestableLayout locale={locale} messages={messages}>
-            {children}
-          </TestableLayout>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <div className="bg-white font-sans leading-normal tracking-normal dark:bg-gray-800">
+              <Navbar />
+              <div className="relative min-h-content">{children}</div>
+              <Footer />
+            </div>
+          </NextIntlClientProvider>
         </Providers>
         <Analytics />
       </body>
