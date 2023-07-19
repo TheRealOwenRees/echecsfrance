@@ -238,10 +238,10 @@ export default function TournamentMap() {
     const childCount = cluster.getChildCount();
     const children = cluster.getAllChildMarkers();
 
-    // We added the time control to the icon options when creating the marker
+    // We added the time control as the class name when creating the marker
     const timeControlCounts = countBy(
       children,
-      (child: any) => child.options.icon.options.timeControl,
+      (child: any) => child.options.icon.options.className,
     );
 
     const html = `
@@ -289,7 +289,6 @@ export default function TournamentMap() {
             }}
             key={groupId}
             tournamentGroup={tournamentGroup}
-            colour={colours[timeControl]}
           />
         );
       }),

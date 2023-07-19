@@ -11,6 +11,7 @@ import { last } from "lodash";
 
 import type { BouncingMarker } from "@/leafletTypes";
 import { debouncedHoveredMapTournamentGroupIdAtom } from "@/app/atoms";
+import { TimeControlColours } from "@/app/constants";
 
 export type TournamentMarkerRef = {
   getMarker: () => L.Marker<any>;
@@ -19,13 +20,12 @@ export type TournamentMarkerRef = {
 
 type TournamentMarkerProps = {
   tournamentGroup: Tournament[];
-  colour: string;
 } & Omit<MarkerProps, "position">;
 
 export const TournamentMarker = forwardRef<
   TournamentMarkerRef,
   TournamentMarkerProps
->(({ tournamentGroup, colour, ...markerProps }, ref) => {
+>(({ tournamentGroup, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
   const markerRef = useRef<L.Marker<any> | null>(null);
 
@@ -50,15 +50,18 @@ export const TournamentMarker = forwardRef<
 
   const iconOptions = useMemo(
     () =>
-      new L.Icon({
-        iconUrl: `/images/leaflet/marker-icon-2x-${colour}.png`,
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-
-        timeControl,
+      new L.DivIcon({
+        html: `
+          <svg x="0px" y="0px" viewBox="0 0 365 560" enable-background="new 0 0 365 560" xml:space="preserve">
+            <g><path stroke="#666666" stroke-width="10" fill="${TimeControlColours[timeControl]}" d="M182.9,551.7c0,0.1,0.2,0.3,0.2,0.3S358.3,283,358.3,194.6c0-130.1-88.8-186.7-175.4-186.9 C96.3,7.9,7.5,64.5,7.5,194.6c0,88.4,175.3,357.4,175.3,357.4S182.9,551.7,182.9,551.7z M122.2,187.2c0-33.6,27.2-60.8,60.8-60.8   c33.6,0,60.8,27.2,60.8,60.8S216.5,248,182.9,248C149.4,248,122.2,220.8,122.2,187.2z"/></g>
+          </svg>
+        `,
+        className: timeControl,
+        iconSize: [24, 40],
+        iconAnchor: [12, 40],
+        popupAnchor: [1, -40],
       }),
-    [colour, timeControl],
+    [timeControl],
   );
 
   const startDate = date;
