@@ -26,7 +26,8 @@ import {
   filteredTournamentsByTimeControlAtom,
   normsOnlyAtom,
 } from "@/app/atoms";
-import { pie } from "@/lib/pie";
+import { generatePieSVG } from "@/lib/pie";
+import { TimeControlColours } from "@/app/constants";
 
 import Legend from "./Legend";
 import { TournamentMarker } from "./TournamentMarker";
@@ -234,8 +235,7 @@ export default function TournamentMap() {
   }, [expandAndBounceIfNeeded, hoveredListTournamentId]);
 
   const createClusterCustomIcon = useCallback((cluster: any) => {
-    let childCount = cluster.getChildCount();
-
+    const childCount = cluster.getChildCount();
     const children = cluster.getAllChildMarkers();
 
     // We added the time control to the icon options when creating the marker
@@ -246,25 +246,19 @@ export default function TournamentMap() {
 
     const html = `
       <div>
-
-        ${pie("absolute w-[30px] -z-10", 15, [
-          {
-            value: timeControlCounts[TimeControl.Classic] ?? 0,
-            colour: "#00ac39",
-          },
-          {
-            value: timeControlCounts[TimeControl.Rapid] ?? 0,
-            colour: "#0086c7",
-          },
-          {
-            value: timeControlCounts[TimeControl.Blitz] ?? 0,
-            colour: "#cec348",
-          },
-          {
-            value: timeControlCounts[TimeControl.Other] ?? 0,
-            colour: "#d10c3e",
-          },
-        ])}
+        ${generatePieSVG(
+          "absolute w-[30px]",
+          15,
+          [
+            TimeControl.Classic,
+            TimeControl.Rapid,
+            TimeControl.Blitz,
+            TimeControl.Other,
+          ].map((tc) => ({
+            value: timeControlCounts[tc] ?? 0,
+            colour: TimeControlColours[tc],
+          })),
+        )}
         <span class="text-white font-semibold relative z-[300]">${childCount}</span>
       </div>
     `;
