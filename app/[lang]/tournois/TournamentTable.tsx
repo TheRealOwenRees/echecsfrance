@@ -121,13 +121,12 @@ export default function TournamentTable() {
               <tr
                 key={tournament.id}
                 id={tournament.id}
-                data-group-id={`${tournament.groupId}_${tournament.timeControl}`}
+                data-group-id={tournament.groupId}
                 onMouseEnter={() => setHoveredListTournamentId(tournament.id)}
                 onMouseLeave={() => setHoveredListTournamentId(null)}
                 className={twMerge(
                   "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
-                  hoveredMapTournamentGroupId ===
-                    `${tournament.groupId}_${tournament.timeControl}` &&
+                  hoveredMapTournamentGroupId === tournament.groupId &&
                     "bg-gray-200 dark:bg-gray-900",
                 )}
               >

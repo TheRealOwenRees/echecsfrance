@@ -22,21 +22,7 @@ export const TournamentMarker = forwardRef<
 >(({ tournamentGroup, colour, ...markerProps }, ref) => {
   const t = useTranslations("Tournaments");
 
-  const baseTournament = tournamentGroup[0];
-
-  // We add shifts based on the time control, so that they don't hide each other
-  const position = useRef({
-    lat: baseTournament.latLng.lat,
-    lng:
-      baseTournament.latLng.lng +
-      (baseTournament.timeControl === TimeControl.Rapid
-        ? -0.01
-        : baseTournament.timeControl === TimeControl.Blitz
-        ? 0.01
-        : baseTournament.timeControl === TimeControl.Other
-        ? 0.02
-        : 0),
-  });
+  const { date, latLng, groupId, timeControl } = tournamentGroup[0];
 
   const setHoveredMapTournamentGroupId = useSetAtom(
     debouncedHoveredMapTournamentGroupIdAtom,
@@ -51,23 +37,21 @@ export const TournamentMarker = forwardRef<
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         shadowSize: [41, 41],
+        timeControl,
       }),
-    [colour],
+    [colour, timeControl],
   );
 
-  const startDate = baseTournament.date;
+  const startDate = date;
   const endDate = last(tournamentGroup)!.date;
 
   return (
     <Marker
       ref={ref}
-      position={position.current}
+      position={latLng}
       icon={iconOptions}
       eventHandlers={{
-        mouseover: () =>
-          setHoveredMapTournamentGroupId(
-            `${baseTournament.groupId}_${baseTournament.timeControl}`,
-          ),
+        mouseover: () => setHoveredMapTournamentGroupId(groupId),
         mouseout: () => setHoveredMapTournamentGroupId(null),
       }}
       {...markerProps}
@@ -75,7 +59,7 @@ export const TournamentMarker = forwardRef<
       <Popup maxWidth={10000}>
         <div className="flex max-w-[calc(100vw-80px)] flex-col gap-3 lg:max-w-[calc(100vw/2-80px)]">
           <b>
-            {baseTournament.date}
+            {date}
             {endDate !== startDate && ` - ${endDate}`}
           </b>
 
