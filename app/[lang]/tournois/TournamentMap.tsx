@@ -265,7 +265,7 @@ export default function TournamentMap() {
 
     return new L.DivIcon({
       html,
-      className: "marker-cluster",
+      className: "marker-cluster bg-gray-600/20",
       iconSize: new L.Point(40, 40),
     });
   }, []);
