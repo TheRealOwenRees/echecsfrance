@@ -3,6 +3,7 @@ import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
 
 import atomWithDebounce from "@/utils/atomWithDebounce";
+import { normalizedContains } from "@/utils/string";
 
 export const tournamentsAtom = atom<Tournament[]>([]);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
@@ -52,10 +53,9 @@ export const filteredTournamentsListAtom = atom((get) => {
     : tournaments;
 
   // When searching, we search all the tournament, regardless of the map display
-  if (searchString !== "")
-    return filteredByNorm.filter((t) =>
-      t.town.includes(searchString.toUpperCase()),
-    );
+  if (searchString !== "") {
+    return filteredByNorm.filter((t) => normalizedContains(t.town, searchString) || normalizedContains(t.tournament, searchString));
+  }
 
   // If we not syncing to the map, return all tournaments
   if (mapBounds === null || !syncVisible) return filteredByNorm;
