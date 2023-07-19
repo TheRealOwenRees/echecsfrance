@@ -13,24 +13,20 @@ import {
 } from "react-leaflet";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
-import { groupBy } from "lodash";
+import { countBy, groupBy } from "lodash";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "@/css/marker-cluster.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet.smooth_marker_bouncing";
 
 import {
   mapBoundsAtom,
   debouncedHoveredListTournamentIdAtom,
-  tournamentsAtom,
-  classicAtom,
-  rapidAtom,
-  blitzAtom,
-  otherAtom,
+  filteredTournamentsByTimeControlAtom,
   normsOnlyAtom,
 } from "@/app/atoms";
+import { pie } from "@/lib/pie";
 
 import Legend from "./Legend";
 import { TournamentMarker } from "./TournamentMarker";
@@ -68,14 +64,9 @@ const MapEvents = () => {
     map.setView(franceBounds.getCenter(), map.getBoundsZoom(franceBounds));
     map.setMaxBounds(worldBounds);
     map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
-  }, [map]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return null;
-};
-
-type TimeControlGroupProps = {
-  timeControl: TimeControl;
-  colour: string;
 };
 
 const stopBouncingMarkers = () => {
@@ -99,27 +90,38 @@ const stopBouncingMarkers = () => {
   });
 };
 
-const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
-  const tournaments = useAtomValue(tournamentsAtom);
+export default function TournamentMap() {
+  const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
   const normsOnly = useAtomValue(normsOnlyAtom);
+
+  const setMapBounds = useSetAtom(mapBoundsAtom);
+  const hoveredListTournamentId = useAtomValue(
+    debouncedHoveredListTournamentIdAtom,
+  );
 
   const markerRefs = useRef<Record<string, L.Marker<any> | null>>({});
   const clusterRef = useRef<L.MarkerClusterGroup | null>(null);
   const expandedClusterMarkerRef = useRef<L.MarkerCluster | null>(null);
 
   const filteredTournaments = useMemo(
-    () =>
-      tournaments
-        .filter((t) => t.timeControl === timeControl)
-        .filter((t) => (normsOnly ? t.norm : true)),
-    [normsOnly, timeControl, tournaments],
+    () => tournaments.filter((t) => (normsOnly ? t.norm : true)),
+    [normsOnly, tournaments],
   );
 
   const groupedTournaments = groupBy(filteredTournaments, (t) => t.groupId);
 
-  const hoveredListTournamentId = useAtomValue(
-    debouncedHoveredListTournamentIdAtom,
-  );
+  useEffect(() => {
+    if (hoveredListTournamentId === null) {
+      stopBouncingMarkers();
+    }
+  }, [hoveredListTournamentId]);
+
+  const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
+
+  const onScrollToTable = () => {
+    const tournamentTable = document.getElementById("tournament-table");
+    tournamentTable?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const expandAndBounceIfNeeded = useCallback(() => {
     if (hoveredListTournamentId) {
@@ -231,72 +233,72 @@ const TimeControlGroup = ({ timeControl, colour }: TimeControlGroupProps) => {
       expandedClusterMarkerRef.current.unspiderfy();
   }, [expandAndBounceIfNeeded, hoveredListTournamentId]);
 
-  const createClusterCustomIcon = useCallback(
-    (cluster: any) => {
-      let childCount = cluster.getChildCount();
+  const createClusterCustomIcon = useCallback((cluster: any) => {
+    let childCount = cluster.getChildCount();
 
-      return new L.DivIcon({
-        html: "<div><span>" + childCount + "</span></div>",
-        className: `marker-cluster marker-cluster-${timeControl}`,
-        iconSize: new L.Point(40, 40),
-      });
-    },
-    [timeControl],
-  );
+    const children = cluster.getAllChildMarkers();
 
-  const markers = Object.values(groupedTournaments).map((tournamentGroup) => {
-    return (
-      <TournamentMarker
-        ref={(ref) => (markerRefs.current[tournamentGroup[0].groupId] = ref)}
-        key={tournamentGroup[0].groupId}
-        tournamentGroup={tournamentGroup}
-        colour={colour}
-      />
+    // We added the time control to the icon options when creating the marker
+    const timeControlCounts = countBy(
+      children,
+      (child: any) => child.options.icon.options.timeControl,
     );
-  });
 
-  const group = useMemo(
-    () => (
-      <LayerGroup>
-        <MarkerClusterGroup
-          ref={clusterRef}
-          chunkedLoading
-          iconCreateFunction={createClusterCustomIcon}
-          maxClusterRadius={40}
-        >
-          {markers}
-        </MarkerClusterGroup>
-      </LayerGroup>
-    ),
-    [createClusterCustomIcon, markers],
+    const html = `
+      <div>
+
+        ${pie("absolute w-[30px] -z-10", 15, [
+          {
+            value: timeControlCounts[TimeControl.Classic] ?? 0,
+            colour: "#00ac39",
+          },
+          {
+            value: timeControlCounts[TimeControl.Rapid] ?? 0,
+            colour: "#0086c7",
+          },
+          {
+            value: timeControlCounts[TimeControl.Blitz] ?? 0,
+            colour: "#cec348",
+          },
+          {
+            value: timeControlCounts[TimeControl.Other] ?? 0,
+            colour: "#d10c3e",
+          },
+        ])}
+        <span class="text-white font-semibold relative z-[300]">${childCount}</span>
+      </div>
+    `;
+
+    return new L.DivIcon({
+      html,
+      className: "marker-cluster",
+      iconSize: new L.Point(40, 40),
+    });
+  }, []);
+
+  const markers = useMemo(
+    () =>
+      Object.values(groupedTournaments).map((tournamentGroup) => {
+        const { groupId, timeControl } = tournamentGroup[0];
+
+        const colours = {
+          [TimeControl.Classic]: "green",
+          [TimeControl.Rapid]: "blue",
+          [TimeControl.Blitz]: "yellow",
+          [TimeControl.Other]: "red",
+        };
+
+        return (
+          <TournamentMarker
+            ref={(ref) => (markerRefs.current[groupId] = ref)}
+            key={groupId}
+            tournamentGroup={tournamentGroup}
+            colour={colours[timeControl]}
+          />
+        );
+      }),
+    [groupedTournaments],
   );
-
-  return group;
-};
-
-export default function TournamentMap() {
-  const setMapBounds = useSetAtom(mapBoundsAtom);
-  const hoveredListTournamentId = useAtomValue(
-    debouncedHoveredListTournamentIdAtom,
-  );
-
-  const classic = useAtomValue(classicAtom);
-  const rapid = useAtomValue(rapidAtom);
-  const blitz = useAtomValue(blitzAtom);
-  const other = useAtomValue(otherAtom);
-
-  useEffect(() => {
-    if (hoveredListTournamentId === null) {
-      stopBouncingMarkers();
-    }
-  }, [hoveredListTournamentId]);
-
-  const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
-
-  const onScrollToTable = () => {
-    const tournamentTable = document.getElementById("tournament-table");
-    tournamentTable?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section id="tournament-map" className="flex h-content flex-col">
@@ -323,19 +325,19 @@ export default function TournamentMap() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Legend />
-
-        {classic && (
-          <TimeControlGroup timeControl={TimeControl.Classic} colour="green" />
-        )}
-        {rapid && (
-          <TimeControlGroup timeControl={TimeControl.Rapid} colour="blue" />
-        )}
-        {blitz && (
-          <TimeControlGroup timeControl={TimeControl.Blitz} colour="yellow" />
-        )}
-        {other && (
-          <TimeControlGroup timeControl={TimeControl.Other} colour="red" />
-        )}
+        <LayerGroup>
+          <MarkerClusterGroup
+            ref={clusterRef}
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            maxClusterRadius={40}
+            showCoverageOnHover={false}
+            spiderfyOnMaxZoom
+          >
+            {markers}
+          </MarkerClusterGroup>
+        </LayerGroup>
+        $
       </MapContainer>
 
       <div className="flex items-center justify-center lg:hidden">

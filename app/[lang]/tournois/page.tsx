@@ -94,9 +94,10 @@ const getTournaments = async () => {
         ranges.some((d) => isSameDay(d, date)),
       );
 
-      // We place each tournament into a group based on location and date, so that
+      // We place each tournament into a group based on location and date and time control, so that
       // we can display a single map marker.
-      const groupId = `${location}_${rangeIndex}`;
+      const timeControl = tcMap[t.time_control] ?? TimeControl.Other;
+      const groupId = `${location}_${rangeIndex}_${timeControl}`;
 
       return {
         id: t._id.toString(),
@@ -106,7 +107,7 @@ const getTournaments = async () => {
         department: t.department,
         date: t.date,
         url: t.url,
-        timeControl: tcMap[t.time_control] ?? TimeControl.Other,
+        timeControl,
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
         norm: t.norm_tournament,
       };
