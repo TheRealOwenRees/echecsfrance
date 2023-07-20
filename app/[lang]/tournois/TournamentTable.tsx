@@ -87,75 +87,81 @@ export default function TournamentTable() {
 
       <ScrollToTopButton />
 
-      <table
-        className="relative w-full table-fixed text-center text-xs"
-        data-test="tournament-table"
-      >
-        <thead>
-          <tr>
-            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
-              {t("date")}
-            </th>
-            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
-              {t("town")}
-            </th>
-            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
-              {t("tournament")}
-            </th>
-            <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
-              {t("timeControl")}
-            </th>
-            <th className="sticky top-0 w-[50px] bg-primary-600 p-3 text-white dark:bg-gray-600"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredTournaments.length === 0 ? (
-            <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
-              <td colSpan={4} className="p-3">
-                {t("noneFound")}
-              </td>
+      <div className="overflow-x-scroll">
+        <table
+          className="relative table-fixed text-center text-xs lg:w-full"
+          data-test="tournament-table"
+        >
+          <thead>
+            <tr>
+              <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
+                {t("date")}
+              </th>
+              <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
+                {t("town")}
+              </th>
+              <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
+                {t("tournament")}
+              </th>
+              <th className="sticky top-0 bg-primary-600 p-3 text-white dark:bg-gray-600">
+                {t("timeControl")}
+              </th>
+              <th className="sticky top-0 w-[50px] bg-primary-600 p-3 text-white dark:bg-gray-600"></th>
             </tr>
-          ) : (
-            filteredTournaments.map((tournament) => (
-              <tr
-                key={tournament.id}
-                id={tournament.id}
-                data-group-id={tournament.groupId}
-                onMouseEnter={() => setHoveredListTournamentId(tournament.id)}
-                onMouseLeave={() => setHoveredListTournamentId(null)}
-                className={twMerge(
-                  "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
-                  hoveredMapTournamentGroupId === tournament.groupId &&
-                    "bg-gray-200 dark:bg-gray-900",
-                )}
-              >
-                <td className="p-3">{tournament.date}</td>
-                <td className="p-3">{tournament.town}</td>
-                <td className="p-3">
-                  <span>
-                    {tournament.norm && (
-                      <FaTrophy
-                        className="mr-2 inline-block h-4 w-4"
-                        data-norm="norm"
-                      />
-                    )}
-                    {tournament.tournament}
-                  </span>
-                </td>
-                <td className="p-3">
-                  {t("timeControlEnum", { tc: tournament.timeControl })}
-                </td>
-                <td className="p-3">
-                  <a href={tournament.url} target="_blank">
-                    <FaExternalLinkAlt />
-                  </a>
+          </thead>
+
+          <tbody>
+            {filteredTournaments.length === 0 ? (
+              <tr className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+                <td colSpan={4} className="p-3">
+                  {t("noneFound")}
                 </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              filteredTournaments.map((tournament) => (
+                <tr
+                  key={tournament.id}
+                  id={tournament.id}
+                  data-group-id={tournament.groupId}
+                  onMouseEnter={() => setHoveredListTournamentId(tournament.id)}
+                  onMouseLeave={() => setHoveredListTournamentId(null)}
+                  className={twMerge(
+                    "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
+                    hoveredMapTournamentGroupId === tournament.groupId &&
+                      "bg-gray-200 dark:bg-gray-900",
+                  )}
+                >
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
+                    {tournament.date}
+                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
+                    {tournament.town}
+                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
+                    <span>
+                      {tournament.norm && (
+                        <FaTrophy
+                          className="mr-2 inline-block h-4 w-4"
+                          data-norm="norm"
+                        />
+                      )}
+                      {tournament.tournament}
+                    </span>
+                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
+                    {t("timeControlEnum", { tc: tournament.timeControl })}
+                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
+                    <a href={tournament.url} target="_blank">
+                      <FaExternalLinkAlt />
+                    </a>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
       <Tooltip anchorSelect="[data-norm='norm']">
         <div className="flex items-center">

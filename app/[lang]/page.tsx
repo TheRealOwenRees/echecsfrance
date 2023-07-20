@@ -8,8 +8,8 @@ export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <header className="relative flex h-content items-center justify-center">
-      <div className="absolute h-full w-full brightness-[0.2]">
+    <header className="relative mb-20 flex min-h-content items-center justify-center">
+      <div className="absolute h-full w-full py-4 brightness-[0.2]">
         <Image
           src={bgImage}
           alt="Background image of France"
@@ -17,7 +17,7 @@ export default function Home() {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <div className="z-10 text-center text-white">
+      <div className="z-10 py-4 text-center text-white">
         <h1 className="p-5 font-title text-5xl" data-test="header1">
           {t("title")}
         </h1>
@@ -33,7 +33,7 @@ export default function Home() {
         </h3>
         <Link
           href="/tournois"
-          className="mb-2 mr-2 rounded-lg bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800"
+          className="mb-2 rounded-lg bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800"
         >
           {t("mapLink")}
         </Link>
