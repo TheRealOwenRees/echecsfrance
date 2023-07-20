@@ -22,7 +22,7 @@ export const {
 } = atomWithDebounce<string | null>(null);
 
 export const { debouncedValueAtom: debouncedHoveredListTournamentIdAtom } =
-  atomWithDebounce<string | null>(null, 300, true);
+  atomWithDebounce<string | null>(null, 1000, 100);
 
 export const filteredTournamentsByTimeControlAtom = atom((get) => {
   const tournaments = get(tournamentsAtom);
