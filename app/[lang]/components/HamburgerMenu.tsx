@@ -5,6 +5,7 @@ interface HamburgerMenuState {
 }
 
 import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import Link from "next-intl/link";
 import { useTranslations } from "next-intl";
 
@@ -51,14 +52,16 @@ const HamburgerMenu = ({
   return (
     <div
       ref={menuRef}
-      className={`fixed right-0 top-0 ${
-        menuVisible ? "" : "translate-x-full"
-      } z-[9999] flex bg-primary-600 transition-transform duration-200 ease-linear dark:bg-gray-600 md:hidden`}
+      className={twMerge(
+        "fixed right-0 top-0 z-[9999] h-[calc(100svh-5rem)] w-full",
+        "flex items-center justify-center bg-primary-600 transition-transform duration-200 ease-linear dark:bg-gray-600 md:hidden",
+        !menuVisible && "translate-x-full",
+      )}
       onMouseEnter={handleMouseEnterMenu}
       onMouseLeave={handleMouseLeaveMenu}
     >
-      <ul className="list-reset mt-16 p-5 text-white">
-        <li className="py-5">
+      <ul className="list-reset text-white">
+        <li className="py-5 text-center text-xl">
           <Link
             href="/tournois"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
@@ -66,7 +69,7 @@ const HamburgerMenu = ({
             {t("tournaments")}
           </Link>
         </li>
-        <li className="py-5">
+        <li className="py-5 text-center text-xl">
           <Link
             href="/qui-sommes-nous"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
@@ -74,7 +77,7 @@ const HamburgerMenu = ({
             {t("about")}
           </Link>
         </li>
-        <li className="py-5">
+        <li className="py-5 text-center text-xl">
           <Link
             href="/contactez-nous"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
