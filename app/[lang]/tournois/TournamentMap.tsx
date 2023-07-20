@@ -111,12 +111,6 @@ export default function TournamentMap() {
 
   const groupedTournaments = groupBy(filteredTournaments, (t) => t.groupId);
 
-  useEffect(() => {
-    if (hoveredListTournamentId === null) {
-      stopBouncingMarkers();
-    }
-  }, [hoveredListTournamentId]);
-
   const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
   const onScrollToTable = () => {
@@ -129,51 +123,53 @@ export default function TournamentMap() {
       const tournament = filteredTournaments.find(
         (t) => t.id === hoveredListTournamentId,
       );
-      if (!tournament) return false;
 
-      const markerRef = markerRefs.current[tournament.groupId];
-      if (markerRef) {
-        if (clusterRef.current) {
-          const visibleMarker = clusterRef.current.getVisibleParent(
-            markerRef.getMarker(),
-          );
-          if (!visibleMarker) return;
+      if (tournament) {
+        const markerRef = markerRefs.current[tournament.groupId];
+        if (markerRef) {
+          if (clusterRef.current) {
+            const visibleMarker = clusterRef.current.getVisibleParent(
+              markerRef.getMarker(),
+            );
+            if (!visibleMarker) return;
 
-          // @ts-ignore
-          if (visibleMarker.__proto__ === L.MarkerCluster.prototype) {
-            // This is a cluster icon, we expand it.
-            const clusterMarker = visibleMarker as L.MarkerCluster;
+            // @ts-ignore
+            if (visibleMarker.__proto__ === L.MarkerCluster.prototype) {
+              // This is a cluster icon, we expand it.
+              const clusterMarker = visibleMarker as L.MarkerCluster;
 
-            if (
-              expandedClusterMarkerRef.current &&
-              expandedClusterMarkerRef.current !== clusterMarker
-            ) {
-              expandedClusterMarkerRef.current.unspiderfy();
+              if (
+                expandedClusterMarkerRef.current &&
+                expandedClusterMarkerRef.current !== clusterMarker
+              ) {
+                expandedClusterMarkerRef.current.unspiderfy();
+              }
+
+              clusterMarker.spiderfy();
+
+              // Sometimes there marker that's still bouncing from the last time the group was expanded.
+              // We stop it quickly.
+
+              setTimeout(() => {
+                stopBouncingMarkers();
+              }, 50);
+            } else {
+              // This is a standard marker, we bounce it.
+              const marker = visibleMarker as BouncingMarker;
+              if (!marker.isBouncing()) {
+                stopBouncingMarkers();
+
+                markerRef.bounce();
+              }
             }
 
-            clusterMarker.spiderfy();
-
-            // Sometimes there marker that's still bouncing from the last time the group was expanded.
-            // We stop it quickly.
-
-            setTimeout(() => {
-              stopBouncingMarkers();
-            }, 50);
-          } else {
-            // This is a standard marker, we bounce it.
-            const marker = visibleMarker as BouncingMarker;
-            if (!marker.isBouncing()) {
-              stopBouncingMarkers();
-
-              markerRef.bounce();
-            }
+            return true;
           }
-
-          return true;
         }
       }
     }
 
+    stopBouncingMarkers();
     return false;
   }, [filteredTournaments, hoveredListTournamentId]);
 
@@ -273,15 +269,7 @@ export default function TournamentMap() {
   const markers = useMemo(
     () =>
       Object.values(groupedTournaments).map((tournamentGroup) => {
-        const { groupId, timeControl } = tournamentGroup[0];
-
-        const colours = {
-          [TimeControl.Classic]: "green",
-          [TimeControl.Rapid]: "blue",
-          [TimeControl.Blitz]: "yellow",
-          [TimeControl.Other]: "red",
-        };
-
+        const { groupId } = tournamentGroup[0];
         return (
           <TournamentMarker
             ref={(ref) => {
