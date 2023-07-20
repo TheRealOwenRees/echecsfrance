@@ -3,7 +3,7 @@ import { atom, SetStateAction } from "jotai";
 export default function atomWithDebounce<T>(
   initialValue: T,
   delayMilliseconds = 500,
-  shouldDebounceOnReset = false,
+  delayOnResetMilliseconds = 500,
 ) {
   const prevTimeoutAtom = atom<ReturnType<typeof setTimeout> | undefined>(
     undefined,
@@ -37,14 +37,9 @@ export default function atomWithDebounce<T>(
 
       onDebounceStart();
 
-      if (!shouldDebounceOnReset && nextValue === initialValue) {
-        onDebounceEnd();
-        return;
-      }
-
       const nextTimeoutId = setTimeout(() => {
         onDebounceEnd();
-      }, delayMilliseconds);
+      }, nextValue === initialValue ? delayOnResetMilliseconds : delayMilliseconds);
 
       // set previous timeout atom in case it needs to get cleared
       set(prevTimeoutAtom, nextTimeoutId);
