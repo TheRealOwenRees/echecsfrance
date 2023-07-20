@@ -33,7 +33,7 @@ export default function Home() {
         </h3>
         <Link
           href="/tournois"
-          className="mb-2 rounded-lg bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800"
+          className="mb-2 rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800"
         >
           {t("mapLink")}
         </Link>
