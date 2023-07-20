@@ -30,7 +30,7 @@ module.exports = {
       },
       minHeight: {
         // We use 100svh, falling back to vh for old browsers
-        // The 144px is for the header and footer
+        // The 9rem is for the header and footer
         content: ["calc(100vh - 9rem)", "calc(100svh - 9rem)"],
       },
       height: {
