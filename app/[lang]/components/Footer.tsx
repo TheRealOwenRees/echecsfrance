@@ -15,7 +15,7 @@ export default function Footer() {
         &copy; {new Date().getFullYear()} - Owen&nbsp;Rees & Timothy&nbsp;Armes
       </div>
 
-      <div className="flex items-center py-2">
+      <div className="flex items-center py-2 hover:[&_a]:opacity-80">
         <Link
           href="https://github.com/TheRealOwenRees/echecsfrance"
           target="_blank"
@@ -40,7 +40,7 @@ export default function Footer() {
             EN
           </Link>
         </div>
-        <div className="text-xs">
+        <div className="text-xs hover:opacity-80">
           <ThemeSwitcher />
         </div>
       </div>
