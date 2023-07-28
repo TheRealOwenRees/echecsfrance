@@ -31,7 +31,7 @@ type TournamentsDisplayProps = {
   tournaments: Tournament[];
 };
 
-export default async function TournamentsDisplay({
+export default function TournamentsDisplay({
   tournaments,
 }: TournamentsDisplayProps) {
   useHydrateAtoms([[tournamentsAtom, tournaments]]);
