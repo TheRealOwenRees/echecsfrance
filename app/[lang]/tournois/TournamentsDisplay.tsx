@@ -37,7 +37,7 @@ export default function TournamentsDisplay({
   useHydrateAtoms([[tournamentsAtom, tournaments]]);
 
   return (
-    <main className="relative grid h-full w-full ">
+    <main className="relative grid h-full w-full lg:grid-cols-2">
       <div>
         <TournamentMap />
       </div>
