@@ -89,7 +89,7 @@ export default function TournamentTable() {
 
       <div className="overflow-x-scroll">
         <table
-          className="relative table-fixed text-center text-xs lg:w-full"
+          className="relative w-full table-fixed text-center text-xs"
           data-test="tournament-table"
         >
           <thead>
