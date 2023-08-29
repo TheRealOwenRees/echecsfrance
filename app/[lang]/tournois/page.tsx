@@ -20,6 +20,7 @@ export interface TournamentData {
   norm_tournament: boolean;
   date: string;
   coordinates: [number, number];
+  pending: boolean;
 }
 
 const tcMap: Record<TournamentData["time_control"], TimeControl> = {
@@ -110,6 +111,7 @@ const getTournaments = async () => {
         timeControl,
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
         norm: t.norm_tournament,
+        pending: t.pending,
       };
     });
   } catch (error) {
@@ -120,6 +122,5 @@ const getTournaments = async () => {
 
 export default async function Tournaments() {
   const tournaments = await getTournaments();
-
   return <TournamentsDisplay tournaments={tournaments} />;
 }

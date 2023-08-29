@@ -1,6 +1,6 @@
 import { TimeControl, Tournament } from "@/types";
 import { atom } from "jotai";
-import { LatLngBounds } from "leaflet";
+import { LatLngBounds, LatLngLiteral } from "leaflet";
 
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
@@ -15,6 +15,11 @@ export const classicAtom = atom(true);
 export const rapidAtom = atom(true);
 export const blitzAtom = atom(true);
 export const otherAtom = atom(true);
+
+export const franceCenterAtom = atom<LatLngLiteral>({
+  lat: 47.0844,
+  lng: 2.3964,
+});
 
 export const {
   currentValueAtom: hoveredMapTournamentGroupIdAtom,
@@ -34,10 +39,11 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
 
   return tournaments.filter(
     (tournament) =>
-      (tournament.timeControl === TimeControl.Classic && classic) ||
-      (tournament.timeControl === TimeControl.Rapid && rapid) ||
-      (tournament.timeControl === TimeControl.Blitz && blitz) ||
-      (tournament.timeControl === TimeControl.Other && other),
+      !tournament.pending &&
+      ((tournament.timeControl === TimeControl.Classic && classic) ||
+        (tournament.timeControl === TimeControl.Rapid && rapid) ||
+        (tournament.timeControl === TimeControl.Blitz && blitz) ||
+        (tournament.timeControl === TimeControl.Other && other)),
   );
 });
 
@@ -54,7 +60,11 @@ export const filteredTournamentsListAtom = atom((get) => {
 
   // When searching, we search all the tournament, regardless of the map display
   if (searchString !== "") {
-    return filteredByNorm.filter((t) => normalizedContains(t.town, searchString) || normalizedContains(t.tournament, searchString));
+    return filteredByNorm.filter(
+      (t) =>
+        normalizedContains(t.town, searchString) ||
+        normalizedContains(t.tournament, searchString),
+    );
   }
 
   // If we not syncing to the map, return all tournaments

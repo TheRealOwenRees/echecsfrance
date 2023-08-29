@@ -67,5 +67,49 @@
     "sending": "Sending...",
     "success": "Thank you for your message.",
     "failure": "Sorry, something went wrong.  Please try again."
+  },
+
+  "AddTournament": {
+    "title": "Add a Tournament",
+    "info": "Fill in the form below and your tournament will be reviewed shortly.",
+    "tournamentNameLabel":  "Tournament Name",
+    "tournamentNamePlaceholder": "Tournament name",
+    "dateLabel": "Date",
+    "urlLabel": "URL",
+    "urlPlaceholder": "www.example.com",
+    "tcLabel": "Time Control",
+    "tcOption1": "Classical",
+    "tcOption2": "Rapid",
+    "tcOption3": "Blitz",
+    "tcOption4": "Other",
+    "normLabel": "Norm Tournament?",
+    "normNo": "No",
+    "normYes": "Yes",
+    "addressLabel": "Address",
+    "addressPlaceholder": "Address",
+    "townLabel": "Town",
+    "townPlaceholder": "Town",
+    "departmentLabel": "County",
+    "departmentPlaceholder": "County",
+    "postcodeLabel": "Postcode",
+    "postcodePlaceholder": "Postcode",
+    "countryLabel": "Country",
+    "countryPlaceholder": "Country",
+    "yourNameLabel": "Your Name",
+    "yourNamePlaceholder": "Your Name",
+    "yourEmailLabel": "Your Email",
+    "yourEmailPlaceholder": "Your Email",
+    "messageLabel": "Additional Info / Message",
+    "messagePlaceholder": "Additional Info / Message",
+    "sendButton": "Submit Tournament",
+    "sending": "Sending...",
+    "clearForm": "Clear Form",
+    "success": "Thank you for your message.",
+    "failure": "Sorry, something went wrong.  Please try again."
+  },
+
+  "Map": {
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude"
   }
 }
