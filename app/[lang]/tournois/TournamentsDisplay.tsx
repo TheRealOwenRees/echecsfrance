@@ -1,22 +1,17 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
-import { useHydrateAtoms } from "jotai/utils";
+type TournamentsDisplayProps = {
+  tournaments: Tournament[];
+};
 
 import { Tournament } from "@/types";
+
+import dynamic from "next/dynamic";
+import { useHydrateAtoms } from "jotai/utils";
 import { tournamentsAtom } from "@/app/atoms";
 
 import TournamentTable from "./TournamentTable";
-
-const LoadingMap = () => {
-  const t = useTranslations("Tournaments");
-  return (
-    <div className="grid h-content place-items-center bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
-      <p>{t("loading")}</p>
-    </div>
-  );
-};
+import LoadingMap from "@/app/[lang]/components/LoadingMap";
 
 /**
  * Imports the tournament map component, ensuring CSR only.
@@ -26,10 +21,6 @@ const TournamentMap = dynamic(() => import("./TournamentMap"), {
   ssr: false,
   loading: LoadingMap,
 });
-
-type TournamentsDisplayProps = {
-  tournaments: Tournament[];
-};
 
 export default function TournamentsDisplay({
   tournaments,

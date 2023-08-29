@@ -4,21 +4,11 @@ import { TimeControl } from "@/types";
 
 import { useMemo, useRef, useCallback, useEffect } from "react";
 import L, { LatLngLiteral, Marker, DomUtil } from "leaflet";
+import { MapContainer, TileLayer, LayerGroup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import {
-  MapContainer,
-  TileLayer,
-  LayerGroup,
-  useMapEvent,
-} from "react-leaflet";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
 import { countBy, groupBy } from "lodash";
-
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
-import "leaflet.smooth_marker_bouncing";
 
 import {
   mapBoundsAtom,
@@ -33,6 +23,13 @@ import Legend from "./Legend";
 import { TournamentMarker, TournamentMarkerRef } from "./TournamentMarker";
 import TimeControlFilters from "./TimeControlFilters";
 
+import MapEvents from "@/app/[lang]/components/MapEvents";
+
+import "leaflet/dist/leaflet.css";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet-defaulticon-compatibility";
+import "leaflet.smooth_marker_bouncing";
+
 // Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
 // to keep Typescript happy
 declare class BouncingMarker extends Marker {
@@ -45,30 +42,6 @@ declare class BouncingMarker extends Marker {
     bouncingAnimationPlaying: boolean;
   };
 }
-
-const MapEvents = () => {
-  const setMapBounds = useSetAtom(mapBoundsAtom);
-
-  const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
-  const franceBounds = L.latLngBounds(
-    L.latLng(42.08, -5.12),
-    L.latLng(51.17, 9.53),
-  );
-
-  const map = useMapEvent("moveend", () => {
-    // Set the map bounds atoms when the user pans/zooms
-    setMapBounds(map.getBounds());
-  });
-
-  // viewport agnostic centering of France & max world bounds
-  useEffect(() => {
-    map.setView(franceBounds.getCenter(), map.getBoundsZoom(franceBounds));
-    map.setMaxBounds(worldBounds);
-    map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  return null;
-};
 
 const stopBouncingMarkers = () => {
   const markers =

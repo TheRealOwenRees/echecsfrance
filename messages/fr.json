@@ -67,5 +67,50 @@
     "sending": "Envoi en cours...",
     "success": "Merci pour votre message.",
     "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
+  },
+
+  "AddTournament": {
+    "title": "Ajouter un Tournoi",
+    "info": "Veuillez remplir le formulaire ci-dessous et votre tournoi sera validé très prochainement.",
+
+    "tournamentNameLabel":  "Nom du Tournoi",
+    "tournamentNamePlaceholder": "Nom du tournoi",
+    "dateLabel": "Date",
+    "urlLabel": "URL",
+    "urlPlaceholder": "www.example.com",
+    "tcLabel": "Cadence",
+    "tcOption1": "Cadence Lente",
+    "tcOption2": "Rapide",
+    "tcOption3": "Blitz",
+    "tcOption4": "Autres",
+    "normLabel": "Tournoi à norme ?",
+    "normNo": "Non",
+    "normYes": "Oui",
+    "addressLabel": "Adresse",
+    "addressPlaceholder": "Adresse",
+    "townLabel": "Ville",
+    "townPlaceholder": "Ville",
+    "departmentLabel": "Département",
+    "departmentPlaceholder": "Département",
+    "postcodeLabel": "Code Postal",
+    "postcodePlaceholder": "Code Postal",
+    "countryLabel": "Pays",
+    "countryPlaceholder": "Pays",
+    "yourNameLabel": "Votre Nom",
+    "yourNamePlaceholder": "Votre Nom",
+    "yourEmailLabel": "Votre adresse mail",
+    "yourEmailPlaceholder": "Votre adresse mail",
+    "messageLabel": "Information complémentaire",
+    "messagePlaceholder": "Additional Info",
+    "sendButton": "Envoi",
+    "sending": "Envoi en cours...",
+    "clearForm": "Réinitialiser",
+    "success": "Merci pour votre message.",
+    "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
+  },
+
+  "Map": {
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude"
   }
 }
