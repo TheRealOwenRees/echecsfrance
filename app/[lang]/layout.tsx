@@ -1,4 +1,4 @@
-import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 import { Inter, Julius_Sans_One } from "next/font/google";
 import { useLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslator } from "next-intl/server";
@@ -67,8 +67,11 @@ export default async function RootLayout({
               <Footer />
             </div>
           </NextIntlClientProvider>
+          <Script
+            defer
+            src="https://app.tinyanalytics.io/pixel/HyoumUokLr9exPgX"
+          ></Script>
         </Providers>
-        <Analytics />
       </body>
     </html>
   );
