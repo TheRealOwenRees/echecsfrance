@@ -10,12 +10,6 @@ const discordWebhook = async ({
   yourEmailRef,
   messageRef,
 }: TournamentFormProps) => {
-  const webhookURL = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK;
-
-  if (!webhookURL) {
-    throw new Error("Discord webhook URL is not defined");
-  }
-
   const webhookBody = {
     embeds: [
       {
@@ -36,7 +30,7 @@ const discordWebhook = async ({
     ],
   };
 
-  return await fetch(webhookURL, {
+  return await fetch("/api/send-discord-notification", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

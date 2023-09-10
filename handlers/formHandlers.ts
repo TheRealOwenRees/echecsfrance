@@ -29,8 +29,8 @@ export const handleTournamentSubmit = async (
   setIsSending(true);
 
   try {
-    await tournamentFormToDB(formRefs); // write to DB
     await discordWebhook(formRefs); // send Discord notification
+    await tournamentFormToDB(formRefs); // write to DB
     setIsSending(false);
     setResponseMessage({
       isSuccessful: true,
