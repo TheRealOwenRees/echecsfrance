@@ -1,12 +1,14 @@
-import { ResponseMessage, TournamentFormProps } from "@/types";
-import { LatLngLiteral } from "leaflet";
 import { Dispatch, FormEvent, SetStateAction } from "react";
+
+import { LatLngLiteral } from "leaflet";
 import { useTranslations } from "next-intl";
+
 import { clearMessage } from "@/app/[lang]/components/InfoMessage";
-import { errorLog } from "@/utils/logger";
+import discordWebhook from "@/lib/discordWebhook";
 import sendMail from "@/lib/sendMail";
 import tournamentFormToDB from "@/lib/tournamentFormToDB";
-import discordWebhook from "@/lib/discordWebhook";
+import { ResponseMessage, TournamentFormProps } from "@/types";
+import { errorLog } from "@/utils/logger";
 
 export const handleClearTournamentForm = (
   formRefs: TournamentFormProps,

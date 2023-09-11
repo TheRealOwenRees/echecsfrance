@@ -1,10 +1,11 @@
-import { NextIntlClientProvider, AbstractIntlMessages } from "next-intl";
 import { ReactNode } from "react";
+
+import { AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 
 import "@/css/globals.css";
 
-import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const TestableLayout = ({
   children,

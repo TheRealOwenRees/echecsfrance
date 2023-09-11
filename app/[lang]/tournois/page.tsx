@@ -1,12 +1,12 @@
-import clientPromise from "@/lib/mongodb";
-
-import { errorLog } from "@/utils/logger";
-import { Tournament, TimeControl } from "@/types";
+import { differenceInDays, isSameDay, parse } from "date-fns";
 import { groupBy } from "lodash";
-import { parse, differenceInDays, isSameDay } from "date-fns";
+import { ObjectId } from "mongodb";
+
+import clientPromise from "@/lib/mongodb";
+import { TimeControl, Tournament } from "@/types";
+import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
-import { ObjectId } from "mongodb";
 
 export const revalidate = 3600; // Revalidate cache every 6 hours
 

@@ -1,26 +1,27 @@
 "use client";
 
 import { useEffect } from "react";
+
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import { useAtomValue, useSetAtom, useAtom } from "jotai";
-import { twMerge } from "tailwind-merge";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
+import { twMerge } from "tailwind-merge";
 
 import {
-  filteredTournamentsListAtom,
-  syncVisibleAtom,
-  normsOnlyAtom,
-  hoveredMapTournamentGroupIdAtom,
-  debouncedHoveredMapTournamentGroupIdAtom,
   debouncedHoveredListTournamentIdAtom,
+  debouncedHoveredMapTournamentGroupIdAtom,
+  filteredTournamentsListAtom,
+  hoveredMapTournamentGroupIdAtom,
+  normsOnlyAtom,
+  syncVisibleAtom,
 } from "@/app/atoms";
 import { useBreakpoint } from "@/hooks/tailwind";
 
+import ScrollToTopButton from "./ScrollToTopButton";
 import SearchBar from "./SearchBar";
 import TimeControlFilters from "./TimeControlFilters";
-import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");

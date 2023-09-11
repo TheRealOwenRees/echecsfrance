@@ -1,17 +1,18 @@
 "use client";
 
-import { forwardRef, useMemo, useImperativeHandle, useRef } from "react";
-import { Tournament } from "@/types";
-import L from "leaflet";
-import { Marker, Popup, MarkerProps } from "react-leaflet";
-import { useTranslations } from "next-intl";
-import { useSetAtom } from "jotai";
-import { FaTrophy } from "react-icons/fa";
-import { last } from "lodash";
+import { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
 
-import type { BouncingMarker } from "@/leafletTypes";
+import { useSetAtom } from "jotai";
+import L from "leaflet";
+import { last } from "lodash";
+import { useTranslations } from "next-intl";
+import { FaTrophy } from "react-icons/fa";
+import { Marker, MarkerProps, Popup } from "react-leaflet";
+
 import { debouncedHoveredMapTournamentGroupIdAtom } from "@/app/atoms";
 import { TimeControlColours } from "@/app/constants";
+import type { BouncingMarker } from "@/leafletTypes";
+import { Tournament } from "@/types";
 
 export type TournamentMarkerRef = {
   getMarker: () => L.Marker<any>;

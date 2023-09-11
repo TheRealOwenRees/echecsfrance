@@ -1,5 +1,6 @@
-import { LatLngLiteral } from "leaflet";
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
+
+import { LatLngLiteral } from "leaflet";
 
 export enum TimeControl {
   Classic = "Classic",

@@ -1,12 +1,13 @@
-import { useMap } from "react-leaflet";
 import { useEffect, useMemo } from "react";
-import { useTranslations } from "next-intl";
-import L from "leaflet";
-import { useAtomValue } from "jotai";
 
-import { TimeControl } from "@/types";
+import { useAtomValue } from "jotai";
+import L from "leaflet";
+import { useTranslations } from "next-intl";
+import { useMap } from "react-leaflet";
+
 import { filteredTournamentsByTimeControlAtom } from "@/app/atoms";
 import { TimeControlColours } from "@/app/constants";
+import { TimeControl } from "@/types";
 
 const Legend = () => {
   const t = useTranslations("Tournaments");

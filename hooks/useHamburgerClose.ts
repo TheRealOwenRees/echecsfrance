@@ -1,3 +1,5 @@
+import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
+
 interface HamburgerClose {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
@@ -8,8 +10,6 @@ interface HamburgerClose {
   timeoutRef: RefObject<NodeJS.Timeout | undefined>;
   menuTimeout: () => void;
 }
-
-import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
 
 const useHamburgerClose = ({
   menuVisible,

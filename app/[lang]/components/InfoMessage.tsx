@@ -1,5 +1,6 @@
-import { ResponseMessage } from "@/types";
 import { Dispatch, SetStateAction } from "react";
+
+import { ResponseMessage } from "@/types";
 
 const InfoMessage = ({
   responseMessage,

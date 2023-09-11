@@ -1,4 +1,4 @@
-import { Marker  } from "leaflet";
+import { Marker } from "leaflet";
 
 declare class BouncingOptions {
   bounceHeight: number;

@@ -1,11 +1,15 @@
-import { useLayoutEffect, useEffect, useState, useRef, useMemo } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+
 import resolveConfig from "tailwindcss/resolveConfig";
 
 import tailwindConfig from "@/tailwind.config.js";
+
 const config = resolveConfig(tailwindConfig);
 
 const isSSR =
-  typeof window === "undefined" || !window.navigator || /ServerSideRendering|^Deno\//.test(window.navigator.userAgent);
+  typeof window === "undefined" ||
+  !window.navigator ||
+  /ServerSideRendering|^Deno\//.test(window.navigator.userAgent);
 
 const isBrowser = !isSSR;
 const useIsomorphicEffect = isBrowser ? useLayoutEffect : useEffect;
@@ -18,7 +22,9 @@ export type CreatorReturnType = {
 
 function create(screens: object | undefined) {
   if (!screens) {
-    throw new Error("Failed to create breakpoint hooks, given `screens` value is invalid.");
+    throw new Error(
+      "Failed to create breakpoint hooks, given `screens` value is invalid.",
+    );
   }
 
   function useBreakpoint(breakpoint: string, defaultValue: boolean = false) {
@@ -46,15 +52,25 @@ function create(screens: object | undefined) {
     return match;
   }
 
-  function useBreakpointEffect<Breakpoint extends string>(breakpoint: Breakpoint, effect: (match: boolean) => void) {
+  function useBreakpointEffect<Breakpoint extends string>(
+    breakpoint: Breakpoint,
+    effect: (match: boolean) => void,
+  ) {
     const match = useBreakpoint(breakpoint);
     useEffect(() => effect(match));
     return null;
   }
 
-  function useBreakpointValue<Breakpoint extends string, T, U>(breakpoint: Breakpoint, valid: T, invalid: U) {
+  function useBreakpointValue<Breakpoint extends string, T, U>(
+    breakpoint: Breakpoint,
+    valid: T,
+    invalid: U,
+  ) {
     const match = useBreakpoint(breakpoint);
-    const value = useMemo(() => (match ? valid : invalid), [invalid, match, valid]);
+    const value = useMemo(
+      () => (match ? valid : invalid),
+      [invalid, match, valid],
+    );
     return value;
   }
 
@@ -65,4 +81,5 @@ function create(screens: object | undefined) {
   } as CreatorReturnType;
 }
 
-export const { useBreakpoint, useBreakpointEffect, useBreakpointValue } = create(config.theme!.screens);
+export const { useBreakpoint, useBreakpointEffect, useBreakpointValue } =
+  create(config.theme!.screens);

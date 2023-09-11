@@ -1,6 +1,7 @@
-import { useTranslations } from "next-intl";
 import { useAtom } from "jotai/index";
+import { useTranslations } from "next-intl";
 import { IoCloseOutline } from "react-icons/io5";
+
 import { searchStringAtom } from "@/app/atoms";
 
 const SearchBar = () => {
