@@ -1,6 +1,22 @@
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
 
 import { LatLngLiteral } from "leaflet";
+import { ObjectId } from "mongodb";
+
+export type TournamentData = {
+  _id: ObjectId;
+  town: string;
+  department: string;
+  country: string;
+  tournament: string;
+  url: string;
+  time_control: "Cadence Lente" | "Rapide" | "Blitz" | string;
+  norm_tournament: boolean;
+  date: string;
+  coordinates: [number, number];
+  entry_method: "manual" | "auto";
+  pending: boolean;
+};
 
 export enum TimeControl {
   Classic = "Classic",
@@ -9,7 +25,7 @@ export enum TimeControl {
   Other = "Other",
 }
 
-export interface Tournament {
+export type Tournament = {
   id: string;
   groupId: string;
   town: string;
@@ -21,34 +37,11 @@ export interface Tournament {
   latLng: LatLngLiteral;
   norm: boolean;
   pending: boolean;
-}
+};
 
-export interface MapProps {
-  position: LatLngLiteral;
-  setPosition: Dispatch<SetStateAction<LatLngLiteral>>;
-  center: LatLngLiteral;
-}
-
-export interface TournamentFormProps {
-  addressRef: MutableRefObject<HTMLInputElement | null>;
-  townRef: MutableRefObject<HTMLInputElement | null>;
-  departmentRef: MutableRefObject<HTMLInputElement | null>;
-  tournamentNameRef: MutableRefObject<HTMLInputElement | null>;
-  urlRef: MutableRefObject<HTMLInputElement | null>;
-  timeControlRef: MutableRefObject<HTMLSelectElement | null>;
-  dateRef: MutableRefObject<HTMLInputElement | null>;
-  countryRef: MutableRefObject<HTMLInputElement | null>;
-  normRef: MutableRefObject<HTMLSelectElement | null>;
-  yourNameRef: MutableRefObject<HTMLInputElement | null>;
-  yourEmailRef: MutableRefObject<HTMLInputElement | null>;
-  messageRef: MutableRefObject<HTMLTextAreaElement | null>;
-  position: LatLngLiteral;
-  setPosition: Dispatch<SetStateAction<LatLngLiteral>>;
-}
-
-export interface ResponseMessage {
+export type ResponseMessage = {
   isSuccessful: boolean;
   message: string;
-}
+};
 
 export type ScrollableElement = Window | HTMLElement;

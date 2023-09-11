@@ -48,8 +48,62 @@ input[type="search"]::-webkit-search-results-decoration {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0
+  margin: 0;
 }
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* react-date-picker styles */
+
+.react-datepicker__header--custom {
+  background-color: inherit;
+  border-bottom: none;
+}
+.react-datepicker__header {
+  padding: 8px 0 0px;
+  position: relative;
+  text-align: center;
+}
+.react-datepicker__day {
+  cursor: default;
+}
+.react-datepicker__week,
+.react-datepicker__day-names {
+  display: flex;
+}
+.react-datepicker__day,
+.react-datepicker__day-name,
+.react-datepicker__time-name {
+  display: inline-block;
+  line-height: 1.7rem;
+  margin: 0.166rem;
+  text-align: center;
+}
+.react-datepicker__month {
+  margin: 0.4rem;
+  text-align: center;
+}
+
+.react-datepicker__day-names,
+.react-datepicker__week {
+  white-space: nowrap;
+}
+
+.react-datepicker__aria-live {
+  order: 0;
+  -webkit-clip-path: circle(0);
+  clip-path: circle(0);
+  height: 0px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0px;
+}
+.react-datepicker-popper[data-placement^="bottom"] {
+  padding-top: 10px;
+}
+.no-calendar::-webkit-calendar-picker-indicator {
+  display: none;
 }

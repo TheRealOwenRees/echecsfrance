@@ -11,7 +11,7 @@ import {
 import { TimeControl } from "@/types";
 
 const TimeControlFilters = () => {
-  const t = useTranslations("Tournaments");
+  const at = useTranslations("App");
   const tournaments = useAtomValue(tournamentsAtom);
 
   const classic = useAtom(classicAtom);
@@ -37,7 +37,7 @@ const TimeControlFilters = () => {
               checked={atom[0]}
               onChange={() => atom[1](!atom[0])}
             />
-            {t("timeControlEnum", { tc })}
+            {at("timeControlEnum", { tc })}
           </label>
         </div>
       ))}
