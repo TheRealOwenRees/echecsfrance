@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
 
 import bgImage from "@/public/images/map-bg.jpg";
 

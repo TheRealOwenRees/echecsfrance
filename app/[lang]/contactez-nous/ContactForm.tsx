@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
+
 import { useTranslations } from "next-intl";
 
-import useContactForm from "@/hooks/useContactForm";
-import { handleEmailSubmit } from "@/handlers/formHandlers";
-
 import InfoMessage from "@/app/[lang]/components/InfoMessage";
+import { handleEmailSubmit } from "@/handlers/formHandlers";
+import useContactForm from "@/hooks/useContactForm";
 
 const ContactForm = () => {
   const t = useTranslations("Contact");

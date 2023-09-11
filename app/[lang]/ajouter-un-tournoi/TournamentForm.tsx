@@ -1,17 +1,19 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+
 import { useAtomValue } from "jotai";
-import { franceCenterAtom } from "@/app/atoms";
-import useTournamentForm from "@/hooks/useTournamentForm";
+import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+
 import InfoMessage from "@/app/[lang]/components/InfoMessage";
-import {
-  handleTournamentSubmit,
-  handleClearTournamentForm,
-} from "@/handlers/formHandlers";
 import LoadingMap from "@/app/[lang]/components/LoadingMap";
+import { franceCenterAtom } from "@/app/atoms";
+import {
+  handleClearTournamentForm,
+  handleTournamentSubmit,
+} from "@/handlers/formHandlers";
+import useTournamentForm from "@/hooks/useTournamentForm";
 
 const Map = dynamic(() => import("./Map"), {
   ssr: false,

@@ -1,7 +1,7 @@
-import { TimeControl, Tournament } from "@/types";
 import { atom } from "jotai";
 import { LatLngBounds, LatLngLiteral } from "leaflet";
 
+import { TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
 

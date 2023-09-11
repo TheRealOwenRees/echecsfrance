@@ -1,17 +1,17 @@
 "use client";
 
+import { useHydrateAtoms } from "jotai/utils";
+import dynamic from "next/dynamic";
+
+import LoadingMap from "@/app/[lang]/components/LoadingMap";
+import { tournamentsAtom } from "@/app/atoms";
+import { Tournament } from "@/types";
+
+import TournamentTable from "./TournamentTable";
+
 type TournamentsDisplayProps = {
   tournaments: Tournament[];
 };
-
-import { Tournament } from "@/types";
-
-import dynamic from "next/dynamic";
-import { useHydrateAtoms } from "jotai/utils";
-import { tournamentsAtom } from "@/app/atoms";
-
-import TournamentTable from "./TournamentTable";
-import LoadingMap from "@/app/[lang]/components/LoadingMap";
 
 /**
  * Imports the tournament map component, ensuring CSR only.

@@ -1,15 +1,16 @@
+import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
+
+import { useTranslations } from "next-intl";
+import Link from "next-intl/link";
+import { twMerge } from "tailwind-merge";
+
+import useHamburgerClose from "@/hooks/useHamburgerClose";
+
 interface HamburgerMenuState {
   menuVisible: boolean;
   setMenuVisible: Dispatch<SetStateAction<boolean>>;
   hamburgerButtonRef: RefObject<HTMLDivElement>;
 }
-
-import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import Link from "next-intl/link";
-import { useTranslations } from "next-intl";
-
-import useHamburgerClose from "@/hooks/useHamburgerClose";
 
 const HamburgerMenu = ({
   menuVisible,

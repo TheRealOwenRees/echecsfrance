@@ -1,6 +1,7 @@
-import NodeMailer from "nodemailer";
 import { NextResponse } from "next/server";
-import { infoLog, errorLog } from "@/utils/logger";
+import NodeMailer from "nodemailer";
+
+import { errorLog, infoLog } from "@/utils/logger";
 
 export async function POST(req: Request) {
   const { email, subject, message } = await req.json();

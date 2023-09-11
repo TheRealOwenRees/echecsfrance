@@ -1,18 +1,18 @@
 "use client";
 
-import { MapProps } from "@/types";
-import { useMemo, useRef, ChangeEvent } from "react";
-import { useTranslations } from "next-intl";
-import { useSetAtom } from "jotai";
-import { mapBoundsAtom } from "@/app/atoms";
+import { ChangeEvent, useMemo, useRef } from "react";
 
+import { useSetAtom } from "jotai";
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet/dist/leaflet.css";
+import { useTranslations } from "next-intl";
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
 import MapEvents from "@/app/[lang]/components/MapEvents";
+import { mapBoundsAtom } from "@/app/atoms";
+import { MapProps } from "@/types";
 
 const Map = ({ position, setPosition, center }: MapProps) => {
   const t = useTranslations("Map");

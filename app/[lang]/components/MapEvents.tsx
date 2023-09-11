@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+
 import { useSetAtom } from "jotai";
-import { mapBoundsAtom } from "@/app/atoms";
 import L from "leaflet";
 import { useMapEvent } from "react-leaflet";
+
+import { mapBoundsAtom } from "@/app/atoms";
 
 const MapEvents = () => {
   const setMapBounds = useSetAtom(mapBoundsAtom);

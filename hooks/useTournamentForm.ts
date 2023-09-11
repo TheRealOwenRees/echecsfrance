@@ -1,8 +1,10 @@
-import { TournamentFormProps } from "@/types";
 import { useRef, useState } from "react";
-import { LatLngLiteral } from "leaflet";
+
 import { useAtomValue } from "jotai";
+import { LatLngLiteral } from "leaflet";
+
 import { franceCenterAtom } from "@/app/atoms";
+import { TournamentFormProps } from "@/types";
 
 export const useTournamentForm = (): TournamentFormProps => {
   const center = useAtomValue(franceCenterAtom);

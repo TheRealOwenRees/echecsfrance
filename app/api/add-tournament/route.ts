@@ -1,5 +1,6 @@
-import clientPromise from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+
+import clientPromise from "@/lib/mongodb";
 import { errorLog } from "@/utils/logger";
 
 export async function POST(req: Request) {

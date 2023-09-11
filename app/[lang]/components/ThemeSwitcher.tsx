@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import useDarkMode from "@/hooks/useDarkMode";
 
 const ThemeSwitcher = () => {

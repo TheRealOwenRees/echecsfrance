@@ -1,4 +1,4 @@
-import { atom, SetStateAction } from "jotai";
+import { SetStateAction, atom } from "jotai";
 
 export default function atomWithDebounce<T>(
   initialValue: T,
@@ -37,9 +37,14 @@ export default function atomWithDebounce<T>(
 
       onDebounceStart();
 
-      const nextTimeoutId = setTimeout(() => {
-        onDebounceEnd();
-      }, nextValue === initialValue ? delayOnResetMilliseconds : delayMilliseconds);
+      const nextTimeoutId = setTimeout(
+        () => {
+          onDebounceEnd();
+        },
+        nextValue === initialValue
+          ? delayOnResetMilliseconds
+          : delayMilliseconds,
+      );
 
       // set previous timeout atom in case it needs to get cleared
       set(prevTimeoutAtom, nextTimeoutId);

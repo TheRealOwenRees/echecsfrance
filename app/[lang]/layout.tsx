@@ -1,15 +1,16 @@
-import Script from "next/script";
-import { Inter, Julius_Sans_One } from "next/font/google";
-import { useLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslator } from "next-intl/server";
-import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+
+import { NextIntlClientProvider, useLocale } from "next-intl";
+import { getTranslator } from "next-intl/server";
+import { Inter, Julius_Sans_One } from "next/font/google";
+import { notFound } from "next/navigation";
+import Script from "next/script";
 
 import "@/css/globals.css";
 
-import Providers from "./providers";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({

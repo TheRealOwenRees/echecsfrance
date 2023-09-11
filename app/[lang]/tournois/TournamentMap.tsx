@@ -1,34 +1,32 @@
 "use client";
 
-import { TimeControl } from "@/types";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
-import { useMemo, useRef, useCallback, useEffect } from "react";
-import L, { LatLngLiteral, Marker, DomUtil } from "leaflet";
-import { MapContainer, TileLayer, LayerGroup } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-cluster";
-import { FaAngleDoubleDown } from "react-icons/fa";
 import { useAtomValue, useSetAtom } from "jotai";
+import L, { DomUtil, LatLngLiteral, Marker } from "leaflet";
+import "leaflet-defaulticon-compatibility";
+import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
+import "leaflet.smooth_marker_bouncing";
+import "leaflet/dist/leaflet.css";
 import { countBy, groupBy } from "lodash";
-
-import {
-  mapBoundsAtom,
-  debouncedHoveredListTournamentIdAtom,
-  filteredTournamentsByTimeControlAtom,
-  normsOnlyAtom,
-} from "@/app/atoms";
-import { generatePieSVG } from "@/lib/pie";
-import { TimeControlColours } from "@/app/constants";
-
-import Legend from "./Legend";
-import { TournamentMarker, TournamentMarkerRef } from "./TournamentMarker";
-import TimeControlFilters from "./TimeControlFilters";
+import { FaAngleDoubleDown } from "react-icons/fa";
+import { LayerGroup, MapContainer, TileLayer } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
 import MapEvents from "@/app/[lang]/components/MapEvents";
+import {
+  debouncedHoveredListTournamentIdAtom,
+  filteredTournamentsByTimeControlAtom,
+  mapBoundsAtom,
+  normsOnlyAtom,
+} from "@/app/atoms";
+import { TimeControlColours } from "@/app/constants";
+import { generatePieSVG } from "@/lib/pie";
+import { TimeControl } from "@/types";
 
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
-import "leaflet.smooth_marker_bouncing";
+import Legend from "./Legend";
+import TimeControlFilters from "./TimeControlFilters";
+import { TournamentMarker, TournamentMarkerRef } from "./TournamentMarker";
 
 // Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
 // to keep Typescript happy
