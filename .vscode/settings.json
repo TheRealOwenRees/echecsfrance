@@ -5,12 +5,15 @@
     "colour",
     "colours",
     "contactez",
+    "datepicker",
     "defaulticon",
     "Depfu",
     "Échecs",
     "Fédération",
     "Florifourchette",
     "Française",
+    "headlessui",
+    "hookform",
     "kodingdotninja",
     "Lente",
     "localisation",
@@ -25,6 +28,7 @@
     "spiderified",
     "superjson",
     "tailwindcss",
+    "tanstack",
     "timothyarmes",
     "tournois",
     "trivago",
@@ -33,5 +37,12 @@
     "unspiderfy"
   ],
 
-  "css.customData": [".vscode/tailwindcss.json"]
+  "css.customData": [".vscode/tailwindcss.json"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*ClassName=\"([^\"]+)\""]
 }

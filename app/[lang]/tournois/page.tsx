@@ -1,27 +1,14 @@
 import { differenceInDays, isSameDay, parse } from "date-fns";
 import { groupBy } from "lodash";
-import { ObjectId } from "mongodb";
 
 import clientPromise from "@/lib/mongodb";
+import { TournamentData } from "@/types";
 import { TimeControl, Tournament } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
 
 export const revalidate = 3600; // Revalidate cache every 6 hours
-
-export interface TournamentData {
-  _id: ObjectId;
-  town: string;
-  department: string;
-  tournament: string;
-  url: string;
-  time_control: "Cadence Lente" | "Rapide" | "Blitz" | string;
-  norm_tournament: boolean;
-  date: string;
-  coordinates: [number, number];
-  pending: boolean;
-}
 
 const tcMap: Record<TournamentData["time_control"], TimeControl> = {
   "Cadence Lente": TimeControl.Classic,

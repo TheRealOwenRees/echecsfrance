@@ -5,6 +5,17 @@
     "keywords": "chess, France, tournament, tournaments, FFE, map, norm, norms"
   },
 
+  "App": {
+    "shortDate": "{date, date, ::dd/MM/yyyy}",
+    "datePlaceholder": "DD/MM/YYYY",
+    "dateParseFormat": "dd/MM/yyyy",
+    "dateMask": "99/99/9999",
+    "selectPlaceholder": "Select...",
+    "searchPlaceholder": "Search...",
+    "noOptionsMessage": "No options found",
+    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}"
+  },
+
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournaments",
@@ -15,6 +26,11 @@
   "Footer": {
     "githubAria": "Link to GitHub repository",
     "contactAria": "Contact Us"
+  },
+
+  "FormValidation": {
+    "required": "Required",
+    "url": "Invalid URL"
   },
 
   "Home": {
@@ -35,9 +51,8 @@
     "town": "Town",
     "tournament": "Tournament",
     "timeControl": "Time Control",
-    "approx": "Geolocation is approximative",
+    "approx": "Geo-location is approximative",
     "norm": "Norm Tournament",
-    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}",
     "clearButton": "Clear"
   },
 
@@ -72,16 +87,12 @@
   "AddTournament": {
     "title": "Add a Tournament",
     "info": "Fill in the form below and your tournament will be reviewed shortly.",
-    "tournamentNameLabel":  "Tournament Name",
+    "tournamentNameLabel": "Tournament Name",
     "tournamentNamePlaceholder": "Tournament name",
     "dateLabel": "Date",
     "urlLabel": "URL",
     "urlPlaceholder": "www.example.com",
     "tcLabel": "Time Control",
-    "tcOption1": "Classical",
-    "tcOption2": "Rapid",
-    "tcOption3": "Blitz",
-    "tcOption4": "Other",
     "normLabel": "Norm Tournament?",
     "normNo": "No",
     "normYes": "Yes",
@@ -95,6 +106,8 @@
     "postcodePlaceholder": "Postcode",
     "countryLabel": "Country",
     "countryPlaceholder": "Country",
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude",
     "yourNameLabel": "Your Name",
     "yourNamePlaceholder": "Your Name",
     "yourEmailLabel": "Your Email",
@@ -106,10 +119,5 @@
     "clearForm": "Clear Form",
     "success": "Thank you for your message.",
     "failure": "Sorry, something went wrong.  Please try again."
-  },
-
-  "Map": {
-    "latLabel": "Latitude",
-    "lngLabel": "Longitude"
   }
 }

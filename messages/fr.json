@@ -5,6 +5,17 @@
     "keywords": "echecs, echec, France, tournoi, tournois, FFE, carte, norme, normes"
   },
 
+  "App": {
+    "shortDate": "{date, date, ::dd/MM/yyyy}",
+    "datePlaceholder": "DD/MM/YYYY",
+    "dateParseFormat": "dd/MM/yyyy",
+    "dateMask": "99/99/9999",
+    "selectPlaceholder": "Choisir...",
+    "searchPlaceholder": "Rechercher...",
+    "noOptionsMessage": "Pas d'options",
+    "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} Other {Autres} other {{tc}}}"
+  },
+
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournois",
@@ -15,6 +26,11 @@
   "Footer": {
     "githubAria": "Lien vers le dépôt GitHub",
     "contactAria": "Contactez-nous"
+  },
+
+  "FormValidation": {
+    "required": "Requis",
+    "url": "L'URL n'est pas valide"
   },
 
   "Home": {
@@ -37,7 +53,6 @@
     "timeControl": "Cadence",
     "approx": "Géolocalisation approximative",
     "norm": "Tournoi à norme",
-    "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} Other {Autres} other {{tc}}}",
     "clearButton": "Effacer"
   },
 
@@ -73,17 +88,15 @@
     "title": "Ajouter un Tournoi",
     "info": "Veuillez remplir le formulaire ci-dessous et votre tournoi sera validé très prochainement.",
 
-    "tournamentNameLabel":  "Nom du Tournoi",
+    "tournamentNameLabel": "Nom du Tournoi",
     "tournamentNamePlaceholder": "Nom du tournoi",
     "dateLabel": "Date",
     "urlLabel": "URL",
     "urlPlaceholder": "www.example.com",
     "tcLabel": "Cadence",
     "tcOption1": "Cadence Lente",
-    "tcOption2": "Rapide",
-    "tcOption3": "Blitz",
-    "tcOption4": "Autres",
-    "normLabel": "Tournoi à norme ?",
+
+    "normLabel": "Tournoi à norme\u00a0?",
     "normNo": "Non",
     "normYes": "Oui",
     "addressLabel": "Adresse",
@@ -96,6 +109,8 @@
     "postcodePlaceholder": "Code Postal",
     "countryLabel": "Pays",
     "countryPlaceholder": "Pays",
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude",
     "yourNameLabel": "Votre Nom",
     "yourNamePlaceholder": "Votre Nom",
     "yourEmailLabel": "Votre adresse mail",
@@ -107,10 +122,5 @@
     "clearForm": "Réinitialiser",
     "success": "Merci pour votre message.",
     "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
-  },
-
-  "Map": {
-    "latLabel": "Latitude",
-    "lngLabel": "Longitude"
   }
 }

@@ -14,9 +14,11 @@ export default function Contact() {
         >
           {t("title")}
         </h2>
+
         <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
           {t("info")}
         </p>
+
         <TournamentForm />
       </div>
     </section>

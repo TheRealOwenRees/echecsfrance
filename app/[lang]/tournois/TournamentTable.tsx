@@ -25,6 +25,7 @@ import TimeControlFilters from "./TimeControlFilters";
 
 export default function TournamentTable() {
   const t = useTranslations("Tournaments");
+  const at = useTranslations("App");
 
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
@@ -150,7 +151,7 @@ export default function TournamentTable() {
                     </span>
                   </td>
                   <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
-                    {t("timeControlEnum", { tc: tournament.timeControl })}
+                    {at("timeControlEnum", { tc: tournament.timeControl })}
                   </td>
                   <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
                     <a href={tournament.url} target="_blank">

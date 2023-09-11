@@ -10,7 +10,7 @@ import { TimeControlColours } from "@/app/constants";
 import { TimeControl } from "@/types";
 
 const Legend = () => {
-  const t = useTranslations("Tournaments");
+  const at = useTranslations("App");
   const map = useMap();
   const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
 
@@ -45,7 +45,7 @@ const Legend = () => {
                   <li>
                     <span class="block h-4 w-7 border border-[#999] float-left mr-1" style="background: ${
                       TimeControlColours[tc]
-                    }"></span>${t("timeControlEnum", { tc })}
+                    }"></span>${at("timeControlEnum", { tc })}
                   </li>
                 `,
               )
@@ -56,7 +56,7 @@ const Legend = () => {
 
       legend.addTo(map);
     }
-  }, [map, t]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [map, at]); // eslint-disable-line react-hooks/exhaustive-deps
   return null;
 };
 
