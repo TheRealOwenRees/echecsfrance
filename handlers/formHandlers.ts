@@ -2,7 +2,7 @@ import { Dispatch, FormEvent, SetStateAction } from "react";
 
 import { useTranslations } from "next-intl";
 
-import { clearMessage } from "@/app/[lang]/components/InfoMessage";
+import { clearMessage } from "@/app/[locale]/components/InfoMessage";
 import sendMail from "@/lib/sendMail";
 import { ResponseMessage } from "@/types";
 import { errorLog } from "@/utils/logger";
