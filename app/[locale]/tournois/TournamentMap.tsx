@@ -13,7 +13,7 @@ import { FaAngleDoubleDown } from "react-icons/fa";
 import { LayerGroup, MapContainer, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
-import MapEvents from "@/app/[lang]/components/MapEvents";
+import MapEvents from "@/app/[locale]/components/MapEvents";
 import {
   debouncedHoveredListTournamentIdAtom,
   filteredTournamentsByTimeControlAtom,

@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 
-import ThemeSwitcher from "@/app/[lang]/components/ThemeSwitcher";
+import ThemeSwitcher from "@/app/[locale]/components/ThemeSwitcher";
 
 export default function Footer() {
   const t = useTranslations("Footer");

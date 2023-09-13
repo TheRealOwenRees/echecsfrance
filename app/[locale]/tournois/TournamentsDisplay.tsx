@@ -3,7 +3,7 @@
 import { useHydrateAtoms } from "jotai/utils";
 import dynamic from "next/dynamic";
 
-import LoadingMap from "@/app/[lang]/components/LoadingMap";
+import LoadingMap from "@/app/[locale]/components/LoadingMap";
 import { tournamentsAtom } from "@/app/atoms";
 import { Tournament } from "@/types";
 

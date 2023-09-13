@@ -37,19 +37,11 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: {
   children: ReactNode;
   params: { locale?: string };
 }) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const locale = useLocale(); // This hook IS allowed since it's stateless
-
-  // Show a 404 error if the user requests an unknown locale
-  if (params.locale !== undefined && params.locale !== locale) {
-    notFound();
-  }
-
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
