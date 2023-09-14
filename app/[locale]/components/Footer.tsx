@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import Link from "next-intl/link";
-import { FaGithub, FaRegEnvelope } from "react-icons/fa";
+import { FaGithub, FaInfoCircle, FaRegEnvelope } from "react-icons/fa";
 
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -24,6 +24,13 @@ export default function Footer() {
           className="mr-4"
         >
           <FaGithub />
+        </Link>
+        <Link
+          href="/qui-sommes-nous"
+          aria-label={t("contactAria")}
+          className="mr-4"
+        >
+          <FaInfoCircle />
         </Link>
         <Link
           href="/contactez-nous"

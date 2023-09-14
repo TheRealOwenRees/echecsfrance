@@ -19,8 +19,7 @@
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournois",
-    "about": "Qui Sommes-Nous",
-    "contact": "Contactez-Nous"
+    "elo": "Calculette Elo"
   },
 
   "Footer": {
@@ -122,5 +121,18 @@
     "clearForm": "Réinitialiser",
     "success": "Merci pour votre message.",
     "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
+  },
+
+  "Elo": {
+    "title": "Calculette Elo",
+    "info": "Utilisez ce calculateur pour vous donner une idée de votre nouveau classement Elo après un tournoi.",
+    "currentEloLabel": "Votre Elo actuel",
+    "currentEloPlaceholder": "Elo",
+    "kFactorLabel": "Coefficient",
+    "resultsTitle": "Résultats",
+    "opponentEloPlaceholder": "Classement de l'adversaire",
+    "gameResultPlaceholder": "Résultat...",
+    "gameResult": "{result, select, win {Victoire} draw {Match nul} loss {Défaite} other {{result}}}",
+    "addGameButton": "Ajouter un autre résultat de partie"
   }
 }

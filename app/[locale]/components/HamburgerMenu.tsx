@@ -72,18 +72,10 @@ const HamburgerMenu = ({
         </li>
         <li className="py-5 text-center text-xl">
           <Link
-            href="/qui-sommes-nous"
+            href="/elo"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
-            {t("about")}
-          </Link>
-        </li>
-        <li className="py-5 text-center text-xl">
-          <Link
-            href="/contactez-nous"
-            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
-          >
-            {t("contact")}
+            {t("elo")}
           </Link>
         </li>
       </ul>

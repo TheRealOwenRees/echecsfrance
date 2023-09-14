@@ -27,6 +27,8 @@ module.exports = {
           900: "#00151F",
           950: "#000203",
         },
+        success: "#00ac39",
+        error: "#ea5f17",
       },
       minHeight: {
         // We use 100svh, falling back to the the --1svh var that we add as a polyfill for older browsers.

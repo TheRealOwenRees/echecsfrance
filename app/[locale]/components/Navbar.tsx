@@ -8,8 +8,7 @@ export default function Navbar() {
 
   const links = [
     { title: t("tournaments"), route: "/tournois" },
-    { title: t("about"), route: "/qui-sommes-nous" },
-    { title: t("contact"), route: "/contactez-nous" },
+    { title: t("elo"), route: "/elo" },
   ];
 
   return (
