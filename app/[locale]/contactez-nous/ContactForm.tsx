@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useTranslations } from "next-intl";
 
-import InfoMessage from "@/app/[locale]/components/InfoMessage";
+import InfoMessage from "@/components/InfoMessage";
 import { handleEmailSubmit } from "@/handlers/formHandlers";
 import useContactForm from "@/hooks/useContactForm";
 
