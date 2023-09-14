@@ -164,20 +164,31 @@ export default function Elo() {
                           required
                         />
 
-                        <SelectField
-                          name={`games.${i}.result`}
-                          placeholder={t("gameResultPlaceholder")}
-                          options={["win", "draw", "loss"].map((result) => ({
-                            value: result,
-                            label: t("gameResult", { result }),
-                          }))}
-                          required
-                        />
+                        <div className="flex items-center space-x-2">
+                          <SelectField
+                            name={`games.${i}.result`}
+                            placeholder={t("gameResultPlaceholder")}
+                            options={["win", "draw", "loss"].map((result) => ({
+                              value: result,
+                              label: t("gameResult", { result }),
+                            }))}
+                            required
+                          />
+                          {gameFields.length > 1 && (
+                            <button
+                              className="hidden h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:flex"
+                              type="button"
+                              onClick={() => removeGame(i)}
+                            >
+                              <IoCloseOutline className="h-6 w-6 text-gray-900 transition-all duration-200 hover:text-primary dark:text-neutral-400 hover:dark:text-white" />
+                            </button>
+                          )}
+                        </div>
                       </div>
 
                       {gameFields.length > 1 && (
                         <button
-                          className="flex h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700"
+                          className="flex h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:hidden"
                           type="button"
                           onClick={() => removeGame(i)}
                         >
