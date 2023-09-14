@@ -10,8 +10,8 @@ import "leaflet/dist/leaflet.css";
 import { useFormContext, useWatch } from "react-hook-form";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
-import MapEvents from "@/app/[locale]/components/MapEvents";
 import { mapBoundsAtom } from "@/app/atoms";
+import MapEvents from "@/components/MapEvents";
 
 const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
