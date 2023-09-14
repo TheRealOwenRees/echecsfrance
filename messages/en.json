@@ -19,8 +19,7 @@
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournaments",
-    "about": "About Us",
-    "contact": "Contact"
+    "elo": "Elo Calculator"
   },
 
   "Footer": {
@@ -119,5 +118,19 @@
     "clearForm": "Clear Form",
     "success": "Thank you for your message.",
     "failure": "Sorry, something went wrong.  Please try again."
+  },
+
+  "Elo": {
+    "title": "Elo Calculator",
+    "info": "Use this calculator to give yourself an idea of your new Elo rating after a tournament.",
+    "currentEloLabel": "Your current Elo",
+    "currentEloPlaceholder": "Elo",
+    "kFactorLabel": "Your K-Factor",
+    "kFactorPlaceholder": "K-Factor",
+    "resultsTitle": "Results",
+    "opponentEloPlaceholder": "Opponent Elo",
+    "gameResultPlaceholder": "Result...",
+    "gameResult": "{result, select, win {Win} draw {Draw} loss {Loss} other {{result}}}",
+    "addGameButton": "Add another game result"
   }
 }
