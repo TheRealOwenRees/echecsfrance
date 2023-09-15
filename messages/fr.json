@@ -133,6 +133,10 @@
     "opponentEloPlaceholder": "Classement de l'adversaire",
     "gameResultPlaceholder": "Résultat...",
     "gameResult": "{result, select, win {Victoire} draw {Match nul} loss {Défaite} other {{result}}}",
-    "addGameButton": "Ajouter un autre résultat de partie"
+    "addGameButton": "Ajouter un autre résultat de partie",
+
+    "resultsUrlLabel": "Paste a link to the FFE results page",
+    "resultsUrlPlaceholder": "https://echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/12345/12345&Action=Ga",
+    "fetchResultsButton": "Fetch"
   }
 }

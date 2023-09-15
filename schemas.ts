@@ -20,3 +20,7 @@ export const addTournamentSchema = z.object({
     country: z.string().min(1, { message: "FormValidation.required" }),
   }),
 });
+
+export const fetchTournamentResultsSchema = z.object({
+  url: z.string().url({ message: "FormValidation.url" }),
+});
