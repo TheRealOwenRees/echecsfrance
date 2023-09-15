@@ -9,25 +9,9 @@ import { z } from "zod";
 
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
+import { getNewRating } from "@/utils/eloCalculator";
 
 import { FetchResultsForm } from "./FetchResultsForm";
-
-const getNewRating = (
-  rating: number,
-  opponentRating: number,
-  result: 1 | 0 | 0.5,
-  kFactor: number,
-) => {
-  const myChanceToWin = 1 / (1 + Math.pow(10, (opponentRating - rating) / 400));
-  const delta =
-    Math.round((kFactor * (result - myChanceToWin) + Number.EPSILON) * 100) /
-    100;
-
-  return {
-    delta,
-    newRating: Math.round((rating + delta + Number.EPSILON) * 100) / 100,
-  };
-};
 
 const resultsSchema = z.object({
   currentElo: z.number().int().positive(),
@@ -88,16 +72,15 @@ export default function Elo() {
             const result =
               game?.result === "win" ? 1 : game?.result === "loss" ? 0 : 0.5;
 
-            const { delta, newRating } = getNewRating(
-              acc.rating,
+            const { delta } = getNewRating(
+              currentElo!,
               game.opponentElo!,
               result,
               parseInt(kFactor!, 10),
             );
-
             return {
-              rating: newRating,
-              deltas: [...acc.deltas, { rating: newRating, delta }],
+              rating: acc.rating + delta,
+              deltas: [...acc.deltas, { rating: acc.rating + delta, delta }],
             };
           }
 
@@ -216,7 +199,8 @@ export default function Elo() {
                             deltas[i].delta! < 0 && "text-error",
                           )}
                         >
-                          {deltas[i]!.delta! >= 0 ? "+" : ""} {deltas[i].delta!}
+                          {deltas[i]!.delta! >= 0 ? "+" : ""}
+                          {deltas[i].delta!}
                         </span>
                         )
                       </div>
