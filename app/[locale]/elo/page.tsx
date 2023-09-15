@@ -1,8 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { de } from "date-fns/locale";
-import { isEmpty, isNil, isNumber } from "lodash";
 import { useTranslations } from "next-intl";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { IoAdd, IoCloseOutline } from "react-icons/io5";
@@ -11,6 +9,8 @@ import { z } from "zod";
 
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
+
+import { FetchResultsForm } from "./FetchResultsForm";
 
 const getNewRating = (
   rating: number,
@@ -124,6 +124,10 @@ export default function Elo() {
         <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400">
           {t("info")}
         </p>
+
+        <div className="mb-10">
+          <FetchResultsForm />
+        </div>
 
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
