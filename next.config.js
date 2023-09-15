@@ -8,4 +8,18 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const withNextIntl = require("next-intl/plugin")("./i18n.ts");
 
 module.exports = nextConfig;
-module.exports = withBundleAnalyzer(withNextIntl({}));
+module.exports = withBundleAnalyzer(
+  withNextIntl({
+    rewrites: async () => {
+      return [
+        {
+          source: "/api/py/:path*",
+          destination:
+            process.env.NODE_ENV === "development"
+              ? "http://127.0.0.1:5000/api/py/:path*"
+              : "/api/py/:path*",
+        },
+      ];
+    },
+  }),
+);
