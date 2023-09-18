@@ -1,200 +1,174 @@
-import { Fragment, useRef } from "react";
+import React from "react";
 
-import { Listbox, Transition } from "@headlessui/react";
+import { flatMap, get, isArray, isNil, isObject } from "lodash";
 import { useTranslations } from "next-intl";
 import { Controller, useFormContext } from "react-hook-form";
-import {
-  IoChevronDown,
-  IoCloseOutline,
-  IoSearchOutline,
-} from "react-icons/io5";
+import Select, {
+  ActionMeta,
+  ClassNamesConfig,
+  GroupBase,
+  OnChangeValue,
+  Props,
+} from "react-select";
 import { twMerge } from "tailwind-merge";
 
 import { Field, FieldProps } from "./Field";
 
-export type SelectOption = {
-  value: string;
-  label: React.ReactNode;
-  selectedLabel?: React.ReactNode;
+export type BaseOption<T = string, D = unknown> = {
+  value: T;
+  label: string | JSX.Element;
   disabled?: boolean;
+  data?: D;
 };
 
-type SelectFieldProps = FieldProps & {
-  required?: boolean;
-  placeholder?: string;
-  noOptionsMessage?: string;
-  options: SelectOption[];
-  searchable?: boolean;
-  listboxClassName?: string;
-  dropdownClassName?: string;
-  searchValue?: string;
-  onChangeSearchValue?: (value: string) => void;
-  onOptionSelected?: (option: SelectOption) => void;
-};
+export const classNames = <Option, IsMulti extends boolean = false>(
+  hasError: boolean,
+): ClassNamesConfig<Option, IsMulti, GroupBase<Option>> => ({
+  container: () => "w-full",
+  valueContainer: () => "text-gray-900 dark:text-white",
+  indicatorsContainer: () => "flex items-center self-stretch shrink-0",
+  clearIndicator: () =>
+    "pointer-events-none flex items-center pr-2 text-gray-900 dark:text-white",
+  dropdownIndicator: () =>
+    "pointer-events-none flex items-center pr-2 text-gray-900 dark:text-white",
+  indicatorSeparator: () => "w-px text-gray-900 dark:text-white",
+  control: (state) =>
+    twMerge(
+      "group flex w-full items-center justify-between rounded-lg border p-3 text-sm",
+      "border-gray-300 bg-gray-50  text-gray-900 shadow-sm focus-within:border-primary-500 focus-within:ring-primary-500",
+      "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-500 dark:focus-within:ring-primary-500",
 
-export const SelectField = ({
+      hasError && "ring-1 ring-error",
+      state.isDisabled && "cursor-not-allowed",
+      state.isFocused && "border-primary ring ring-primary ring-opacity-50",
+    ),
+  multiValue: () => "bg-fieldGray border rounded-lg flex space-x-1 pl-1 m-1",
+  multiValueLabel: () => "",
+  multiValueRemove: () => "items-center px-1 hover:text-primary",
+  placeholder: () =>
+    "block truncate pr-2 placeholder-gray dark:placeholder-gray-400",
+  menu: () =>
+    twMerge(
+      "!z-10 mt-2 rounded-lg border border-gray-200 bg-white p-1",
+      "border-gray-300 bg-gray-50  text-gray-900",
+      "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
+    ),
+  groupHeading: () => "ml-3 mt-2 mb-1 text-textGray text-sm uppercase",
+  option: ({ isFocused, isSelected, isDisabled }) =>
+    twMerge(
+      "px-3 py-2 hover:cursor-pointer",
+      isDisabled && "opacity-50",
+      isFocused && "hover:bg-primary-500 hover:text-white",
+    ),
+  noOptionsMessage: () =>
+    "text-textGray p-2 bg-gray-50 border border-dashed border-gray-200 rounded-sm",
+});
+
+export type SelectFieldProps<
+  IsMulti extends boolean = false,
+  T = string,
+  D = unknown,
+> = FieldProps &
+  Omit<
+    Props<BaseOption<T, D>, IsMulti, GroupBase<BaseOption<T, D>>>,
+    "onChange" | "value" | "classNames"
+  > & {
+    required?: boolean;
+  };
+
+export const SelectField = <
+  IsMulti extends boolean = false,
+  T = string,
+  D = unknown,
+>({
   name,
-  label,
   className,
   labelClassName,
   childrenWrapperClassName,
-  hideErrorMessage = false,
-
+  label,
+  hideErrorMessage,
   required,
+
   placeholder,
-  noOptionsMessage,
   options,
-  searchable,
-  searchValue = "",
-  onChangeSearchValue,
-  onOptionSelected,
-  listboxClassName,
-  dropdownClassName,
-}: SelectFieldProps) => {
-  const at = useTranslations("App");
+  ...selectProps
+}: SelectFieldProps<IsMulti, T, D>) => {
+  const t = useTranslations("App");
   const form = useFormContext();
 
-  // We need to keep track of the selected option to be able to continue to
-  // display it when the user searches for something else
-  const curOption = useRef<SelectOption | null>(null);
+  const {
+    formState: { errors },
+  } = form;
+
+  const hasError = !!get(errors, name)?.message;
+
+  const isGroup = (
+    option: BaseOption<T, D> | GroupBase<BaseOption<T, D>>,
+  ): option is GroupBase<BaseOption<T, D>> =>
+    isObject(option) && "options" in option;
+
+  const flattenedOptions = flatMap(options, (option) => {
+    return isGroup(option) ? option.options : option;
+  });
+
+  const valueToOption = (value: T): BaseOption<T, D> =>
+    flattenedOptions.find((o) => o.value === value) ?? { value, label: "" };
 
   return (
     <Field
       {...{
         name,
-        label,
-        required,
         className,
+        label,
         labelClassName,
         childrenWrapperClassName,
         hideErrorMessage,
+        required,
       }}
     >
-      <div className="flex w-full flex-col">
-        <Controller
-          control={form.control}
-          name={name}
-          render={({ field: { onChange, value, name } }) => {
-            const selectedOption =
-              curOption.current?.value === value
-                ? curOption.current
-                : options.find((option) => option.value === value);
+      <Controller
+        name={name}
+        control={form.control}
+        render={({ field: { onChange, value } }) => {
+          const onSelectChange = (
+            newValue: OnChangeValue<BaseOption<T, D>, IsMulti>,
+            actionMeta: ActionMeta<BaseOption<T, D>>,
+          ) => {
+            if (isNil(newValue)) onChange(null);
+            else if (isArray(newValue)) {
+              onChange(newValue.map((option) => option.value));
+            } else onChange((newValue as BaseOption<T, D>).value);
+          };
 
-            return (
-              <Listbox
-                value={value ?? null}
-                name={name}
-                onChange={(value) => {
-                  curOption.current =
-                    options.find((option) => option.value === value) ?? null;
-                  onChangeSearchValue?.("");
-                  onChange(value);
-                  onOptionSelected?.(curOption.current!);
-                }}
-              >
-                {({ open }) => (
-                  <div className="relative w-full">
-                    <Listbox.Button
-                      className={twMerge(
-                        "group flex w-full items-center justify-between rounded-lg border p-3 text-sm",
-                        "border-gray-300 bg-gray-50  text-gray-900 shadow-sm focus-within:border-primary-500 focus-within:ring-primary-500",
-                        "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-500 dark:focus-within:ring-primary-500",
-                        listboxClassName,
-                      )}
-                    >
-                      <span className="block truncate pr-2 text-gray-900 dark:text-white">
-                        {selectedOption?.selectedLabel ??
-                          selectedOption?.label ??
-                          placeholder ??
-                          at("selectPlaceholder")}
-                      </span>
-                      <span className="pointer-events-none flex items-center pr-2">
-                        <IoChevronDown
-                          className="h-3 w-3 text-gray-900 dark:text-white"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </Listbox.Button>
+          const optionValue = isNil(value)
+            ? null
+            : isArray(value)
+            ? value.map(valueToOption)
+            : valueToOption(value);
 
-                    <Transition
-                      as={Fragment}
-                      show={open}
-                      leave="transition ease-in duration-200"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <div
-                        className={twMerge(
-                          "absolute z-10 mt-1 flex w-full flex-col overflow-y-hidden rounded border py-3 text-white focus:outline-none [&>ul]:outline-none",
-                          "border-gray-300 bg-gray-50  text-gray-900",
-                          "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
-
-                          dropdownClassName,
-                        )}
-                      >
-                        <Listbox.Options className="flex max-h-[180px] flex-1 flex-col justify-stretch">
-                          {searchable && (
-                            <div className="mx-3 mb-4 flex h-[40px] w-auto flex-1 items-center justify-between rounded border px-4 dark:border-neutral-500 dark:bg-neutral-600 focus-within:dark:border-neutral-200">
-                              <IoSearchOutline
-                                width="16px"
-                                className="h-4 w-4 flex-shrink-0 text-gray-900 dark:text-white"
-                              />
-                              <input
-                                className="w-full flex-1 border-none bg-transparent ring-0 focus:outline-none focus:ring-0 focus:ring-offset-0"
-                                value={searchValue}
-                                onChange={
-                                  onChangeSearchValue
-                                    ? (e) => onChangeSearchValue(e.target.value)
-                                    : undefined
-                                }
-                                placeholder={at("searchPlaceholder")}
-                                type="search"
-                              />
-                              {searchValue.trim() !== "" && (
-                                <button
-                                  className="flex h-4 w-4 flex-shrink-0 items-center justify-center"
-                                  type="button"
-                                  onClick={() => onChangeSearchValue?.("")}
-                                >
-                                  <IoCloseOutline className="h-4 w-4 text-gray-900 transition-all duration-200 dark:text-white" />
-                                </button>
-                              )}
-                            </div>
-                          )}
-
-                          {options.length === 0 ? (
-                            <div className="w-full text-center">
-                              {noOptionsMessage ?? at("noOptionsMessage")}
-                            </div>
-                          ) : (
-                            <div className="flex-1 overflow-scroll">
-                              {options.map((option) => (
-                                <Listbox.Option
-                                  key={option.value}
-                                  value={option.value}
-                                  disabled={option.disabled}
-                                  className={twMerge(
-                                    "w-full px-3 py-2 text-left",
-                                    !option.disabled &&
-                                      "hover:bg-primary-500 hover:text-white",
-                                    option.disabled && "opacity-50",
-                                  )}
-                                >
-                                  {option.label}
-                                </Listbox.Option>
-                              ))}
-                            </div>
-                          )}
-                        </Listbox.Options>
-                      </div>
-                    </Transition>
-                  </div>
-                )}
-              </Listbox>
-            );
-          }}
-        />
-      </div>
+          return (
+            <Select
+              isClearable
+              value={optionValue}
+              onChange={onSelectChange}
+              options={options}
+              noOptionsMessage={() => t("noOptionsMessage")}
+              placeholder={placeholder ?? t("selectPlaceholder")}
+              unstyled
+              styles={{
+                input: (base) => ({
+                  ...base,
+                  "input:focus": {
+                    boxShadow: "none",
+                  },
+                }),
+              }}
+              classNames={classNames<BaseOption<T, D>, IsMulti>(hasError)}
+              {...selectProps}
+            />
+          );
+        }}
+      />
     </Field>
   );
 };

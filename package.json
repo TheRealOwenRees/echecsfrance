@@ -47,6 +47,7 @@
     "react-input-mask": "^2.0.4",
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
+    "react-select": "^5.7.4",
     "react-tooltip": "^5.18.0",
     "sharp": "^0.32.3",
     "superjson": "^1.13.1",
