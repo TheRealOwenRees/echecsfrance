@@ -112,7 +112,7 @@ export default function Elo() {
               <TextField
                 name="url"
                 label={t("resultsUrlLabel")}
-                placeholder={t("resultsUrlLabel")}
+                placeholder={t("resultsUrlPlaceholder")}
               />
               <button
                 disabled={form.formState.isSubmitting}
