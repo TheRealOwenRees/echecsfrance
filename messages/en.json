@@ -153,7 +153,7 @@
     "blackWin": "0 - 1",
     "initialRating": "Your initial Rating: {rating}",
     "finalRating": "Final Rating: {rating} (<delta></delta>)",
-    "noChangeInfo": "Note that {noChangeCount, plural, one {one of your games} other {# of your games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
+    "noChangeInfo": "Note that {noChangeCount, plural, one {one of the games} other {# of the games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
 
     "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
     "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
