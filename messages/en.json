@@ -123,14 +123,40 @@
   "Elo": {
     "title": "Elo Calculator",
     "info": "Use this calculator to give yourself an idea of your new Elo rating after a tournament.",
+
+    "useManualLabel": "or enter your results manually",
+
     "currentEloLabel": "Your current Elo",
     "currentEloPlaceholder": "Elo",
-    "kFactorLabel": "Your K-Factor",
+    "yourKFactorLabel": "Your K-Factor",
+    "kFactorLabel": "Coefficient",
     "kFactorPlaceholder": "K-Factor",
     "resultsTitle": "Results",
     "opponentEloPlaceholder": "Opponent Elo",
     "gameResultPlaceholder": "Result...",
     "gameResult": "{result, select, win {Win} draw {Draw} loss {Loss} other {{result}}}",
-    "addGameButton": "Add another game result"
+    "addGameButton": "Add another game result",
+
+    "resultsUrlLabel": "Paste a link to the FFE results page",
+    "resultsUrlPlaceholder": "https://echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/12345/12345&Action=Ga",
+    "fetchResultsButton": "Fetch",
+    "enterManualResultsButton": "Enter results manually",
+    "choosePlayerLabel": "Choose a player",
+    "choosePlayerPlaceholder": "Player",
+    "needRating": "This calculator requires an initial FIDE rating. The selected player has either an estimated rating or a National rating.",
+    "forfeit": "Forfeit",
+    "vs": " vs ",
+    "wonByForfeit": "Won by forfeit",
+    "lostByForfeit": "Lost by forfeit",
+    "draw": "½ - ½",
+    "whiteWin": "1 - 0",
+    "blackWin": "0 - 1",
+    "initialRating": "Your initial Rating: {rating}",
+    "finalRating": "Final Rating: {rating} (<delta></delta>)",
+    "noChangeInfo": "Note that {noChangeCount, plural, one {one of your games} other {# of your games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
+
+    "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
+    "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
   }
 }

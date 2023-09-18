@@ -125,9 +125,13 @@
 
   "Elo": {
     "title": "Calculette Elo",
-    "info": "Utilisez ce calculateur pour vous donner une idée de votre nouveau classement Elo après un tournoi.",
+    "info": "Utilisez ce calculateur pour estimer votre nouveau classement Elo après un tournoi.",
+
+    "useManualLabel": "ou saisissez vos résultats manuellement",
+
     "currentEloLabel": "Votre Elo actuel",
     "currentEloPlaceholder": "Elo",
+    "yourKFactorLabel": "Votre coefficient",
     "kFactorLabel": "Coefficient",
     "resultsTitle": "Résultats",
     "opponentEloPlaceholder": "Classement de l'adversaire",
@@ -135,8 +139,26 @@
     "gameResult": "{result, select, win {Victoire} draw {Match nul} loss {Défaite} other {{result}}}",
     "addGameButton": "Ajouter un autre résultat de partie",
 
-    "resultsUrlLabel": "Paste a link to the FFE results page",
+    "resultsUrlLabel": "Collez un lien vers la page de résultats de la FFE",
     "resultsUrlPlaceholder": "https://echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/12345/12345&Action=Ga",
-    "fetchResultsButton": "Fetch"
+    "fetchResultsButton": "Récupérer",
+    "enterManualResultsButton": "Saisir les résultats manuellement",
+    "choosePlayerLabel": "Choisissez un joueur",
+    "choosePlayerPlaceholder": "Joueur",
+    "needRating": "Ce calculateur nécessite un classement FIDE initial. Le joueur sélectionné a soit un classement estimé, soit un classement national.",
+    "forfeit": "Forfait",
+    "vs": " - ",
+    "wonByForfeit": "Gagné par forfait",
+    "lostByForfeit": "Perdu par forfait",
+    "draw": "½ - ½",
+    "whiteWin": "1 - 0",
+    "blackWin": "0 - 1",
+    "initialRating": "Votre classement initial : {rating}",
+    "finalRating": "Classement final : {rating} (<delta></delta>)",
+    "noChangeInfo": "Notez que {noChangeCount, plural, one {une de vos parties} other {# de vos parties}} n'a pas modifié l'Elo. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
+
+    "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste.",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
+    "ERR_NO_TOURNAMENT_ID": "L'identifiant du tournoi fourni est incorrect"
   }
 }

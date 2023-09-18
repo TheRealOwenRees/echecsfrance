@@ -1,99 +1,85 @@
 "use client";
 
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isEmpty } from "lodash";
 import { useTranslations } from "next-intl";
-import { FormProvider, useFieldArray, useForm } from "react-hook-form";
-import { IoAdd, IoCloseOutline } from "react-icons/io5";
-import { twMerge } from "tailwind-merge";
+import Link from "next/link";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Spinner } from "@/components/Spinner";
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
-import { getNewRating } from "@/utils/eloCalculator";
+import { fetchTournamentResultsSchema } from "@/schemas";
+import { trpc } from "@/utils/trpc";
 
-import { FetchResultsForm } from "./FetchResultsForm";
+import { ManualEloForm } from "./ManualEloForm";
+import { TournamentResults } from "./TournamentResults";
 
-const resultsSchema = z.object({
-  currentElo: z.number().int().positive(),
+const formSchema = fetchTournamentResultsSchema.extend({
+  player: z.string().optional(),
   kFactor: z.enum(["40", "30", "20", "15", "10"]),
-  games: z.array(
-    z.object({
-      opponentElo: z.number().int().positive(),
-      result: z.enum(["win", "draw", "loss"]),
-    }),
-  ),
 });
 
-type DeepPartial<T> = T extends object
-  ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
-  : T;
-
-type EloFormValues = DeepPartial<z.infer<typeof resultsSchema>>;
+type FetchResultsFormValues = z.infer<typeof formSchema>;
 
 export default function Elo() {
   const t = useTranslations("Elo");
+  type TranslationKey = Parameters<typeof t>[0];
 
-  const form = useForm<EloFormValues>({
-    resolver: zodResolver(resultsSchema),
+  const [formInput, setFormInput] = useState<FetchResultsFormValues>({
+    url: "",
+    kFactor: "20",
+  });
+
+  const hasUrl = !isEmpty(formInput?.url.trim());
+
+  const {
+    data: allResults,
+    isFetching,
+    error,
+  } = trpc.fetchTournamentResults.useQuery(
+    {
+      url: formInput?.url.trim(),
+    },
+    {
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+      cacheTime: 10 * 60 * 1000,
+      enabled: hasUrl,
+      retry: false,
+    },
+  );
+
+  const playerOptions = (allResults ?? []).map((player) => ({
+    value: player.id,
+    label: player.name,
+  }));
+
+  const form = useForm<FetchResultsFormValues>({
+    resolver: zodResolver(fetchTournamentResultsSchema),
     defaultValues: {
       kFactor: "20",
-      games: [{}],
     },
   });
 
-  const {
-    fields: gameFields,
-    append: appendGame,
-    remove: removeGame,
-  } = useFieldArray({
-    control: form.control,
-    name: "games",
-  });
+  const [player, kFactor] = form.watch(["player", "kFactor"]);
+  const playerResults = allResults?.find((p) => p.id === player);
 
-  const onSubmit = async (data: EloFormValues) => {};
-
-  const [currentElo, kFactor, games] = form.watch([
-    "currentElo",
-    "kFactor",
-    "games",
-  ]);
-
-  type Deltas = {
-    rating: number;
-    deltas: { rating: number; delta: number | undefined }[];
+  const onSubmit = async (input: FetchResultsFormValues) => {
+    setFormInput(input);
   };
 
-  const calculations = !Number.isNaN(currentElo)
-    ? (games ?? []).reduce<Deltas>(
-        (acc, game) => {
-          if (!Number.isNaN(game?.opponentElo) && game?.result) {
-            const result =
-              game?.result === "win" ? 1 : game?.result === "loss" ? 0 : 0.5;
+  const clearForm = () => {
+    form.setValue("url", "");
+    setFormInput({ ...formInput, url: "" });
+  };
 
-            const { delta } = getNewRating(
-              currentElo!,
-              game.opponentElo!,
-              result,
-              parseInt(kFactor!, 10),
-            );
-            return {
-              rating: acc.rating + delta,
-              deltas: [...acc.deltas, { rating: acc.rating + delta, delta }],
-            };
-          }
-
-          return {
-            rating: acc.rating,
-            deltas: [...acc.deltas, { rating: acc.rating, delta: undefined }],
-          };
-        },
-        { rating: currentElo!, deltas: [] },
-      )
-    : { rating: currentElo!, deltas: [] };
-
-  const deltas = calculations.deltas;
+  if (error) {
+    console.error(error);
+  }
 
   return (
     <section className="grid place-items-center bg-white pb-20 dark:bg-gray-800">
@@ -108,124 +94,101 @@ export default function Elo() {
           {t("info")}
         </p>
 
-        <div className="mb-10">
-          <FetchResultsForm />
-        </div>
+        {hasUrl && !isFetching && !error && (
+          <div className="mx-auto mb-8 flex justify-center">
+            <button
+              type="button"
+              onClick={clearForm}
+              className="rounded-lg border border-primary px-3 py-2 text-center text-sm text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+            >
+              {t("enterManualResultsButton")}
+            </button>
+          </div>
+        )}
 
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="flex items-end gap-4">
               <TextField
-                name="currentElo"
-                label={t("currentEloLabel")}
-                placeholder={t("currentEloPlaceholder")}
-                type="number"
-                required
+                name="url"
+                label={t("resultsUrlLabel")}
+                placeholder={t("resultsUrlLabel")}
               />
-
-              <SelectField
-                name="kFactor"
-                label={t("kFactorLabel")}
-                options={["40", "20", "10"].map((k) => ({
-                  value: k,
-                  label: k,
-                }))}
-                required
-              />
-            </div>
-
-            <h3 className="my-4 text-lg text-gray-900 dark:text-white">
-              {t("resultsTitle")}
-            </h3>
-
-            <div className="flex w-full flex-col gap-6 sm:gap-2">
-              {gameFields.map((game, i) => {
-                return (
-                  <div key={i} className="flex w-full flex-col">
-                    <div key={i} className="flex w-full items-center space-x-2">
-                      <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
-                        <TextField
-                          name={`games.${i}.opponentElo`}
-                          placeholder={t("opponentEloPlaceholder")}
-                          type="number"
-                          required
-                        />
-
-                        <div className="flex items-center space-x-2">
-                          <SelectField
-                            name={`games.${i}.result`}
-                            placeholder={t("gameResultPlaceholder")}
-                            options={["win", "draw", "loss"].map((result) => ({
-                              value: result,
-                              label: t("gameResult", { result }),
-                            }))}
-                            required
-                          />
-                          {gameFields.length > 1 && (
-                            <button
-                              className="hidden h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:flex"
-                              type="button"
-                              onClick={() => removeGame(i)}
-                            >
-                              <IoCloseOutline className="h-6 w-6 text-gray-900 transition-all duration-200 hover:text-primary dark:text-neutral-400 hover:dark:text-white" />
-                            </button>
-                          )}
-                        </div>
-                      </div>
-
-                      {gameFields.length > 1 && (
-                        <button
-                          className="flex h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:hidden"
-                          type="button"
-                          onClick={() => removeGame(i)}
-                        >
-                          <IoCloseOutline className="h-6 w-6 text-gray-900 transition-all duration-200 hover:text-primary dark:text-neutral-400 hover:dark:text-white" />
-                        </button>
-                      )}
-                    </div>
-
-                    {deltas[i]?.delta !== undefined && (
-                      <div
-                        className={twMerge(
-                          "mt-2 flex justify-end text-gray-900 dark:text-neutral-400",
-                          gameFields.length > 1 && "mr-10",
-                          i === deltas.length - 1 && "font-bold",
-                        )}
-                      >
-                        {Math.round(deltas[i]!.rating)} (
-                        <span
-                          className={twMerge(
-                            deltas[i].delta! > 0 && "text-success",
-                            deltas[i].delta! < 0 && "text-error",
-                          )}
-                        >
-                          {deltas[i]!.delta! >= 0 ? "+" : ""}
-                          {deltas[i].delta!}
-                        </span>
-                        )
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-8 flex justify-end">
               <button
-                onClick={() => {
-                  appendGame({});
-                }}
-                type="button"
-                className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+                disabled={form.formState.isSubmitting}
+                type="submit"
+                className="rounded-lg border border-transparent bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
               >
-                <IoAdd className="mr-2 inline-block h-5 w-5" />
-                {t("addGameButton")}
+                {t("fetchResultsButton")}
               </button>
             </div>
+
+            {isFetching && (
+              <div className="mt-8 flex justify-center">
+                <Spinner />
+              </div>
+            )}
+
+            {error && (
+              <div className="mt-8 text-center text-error">
+                {error.message.startsWith("ERR_")
+                  ? t(error.message as TranslationKey)
+                  : t.rich("unknownError", {
+                      contact: (chunks) => (
+                        <Link className="underline" href="/contactez-nous">
+                          {chunks}
+                        </Link>
+                      ),
+                    })}
+              </div>
+            )}
+
+            {!isFetching && playerOptions.length > 0 && (
+              <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+                <SelectField
+                  name="player"
+                  required
+                  label={t("choosePlayerLabel")}
+                  placeholder={t("choosePlayerPlaceholder")}
+                  options={playerOptions}
+                  isClearable={false}
+                />
+
+                <SelectField
+                  name="kFactor"
+                  label={t("kFactorLabel")}
+                  options={["40", "20", "10"].map((k) => ({
+                    value: k,
+                    label: k,
+                  }))}
+                  isClearable={false}
+                  required
+                />
+              </div>
+            )}
           </form>
         </FormProvider>
 
-        <div></div>
+        {hasUrl && !isFetching && player && playerResults && !error && (
+          <TournamentResults
+            playerId={player}
+            kFactor={parseInt(kFactor)}
+            results={allResults ?? []}
+          />
+        )}
+
+        {((!hasUrl && !isFetching) || !!error) && (
+          <>
+            <div className="relative my-8">
+              <div className="absolute top-1/2 z-10 h-[1px] w-full bg-gray-500 dark:bg-gray-400" />
+              <div className="relative z-20 mx-auto w-fit bg-white px-2 py-1 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                {t("useManualLabel")}
+              </div>
+            </div>
+
+            <ManualEloForm />
+          </>
+        )}
       </div>
     </section>
   );
