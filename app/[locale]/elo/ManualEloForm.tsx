@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { last } from "lodash";
 import { useTranslations } from "next-intl";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { IoAdd, IoCloseOutline } from "react-icons/io5";
@@ -92,6 +93,10 @@ export const ManualEloForm = () => {
     : { rating: currentElo!, deltas: [] };
 
   const deltas = calculations.deltas;
+  const hasDeltas = deltas.some((d) => d.delta !== undefined);
+  const totalDelta = Math.round(
+    deltas.reduce((acc, delta) => acc + (delta.delta ?? 0), 0),
+  );
 
   return (
     <FormProvider {...form}>
@@ -176,7 +181,6 @@ export const ManualEloForm = () => {
                       i === deltas.length - 1 && "font-bold",
                     )}
                   >
-                    {Math.round(deltas[i]!.rating)} (
                     <span
                       className={twMerge(
                         deltas[i].delta! > 0 && "text-success",
@@ -186,13 +190,31 @@ export const ManualEloForm = () => {
                       {deltas[i]!.delta! >= 0 ? "+" : ""}
                       {deltas[i].delta!}
                     </span>
-                    )
                   </div>
                 )}
               </div>
             );
           })}
         </div>
+
+        {hasDeltas && (
+          <div className="mt-8 text-right text-lg font-bold text-gray-900 dark:text-neutral-400">
+            {t.rich("finalRating", {
+              rating: Math.round(last(deltas)!.rating),
+              delta: () => (
+                <span
+                  className={twMerge(
+                    totalDelta! > 0 && "text-success",
+                    totalDelta! < 0 && "text-error",
+                  )}
+                >
+                  {totalDelta >= 0 ? "+" : ""}
+                  {totalDelta}
+                </span>
+              ),
+            })}
+          </div>
+        )}
 
         <div className="mt-8 flex justify-end">
           <button
