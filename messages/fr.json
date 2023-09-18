@@ -155,7 +155,7 @@
     "blackWin": "0 - 1",
     "initialRating": "Votre classement initial : {rating}",
     "finalRating": "Classement final : {rating} (<delta></delta>)",
-    "noChangeInfo": "Notez que {noChangeCount, plural, one {une de vos parties} other {# de vos parties}} n'a pas modifié l'Elo. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
+    "noChangeInfo": "Notez que {noChangeCount, plural, one {une de ces parties n'a pas modifié l'Elo.} other {# de ces parties n'ont pas modifié l'Elo.}}. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
 
     "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste.",
     "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
