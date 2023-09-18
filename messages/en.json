@@ -138,7 +138,7 @@
     "addGameButton": "Add another game result",
 
     "resultsUrlLabel": "Paste a link to the FFE results page",
-    "resultsUrlPlaceholder": "https://echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/12345/12345&Action=Ga",
+    "resultsUrlPlaceholder": "http://echecs.asso.fr/FicheTournoi.aspx?Ref=...",
     "fetchResultsButton": "Fetch",
     "enterManualResultsButton": "Enter results manually",
     "choosePlayerLabel": "Choose a player",
