@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { isEmpty } from "lodash";
+import { isEmpty, sortBy } from "lodash";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { FormProvider, useForm } from "react-hook-form";
@@ -54,10 +54,13 @@ export default function Elo() {
     },
   );
 
-  const playerOptions = (allResults ?? []).map((player) => ({
-    value: player.id,
-    label: player.name,
-  }));
+  const playerOptions = sortBy(
+    (allResults ?? []).map((player) => ({
+      value: player.id,
+      label: player.name,
+    })),
+    "label",
+  );
 
   const form = useForm<FetchResultsFormValues>({
     resolver: zodResolver(fetchTournamentResultsSchema),
