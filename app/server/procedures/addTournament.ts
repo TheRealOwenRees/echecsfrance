@@ -38,8 +38,8 @@ export const addTournament = publicProcedure
       if (result.insertedId) {
         const { tournament, country, date, time_control } = tournamentData;
 
-        if (typeof process.env.DISCORD_WEBHOOK_URL === "string") {
-          await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
+        if (typeof process.env.DISCORD_WEBHOOK_ADD_TOURNAMENT_URL === "string") {
+          await fetch(process.env.DISCORD_WEBHOOK_ADD_TOURNAMENT_URL as string, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

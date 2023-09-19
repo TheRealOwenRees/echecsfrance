@@ -77,8 +77,8 @@ const getResultDetails = (
 };
 
 const reportFetchError = async (url: string, error: any) => {
-  if (typeof process.env.DISCORD_WEBHOOK_URL === "string") {
-    await fetch(process.env.DISCORD_WEBHOOK_URL as string, {
+  if (typeof process.env.DISCORD_WEBHOOK_ERROR_LOGS_URL === "string") {
+    await fetch(process.env.DISCORD_WEBHOOK_ERROR_LOGS_URL as string, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
