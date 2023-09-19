@@ -12,6 +12,8 @@ import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
 import { getNewRating } from "@/utils/eloCalculator";
 
+import { KFactor } from "./KFactor";
+
 const resultsSchema = z.object({
   currentElo: z.number().int().positive(),
   kFactor: z.enum(["40", "30", "20", "15", "10"]),
@@ -121,6 +123,8 @@ export const ManualEloForm = () => {
             required
           />
         </div>
+
+        <KFactor className="mt-2" />
 
         <h3 className="my-4 text-lg text-gray-900 dark:text-white">
           {t("resultsTitle")}
