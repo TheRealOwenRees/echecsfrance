@@ -15,6 +15,7 @@ import { TextField } from "@/components/form/TextField";
 import { fetchTournamentResultsSchema } from "@/schemas";
 import { trpc } from "@/utils/trpc";
 
+import { KFactor } from "./KFactor";
 import { ManualEloForm } from "./ManualEloForm";
 import { TournamentResults } from "./TournamentResults";
 
@@ -112,7 +113,7 @@ export default function Elo() {
               <TextField
                 name="url"
                 label={t("resultsUrlLabel")}
-                placeholder={t("resultsUrlPlaceholder")}
+                placeholder={t("resultsUrlLabel")}
               />
               <button
                 disabled={form.formState.isSubmitting}
@@ -144,26 +145,30 @@ export default function Elo() {
             )}
 
             {!isFetching && playerOptions.length > 0 && (
-              <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
-                <SelectField
-                  name="player"
-                  required
-                  label={t("choosePlayerLabel")}
-                  placeholder={t("choosePlayerPlaceholder")}
-                  options={playerOptions}
-                  isClearable={false}
-                />
+              <div>
+                <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+                  <SelectField
+                    name="player"
+                    required
+                    label={t("choosePlayerLabel")}
+                    placeholder={t("choosePlayerPlaceholder")}
+                    options={playerOptions}
+                    isClearable={false}
+                  />
 
-                <SelectField
-                  name="kFactor"
-                  label={t("kFactorLabel")}
-                  options={["40", "20", "10"].map((k) => ({
-                    value: k,
-                    label: k,
-                  }))}
-                  isClearable={false}
-                  required
-                />
+                  <SelectField
+                    name="kFactor"
+                    label={t("kFactorLabel")}
+                    options={["40", "20", "10"].map((k) => ({
+                      value: k,
+                      label: k,
+                    }))}
+                    isClearable={false}
+                    required
+                  />
+                </div>
+
+                <KFactor className="mt-2" />
               </div>
             )}
           </form>

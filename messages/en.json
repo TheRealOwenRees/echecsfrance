@@ -155,6 +155,15 @@
     "finalRating": "Final Rating: {rating} (<delta></delta>)",
     "noChangeInfo": "Note that {noChangeCount, plural, one {one of the games} other {# of the games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
 
+    "kFactorTitle": "What is the K-Factor?",
+    "kFactorInfo1": "The purpose of the K-factor is to determine how much a player's chess rating should change after each game. It is based on the number of rated games a player has completed. This system helps ensure that players' ratings accurately reflect their skill levels while accommodating both new and experienced players.",
+    "kFactorInfo2": "Under FIDE, the K-factor is:",
+    "kFactorInfo3": "40 for a player new to the rating list until he has completed events with at least 30 games.",
+    "kFactorInfo4": "20 as long as a player's rating remains under 2400.",
+    "kFactorInfo5": "10 once a player's published rating has reached 2400 and remains at that level subsequently, even if the rating drops below 2400.",
+    "kFactorInfo6": "40 for all players until their 18th birthday, as long as their rating remains under 2300.",
+    "kFactorInfo7": "20 for RAPID and BLITZ ratings for all players.",
+
     "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
     "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
     "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
