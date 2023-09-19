@@ -153,7 +153,7 @@
     "draw": "½ - ½",
     "whiteWin": "1 - 0",
     "blackWin": "0 - 1",
-    "initialRating": "Votre classement initial : {rating}",
+    "initialRating": "Classement initial : {rating}",
     "finalRating": "Classement final : {rating} (<delta></delta>)",
     "noChangeInfo": "Notez que {noChangeCount, plural, one {une de ces parties n'a pas modifié l'Elo.} other {# de ces parties n'ont pas modifié l'Elo.}}. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
 

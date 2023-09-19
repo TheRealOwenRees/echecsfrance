@@ -151,7 +151,7 @@
     "draw": "½ - ½",
     "whiteWin": "1 - 0",
     "blackWin": "0 - 1",
-    "initialRating": "Your initial Rating: {rating}",
+    "initialRating": "Initial Rating: {rating}",
     "finalRating": "Final Rating: {rating} (<delta></delta>)",
     "noChangeInfo": "Note that {noChangeCount, plural, one {one of the games} other {# of the games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
 
