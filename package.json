@@ -65,7 +65,7 @@
     "@types/nodemailer": "^6.4.8",
     "@types/react-datepicker": "^4.15.0",
     "@types/react-input-mask": "^3.0.2",
-    "eslint": "8.48.0",
+    "eslint": "8.49.0",
     "eslint-config-next": "^13.4.12",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
