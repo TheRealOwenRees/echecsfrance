@@ -23,7 +23,7 @@
     "@trpc/react-query": "^10.38.1",
     "@trpc/server": "^10.38.1",
     "@types/node": "20.6.3",
-    "@types/react": "18.2.21",
+    "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "date-fns": "^2.30.0",
