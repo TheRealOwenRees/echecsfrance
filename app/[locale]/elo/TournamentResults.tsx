@@ -146,7 +146,10 @@ export const TournamentResults = ({
             result = t("lostByForfeit");
           } else if (delta.result === 0.5) {
             result = t("draw");
-          } else if (playedWhite && delta.result === 1) {
+          } else if (
+            (playedWhite && delta.result === 1) ||
+            (!playedWhite && delta.result === 0)
+          ) {
             result = t("whiteWin");
           } else result = t("blackWin");
 
