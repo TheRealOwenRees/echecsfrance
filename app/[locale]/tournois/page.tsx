@@ -99,6 +99,7 @@ const getTournaments = async () => {
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
         norm: t.norm_tournament,
         pending: t.pending,
+        status: t.status,
       };
     });
   } catch (error) {
