@@ -39,7 +39,7 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
 
   return tournaments.filter(
     (tournament) =>
-      !tournament.pending &&
+      !tournament.pending && tournament.status === 'scheduled' &&
       ((tournament.timeControl === TimeControl.Classic && classic) ||
         (tournament.timeControl === TimeControl.Rapid && rapid) ||
         (tournament.timeControl === TimeControl.Blitz && blitz) ||

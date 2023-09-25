@@ -1,7 +1,7 @@
-import { Dispatch, MutableRefObject, SetStateAction } from "react";
-
 import { LatLngLiteral } from "leaflet";
 import { ObjectId } from "mongodb";
+
+type Status = "scheduled" | "ongoing" | "finished";
 
 export type TournamentData = {
   _id: ObjectId;
@@ -16,6 +16,7 @@ export type TournamentData = {
   coordinates: [number, number];
   entry_method: "manual" | "auto";
   pending: boolean;
+  status: Status
 };
 
 export enum TimeControl {
@@ -37,6 +38,7 @@ export type Tournament = {
   latLng: LatLngLiteral;
   norm: boolean;
   pending: boolean;
+  status: Status;
 };
 
 export type ResponseMessage = {
