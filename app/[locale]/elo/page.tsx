@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isEmpty, sortBy } from "lodash";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -19,9 +20,11 @@ import { KFactor } from "./KFactor";
 import { ManualEloForm } from "./ManualEloForm";
 import { TournamentResults } from "./TournamentResults";
 
+const kFactors = ["40", "20", "10"];
+
 const formSchema = fetchTournamentResultsSchema.extend({
   player: z.string().optional(),
-  kFactor: z.enum(["40", "30", "20", "15", "10"]),
+  kFactor: z.string(),
 });
 
 type FetchResultsFormValues = z.infer<typeof formSchema>;
@@ -30,12 +33,19 @@ export default function Elo() {
   const t = useTranslations("Elo");
   type TranslationKey = Parameters<typeof t>[0];
 
-  const [formInput, setFormInput] = useState<FetchResultsFormValues>({
-    url: "",
-    kFactor: "20",
-  });
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const current = new URLSearchParams(Array.from(searchParams.entries()));
 
-  const hasUrl = !isEmpty(formInput?.url.trim());
+  const url = searchParams.get("url") ?? "";
+  const kFactorParam = searchParams.get("k");
+  const player = searchParams.get("player") ?? "";
+
+  const kFactor =
+    kFactorParam && kFactors.includes(kFactorParam) ? kFactorParam : "20";
+
+  const hasUrl = !isEmpty(url.trim());
 
   const {
     data: allResults,
@@ -43,7 +53,7 @@ export default function Elo() {
     error,
   } = trpc.fetchTournamentResults.useQuery(
     {
-      url: formInput?.url.trim(),
+      url: url?.trim(),
     },
     {
       refetchOnWindowFocus: false,
@@ -65,25 +75,85 @@ export default function Elo() {
   const form = useForm<FetchResultsFormValues>({
     resolver: zodResolver(fetchTournamentResultsSchema),
     defaultValues: {
-      kFactor: "20",
+      url: url ?? "",
+      kFactor: kFactor ?? "20",
+      player: player ?? "",
     },
   });
 
-  const [player, kFactor] = form.watch(["player", "kFactor"]);
-  const playerResults = allResults?.find((p) => p.id === player);
-
   const onSubmit = async (input: FetchResultsFormValues) => {
-    setFormInput(input);
+    current.set("url", input.url);
+    if (input.kFactor) current.set("k", input.kFactor);
+
+    const search = current.toString();
+    const query = search ? `?${search}` : "";
+
+    // Push the new URL
+    router.push(`${pathname}${query}`);
   };
 
   const clearForm = () => {
+    current.delete("url");
+    current.delete("k");
+    current.delete("player");
+
     form.setValue("url", "");
-    setFormInput({ ...formInput, url: "" });
+    form.setValue("kFactor", "20");
+    form.setValue("player", "");
+
+    const search = current.toString();
+    const query = search ? `?${search}` : "";
+
+    router.push(`${pathname}${query}`);
   };
+
+  useEffect(() => {
+    // We subscribe to form changes and update the URL parameters
+    const subscription = form.watch((value, { name, type }) => {
+      let update = false;
+      if (type === "change") {
+        if (name === "player" && value.player !== player && value.player) {
+          current.set("player", value.player);
+          update = true;
+        } else if (
+          name === "kFactor" &&
+          value.kFactor !== kFactor &&
+          value.kFactor
+        ) {
+          current.set("k", value.kFactor);
+          update = true;
+        }
+
+        if (update) {
+          const search = current.toString();
+          const query = search ? `?${search}` : "";
+          router.replace(`${pathname}${query}`);
+        }
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [form.watch, kFactor, player]);
+
+  useEffect(() => {
+    // When the URL changes, we update the form values
+    if (url !== form.getValues("url")) {
+      form.setValue("url", url);
+    }
+
+    if (player !== form.getValues("player")) {
+      form.setValue("player", player);
+    }
+
+    if (kFactor !== form.getValues("kFactor")) {
+      form.setValue("kFactor", form.getValues("kFactor"));
+    }
+  }, [searchParams, form]);
 
   if (error) {
     console.error(error);
   }
+
+  const playerResults = allResults?.find((p) => p.id === player);
 
   return (
     <section className="grid place-items-center bg-white pb-20 dark:bg-gray-800">

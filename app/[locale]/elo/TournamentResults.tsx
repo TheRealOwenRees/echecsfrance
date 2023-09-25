@@ -111,80 +111,84 @@ export const TournamentResults = ({
       </div>
 
       <table className="mt-8 w-full">
-        {deltas.map((delta, i) => {
-          const { estimated, national, lostByForfeit, wonByForfeit } = delta;
-          const opponentElo = delta.opponentElo
-            ? ` (${delta.opponentElo} ${
-                estimated ? "E" : national ? "N" : "F"
-              })`
-            : "";
+        <tbody>
+          {deltas.map((delta, i) => {
+            const { estimated, national, lostByForfeit, wonByForfeit } = delta;
+            const opponentElo = delta.opponentElo
+              ? ` (${delta.opponentElo} ${
+                  estimated ? "E" : national ? "N" : "F"
+                })`
+              : "";
 
-          const opponentName = delta.opponentName ? (
-            <span>
-              <span className="whitespace-nowrap font-bold">
-                {delta.opponentName}
+            const opponentName = delta.opponentName ? (
+              <span>
+                <span className="whitespace-nowrap font-bold">
+                  {delta.opponentName}
+                </span>
+                {opponentElo}
               </span>
-              {opponentElo}
-            </span>
-          ) : (
-            "-"
-          );
+            ) : (
+              "-"
+            );
 
-          const playedWhite = delta.colour === "white";
+            const playedWhite = delta.colour === "white";
 
-          const whitePlayer = playedWhite ? playerResults.name : opponentName;
-          const blackPlayer = !playedWhite ? playerResults.name : opponentName;
-          const noChange =
-            wonByForfeit || lostByForfeit || estimated || national;
+            const whitePlayer = playedWhite ? playerResults.name : opponentName;
+            const blackPlayer = !playedWhite
+              ? playerResults.name
+              : opponentName;
+            const noChange =
+              wonByForfeit || lostByForfeit || estimated || national;
 
-          const forfeit = delta.opponentName === null;
+            const forfeit = delta.opponentName === null;
 
-          let result = "";
-          if (wonByForfeit) {
-            result = t("wonByForfeit");
-          } else if (lostByForfeit) {
-            result = t("lostByForfeit");
-          } else if (delta.result === 0.5) {
-            result = t("draw");
-          } else if (
-            (playedWhite && delta.result === 1) ||
-            (!playedWhite && delta.result === 0)
-          ) {
-            result = t("whiteWin");
-          } else result = t("blackWin");
+            let result = "";
+            if (wonByForfeit) {
+              result = t("wonByForfeit");
+            } else if (lostByForfeit) {
+              result = t("lostByForfeit");
+            } else if (delta.result === 0.5) {
+              result = t("draw");
+            } else if (
+              (playedWhite && delta.result === 1) ||
+              (!playedWhite && delta.result === 0)
+            ) {
+              result = t("whiteWin");
+            } else result = t("blackWin");
 
-          return (
-            <tr className="text-gray-900 dark:text-neutral-400">
-              {forfeit ? (
-                <td className="pb-2">{t("forfeit")}</td>
-              ) : (
-                <td className="pb-2">
-                  {whitePlayer}
-                  {t("vs")}
-                  {blackPlayer}
-                </td>
-              )}
-              <td className="whitespace-nowrap px-2 pb-2 text-center">
-                {!forfeit && result}
-              </td>
-              <td className="pb-2 text-right">
-                {noChange ? (
-                  "-"
+            return (
+              <tr key={i} className="text-gray-900 dark:text-neutral-400">
+                {forfeit ? (
+                  <td className="pb-2">{t("forfeit")}</td>
                 ) : (
-                  <span
-                    className={twMerge(
-                      deltas[i].delta! > 0 && "text-success",
-                      deltas[i].delta! < 0 && "text-error",
-                    )}
-                  >
-                    {deltas[i]!.delta! >= 0 ? "+" : ""}
-                    {deltas[i].delta!}
-                  </span>
+                  <td className="pb-2">
+                    {whitePlayer}
+                    {t("vs")}
+                    {blackPlayer}
+                  </td>
                 )}
-              </td>
-            </tr>
-          );
-        })}
+                <td className="whitespace-nowrap px-2 pb-2 text-center">
+                  {!forfeit && result}
+                </td>
+                <td className="pb-2 text-right">
+                  {noChange ? (
+                    "-"
+                  ) : (
+                    <span
+                      className={twMerge(
+                        deltas[i].delta! > 0 && "text-success",
+                        deltas[i].delta! < 0 && "text-error",
+                      )}
+                    >
+                      {deltas[i]!.delta! >= 0 ? "+" : ""}
+                      {deltas[i].delta!}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
 
       {noChangeCount > 0 && (

@@ -114,7 +114,6 @@ export const fetchTournamentResults = publicProcedure
 
       const tournamentId =
         input.url.match(/Ref=(\d+)/)?.[1] ?? input.url.match(/Id\/(\d+)/)?.[1];
-
       if (!tournamentId) {
         throw new Error("ERR_NO_TOURNAMENT_ID");
       }
