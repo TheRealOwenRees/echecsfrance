@@ -31,6 +31,7 @@ export const addTournament = publicProcedure
         coordinates: tournament.coordinates as [number, number],
         entry_method: "manual",
         pending: true,
+        status: 'scheduled'
       };
 
       const result = await db.insertOne(tournamentData);

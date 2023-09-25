@@ -1,7 +1,7 @@
 import { LatLngLiteral } from "leaflet";
 import { ObjectId } from "mongodb";
 
-type Status = "scheduled" | "ongoing" | "finished";
+export type Status = "scheduled" | "ongoing" | "finished";
 
 export type TournamentData = {
   _id: ObjectId;
