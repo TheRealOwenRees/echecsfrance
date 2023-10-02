@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { NextIntlClientProvider, useLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { Inter, Julius_Sans_One } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -51,6 +51,12 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${inter.variable} ${title.variable}`}>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+      </head>
       <body>
         <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>

@@ -8,6 +8,7 @@ import { IoAdd, IoCloseOutline } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
+import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
 import { getNewRating } from "@/utils/eloCalculator";
@@ -103,7 +104,7 @@ export const ManualEloForm = () => {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           <TextField
             name="currentElo"
             label={t("currentEloLabel")}
@@ -135,7 +136,7 @@ export const ManualEloForm = () => {
             return (
               <div key={i} className="flex w-full flex-col">
                 <div key={i} className="flex w-full items-center space-x-2">
-                  <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+                  <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
                     <TextField
                       name={`games.${i}.opponentElo`}
                       placeholder={t("opponentEloPlaceholder")}
@@ -144,14 +145,12 @@ export const ManualEloForm = () => {
                     />
 
                     <div className="flex items-center space-x-2">
-                      <SelectField
+                      <RadioGroupField
                         name={`games.${i}.result`}
-                        placeholder={t("gameResultPlaceholder")}
                         options={["win", "draw", "loss"].map((result) => ({
                           value: result,
                           label: t("gameResult", { result }),
                         }))}
-                        isClearable={false}
                         required
                       />
                       {gameFields.length > 1 && (
