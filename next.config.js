@@ -7,5 +7,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const withNextIntl = require("next-intl/plugin")("./i18n.ts");
 
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
+
 module.exports = nextConfig;
-module.exports = withBundleAnalyzer(withNextIntl({}));
+module.exports = withBundleAnalyzer(withNextIntl(withPWA({})));
