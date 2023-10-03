@@ -54,8 +54,16 @@ export default async function RootLayout({
       <head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
+          content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
+
+        <meta name="application-name" content="Echecs France" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Echecs France" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#00A1F0" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body>
         <Providers>
