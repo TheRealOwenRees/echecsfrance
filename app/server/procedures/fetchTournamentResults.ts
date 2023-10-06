@@ -118,8 +118,18 @@ export const fetchTournamentResults = publicProcedure
         throw new Error("ERR_NO_TOURNAMENT_ID");
       }
 
+      const headers = new Headers()
+      const apiKey = process.env.RESULTS_API_KEY
+
+      if (apiKey) {
+          headers.append('api-key', apiKey)
+      }
+
       const rawResults = await fetch(
         `${process.env.RESULTS_SCRAPER_URL}${tournamentId}`,
+          {
+            headers: headers
+          }
       );
 
       const results = await rawResults.json();
