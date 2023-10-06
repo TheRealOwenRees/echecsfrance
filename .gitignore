@@ -8,8 +8,8 @@
 .pnp.js
 
 # pwa
-sw.js
-workbox*.js
+sw.*
+workbox*.*
 
 # testing
 /coverage
