@@ -7,6 +7,10 @@
 /.pnp
 .pnp.js
 
+# pwa
+sw.js
+workbox*.js
+
 # testing
 /coverage
 /cypress/videos
