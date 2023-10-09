@@ -38,4 +38,5 @@ and is deployed on [Vercel](https://vercel.com/)
 ## Contributions
 
 Contributions are encouraged. Please open an issue to discuss your ideas.
-Add your code into a feature branch such as `feature/feature-name`. We use the [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy.
+
+We use the [GitHub Flow](https://www.gitkraken.com/learn/git/best-practices/git-branch-strategy#github-flow-considerations) branching strategy. Add your code into a feature branch such as `feature/feature-name`. 
