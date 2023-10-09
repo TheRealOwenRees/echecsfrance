@@ -15,8 +15,7 @@ const ScrollToTopButton = () => {
   // determine scrollable element based on screen size - window or div
   useEffect(() => {
     isLgScreen
-      ? (scrollToTopElementRef.current =
-          document.getElementById("tournament-table"))
+      ? (scrollToTopElementRef.current = document.getElementById("listing"))
       : (scrollToTopElementRef.current = window);
   }, [isLgScreen]);
 

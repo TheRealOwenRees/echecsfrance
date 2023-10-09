@@ -1,20 +1,23 @@
 import { atom } from "jotai";
 import { LatLngBounds, LatLngLiteral } from "leaflet";
 
-import { TimeControl, Tournament } from "@/types";
+import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
 
-export const tournamentsAtom = atom<Tournament[]>([]);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
 export const syncVisibleAtom = atom(true);
+export const searchStringAtom = atom("");
+
+export const tournamentsAtom = atom<Tournament[]>([]);
 export const normsOnlyAtom = atom(false);
 
-export const searchStringAtom = atom("");
 export const classicAtom = atom(true);
 export const rapidAtom = atom(true);
 export const blitzAtom = atom(true);
 export const otherAtom = atom(true);
+
+export const clubsAtom = atom<Club[]>([]);
 
 export const franceCenterAtom = atom<LatLngLiteral>({
   lat: 47.0844,
@@ -22,11 +25,11 @@ export const franceCenterAtom = atom<LatLngLiteral>({
 });
 
 export const {
-  currentValueAtom: hoveredMapTournamentGroupIdAtom,
-  debouncedValueAtom: debouncedHoveredMapTournamentGroupIdAtom,
+  currentValueAtom: hoveredMapIdAtom,
+  debouncedValueAtom: debouncedHoveredMapIdAtom,
 } = atomWithDebounce<string | null>(null);
 
-export const { debouncedValueAtom: debouncedHoveredListTournamentIdAtom } =
+export const { debouncedValueAtom: debouncedHoveredListIdAtom } =
   atomWithDebounce<string | null>(null, 1000, 100);
 
 export const filteredTournamentsByTimeControlAtom = atom((get) => {
@@ -39,7 +42,8 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
 
   return tournaments.filter(
     (tournament) =>
-      !tournament.pending && tournament.status === 'scheduled' &&
+      !tournament.pending &&
+      tournament.status === "scheduled" &&
       ((tournament.timeControl === TimeControl.Classic && classic) ||
         (tournament.timeControl === TimeControl.Rapid && rapid) ||
         (tournament.timeControl === TimeControl.Blitz && blitz) ||
