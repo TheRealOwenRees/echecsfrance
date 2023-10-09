@@ -23,6 +23,18 @@ et est déployé sur [Vercel](https://vercel.com/)
 - [Leaflet](https://leafletjs.com/) - une librairie Javascript pour les cartes interactives
 - [Nodemailer](https://nodemailer.com/about/) - un module pour les applications Node.js pour permettre l'envoi d'emails en toute simplicité.
 
+## Plugins VSCode requis
+
+- ESLint
+- Prettier - Formateur de code
+
+## Plugins VSCode recommandés
+
+- Tailwind CSS IntelliSense
+- Tailwind Docs
+- Code Spell Checker (pour éviter les fautes d'orthographe dans le code)
+- Console Ninja (pour faciliter le débogage)
+
 ## Contributions
 
 Les contributions sont encouragées. Veuillez ouvrir une nouvelle 'issue' sur GitHub pour discuter de vos idées.
