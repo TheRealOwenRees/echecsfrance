@@ -70,6 +70,16 @@ const HamburgerMenu = ({
             {t("tournaments")}
           </Link>
         </li>
+
+        <li className="py-5 text-center text-xl">
+          <Link
+            href="/clubs"
+            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
+          >
+            {t("clubs")}
+          </Link>
+        </li>
+
         <li className="py-5 text-center text-xl">
           <Link
             href="/elo"

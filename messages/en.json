@@ -19,6 +19,7 @@
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournaments",
+    "clubs": "Clubs",
     "elo": "Elo Calculator"
   },
 
@@ -48,11 +49,25 @@
     "noneFound": "No tournaments found",
     "date": "Date",
     "town": "Town",
+    "ffe": "FFE",
     "tournament": "Tournament",
     "timeControl": "Time Control",
     "approx": "Geo-location is approximative",
     "norm": "Norm Tournament",
     "clearButton": "Clear"
+  },
+
+  "Clubs": {
+    "loading": "Loading...",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search",
+    "syncWithMapCheckbox": "Clubs visible on the map",
+    "noneFound": "No clubs found",
+    "name": "Name",
+    "ffe": "FFE",
+    "contact": "Contact info",
+    "approx": "Geo-location is approximative",
+    "clearButton": "Effacer"
   },
 
   "About": {

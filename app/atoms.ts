@@ -79,3 +79,25 @@ export const filteredTournamentsListAtom = atom((get) => {
     mapBounds.contains(tournament.latLng),
   );
 });
+
+export const filteredClubsListAtom = atom((get) => {
+  const clubs = get(clubsAtom);
+  const mapBounds = get(mapBoundsAtom);
+  const syncVisible = get(syncVisibleAtom);
+  const searchString = get(searchStringAtom).trim();
+
+  // When searching, we search all the tournament, regardless of the map display
+  if (searchString !== "") {
+    return clubs.filter(
+      (club) =>
+        normalizedContains(club.name, searchString) ||
+        (club.address && normalizedContains(club.address, searchString)),
+    );
+  }
+
+  // If we not syncing to the map, return all clubs
+  if (mapBounds === null || !syncVisible) return clubs;
+
+  // Filter by those in the current map bounds
+  return clubs.filter((club) => mapBounds.contains(club.latLng));
+});

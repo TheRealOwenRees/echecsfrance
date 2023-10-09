@@ -16,7 +16,17 @@ export type TournamentData = {
   coordinates: [number, number];
   entry_method: "manual" | "auto";
   pending: boolean;
-  status: Status
+  status: Status;
+};
+
+export type ClubData = {
+  _id: ObjectId;
+  name: string;
+  url?: string;
+  address?: string;
+  email?: string;
+  website?: string;
+  coordinates: [number, number];
 };
 
 export enum TimeControl {
@@ -39,6 +49,16 @@ export type Tournament = {
   norm: boolean;
   pending: boolean;
   status: Status;
+};
+
+export type Club = {
+  id: string;
+  name: string;
+  url?: string;
+  address?: string;
+  email?: string;
+  website?: string;
+  latLng: LatLngLiteral;
 };
 
 export type ResponseMessage = {

@@ -19,6 +19,7 @@
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournois",
+    "clubs": "Clubs",
     "elo": "Calculette Elo"
   },
 
@@ -48,10 +49,24 @@
     "noneFound": "Pas de tournois trouvé",
     "date": "Date",
     "town": "Ville",
+    "ffe": "FFE",
     "tournament": "Tournois",
     "timeControl": "Cadence",
     "approx": "Géolocalisation approximative",
     "norm": "Tournoi à norme",
+    "clearButton": "Effacer"
+  },
+
+  "Clubs": {
+    "loading": "Téléchargement...",
+    "searchLabel": "Rechercher",
+    "searchPlaceholder": "Rechercher",
+    "syncWithMapCheckbox": "Clubs visibles sur la carte",
+    "noneFound": "Pas de club trouvé",
+    "name": "Name",
+    "ffe": "FFE",
+    "contact": "Contact",
+    "approx": "Géolocalisation approximative",
     "clearButton": "Effacer"
   },
 
