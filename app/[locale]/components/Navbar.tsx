@@ -8,6 +8,7 @@ export default function Navbar() {
 
   const links = [
     { title: t("tournaments"), route: "/tournois" },
+    { title: t("clubs"), route: "/clubs" },
     { title: t("elo"), route: "/elo" },
   ];
 
