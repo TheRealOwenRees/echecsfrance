@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 import bgImage from "@/public/images/map-bg.jpg";
+import { Link } from "@/utils/navigation";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -25,14 +25,14 @@ export default function Home() {
         <h3 className="mb-5 p-5 text-xl">
           {t.rich("how", {
             link: (chunks) => (
-              <Link href="http://www.echecs.asso.fr/" target="_blank">
+              <a href="http://www.echecs.asso.fr/" target="_blank">
                 <abbr title="Fédération Française des Échecs">{chunks}</abbr>
-              </Link>
+              </a>
             ),
           })}
         </h3>
         <Link
-          href="/tournois"
+          href="/tournaments"
           className="mb-2 rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800"
         >
           {t("mapLink")}

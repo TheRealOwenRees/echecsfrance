@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isEmpty, sortBy } from "lodash";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -14,6 +13,7 @@ import { Spinner } from "@/components/Spinner";
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
 import { fetchTournamentResultsSchema } from "@/schemas";
+import { Link } from "@/utils/navigation";
 import { trpc } from "@/utils/trpc";
 
 import { KFactor } from "./KFactor";
@@ -36,7 +36,10 @@ export default function Elo() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const current = new URLSearchParams(Array.from(searchParams.entries()));
+  const current = useMemo(
+    () => new URLSearchParams(Array.from(searchParams.entries())),
+    [searchParams],
+  );
 
   const url = searchParams.get("url") ?? "";
   const kFactorParam = searchParams.get("k");
@@ -132,7 +135,7 @@ export default function Elo() {
       }
     });
     return () => subscription.unsubscribe();
-  }, [form.watch, kFactor, player]);
+  }, [current, form, form.watch, kFactor, pathname, player, router]);
 
   useEffect(() => {
     // When the URL changes, we update the form values
@@ -147,7 +150,7 @@ export default function Elo() {
     if (kFactor !== form.getValues("kFactor")) {
       form.setValue("kFactor", form.getValues("kFactor"));
     }
-  }, [searchParams, form]);
+  }, [searchParams, form, url, player, kFactor]);
 
   if (error) {
     console.error(error);
@@ -210,7 +213,7 @@ export default function Elo() {
                   ? t(error.message as TranslationKey)
                   : t.rich("unknownError", {
                       contact: (chunks) => (
-                        <Link className="underline" href="/contactez-nous">
+                        <Link className="underline" href="/contact-us">
                           {chunks}
                         </Link>
                       ),

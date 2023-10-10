@@ -19,7 +19,6 @@ export const DatePickerCustomHeader = ({
   prevMonthButtonDisabled,
   nextMonthButtonDisabled,
 }: ReactDatePickerCustomHeaderProps) => {
-  // Bit of a hack. inputRef doesn't work because DatePicker doesn't correctly propagate props
   const locale = useLocale();
 
   return (

@@ -2,10 +2,9 @@ import React, { useRef } from "react";
 
 import { getYear, isValid, parse } from "date-fns";
 import fr from "date-fns/locale/fr";
-import { get, range } from "lodash";
+import { get } from "lodash";
 import { useLocale, useTranslations } from "next-intl";
-import DatePicker from "react-datepicker";
-import { registerLocale } from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import {
   Controller,
   FieldPath,
