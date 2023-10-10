@@ -2,9 +2,13 @@ import React from "react";
 
 import { flatMap, get, isArray, isNil, isObject } from "lodash";
 import { useTranslations } from "next-intl";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import Select, {
-  ActionMeta,
   ClassNamesConfig,
   GroupBase,
   OnChangeValue,
@@ -12,7 +16,9 @@ import Select, {
 } from "react-select";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "./Field";
+import { Prettify } from "@/types";
+
+import { Field, GenericFieldProps } from "./Field";
 
 export type BaseOption<T = string, D = unknown> = {
   value: T;
@@ -54,7 +60,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
     ),
   groupHeading: () => "ml-3 mt-2 mb-1 text-textGray text-sm uppercase",
-  option: ({ isFocused, isSelected, isDisabled }) =>
+  option: ({ isFocused, isDisabled }) =>
     twMerge(
       "px-3 py-2 hover:cursor-pointer",
       isDisabled && "opacity-50",
@@ -65,23 +71,30 @@ export const classNames = <Option, IsMulti extends boolean = false>(
 });
 
 export type SelectFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   IsMulti extends boolean = false,
   T = string,
   D = unknown,
-> = FieldProps &
-  Omit<
-    Props<BaseOption<T, D>, IsMulti, GroupBase<BaseOption<T, D>>>,
-    "onChange" | "value" | "classNames"
-  > & {
-    required?: boolean;
-  };
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> &
+    Omit<
+      Props<BaseOption<T, D>, IsMulti, GroupBase<BaseOption<T, D>>>,
+      "onChange" | "value" | "classNames" | "name"
+    > & {
+      required?: boolean;
+    }
+>;
 
 export const SelectField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   IsMulti extends boolean = false,
   T = string,
   D = unknown,
 >({
   name,
+  control,
   className,
   labelClassName,
   childrenWrapperClassName,
@@ -92,9 +105,9 @@ export const SelectField = <
   placeholder,
   options,
   ...selectProps
-}: SelectFieldProps<IsMulti, T, D>) => {
+}: SelectFieldProps<TFieldValues, TFieldName, IsMulti, T, D>) => {
   const t = useTranslations("App");
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   const {
     formState: { errors },
@@ -118,6 +131,7 @@ export const SelectField = <
     <Field
       {...{
         name,
+        control,
         className,
         label,
         labelClassName,
@@ -128,11 +142,10 @@ export const SelectField = <
     >
       <Controller
         name={name}
-        control={form.control}
+        control={control}
         render={({ field: { onChange, value } }) => {
           const onSelectChange = (
             newValue: OnChangeValue<BaseOption<T, D>, IsMulti>,
-            actionMeta: ActionMeta<BaseOption<T, D>>,
           ) => {
             if (isNil(newValue)) onChange(null);
             else if (isArray(newValue)) {
@@ -143,12 +156,12 @@ export const SelectField = <
           const optionValue = isNil(value)
             ? null
             : isArray(value)
-            ? value.map(valueToOption)
+            ? // @ts-ignore - this is too complex for TS to understand
+              value.map(valueToOption)
             : valueToOption(value);
 
           return (
             <Select
-              isClearable
               value={optionValue}
               onChange={onSelectChange}
               options={options}

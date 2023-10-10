@@ -185,6 +185,7 @@ export default function Elo() {
             <div className="flex items-end gap-4">
               <TextField
                 name="url"
+                control={form.control}
                 label={t("resultsUrlLabel")}
                 placeholder={t("resultsUrlLabel")}
               />
@@ -222,6 +223,7 @@ export default function Elo() {
                 <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
                   <SelectField
                     name="player"
+                    control={form.control}
                     required
                     label={t("choosePlayerLabel")}
                     placeholder={t("choosePlayerPlaceholder")}
@@ -231,6 +233,7 @@ export default function Elo() {
 
                   <SelectField
                     name="kFactor"
+                    control={form.control}
                     label={t("kFactorLabel")}
                     options={["40", "20", "10"].map((k) => ({
                       value: k,

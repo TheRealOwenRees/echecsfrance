@@ -1,12 +1,19 @@
 import React from "react";
 
 import { RadioGroup } from "@headlessui/react";
-import { get, isNil } from "lodash";
+import { isNil } from "lodash";
 import { useTranslations } from "next-intl";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "./Field";
+import { Prettify } from "@/types";
+
+import { Field, GenericFieldProps } from "./Field";
 
 export type BaseOption<T = string, D = unknown> = {
   value: T;
@@ -15,13 +22,26 @@ export type BaseOption<T = string, D = unknown> = {
   data?: D;
 };
 
-export type RadioGroupFieldProps<T = string, D = unknown> = FieldProps & {
-  required?: boolean;
-  options: BaseOption<T, D>[];
-};
+export type RadioGroupFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  T = string,
+  D = unknown,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> & {
+    required?: boolean;
+    options: BaseOption<T, D>[];
+  }
+>;
 
-export const RadioGroupField = <T extends React.Key = string, D = unknown>({
+export const RadioGroupField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+  T extends React.Key = string,
+  D = unknown,
+>({
   name,
+  control,
   className,
   labelClassName,
   childrenWrapperClassName,
@@ -30,15 +50,13 @@ export const RadioGroupField = <T extends React.Key = string, D = unknown>({
   required,
 
   options,
-}: RadioGroupFieldProps<T, D>) => {
+}: RadioGroupFieldProps<TFieldValues, TFieldName, T, D>) => {
   const t = useTranslations("App");
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   const {
     formState: { errors },
   } = form;
-
-  const hasError = !!get(errors, name)?.message;
 
   const valueToOption = (value: T): BaseOption<T, D> =>
     options.find((o) => o.value === value) ?? { value, label: "" };
@@ -47,6 +65,7 @@ export const RadioGroupField = <T extends React.Key = string, D = unknown>({
     <Field
       {...{
         name,
+        control,
         className,
         label,
         labelClassName,
@@ -57,7 +76,7 @@ export const RadioGroupField = <T extends React.Key = string, D = unknown>({
     >
       <Controller
         name={name}
-        control={form.control}
+        control={control}
         render={({ field: { onChange, value } }) => {
           const optionValue = isNil(value) ? null : valueToOption(value);
 

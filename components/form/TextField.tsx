@@ -1,20 +1,38 @@
 import React from "react";
 
 import { get } from "lodash";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "./Field";
+import { Prettify } from "@/types";
 
-export const TextField = (
-  props: FieldProps &
-    React.HTMLProps<HTMLInputElement> & {
+import { Field, GenericFieldProps } from "./Field";
+
+type TextFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> &
+    Omit<React.HTMLProps<HTMLInputElement>, "ref" | "name"> & {
       handleChanged?: (props: { name: string }) => void;
       startIcon?: React.ReactNode;
-    },
+    }
+>;
+
+export const TextField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>(
+  props: TextFieldProps<TFieldValues, TFieldName>,
 ) => {
   const {
     name,
+    control,
     type = "text",
     label,
     required,
@@ -29,7 +47,7 @@ export const TextField = (
 
     ...rest
   } = props;
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   const {
     formState: { errors },
@@ -57,6 +75,7 @@ export const TextField = (
     <Field
       {...{
         name,
+        control,
         label,
         required,
         className,
@@ -67,7 +86,7 @@ export const TextField = (
     >
       <div className="flex w-full flex-col">
         <Controller
-          control={form.control}
+          control={control}
           name={name}
           render={({ field }) => (
             <div className="relative">

@@ -6,26 +6,41 @@ import { get, range } from "lodash";
 import { useLocale, useTranslations } from "next-intl";
 import DatePicker from "react-datepicker";
 import { registerLocale } from "react-datepicker";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "../Field";
+import { Prettify } from "@/types";
+
+import { Field, GenericFieldProps } from "../Field";
 
 import { InputDatePicker } from "./components";
 import { DatePickerCustomHeader } from "./components/DatePickerCustomHeader";
 
 registerLocale("fr", fr);
 
-type DateFieldProps = FieldProps & {
-  maxDate?: Date;
-  minDate?: Date;
-  dateFormat?: string;
-  className?: string;
-  datePickerPopperClass?: string;
-  required?: boolean;
-};
+type DateFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> & {
+    maxDate?: Date;
+    minDate?: Date;
+    dateFormat?: string;
+    className?: string;
+    datePickerPopperClass?: string;
+    required?: boolean;
+  }
+>;
 
-export const DateField = ({
+export const DateField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({
   minDate,
   maxDate,
   dateFormat = "dd/MM/yyyy",
@@ -33,15 +48,17 @@ export const DateField = ({
   datePickerPopperClass,
 
   name,
+  control,
+  required,
   ...otherFieldProps
-}: DateFieldProps) => {
+}: DateFieldProps<TFieldValues, TFieldName>) => {
   const locale = useLocale();
   const at = useTranslations("App");
   const min = minDate ? minDate.getFullYear() : 1900;
 
   const inputRef = useRef(null);
 
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
   const {
     formState: { errors },
   } = form;
@@ -49,10 +66,10 @@ export const DateField = ({
   const hasError = name && !!get(errors, name)?.message;
 
   return (
-    <Field name={name} {...otherFieldProps}>
+    <Field name={name} control={control} {...otherFieldProps}>
       <div className={twMerge("relative flex w-full flex-col", className)}>
         <Controller
-          control={form.control}
+          control={control}
           name={name}
           render={({ field }) => (
             <DatePicker

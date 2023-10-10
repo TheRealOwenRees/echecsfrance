@@ -1,14 +1,35 @@
 import React from "react";
 
 import { Switch, SwitchProps } from "@headlessui/react";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "./Field";
+import { Prettify } from "@/types";
 
-export const SwitchField = (props: FieldProps & SwitchProps<"button">) => {
+import { Field, GenericFieldProps } from "./Field";
+
+type SwitchFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> &
+    Omit<SwitchProps<"button">, "name">
+>;
+
+export const SwitchField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>(
+  props: SwitchFieldProps<TFieldValues, TFieldName>,
+) => {
   const {
     name,
+    control,
     label,
     disabled,
     className,
@@ -19,12 +40,13 @@ export const SwitchField = (props: FieldProps & SwitchProps<"button">) => {
 
     ...rest
   } = props;
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   return (
     <Field
       {...{
         name,
+        control,
         type: "checkbox",
         label,
         disabled,
@@ -34,7 +56,7 @@ export const SwitchField = (props: FieldProps & SwitchProps<"button">) => {
     >
       <div className="flex w-full flex-col">
         <Controller
-          control={form.control}
+          control={control}
           name={name}
           render={({ field }) => (
             <div className="flex h-[40px] items-center">
@@ -49,7 +71,7 @@ export const SwitchField = (props: FieldProps & SwitchProps<"button">) => {
                 )}
                 {...rest}
               >
-                <span className="ui-checked:translate-x-[19px] ui-not-checked:translate-x-[3px] inline-block h-[14px] w-[14px] transform rounded-full bg-white transition-transform" />
+                <span className="inline-block h-[14px] w-[14px] transform rounded-full bg-white transition-transform ui-checked:translate-x-[19px] ui-not-checked:translate-x-[3px]" />
               </Switch>
             </div>
           )}
