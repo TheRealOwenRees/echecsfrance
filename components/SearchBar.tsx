@@ -1,3 +1,5 @@
+import { useTransition } from "react";
+
 import { useAtom } from "jotai/index";
 import { useTranslations } from "next-intl";
 import { IoCloseOutline } from "react-icons/io5";
@@ -7,6 +9,13 @@ import { searchStringAtom } from "@/app/atoms";
 const SearchBar = () => {
   const t = useTranslations("Tournaments");
   const [searchString, setSearchString] = useAtom(searchStringAtom);
+  const [isPending, startTransition] = useTransition();
+
+  const updateSearchString = (str: string) => {
+    startTransition(() => {
+      setSearchString(str);
+    });
+  };
 
   return (
     <div className="bg-white dark:bg-gray-800">
@@ -43,7 +52,7 @@ const SearchBar = () => {
           className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder={t("searchPlaceholder")}
           value={searchString}
-          onChange={(e) => setSearchString(e.target.value)}
+          onChange={(e) => updateSearchString(e.target.value)}
         />
       </div>
     </div>
