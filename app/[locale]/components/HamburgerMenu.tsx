@@ -1,10 +1,10 @@
 import { Dispatch, RefObject, SetStateAction, useRef, useState } from "react";
 
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
 import { twMerge } from "tailwind-merge";
 
 import useHamburgerClose from "@/hooks/useHamburgerClose";
+import { Link } from "@/utils/navigation";
 
 interface HamburgerMenuState {
   menuVisible: boolean;
@@ -64,7 +64,7 @@ const HamburgerMenu = ({
       <ul className="list-reset text-white">
         <li className="py-5 text-center text-xl">
           <Link
-            href="/tournois"
+            href="/tournaments"
             className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
           >
             {t("tournaments")}

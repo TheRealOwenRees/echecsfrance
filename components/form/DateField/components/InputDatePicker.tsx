@@ -11,9 +11,12 @@ interface InputProps {
   mask?: string | (string | RegExp)[];
 }
 
-type AllProps = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
+type AllProps = Omit<
+  React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >,
+  "ref"
 > &
   InputProps;
 
@@ -26,6 +29,7 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
       inputContainerClass,
       inputClass,
       mask,
+
       ...props
     },
     inputRef,
@@ -43,7 +47,7 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
         )}
       >
         <InputMask
-          ref={inputRef as any}
+          inputRef={inputRef}
           mask={mask ?? ""}
           className={twMerge(
             "w-full border-none bg-transparent text-sm outline-none ring-0 focus:outline-none focus:ring-0 focus:ring-offset-0",

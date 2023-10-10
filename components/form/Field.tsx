@@ -52,9 +52,6 @@ export const Field = <
     children,
     required,
     hideErrorMessage = false,
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used to restrict the `name` prop type
-    control,
   } = props;
 
   const form = useFormContext<TFieldValues>();

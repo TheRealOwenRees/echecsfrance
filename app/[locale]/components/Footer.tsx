@@ -1,11 +1,15 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
+
+import { Link, usePathname } from "@/utils/navigation";
 
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Footer() {
   const t = useTranslations("Footer");
+  const pathname = usePathname();
 
   return (
     <footer
@@ -13,27 +17,23 @@ export default function Footer() {
       data-test="footer"
     >
       <div className="flex items-center py-2 hover:[&_a]:opacity-80">
-        <Link
+        <a
           href="https://github.com/TheRealOwenRees/echecsfrance"
           target="_blank"
           aria-label={t("githubAria")}
           className="mr-4"
         >
           <FaGithub />
-        </Link>
-        <Link
-          href="/contactez-nous"
-          aria-label={t("contactAria")}
-          className="mr-4"
-        >
+        </a>
+        <Link href="/contact-us" aria-label={t("contactAria")} className="mr-4">
           <FaRegEnvelope />
         </Link>
         <div className="mr-4 space-x-2 text-xs">
-          <Link href="/" locale="fr">
+          <Link href={pathname} locale="fr">
             FR
           </Link>
           <span>|</span>
-          <Link href="/" locale="en">
+          <Link href={pathname} locale="en">
             EN
           </Link>
         </div>

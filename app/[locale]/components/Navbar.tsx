@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
-import Link from "next-intl/link";
+
+import { Link } from "@/utils/navigation";
 
 import Hamburger from "./Hamburger";
 
@@ -7,10 +8,10 @@ export default function Navbar() {
   const t = useTranslations("Nav");
 
   const links = [
-    { title: t("tournaments"), route: "/tournois" },
+    { title: t("tournaments"), route: "/tournaments" },
     { title: t("clubs"), route: "/clubs" },
     { title: t("elo"), route: "/elo" },
-  ];
+  ] as const;
 
   return (
     <nav
