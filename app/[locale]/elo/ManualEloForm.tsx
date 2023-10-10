@@ -107,6 +107,7 @@ export const ManualEloForm = () => {
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           <TextField
             name="currentElo"
+            control={form.control}
             label={t("currentEloLabel")}
             placeholder={t("currentEloPlaceholder")}
             type="number"
@@ -115,6 +116,7 @@ export const ManualEloForm = () => {
 
           <SelectField
             name="kFactor"
+            control={form.control}
             label={t("yourKFactorLabel")}
             options={["40", "20", "10"].map((k) => ({
               value: k,
@@ -139,6 +141,7 @@ export const ManualEloForm = () => {
                   <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
                     <TextField
                       name={`games.${i}.opponentElo`}
+                      control={form.control}
                       placeholder={t("opponentEloPlaceholder")}
                       type="number"
                       required
@@ -147,6 +150,7 @@ export const ManualEloForm = () => {
                     <div className="flex items-center space-x-2">
                       <RadioGroupField
                         name={`games.${i}.result`}
+                        control={form.control}
                         options={["win", "draw", "loss"].map((result) => ({
                           value: result,
                           label: t("gameResult", { result }),

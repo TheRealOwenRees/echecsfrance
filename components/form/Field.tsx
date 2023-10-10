@@ -1,14 +1,25 @@
 import { ReactNode } from "react";
 
 import { get } from "lodash";
-import { useFormContext } from "react-hook-form";
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
+
+import { Prettify } from "@/types";
 
 import { ErrorMessage } from "./ErrorMessage";
 import { Label } from "./Label";
 
-export type FieldProps = {
-  name: string;
+export type GenericFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
+  name: TFieldName;
+  control: Control<TFieldValues>;
   className?: string;
   labelClassName?: string;
   childrenWrapperClassName?: string;
@@ -16,12 +27,21 @@ export type FieldProps = {
   hideErrorMessage?: boolean;
 };
 
-export const Field = (
-  props: Omit<FieldProps, "name"> & {
+type FieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> & {
     required?: boolean;
-    name?: string;
     children: ReactNode;
-  },
+  }
+>;
+
+export const Field = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>(
+  props: FieldProps<TFieldValues, TFieldName>,
 ) => {
   const {
     name,
@@ -32,9 +52,12 @@ export const Field = (
     children,
     required,
     hideErrorMessage = false,
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used to restrict the `name` prop type
+    control,
   } = props;
 
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   const {
     formState: { errors },

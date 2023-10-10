@@ -74,17 +74,24 @@ const TournamentForm = () => {
           <div className="col-span-4">
             <TextField
               name="tournament.tournament"
+              control={form.control}
               label={t("tournamentNameLabel")}
               placeholder={t("tournamentNamePlaceholder")}
               required
             />
           </div>
           <div className="col-span-2 sm:col-span-1">
-            <DateField name="tournament.date" label={t("dateLabel")} required />
+            <DateField
+              name="tournament.date"
+              control={form.control}
+              label={t("dateLabel")}
+              required
+            />
           </div>
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="tournament.url"
+              control={form.control}
               label={t("urlLabel")}
               placeholder={t("urlPlaceholder")}
               required
@@ -93,6 +100,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <SelectField
               name="tournament.time_control"
+              control={form.control}
               label={t("tcLabel")}
               options={[
                 TimeControl.Classic,
@@ -108,12 +116,14 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <SwitchField
               name="tournament.norm_tournament"
+              control={form.control}
               label={t("normLabel")}
             />
           </div>
           <div className="col-span-4">
             <TextField
               name="tournament.address"
+              control={form.control}
               label={t("addressLabel")}
               placeholder={t("addressPlaceholder")}
               required
@@ -122,6 +132,7 @@ const TournamentForm = () => {
           <div className="col-span-4 sm:col-span-2">
             <TextField
               name="tournament.town"
+              control={form.control}
               label={t("townLabel")}
               placeholder={t("townPlaceholder")}
               required
@@ -130,6 +141,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="tournament.department"
+              control={form.control}
               label={t("departmentLabel")}
               placeholder={t("departmentPlaceholder")}
               required
@@ -138,6 +150,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="tournament.country"
+              control={form.control}
               label={t("countryLabel")}
               placeholder={t("countryPlaceholder")}
               required
@@ -146,6 +159,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="name"
+              control={form.control}
               label={t("yourNameLabel")}
               placeholder={t("yourNamePlaceholder")}
               required
@@ -154,6 +168,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="email"
+              control={form.control}
               label={t("yourEmailLabel")}
               placeholder={t("yourEmailPlaceholder")}
               required
@@ -162,6 +177,7 @@ const TournamentForm = () => {
           <div className="col-span-4 row-span-2 sm:col-span-2">
             <TextAreaField
               name="message"
+              control={form.control}
               label={t("messageLabel")}
               rows={6}
               placeholder={t("messagePlaceholder")}
@@ -171,6 +187,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="tournament.coordinates.0"
+              control={form.control}
               label={t("latLabel")}
               type="number"
               required
@@ -179,6 +196,7 @@ const TournamentForm = () => {
           <div className="col-span-2 sm:col-span-1">
             <TextField
               name="tournament.coordinates.1"
+              control={form.control}
               label={t("lngLabel")}
               type="number"
               required

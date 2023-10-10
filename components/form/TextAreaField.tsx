@@ -1,23 +1,40 @@
 import React from "react";
 
 import { get } from "lodash";
-import { Controller, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  useFormContext,
+} from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
-import { Field, FieldProps } from "./Field";
+import { Prettify } from "@/types";
 
-export const TextAreaField = (
-  props: FieldProps &
-    React.HTMLProps<HTMLTextAreaElement> & {
+import { Field, GenericFieldProps } from "./Field";
+
+type TextAreaFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = Prettify<
+  GenericFieldProps<TFieldValues, TFieldName> &
+    Omit<React.HTMLProps<HTMLTextAreaElement>, "ref" | "name"> & {
       handleChanged?: (props: { name: string }) => void;
       startIcon?: React.ReactNode;
-    },
+      required?: boolean;
+    }
+>;
+
+export const TextAreaField = <
+  TFieldValues extends FieldValues = FieldValues,
+  TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>(
+  props: TextAreaFieldProps<TFieldValues, TFieldName>,
 ) => {
   const {
     name,
+    control,
     label,
-    required,
-    disabled,
     className,
     labelClassName,
     childrenWrapperClassName,
@@ -25,10 +42,12 @@ export const TextAreaField = (
 
     startIcon,
     handleChanged,
+    required,
 
+    disabled,
     ...rest
   } = props;
-  const form = useFormContext();
+  const form = useFormContext<TFieldValues>();
 
   const {
     formState: { errors },
@@ -40,8 +59,8 @@ export const TextAreaField = (
     <Field
       {...{
         name,
+        control,
         label,
-        required,
         className,
         labelClassName,
         childrenWrapperClassName,
@@ -50,7 +69,7 @@ export const TextAreaField = (
     >
       <div className="flex w-full flex-col">
         <Controller
-          control={form.control}
+          control={control}
           name={name}
           render={({ field }) => (
             <div className="relative">

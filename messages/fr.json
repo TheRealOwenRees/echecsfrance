@@ -151,7 +151,7 @@
     "resultsTitle": "Résultats",
     "opponentEloPlaceholder": "Classement de l'adversaire",
     "gameResultPlaceholder": "Résultat...",
-    "gameResult": "{result, select, win {Victoire} draw {Match nul} loss {Défaite} other {{result}}}",
+    "gameResult": "{result, select, win {Victoire} draw {Nul} loss {Défaite} other {{result}}}",
     "addGameButton": "Ajouter un autre résultat de partie",
 
     "resultsUrlLabel": "Collez un lien vers la page de résultats de la FFE",

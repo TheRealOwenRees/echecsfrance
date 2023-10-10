@@ -55,6 +55,7 @@ const ContactForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <TextField
           name="email"
+          control={form.control}
           label={t("emailLabel")}
           placeholder={t("emailPlaceholder")}
           required
@@ -62,6 +63,7 @@ const ContactForm = () => {
 
         <TextField
           name="subject"
+          control={form.control}
           label={t("subjectLabel")}
           placeholder={t("subjectPlaceholder")}
           required
@@ -69,6 +71,7 @@ const ContactForm = () => {
 
         <TextAreaField
           name="message"
+          control={form.control}
           rows={6}
           label={t("messageLabel")}
           placeholder={t("messagePlaceholder")}
