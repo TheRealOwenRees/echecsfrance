@@ -2,6 +2,12 @@ import { z } from "zod";
 
 import { TimeControl } from "@/types";
 
+export const contactUsSchema = z.object({
+  email: z.string().email(),
+  subject: z.string().min(1, { message: "FormValidation.required" }),
+  message: z.string().min(1, { message: "FormValidation.required" }),
+});
+
 export const addTournamentSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),
   email: z.string().email(),
