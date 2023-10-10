@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useTransition } from "react";
 
 import { useSetAtom } from "jotai";
 import L from "leaflet";
@@ -8,6 +8,7 @@ import { mapBoundsAtom } from "@/app/atoms";
 
 const MapEvents = () => {
   const setMapBounds = useSetAtom(mapBoundsAtom);
+  const [isPending, startTransition] = useTransition();
 
   const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
   const franceBounds = L.latLngBounds(
@@ -17,10 +18,12 @@ const MapEvents = () => {
 
   const map = useMapEvent("moveend", () => {
     // Set the map bounds atoms when the user pans/zooms
-    setMapBounds(map.getBounds());
+    startTransition(() => {
+      setMapBounds(map.getBounds());
+    });
   });
 
-  // viewport agnostic centering of France & max world bounds
+  // Viewport agnostic centering of France & max world bounds
   useEffect(() => {
     map.setView(franceBounds.getCenter(), map.getBoundsZoom(franceBounds));
     map.setMaxBounds(worldBounds);
