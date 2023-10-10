@@ -8,7 +8,7 @@ export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <header className="relative mb-20 flex min-h-content items-center justify-center">
+    <header className="relative mb-12 flex min-h-content items-center justify-center">
       <div className="absolute h-full w-full py-4 brightness-[0.2]">
         <Image
           src={bgImage}
