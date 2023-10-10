@@ -12,7 +12,11 @@ const getClubs = async () => {
   try {
     const client = await clientPromise;
     const db = client.db("tournamentsFranceDB");
-    const data = await db.collection("clubs").find<ClubData>({}).toArray();
+    const data = await db
+      .collection("clubs")
+      .find<ClubData>({})
+      .sort({ name: 1 })
+      .toArray();
 
     return data
       .filter((c) => !!c.coordinates)
