@@ -32,17 +32,17 @@ module.exports = {
       },
       minHeight: {
         // We use 100svh, falling back to the the --1svh var that we add as a polyfill for older browsers.
-        // The 9rem is for the header and footer.
+        // The 7rem is for the header and footer.
         // In the event that the polyfill fails, we fall back to 0.9vh as a guess of how much 1svh is.
         content: [
-          "calc(var(--1svh, 0.9vh) * 100 - 9rem)",
-          "calc(100svh - 9rem)",
+          "calc(var(--1svh, 0.9vh) * 100 - 7rem)",
+          "calc(100svh - 7rem)",
         ],
       },
       height: {
         content: [
-          "calc(var(--1svh, 0.9vh) * 100 - 9rem)",
-          "calc(100svh - 9rem)",
+          "calc(var(--1svh, 0.9vh) * 100 - 7rem)",
+          "calc(100svh - 7rem)",
         ],
       },
     },
