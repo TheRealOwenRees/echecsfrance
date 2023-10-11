@@ -5,6 +5,7 @@ import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
 
+export const burgerMenuIsOpenAtom = atom(false);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
 export const syncVisibleAtom = atom(true);
 export const searchStringAtom = atom("");

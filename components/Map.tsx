@@ -220,7 +220,7 @@ export const Map = ({
 
   return (
     <section id="tournament-map" className="flex h-content flex-col">
-      <div className="p-3 lg:hidden">{filters}</div>
+      {filters && <div className="p-3 lg:hidden">{filters}</div>}
 
       <MapContainer
         center={center}
