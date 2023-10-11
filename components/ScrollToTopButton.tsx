@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { FaArrowUp } from "react-icons/fa";
 
-import { handleScrollToTop } from "@/handlers/scrollHandlers";
 import { useBreakpoint } from "@/hooks/tailwind";
 import { ScrollableElement } from "@/types";
+import { handleScrollToTop } from "@/utils/scrollHandlers";
 
 const ScrollToTopButton = () => {
   const scrollToTopElementRef = useRef<ScrollableElement | null>(null);
