@@ -3,18 +3,12 @@ import { groupBy } from "lodash";
 
 import clientPromise from "@/lib/mongodb";
 import { TournamentData } from "@/types";
-import { TimeControl, Tournament } from "@/types";
+import { TimeControl, Tournament, tcMap } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
 
 export const revalidate = 3600; // Revalidate cache every 6 hours
-
-const tcMap: Record<TournamentData["time_control"], TimeControl> = {
-  "Cadence Lente": TimeControl.Classic,
-  Rapide: TimeControl.Rapid,
-  Blitz: TimeControl.Blitz,
-};
 
 const getTournaments = async () => {
   try {
@@ -35,7 +29,7 @@ const getTournaments = async () => {
         },
         {
           $match: {
-            status: { $ne: "completed" }
+            status: { $ne: "completed" },
           },
         },
         {
@@ -94,6 +88,7 @@ const getTournaments = async () => {
 
       return {
         id: t._id.toString(),
+        ffeId: t.tournament_id,
         groupId,
         tournament: t.tournament,
         town: t.town,

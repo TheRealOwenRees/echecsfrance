@@ -5,7 +5,7 @@ import { errorLog } from "@/utils/logger";
 
 import { publicProcedure } from "../trpc";
 
-const scrapedSchema = z.array(
+const dbSchema = z.array(
   z.object({
     id: z.string(),
     name: z.string(),
@@ -55,7 +55,7 @@ const getEloDetails = (elo: string | null) => {
 };
 
 const getResultDetails = (
-  results: z.infer<typeof scrapedSchema>[number]["results"][number],
+  results: z.infer<typeof dbSchema>[number]["results"][number],
 ) => {
   if (results.opponent_name === null) {
     return { result: 0, lostByForfeit: true, wonByForfeit: false };
@@ -107,17 +107,6 @@ export const fetchTournamentResults = publicProcedure
   .output(outputSchema)
   .query(async ({ input }) => {
     try {
-      // Depending on which page the user copied the URL from, we need to extract the tournament ID
-
-      // http://echecs.asso.fr/FicheTournoi.aspx?Ref=59975
-      // http://echecs.asso.fr/Resultats.aspx?URL=Tournois/Id/59975/59975&Action=Ls
-
-      const tournamentId =
-        input.url.match(/Ref=(\d+)/)?.[1] ?? input.url.match(/Id\/(\d+)/)?.[1];
-      if (!tournamentId) {
-        throw new Error("ERR_NO_TOURNAMENT_ID");
-      }
-
       const headers = new Headers();
       const apiKey = process.env.RESULTS_API_KEY;
 
@@ -125,8 +114,10 @@ export const fetchTournamentResults = publicProcedure
         headers.append("api-key", apiKey);
       }
 
+      console.log(input.id);
+
       const rawResults = await fetch(
-        `${process.env.RESULTS_SCRAPER_URL}${tournamentId}`,
+        `${process.env.RESULTS_SCRAPER_URL}${input.id}`,
         {
           headers: headers,
         },
@@ -138,7 +129,7 @@ export const fetchTournamentResults = publicProcedure
         throw new Error("ERR_TOURNAMENT_NOT_FOUND");
       }
 
-      const parsedResults = scrapedSchema.parse(results);
+      const parsedResults = dbSchema.parse(results);
       return parsedResults.map<z.infer<typeof outputSchema>[number]>(
         (player) => ({
           id: player.id,
@@ -158,7 +149,7 @@ export const fetchTournamentResults = publicProcedure
         }),
       );
     } catch (error) {
-      reportFetchError(input.url, error);
+      reportFetchError(input.id, error);
       errorLog(JSON.stringify(error, null, 2));
       throw error;
     }

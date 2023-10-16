@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { isEmpty, sortBy } from "lodash";
@@ -11,7 +11,7 @@ import { z } from "zod";
 
 import { Spinner } from "@/components/Spinner";
 import { SelectField } from "@/components/form/SelectField";
-import { TextField } from "@/components/form/TextField";
+import { TournamentSelectField } from "@/components/form/TournamentSelectField";
 import { fetchTournamentResultsSchema } from "@/schemas";
 import { Link } from "@/utils/navigation";
 import { trpc } from "@/utils/trpc";
@@ -23,6 +23,7 @@ import { TournamentResults } from "./TournamentResults";
 const kFactors = ["40", "20", "10"];
 
 const formSchema = fetchTournamentResultsSchema.extend({
+  tournamentId: z.string().optional(),
   player: z.string().optional(),
   kFactor: z.string(),
 });
@@ -41,14 +42,14 @@ export default function Elo() {
     [searchParams],
   );
 
-  const url = searchParams.get("url") ?? "";
+  const tournamentId = searchParams.get("tId") ?? "";
   const kFactorParam = searchParams.get("k");
   const player = searchParams.get("player") ?? "";
 
   const kFactor =
     kFactorParam && kFactors.includes(kFactorParam) ? kFactorParam : "20";
 
-  const hasUrl = !isEmpty(url.trim());
+  const hasTournamentId = !isEmpty(tournamentId.trim());
 
   const {
     data: allResults,
@@ -56,13 +57,13 @@ export default function Elo() {
     error,
   } = trpc.fetchTournamentResults.useQuery(
     {
-      url: url?.trim(),
+      id: tournamentId?.trim(),
     },
     {
       refetchOnWindowFocus: false,
       staleTime: Infinity,
       cacheTime: 10 * 60 * 1000,
-      enabled: hasUrl,
+      enabled: hasTournamentId,
       retry: false,
     },
   );
@@ -78,29 +79,18 @@ export default function Elo() {
   const form = useForm<FetchResultsFormValues>({
     resolver: zodResolver(fetchTournamentResultsSchema),
     defaultValues: {
-      url: url ?? "",
+      tournamentId: tournamentId ?? "",
       kFactor: kFactor ?? "20",
       player: player ?? "",
     },
   });
 
-  const onSubmit = async (input: FetchResultsFormValues) => {
-    current.set("url", input.url);
-    if (input.kFactor) current.set("k", input.kFactor);
-
-    const search = current.toString();
-    const query = search ? `?${search}` : "";
-
-    // Push the new URL
-    router.push(`${pathname}${query}`);
-  };
-
-  const clearForm = () => {
-    current.delete("url");
+  const clearForm = useCallback(() => {
+    current.delete("tId");
     current.delete("k");
     current.delete("player");
 
-    form.setValue("url", "");
+    form.setValue("tournamentId", "");
     form.setValue("kFactor", "20");
     form.setValue("player", "");
 
@@ -108,14 +98,31 @@ export default function Elo() {
     const query = search ? `?${search}` : "";
 
     router.push(`${pathname}${query}`);
-  };
+  }, [current, form, pathname, router]);
 
   useEffect(() => {
     // We subscribe to form changes and update the URL parameters
     const subscription = form.watch((value, { name, type }) => {
       let update = false;
       if (type === "change") {
-        if (name === "player" && value.player !== player && value.player) {
+        if (
+          name === "tournamentId" &&
+          value.tournamentId !== tournamentId &&
+          value.tournamentId
+        ) {
+          current.set("tId", value.tournamentId);
+          update = true;
+        } else if (
+          name === "tournamentId" &&
+          value.tournamentId !== tournamentId &&
+          value.tournamentId === null
+        ) {
+          clearForm();
+        } else if (
+          name === "player" &&
+          value.player !== player &&
+          value.player
+        ) {
           current.set("player", value.player);
           update = true;
         } else if (
@@ -135,12 +142,22 @@ export default function Elo() {
       }
     });
     return () => subscription.unsubscribe();
-  }, [current, form, form.watch, kFactor, pathname, player, router]);
+  }, [
+    clearForm,
+    current,
+    form,
+    form.watch,
+    kFactor,
+    pathname,
+    player,
+    router,
+    tournamentId,
+  ]);
 
   useEffect(() => {
     // When the URL changes, we update the form values
-    if (url !== form.getValues("url")) {
-      form.setValue("url", url);
+    if (tournamentId !== form.getValues("tournamentId")) {
+      form.setValue("tournamentId", tournamentId);
     }
 
     if (player !== form.getValues("player")) {
@@ -150,7 +167,7 @@ export default function Elo() {
     if (kFactor !== form.getValues("kFactor")) {
       form.setValue("kFactor", form.getValues("kFactor"));
     }
-  }, [searchParams, form, url, player, kFactor]);
+  }, [searchParams, form, player, kFactor, tournamentId]);
 
   if (error) {
     console.error(error);
@@ -171,7 +188,7 @@ export default function Elo() {
           {t("info")}
         </p>
 
-        {hasUrl && !isFetching && !error && (
+        {hasTournamentId && !isFetching && !error && (
           <div className="mx-auto mb-8 flex justify-center">
             <button
               type="button"
@@ -184,22 +201,13 @@ export default function Elo() {
         )}
 
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="flex items-end gap-4">
-              <TextField
-                name="url"
-                control={form.control}
-                label={t("resultsUrlLabel")}
-                placeholder={t("resultsUrlLabel")}
-              />
-              <button
-                disabled={form.formState.isSubmitting}
-                type="submit"
-                className="rounded-lg border border-transparent bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-              >
-                {t("fetchResultsButton")}
-              </button>
-            </div>
+          <form className="space-y-8">
+            <TournamentSelectField
+              name="tournamentId"
+              control={form.control}
+              placeholder={t("searchTournamentPlaceholder")}
+              noOptionsMessage={() => t("noTournamentsFound")}
+            />
 
             {isFetching && (
               <div className="mt-8 flex justify-center">
@@ -253,15 +261,19 @@ export default function Elo() {
           </form>
         </FormProvider>
 
-        {hasUrl && !isFetching && player && playerResults && !error && (
-          <TournamentResults
-            playerId={player}
-            kFactor={parseInt(kFactor)}
-            results={allResults ?? []}
-          />
-        )}
+        {hasTournamentId &&
+          !isFetching &&
+          player &&
+          playerResults &&
+          !error && (
+            <TournamentResults
+              playerId={player}
+              kFactor={parseInt(kFactor)}
+              results={allResults ?? []}
+            />
+          )}
 
-        {((!hasUrl && !isFetching) || !!error) && (
+        {((!hasTournamentId && !isFetching) || !!error) && (
           <>
             <div className="relative my-8">
               <div className="absolute top-1/2 z-10 h-[1px] w-full bg-gray-500 dark:bg-gray-400" />

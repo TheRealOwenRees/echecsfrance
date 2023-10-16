@@ -5,6 +5,7 @@ export type Status = "scheduled" | "ongoing" | "finished";
 
 export type TournamentData = {
   _id: ObjectId;
+  tournament_id: string;
   town: string;
   department: string;
   country: string;
@@ -38,6 +39,7 @@ export enum TimeControl {
 
 export type Tournament = {
   id: string;
+  ffeId: string;
   groupId: string;
   town: string;
   department: string;
@@ -49,6 +51,12 @@ export type Tournament = {
   norm: boolean;
   pending: boolean;
   status: Status;
+};
+
+export const tcMap: Record<TournamentData["time_control"], TimeControl> = {
+  "Cadence Lente": TimeControl.Classic,
+  Rapide: TimeControl.Rapid,
+  Blitz: TimeControl.Blitz,
 };
 
 export type Club = {

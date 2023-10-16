@@ -29,12 +29,12 @@ export type BaseOption<T = string, D = unknown> = {
 
 export const classNames = <Option, IsMulti extends boolean = false>(
   hasError: boolean,
+  separators: boolean,
 ): ClassNamesConfig<Option, IsMulti, GroupBase<Option>> => ({
   container: () => "w-full",
   valueContainer: () => "text-gray-900 dark:text-white",
   indicatorsContainer: () => "flex items-center self-stretch shrink-0",
-  clearIndicator: () =>
-    "pointer-events-none flex items-center pr-2 text-gray-900 dark:text-white",
+  clearIndicator: () => "flex items-center pr-2 text-gray-900 dark:text-white",
   dropdownIndicator: () =>
     "pointer-events-none flex items-center pr-2 text-gray-900 dark:text-white",
   indicatorSeparator: () => "w-px text-gray-900 dark:text-white",
@@ -55,7 +55,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
     "block truncate pr-2 placeholder-gray dark:placeholder-gray-400",
   menu: () =>
     twMerge(
-      "!z-10 mt-2 rounded-lg border border-gray-200 bg-white p-1",
+      "!z-30 mt-2 rounded-lg border border-gray-200 bg-white p-1",
       "border-gray-300 bg-gray-50  text-gray-900",
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
     ),
@@ -63,6 +63,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
   option: ({ isFocused, isDisabled }) =>
     twMerge(
       "px-3 py-2 hover:cursor-pointer",
+      separators && "border-b border-gray-200",
       isDisabled && "opacity-50",
       isFocused && "hover:bg-primary-500 hover:text-white",
     ),
@@ -83,6 +84,7 @@ export type SelectFieldProps<
       "onChange" | "value" | "classNames" | "name"
     > & {
       required?: boolean;
+      separators?: boolean;
     }
 >;
 
@@ -103,6 +105,7 @@ export const SelectField = <
   required,
 
   placeholder,
+  separators,
   options,
   ...selectProps
 }: SelectFieldProps<TFieldValues, TFieldName, IsMulti, T, D>) => {
@@ -176,7 +179,10 @@ export const SelectField = <
                   },
                 }),
               }}
-              classNames={classNames<BaseOption<T, D>, IsMulti>(hasError)}
+              classNames={classNames<BaseOption<T, D>, IsMulti>(
+                hasError,
+                separators ?? false,
+              )}
               {...selectProps}
             />
           );
