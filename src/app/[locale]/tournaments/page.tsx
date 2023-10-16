@@ -34,6 +34,11 @@ const getTournaments = async () => {
           },
         },
         {
+          $match: {
+            status: { $ne: "completed" }
+          },
+        },
+        {
           $sort: {
             dateParts: 1,
           },
