@@ -152,9 +152,8 @@
     "gameResult": "{result, select, win {Win} draw {Draw} loss {Loss} other {{result}}}",
     "addGameButton": "Add another game result",
 
-    "resultsUrlLabel": "Paste a link to the FFE results page",
-    "resultsUrlPlaceholder": "http://echecs.asso.fr/FicheTournoi.aspx?Ref=...",
-    "fetchResultsButton": "Fetch",
+    "searchTournamentPlaceholder": "Find a tournament...",
+    "noTournamentsFound": "No tournaments found",
     "enterManualResultsButton": "Enter results manually",
     "choosePlayerLabel": "Choose a player",
     "choosePlayerPlaceholder": "Player",

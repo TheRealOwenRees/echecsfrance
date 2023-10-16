@@ -7,5 +7,6 @@ export type APIRouterInput = inferRouterInputs<AppRouter>;
 export type APIRouterOutput = inferRouterOutputs<AppRouter>;
 
 export type TournamentResultsData = APIRouterOutput["fetchTournamentResults"];
+export type SearchedTournament = APIRouterOutput["searchTournaments"][number];
 
 export const trpc = createTRPCReact<AppRouter>();

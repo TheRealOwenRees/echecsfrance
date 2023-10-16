@@ -28,5 +28,5 @@ export const addTournamentSchema = z.object({
 });
 
 export const fetchTournamentResultsSchema = z.object({
-  url: z.string().url({ message: "FormValidation.url" }),
+  id: z.string().min(1, { message: "FormValidation.required" }),
 });

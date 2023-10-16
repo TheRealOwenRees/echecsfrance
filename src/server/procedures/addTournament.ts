@@ -24,7 +24,7 @@ export const addTournament = publicProcedure
 
       const { name, email, message, tournament } = input;
 
-      const tournamentData: Omit<TournamentData, "_id"> = {
+      const tournamentData: Omit<TournamentData, "_id" | "tournament_id"> = {
         ...tournament,
         date: format(tournament.date, "dd/MM/yyyy"),
         time_control: tcMap[tournament.time_control],
