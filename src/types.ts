@@ -1,23 +1,27 @@
 import { LatLngLiteral } from "leaflet";
 import { ObjectId } from "mongodb";
+import { z } from "zod";
 
-export type Status = "scheduled" | "ongoing" | "finished";
+export type Status = "scheduled" | "ongoing" | "finished" | "in-play";
 
-export type TournamentData = {
+export const tournamentDataSchema = z.object({
+  tournament_id: z.string(),
+  town: z.string(),
+  department: z.string(),
+  country: z.string(),
+  tournament: z.string(),
+  url: z.string(),
+  time_control: z.string(),
+  norm_tournament: z.boolean().optional(),
+  date: z.string(),
+  coordinates: z.array(z.number()).min(2).max(2),
+  entry_method: z.enum(["manual", "auto"]),
+  pending: z.boolean().optional(),
+  status: z.enum(["scheduled", "ongoing", "finished", "in-play"]),
+});
+
+export type TournamentData = z.infer<typeof tournamentDataSchema> & {
   _id: ObjectId;
-  tournament_id: string;
-  town: string;
-  department: string;
-  country: string;
-  tournament: string;
-  url: string;
-  time_control: "Cadence Lente" | "Rapide" | "Blitz" | string;
-  norm_tournament: boolean;
-  date: string;
-  coordinates: [number, number];
-  entry_method: "manual" | "auto";
-  pending: boolean;
-  status: Status;
 };
 
 export type ClubData = {
