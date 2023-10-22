@@ -1,5 +1,6 @@
 import { differenceInDays, isSameDay, parse } from "date-fns";
 import { groupBy } from "lodash";
+import { unstable_cache } from "next/cache";
 
 import clientPromise from "@/lib/mongodb";
 import { TournamentData } from "@/types";
@@ -7,8 +8,6 @@ import { TimeControl, Tournament, tcMap, tournamentDataSchema } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
-
-export const revalidate = 3600; // Revalidate cache every 6 hours
 
 const getTournaments = async () => {
   try {
@@ -145,6 +144,16 @@ const getTournaments = async () => {
 };
 
 export default async function Tournaments() {
-  const tournaments = await getTournaments();
+  const tournaments = await unstable_cache(
+    async () => {
+      const data = await getTournaments();
+      return data;
+    },
+    ["tournaments"],
+    {
+      revalidate: 60 * 60 * 6,
+    },
+  )();
+
   return <TournamentsDisplay tournaments={tournaments} />;
 }
