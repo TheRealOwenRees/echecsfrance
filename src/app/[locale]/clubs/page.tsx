@@ -1,4 +1,4 @@
-import { groupBy } from "lodash";
+import { unstable_cache } from "next/cache";
 
 import clientPromise from "@/lib/mongodb";
 import { Club, ClubData } from "@/types";
@@ -38,6 +38,16 @@ const getClubs = async () => {
 };
 
 export default async function Clubs() {
-  const clubs = await getClubs();
+  const clubs = await unstable_cache(
+    async () => {
+      const data = await getClubs();
+      return data;
+    },
+    ["clubs"],
+    {
+      revalidate: 60 * 60 * 6,
+    },
+  )();
+
   return <ClubsDisplay clubs={clubs} />;
 }
