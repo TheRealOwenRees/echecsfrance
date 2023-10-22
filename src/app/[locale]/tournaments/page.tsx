@@ -3,7 +3,7 @@ import { groupBy } from "lodash";
 
 import clientPromise from "@/lib/mongodb";
 import { TournamentData } from "@/types";
-import { TimeControl, Tournament, tcMap } from "@/types";
+import { TimeControl, Tournament, tcMap, tournamentDataSchema } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
@@ -43,9 +43,45 @@ const getTournaments = async () => {
       ])
       .toArray();
 
+    const bad = data.filter((t) => {
+      const result = tournamentDataSchema.safeParse(t);
+      if (result.success === false) {
+        console.log(JSON.stringify(result, null, 2));
+        console.log(JSON.stringify(t, null, 2));
+
+        if (typeof process.env.DISCORD_WEBHOOK_ERROR_LOGS_URL === "string") {
+          fetch(process.env.DISCORD_WEBHOOK_ERROR_LOGS_URL as string, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              embeds: [
+                {
+                  title: "Error parsing tournaments",
+                  fields: [
+                    {
+                      name: "parseError",
+                      value: JSON.stringify(result, null, 2),
+                    },
+                    { name: "tournament", value: JSON.stringify(t, null, 2) },
+                  ],
+                },
+              ],
+            }),
+          });
+        }
+      }
+
+      return result.success === false;
+    });
+
+    const badIds = bad.map((t) => t._id.toString());
+    const goodData = data.filter((t) => !badIds.includes(t._id.toString()));
+
     // Group the tournaments by their location
     const groupedByLocation = groupBy(
-      data,
+      goodData,
       (t) => `${t.coordinates[0]}_${t.coordinates[1]}`,
     );
 
@@ -73,7 +109,7 @@ const getTournaments = async () => {
       dateRangesByLocation[location] = dateRanges;
     }
 
-    return data.map<Tournament>((t) => {
+    return goodData.map<Tournament>((t) => {
       const location = `${t.coordinates[0]}_${t.coordinates[1]}`;
       const date = parse(t.date, "dd/MM/yyyy", new Date());
       const dateRanges = dateRangesByLocation[location];
@@ -97,8 +133,8 @@ const getTournaments = async () => {
         url: t.url,
         timeControl,
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
-        norm: t.norm_tournament,
-        pending: t.pending,
+        norm: t.norm_tournament ?? false,
+        pending: t.pending ?? false,
         status: t.status,
       };
     });
