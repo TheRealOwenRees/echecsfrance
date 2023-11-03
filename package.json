@@ -25,7 +25,7 @@
     "@types/node": "^20.8.4",
     "@types/react": "^18.2.27",
     "@types/react-dom": "^18.2.12",
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "10.4.16",
     "date-fns": "^2.30.0",
     "jotai": "^2.2.2",
     "leaflet": "^1.9.4",
@@ -50,9 +50,9 @@
     "react-select": "^5.7.4",
     "react-tooltip": "^5.18.0",
     "sharp": "^0.32.3",
-    "superjson": "^1.13.1",
+    "superjson": "^2.2.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "3.3.3",
+    "tailwindcss": "3.3.5",
     "typescript": "5.2.2",
     "zod": "^3.22.4"
   },
@@ -67,10 +67,10 @@
     "@types/nodemailer": "^6.4.8",
     "@types/react-datepicker": "^4.15.0",
     "@types/react-input-mask": "^3.0.2",
-    "eslint": "8.49.0",
+    "eslint": "8.51.0",
     "eslint-config-next": "^13.4.12",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.3"
   }
