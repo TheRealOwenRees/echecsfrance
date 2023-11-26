@@ -15,6 +15,7 @@ export default function Home() {
           alt="Background image of France"
           fill={true}
           style={{ objectFit: "cover" }}
+          priority
         />
       </div>
       <div className="z-10 py-4 text-center text-white">
