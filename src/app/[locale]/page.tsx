@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-import bgImage from "@/img/map-bg.jpg";
+import bgImage from "@/img/map-bg.webp";
 import { Link } from "@/utils/navigation";
 
 export default function Home() {
