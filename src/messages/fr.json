@@ -153,6 +153,7 @@
     "gameResultPlaceholder": "Résultat...",
     "gameResult": "{result, select, win {Victoire} draw {Nul} loss {Défaite} other {{result}}}",
     "addGameButton": "Ajouter un autre résultat de partie",
+    "clearButton": "Effacer",
 
     "searchTournamentPlaceholder": "Rechecher un tournois...",
     "noTournamentsFound": "Aucun tournoi trouvé",

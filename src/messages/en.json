@@ -151,6 +151,7 @@
     "gameResultPlaceholder": "Result...",
     "gameResult": "{result, select, win {Win} draw {Draw} loss {Loss} other {{result}}}",
     "addGameButton": "Add another game result",
+    "clearButton": "Clear",
 
     "searchTournamentPlaceholder": "Find a tournament...",
     "noTournamentsFound": "No tournaments found",
