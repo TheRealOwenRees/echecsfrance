@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import { NextIntlClientProvider } from "next-intl";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Inter, Julius_Sans_One } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
@@ -26,7 +26,10 @@ export async function generateMetadata({
 }) {
   // While the `locale` is required, the namespace is optional and
   // identical to the parameter that `useTranslations` accepts.
-  const t = await getTranslator(locale ?? "fr", "Metadata");
+  const t = await getTranslations({
+    locale: locale ?? "en",
+    namespace: "Metadata",
+  });
 
   return {
     title: t("title"),
