@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaExternalLinkAlt } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import { twMerge } from "tailwind-merge";
 
+import DatePicker from "@/app/[locale]/tournaments/DatePicker";
 import {
   debouncedHoveredListIdAtom,
   debouncedHoveredMapIdAtom,
@@ -20,6 +21,8 @@ import {
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
+import useDatePickerWidth from "@/hooks/useDatePickerWidth";
+import { DatePickerDirection } from "@/types";
 
 import TimeControlFilters from "./TimeControlFilters";
 
@@ -27,14 +30,22 @@ const TournamentTable = () => {
   const t = useTranslations("Tournaments");
   const at = useTranslations("App");
 
+  const isLg = useBreakpoint("lg");
+  const datePickerRef = useRef<HTMLDivElement>(null);
+
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
+
   const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const [normsOnly, setNormsOnly] = useAtom(normsOnlyAtom);
   const hoveredMapId = useAtomValue(hoveredMapIdAtom);
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
   const setHoveredListId = useSetAtom(debouncedHoveredListIdAtom);
 
-  const isLg = useBreakpoint("lg");
+  const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
+  const [dateDirectionState, setDateDirectionState] =
+    useState<DatePickerDirection>("horizontal");
+
+  useDatePickerWidth({ datePickerRef, setDateDirectionState });
 
   useEffect(() => {
     if (!isLg || debouncedHoveredMapId === null) return;
@@ -50,8 +61,13 @@ const TournamentTable = () => {
       className="grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-content lg:overflow-y-scroll lg:pb-0"
       id="listing"
     >
-      <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
+      <div className="z-10 flex w-full flex-wrap items-center justify-start gap-3 p-3">
         <SearchBar />
+
+        <FaCalendarAlt
+          className="cursor-pointer text-black dark:text-white"
+          onClick={() => setDatePickerIsOpen(!datePickerIsOpen)}
+        />
 
         <div className="flex flex-col gap-0 text-gray-900 dark:text-white">
           <label>
@@ -78,6 +94,12 @@ const TournamentTable = () => {
         <div className="hidden lg:block">
           <TimeControlFilters />
         </div>
+      </div>
+
+      <div className="flex justify-center" ref={datePickerRef}>
+        {datePickerIsOpen && (
+          <DatePicker datePickerDirection={dateDirectionState} />
+        )}
       </div>
 
       <ScrollToTopButton />

@@ -1,4 +1,11 @@
-import { differenceInDays, isSameDay, parse } from "date-fns";
+import {
+  differenceInDays,
+  formatISO,
+  isSameDay,
+  parse,
+  setDefaultOptions,
+} from "date-fns";
+import { fr } from "date-fns/locale";
 import { groupBy } from "lodash";
 import { unstable_cache } from "next/cache";
 
@@ -8,6 +15,8 @@ import { TimeControl, Tournament, tcMap, tournamentDataSchema } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
+
+setDefaultOptions({ locale: fr });
 
 const getTournaments = async () => {
   try {
@@ -129,6 +138,7 @@ const getTournaments = async () => {
         town: t.town,
         department: t.department,
         date: t.date,
+        isoDate: formatISO(date),
         url: t.url,
         timeControl,
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
