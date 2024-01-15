@@ -11,6 +11,8 @@ import { twMerge } from "tailwind-merge";
 
 import DatePicker from "@/app/[locale]/tournaments/DatePicker";
 import {
+  datePickerIsOpenAtom,
+  dateRangeAtom,
   debouncedHoveredListIdAtom,
   debouncedHoveredMapIdAtom,
   filteredTournamentsListAtom,
@@ -41,7 +43,8 @@ const TournamentTable = () => {
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
   const setHoveredListId = useSetAtom(debouncedHoveredListIdAtom);
 
-  const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
+  const [_, setDateRange] = useAtom(dateRangeAtom);
+  const [datePickerIsOpen, setDatePickerIsOpen] = useAtom(datePickerIsOpenAtom);
   const [dateDirectionState, setDateDirectionState] =
     useState<DatePickerDirection>("horizontal");
 
@@ -56,6 +59,18 @@ const TournamentTable = () => {
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapId, isLg]);
 
+  const handleDatePickerClick = () => {
+    // reset date range today -> max date
+    setDateRange([
+      {
+        startDate: new Date(),
+        endDate: undefined,
+        key: "selection",
+      },
+    ]);
+    setDatePickerIsOpen(!datePickerIsOpen);
+  };
+
   return (
     <section
       className="grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-content lg:overflow-y-scroll lg:pb-0"
@@ -66,7 +81,7 @@ const TournamentTable = () => {
 
         <FaCalendarAlt
           className="cursor-pointer text-black dark:text-white"
-          onClick={() => setDatePickerIsOpen(!datePickerIsOpen)}
+          onClick={handleDatePickerClick}
         />
 
         <div className="flex flex-col gap-0 text-gray-900 dark:text-white">
