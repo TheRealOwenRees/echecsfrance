@@ -4,13 +4,16 @@ import { useEffect, useRef, useState } from "react";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import { FaCalendarAlt, FaExternalLinkAlt } from "react-icons/fa";
+import Image from "next/image";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import { twMerge } from "tailwind-merge";
 
 import DatePicker from "@/app/[locale]/tournaments/DatePicker";
 import {
+  datePickerIsOpenAtom,
+  dateRangeAtom,
   debouncedHoveredListIdAtom,
   debouncedHoveredMapIdAtom,
   filteredTournamentsListAtom,
@@ -22,6 +25,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
+import calendarSvg from "@/img/calendar.svg";
 import { DatePickerDirection } from "@/types";
 
 import TimeControlFilters from "./TimeControlFilters";
@@ -41,7 +45,8 @@ const TournamentTable = () => {
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
   const setHoveredListId = useSetAtom(debouncedHoveredListIdAtom);
 
-  const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
+  const setDateRange = useSetAtom(dateRangeAtom);
+  const [datePickerIsOpen, setDatePickerIsOpen] = useAtom(datePickerIsOpenAtom);
   const [dateDirectionState, setDateDirectionState] =
     useState<DatePickerDirection>("horizontal");
 
@@ -56,6 +61,18 @@ const TournamentTable = () => {
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapId, isLg]);
 
+  const handleDatePickerClick = () => {
+    // reset date range today -> max date
+    setDateRange([
+      {
+        startDate: new Date(),
+        endDate: undefined,
+        key: "selection",
+      },
+    ]);
+    setDatePickerIsOpen(!datePickerIsOpen);
+  };
+
   return (
     <section
       className="grid w-full auto-rows-max pb-20 lg:col-start-2 lg:col-end-3 lg:h-content lg:overflow-y-scroll lg:pb-0"
@@ -64,9 +81,12 @@ const TournamentTable = () => {
       <div className="z-10 flex w-full flex-wrap items-center justify-start gap-3 p-3">
         <SearchBar />
 
-        <FaCalendarAlt
-          className="cursor-pointer text-black dark:text-white"
-          onClick={() => setDatePickerIsOpen(!datePickerIsOpen)}
+        <Image
+          src={calendarSvg}
+          alt="date"
+          width={30}
+          className="cursor-pointer"
+          onClick={handleDatePickerClick}
         />
 
         <div className="flex flex-col gap-0 text-gray-900 dark:text-white">

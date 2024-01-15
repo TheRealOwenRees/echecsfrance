@@ -26,6 +26,7 @@ const DatePicker = ({
       preventSnapRefocus={true}
       ranges={dateRange}
       direction={datePickerDirection}
+      showDateDisplay={false}
     />
   );
 };

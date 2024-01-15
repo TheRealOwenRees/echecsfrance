@@ -112,6 +112,8 @@ export const filteredClubsListAtom = atom((get) => {
 });
 
 // Date picker atoms
+export const datePickerIsOpenAtom = atom(false);
+
 export const maxDateAtom = atom((get) => {
   const tournaments = get(tournamentsAtom);
   const dateTimestamps = tournaments.map((t) => new Date(t.isoDate).getTime());
