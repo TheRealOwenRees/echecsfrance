@@ -27,7 +27,7 @@
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.16",
     "date-fns": "^2.30.0",
-    "jotai": "^2.2.2",
+    "jotai": "^2.6.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "leaflet.markercluster": "^1.5.3",
