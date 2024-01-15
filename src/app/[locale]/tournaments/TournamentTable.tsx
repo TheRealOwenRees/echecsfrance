@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { FaCalendarAlt, FaExternalLinkAlt } from "react-icons/fa";
 import { FaTrophy } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
@@ -24,6 +25,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
+import calendarSvg from "@/img/calendar.svg";
 import { DatePickerDirection } from "@/types";
 
 import TimeControlFilters from "./TimeControlFilters";
@@ -43,7 +45,7 @@ const TournamentTable = () => {
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
   const setHoveredListId = useSetAtom(debouncedHoveredListIdAtom);
 
-  const [_, setDateRange] = useAtom(dateRangeAtom);
+  const setDateRange = useSetAtom(dateRangeAtom);
   const [datePickerIsOpen, setDatePickerIsOpen] = useAtom(datePickerIsOpenAtom);
   const [dateDirectionState, setDateDirectionState] =
     useState<DatePickerDirection>("horizontal");
@@ -79,8 +81,16 @@ const TournamentTable = () => {
       <div className="z-10 flex w-full flex-wrap items-center justify-start gap-3 p-3">
         <SearchBar />
 
-        <FaCalendarAlt
-          className="cursor-pointer text-black dark:text-white"
+        {/*<FaCalendarAlt*/}
+        {/*  className="cursor-pointer text-black dark:text-white"*/}
+        {/*  onClick={handleDatePickerClick}*/}
+        {/*/>*/}
+
+        <Image
+          src={calendarSvg}
+          alt="date"
+          width={30}
+          className="cursor-pointer"
           onClick={handleDatePickerClick}
         />
 
