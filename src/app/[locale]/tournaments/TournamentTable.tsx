@@ -4,9 +4,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { FaTrophy } from "react-icons/fa";
+import { BsCalendar2Date } from "react-icons/bs";
+import { FaExternalLinkAlt, FaTrophy } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import { twMerge } from "tailwind-merge";
 
@@ -25,7 +24,6 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
-import calendarSvg from "@/img/calendar.svg";
 import { DatePickerDirection } from "@/types";
 
 import TimeControlFilters from "./TimeControlFilters";
@@ -49,6 +47,9 @@ const TournamentTable = () => {
   const [datePickerIsOpen, setDatePickerIsOpen] = useAtom(datePickerIsOpenAtom);
   const [dateDirectionState, setDateDirectionState] =
     useState<DatePickerDirection>("horizontal");
+  const datePickerColour = datePickerIsOpen
+    ? "text-primary-600"
+    : "text-gray-500";
 
   useDatePickerWidth({ datePickerRef, setDateDirectionState });
 
@@ -81,11 +82,8 @@ const TournamentTable = () => {
       <div className="z-10 flex w-full flex-wrap items-center justify-start gap-3 p-3">
         <SearchBar />
 
-        <Image
-          src={calendarSvg}
-          alt="date"
-          width={30}
-          className="cursor-pointer"
+        <BsCalendar2Date
+          className={`cursor-pointer text-3xl ${datePickerColour}`}
           onClick={handleDatePickerClick}
         />
 
