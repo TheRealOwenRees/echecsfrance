@@ -51,6 +51,7 @@ export type Tournament = {
   url: string;
   timeControl: TimeControl;
   date: string;
+  isoDate: string;
   latLng: LatLngLiteral;
   norm: boolean;
   pending: boolean;
@@ -77,6 +78,8 @@ export type ResponseMessage = {
   isSuccessful: boolean;
   message: string;
 };
+
+export type DatePickerDirection = "horizontal" | "vertical";
 
 export type ScrollableElement = Window | HTMLElement;
 
