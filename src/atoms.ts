@@ -1,9 +1,13 @@
+import { formatISO, setDefaultOptions } from "date-fns";
+import { fr } from "date-fns/locale";
 import { atom } from "jotai";
-import { LatLngBounds, LatLngLiteral } from "leaflet";
+import { LatLngBounds } from "leaflet";
 
 import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
+
+setDefaultOptions({ locale: fr });
 
 export const burgerMenuIsOpenAtom = atom(false);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
@@ -19,11 +23,6 @@ export const blitzAtom = atom(true);
 export const otherAtom = atom(true);
 
 export const clubsAtom = atom<Club[]>([]);
-
-export const franceCenterAtom = atom<LatLngLiteral>({
-  lat: 47.0844,
-  lng: 2.3964,
-});
 
 export const {
   currentValueAtom: hoveredMapIdAtom,
@@ -41,8 +40,17 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
   const blitz = get(blitzAtom);
   const other = get(otherAtom);
 
+  const dateRange = get(dateRangeAtom);
+  const startDate = formatISO(dateRange[0].startDate);
+  const endDate =
+    dateRange[0].endDate !== undefined
+      ? formatISO(dateRange[0].endDate)
+      : undefined;
+
   return tournaments.filter(
     (tournament) =>
+      tournament.isoDate >= startDate &&
+      (endDate === undefined || tournament.isoDate <= endDate) &&
       !tournament.pending &&
       tournament.status === "scheduled" &&
       ((tournament.timeControl === TimeControl.Classic && classic) ||
@@ -102,3 +110,20 @@ export const filteredClubsListAtom = atom((get) => {
   // Filter by those in the current map bounds
   return clubs.filter((club) => mapBounds.contains(club.latLng));
 });
+
+// Date picker atoms
+export const datePickerIsOpenAtom = atom(false);
+
+export const maxDateAtom = atom((get) => {
+  const tournaments = get(tournamentsAtom);
+  const dateTimestamps = tournaments.map((t) => new Date(t.isoDate).getTime());
+  return new Date(Math.max(...dateTimestamps));
+});
+
+export const dateRangeAtom = atom<any>([
+  {
+    startDate: new Date(),
+    endDate: undefined,
+    key: "selection",
+  },
+]);
