@@ -35,9 +35,20 @@
 
   "Home": {
     "title": "Échecs France",
-    "purpose": "Trouvez vos tournois d'échecs en france sur une carte",
-    "how": "Une représentation visuelle de tous les tournois d'échecs publiés par la <link>FFE</link>",
-    "mapLink": "Voir La Carte"
+    "purpose": "Le moyen le plus simple de trouver des tournois d'échecs locaux et des clubs en France.",
+    "tournamentsTitle": "Trouvez votre prochain tournoi",
+    "tournamentsInfo": "Trouvez facilement les prochains tournois sur une carte de France. Filtrez par date, contrôle du temps, et plus encore.",
+    "tournamentsLink": "Trouver un Tournoi",
+
+    "clubsTitle": "Trouvez un club d'échecs",
+    "clubsInfo": "Vous cherchez un club d'échecs près de chez vous ? Trouvez-en un sur la carte et entrez en contact avec eux.",
+    "clubsLink": "Trouver un Club",
+
+    "eloTitle": "Calculez votre Elo",
+    "eloInfo": "Utilisez notre fantastique calculateur Elo pour estimer votre nouveau classement après un tournoi. Vous pouvez saisir vos résultats manuellement ou sélectionner un tournoi dans notre base de données.",
+    "calculatorLink": "Aller au Calculateur",
+
+    "getInvolved": "Échecs France est complètement gratuit, open source et ouvert aux contributions. Retrouvez-nous sur <link>GitHub</link> si vous souhaitez vous impliquer."
   },
 
   "Tournaments": {

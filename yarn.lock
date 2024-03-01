@@ -1671,20 +1671,20 @@
     javascript-natural-sort "0.7.1"
     lodash "^4.17.21"
 
-"@trpc/client@^10.38.1":
-  version "10.45.0"
-  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.45.0.tgz#67cf34857cfa7e77bc498cb837c2226a42d24bf4"
-  integrity sha512-m091R1qte9rvkvL8N1e/mzrbb8S4gb+Q4ZNJnEGDgd7kic/6a8DFgSciBTiCoSp0YwOTVhyQzSrrA/sZI6PhBg==
+"@trpc/client@^10.45.0":
+  version "10.45.1"
+  resolved "https://registry.yarnpkg.com/@trpc/client/-/client-10.45.1.tgz#ec80a5252ac9d3e5df2e5d8ddce1e23fc5caf5ac"
+  integrity sha512-nVbAk1xpIiI64WgzXGgfxPOGgHoYvffn1IsjV1D/Ri7DL4BKuo2qtZ7UQ+OuHkzH2M8j4ikSVBDpk545fOdvpw==
 
-"@trpc/react-query@^10.38.1":
-  version "10.45.0"
-  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.45.0.tgz#848929e79399119e860d0212f8233d2ee83328c9"
-  integrity sha512-MMc2pLwoaLZVwvLQyzJv3uEmdG3lORhifhVzR/drtavwDYwt+OEvH0w3s1zC7RaDdFpc6Nj2kkpHmdoU7BlAAw==
+"@trpc/react-query@^10.45.0":
+  version "10.45.1"
+  resolved "https://registry.yarnpkg.com/@trpc/react-query/-/react-query-10.45.1.tgz#48454552cf5ce9a4d99712065f9309994b2476a5"
+  integrity sha512-48OOMpwVjQFUQJqlp9/tW1lqESZg9YEqB5iVci7mYaDzZPEs/YUcV85XKvYzgeW+7K9oShX/JMVce8muON/6uQ==
 
-"@trpc/server@^10.38.1":
-  version "10.45.0"
-  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.45.0.tgz#be43a1a6e7f41ae86534716933717e80218ccdcb"
-  integrity sha512-2Fwzv6nqpE0Ie/G7PeS0EVR89zLm+c1Mw7T+RAGtU807j4oaUx0zGkBXTu5u9AI+j+BYNN2GZxJcuDTAecbr1A==
+"@trpc/server@^10.45.0":
+  version "10.45.1"
+  resolved "https://registry.yarnpkg.com/@trpc/server/-/server-10.45.1.tgz#481b9d6747bbb585ef91b980198dd4ff3226baf4"
+  integrity sha512-KOzBEVaHW9IxEedUP9E50y0tYxAuvlzyjn80Bpemw4rcNbT4WtJnhkFPUY+qDJl7Crt3B/oY2qMgSxVWi9toLg==
 
 "@types/aria-query@^5.0.1":
   version "5.0.4"
