@@ -70,6 +70,7 @@ export const TournamentResults = ({
               game.result as 1 | 0 | 0.5,
               kFactor,
             );
+
             return {
               rating: acc.rating + delta,
               deltas: [

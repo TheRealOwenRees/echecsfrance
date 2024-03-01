@@ -67,7 +67,7 @@ export const getNewRating = (
   result: 1 | 0 | 0.5,
   kFactor: number,
 ) => {
-  const differenceInElo = clamp(opponentRating - rating, -400, 400);
+  const differenceInElo = clamp(opponentRating - rating, -400, Infinity);
   const tableRow = (differenceToProbability.find(
     ([start, end]) =>
       Math.abs(differenceInElo) >= start && Math.abs(differenceInElo) <= end,
