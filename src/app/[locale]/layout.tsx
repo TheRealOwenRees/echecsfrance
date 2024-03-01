@@ -9,8 +9,8 @@ import Script from "next/script";
 import "@/css/globals.css";
 import Providers from "@/providers";
 
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import Footer from "./(main)/components/Footer";
+import Navbar from "./(main)/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({
@@ -71,11 +71,11 @@ export default async function RootLayout({
       <body>
         <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <div className="bg-white font-sans leading-normal tracking-normal dark:bg-gray-800">
-              <Navbar />
-              <div className="relative min-h-content">{children}</div>
-              <Footer />
+            <div className="bg-white pb-40 font-sans leading-normal tracking-normal dark:bg-gray-700 dark:bg-gray-800">
+              {children}
             </div>
+
+            <Footer />
           </NextIntlClientProvider>
           <Script
             defer
