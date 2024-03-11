@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/utils/navigation";
 
 import Hamburger from "./Hamburger";
+import AuthButton from "@/components/AuthButton";
 
 export default function Navbar() {
   const t = useTranslations("Nav");
@@ -47,6 +48,7 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+            <AuthButton />
           </ul>
         </div>
       </div>
