@@ -76,7 +76,7 @@ export default function Home() {
           <section
             className={twMerge(
               "row-span-4 grid gap-4",
-              // We use subgrid if possible (to align columns across each button), falling back to a grid
+              // We use subgrid if possible to align the sections horizontally, falling back to a grid
               "grid-rows-[auto_min-content_1fr_max-content]",
               "grid-rows-[subgrid] gap-2",
             )}
@@ -101,7 +101,7 @@ export default function Home() {
           <section
             className={twMerge(
               "row-span-4 grid gap-4",
-              // We use subgrid if possible (to align columns across each button), falling back to a grid
+              // We use subgrid if possible to align the sections horizontally, falling back to a grid
               "grid-rows-[auto_min-content_1fr_max-content]",
               "grid-rows-[subgrid] gap-2",
             )}
@@ -125,7 +125,7 @@ export default function Home() {
           <section
             className={twMerge(
               "row-span-4 grid gap-4",
-              // We use subgrid if possible (to align columns across each button), falling back to a grid
+              // We use subgrid if possible to align the sections horizontally, falling back to a grid
               "grid-rows-[auto_min-content_1fr_max-content]",
               "grid-rows-[subgrid] gap-2",
             )}
