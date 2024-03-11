@@ -12,7 +12,7 @@ export default function Home() {
   const t = useTranslations("Home");
 
   return (
-    <div className="min-h-[100vh] bg-white dark:bg-gray-800">
+    <div className="min-h-[100vh] bg-white pb-40 dark:bg-gray-800">
       <div className="relative mb-20 max-h-[400px]">
         <Image
           src={bannerImage}
