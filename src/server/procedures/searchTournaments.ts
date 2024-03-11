@@ -47,7 +47,7 @@ export const searchTournaments = publicProcedure
             $addFields: {
               dateParts: {
                 $dateFromString: {
-                  dateString: "$end_date",
+                  dateString: "$start_date",
                   format: "%d/%m/%Y",
                 },
               },
@@ -83,7 +83,7 @@ export const searchTournaments = publicProcedure
           tournament: t.tournament,
           town: t.town,
           department: t.department,
-          date: t.date,
+          date: t.start_date,
           url: t.url,
           timeControl,
           status: t.status,
