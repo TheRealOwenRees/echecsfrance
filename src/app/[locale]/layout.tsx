@@ -71,7 +71,7 @@ export default async function RootLayout({
       <body>
         <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <div className="bg-white pb-40 font-sans leading-normal tracking-normal dark:bg-gray-700 dark:bg-gray-800">
+            <div className="bg-white pb-40 font-sans leading-normal tracking-normal dark:bg-gray-800">
               {children}
             </div>
 

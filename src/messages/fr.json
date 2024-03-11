@@ -41,7 +41,7 @@
     "tournamentsLink": "Trouver un Tournoi",
 
     "clubsTitle": "Trouvez un club d'échecs",
-    "clubsInfo": "Vous cherchez un club d'échecs près de chez vous ? Trouvez-en un sur la carte et entrez en contact avec eux.",
+    "clubsInfo": "Vous cherchez un club d'échecs près de chez vous\u00a0? Trouvez-en un sur la carte et entrez en contact avec eux.",
     "clubsLink": "Trouver un Club",
 
     "eloTitle": "Calculez votre Elo",
@@ -82,7 +82,7 @@
   },
 
   "About": {
-    "title": "Qui Sommes-Nous?",
+    "title": "Qui Sommes-Nous\u00a0?",
     "p1": "Ce projet a vu le jour début 2022 afin de permettre une visualisation sur une carte des tournois d'échecs en France. Ayant déménagé en France en 2019, je ne connaissais alors pas la géographie française et je souhaitais savoir quels tournois avaient lieu près de chez moi.",
     "p2": "Le projet a été mis de côté jusqu'au printemps 2023; date à laquelle je lui ai redonné vie. Reconstruit à partir de zéro, <homeLink>Échecs France</homeLink> est désormais open source et ouvert aux contributions.",
     "p3": "Je compte mettre en place un bouton de don en ligne pour ceux qui souhaitent participer aux frais associés au site. Une fois les coûts de fonctionnement déduits, tous les fonds restant seront redirigés vers le monde des échecs soit en sponsorant des événements ou par la création de dons.",
@@ -181,7 +181,7 @@
     "blackWin": "0 - 1",
     "initialRating": "Classement initial\u00a0: {rating}",
     "finalRating": "Classement final\u00a0: {rating} (<delta></delta>)",
-    "noChangeInfo": "Notez que {noChangeCount, plural, one {une de ces parties n'a pas modifié l'Elo.} other {# de ces parties n'ont pas modifié l'Elo.}}. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
+    "noChangeInfo": "Notez que {noChangeCount, plural, one {une de ces parties n'a pas modifié l'Elo} other {# de ces parties n'ont pas modifié l'Elo}}. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
 
     "kFactorTitle": "Qu'est-ce que le coefficient K\u00a0?",
     "kFactorInfo1": "Le but du coefficient K est de déterminer dans quelle mesure le classement aux échecs d'un joueur devrait changer après chaque partie. Il est basé sur le nombre de parties classées qu'un joueur a complétées. Ce système vise à garantir que les classements des joueurs reflètent avec précision leur niveau de compétence tout en tenant compte à la fois des joueurs débutants et expérimentés.",
