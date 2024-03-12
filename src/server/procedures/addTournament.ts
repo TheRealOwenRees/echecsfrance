@@ -27,6 +27,8 @@ export const addTournament = publicProcedure
       const tournamentData: Omit<TournamentData, "_id" | "tournament_id"> = {
         ...tournament,
         date: format(tournament.date, "dd/MM/yyyy"),
+        start_date: format(tournament.date, "dd/MM/yyyy"),
+        end_date: format(tournament.date, "dd/MM/yyyy"),
         time_control: tcMap[tournament.time_control],
         coordinates: tournament.coordinates as [number, number],
         entry_method: "manual",

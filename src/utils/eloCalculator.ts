@@ -1,6 +1,6 @@
 import { clamp, last } from "lodash";
 
-// Fide uses teh following table to establish the chance of winning based on the difference in elo.
+// Fide uses the following table to establish the chance of winning based on the difference in elo.
 // https://handbook.fide.com/chapter/B022017
 
 const differenceToProbability: [
