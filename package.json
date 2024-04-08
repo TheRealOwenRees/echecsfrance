@@ -33,7 +33,7 @@
     "next-intl": "^3.3.2",
     "next-pwa": "^5.6.0",
     "next-safe-action": "^6.2.0",
-    "postcss": "8.4.33",
+    "postcss": "8.4.35",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",
     "react-datepicker": "^4.18.0",
