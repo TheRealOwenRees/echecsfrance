@@ -4,8 +4,8 @@ import { last } from "lodash";
 import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
+import { TournamentResultsData } from "@/server/fetchTournamentResults";
 import { getNewRating } from "@/utils/eloCalculator";
-import { TournamentResultsData } from "@/utils/trpc";
 
 type TournamentResultsProps = {
   results: TournamentResultsData;
