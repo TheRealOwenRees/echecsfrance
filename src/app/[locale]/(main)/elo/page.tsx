@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import { isEmpty, sortBy } from "lodash";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -13,8 +14,8 @@ import { Spinner } from "@/components/Spinner";
 import { SelectField } from "@/components/form/SelectField";
 import { TournamentSelectField } from "@/components/form/TournamentSelectField";
 import { fetchTournamentResultsSchema } from "@/schemas";
+import { fetchTournamentResults } from "@/server/fetchTournamentResults";
 import { Link } from "@/utils/navigation";
-import { trpc } from "@/utils/trpc";
 
 import { KFactor } from "./KFactor";
 import { ManualEloForm } from "./ManualEloForm";
@@ -55,21 +56,18 @@ export default function Elo() {
     data: allResults,
     isFetching,
     error,
-  } = trpc.fetchTournamentResults.useQuery(
-    {
-      id: tournamentId?.trim(),
-    },
-    {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-      cacheTime: 10 * 60 * 1000,
-      enabled: hasTournamentId,
-      retry: false,
-    },
-  );
+  } = useQuery({
+    queryKey: ["fetchTournamentResults", { id: tournamentId?.trim() }],
+    queryFn: async () => fetchTournamentResults({ id: tournamentId?.trim() }),
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
+    gcTime: 10 * 60 * 1000,
+    enabled: hasTournamentId,
+    retry: false,
+  });
 
   const playerOptions = sortBy(
-    (allResults ?? []).map((player) => ({
+    (allResults?.data ?? []).map((player) => ({
       value: player.id,
       label: player.name,
     })),
@@ -173,7 +171,7 @@ export default function Elo() {
     console.error(error);
   }
 
-  const playerResults = allResults?.find((p) => p.id === player);
+  const playerResults = allResults?.data?.find((p) => p.id === player);
 
   return (
     <section className="grid place-items-center bg-white pb-20 dark:bg-gray-800">
@@ -215,7 +213,7 @@ export default function Elo() {
               </div>
             )}
 
-            {error && (
+            {error instanceof Error && (
               <div className="mt-8 text-center text-error">
                 {error.message.startsWith("ERR_")
                   ? t(error.message as TranslationKey)
@@ -269,7 +267,7 @@ export default function Elo() {
             <TournamentResults
               playerId={player}
               kFactor={parseInt(kFactor)}
-              results={allResults ?? []}
+              results={allResults?.data ?? []}
             />
           )}
 

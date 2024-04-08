@@ -17,8 +17,8 @@ import { SwitchField } from "@/components/form/SwitchField";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { TextField } from "@/components/form/TextField";
 import { addTournamentSchema } from "@/schemas";
+import { addTournament } from "@/server/addTournament";
 import { TimeControl } from "@/types";
-import { trpc } from "@/utils/trpc";
 
 type TournamentFormValues = z.infer<typeof addTournamentSchema>;
 
@@ -30,7 +30,7 @@ const Map = dynamic(() => import("./Map"), {
 const TournamentForm = () => {
   const t = useTranslations("AddTournament");
   const at = useTranslations("App");
-  const addTournament = trpc.addTournament.useMutation();
+
   const [responseMessage, setResponseMessage] = useState({
     isSuccessful: false,
     message: "",
@@ -48,7 +48,7 @@ const TournamentForm = () => {
 
   const onSubmit = async (data: TournamentFormValues) => {
     try {
-      await addTournament.mutateAsync(data);
+      await addTournament(data);
       setResponseMessage({
         isSuccessful: true,
         message: t("success"),

@@ -12,14 +12,13 @@ import { clearMessage } from "@/components/InfoMessage";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { TextField } from "@/components/form/TextField";
 import { contactUsSchema } from "@/schemas";
-import { trpc } from "@/utils/trpc";
+import { contactUs } from "@/server/contactUs";
 
 type TournamentFormValues = z.infer<typeof contactUsSchema>;
 
 const ContactForm = () => {
   const t = useTranslations("Contact");
 
-  const contactUs = trpc.contactUs.useMutation();
   const [responseMessage, setResponseMessage] = useState({
     isSuccessful: false,
     message: "",
@@ -31,7 +30,7 @@ const ContactForm = () => {
 
   const onSubmit = async (data: TournamentFormValues) => {
     try {
-      await contactUs.mutateAsync(data);
+      await contactUs(data);
       setResponseMessage({
         isSuccessful: true,
         message: t("success"),

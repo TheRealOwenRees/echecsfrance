@@ -1,5 +1,6 @@
 import { LatLngLiteral } from "leaflet";
 import { ObjectId } from "mongodb";
+import { SafeAction } from "next-safe-action";
 import { z } from "zod";
 
 export type Status = "scheduled" | "ongoing" | "finished" | "in-play";
@@ -92,3 +93,6 @@ export type ScrollableElement = Window | HTMLElement;
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+export type ExtractSafeActionResult<T> =
+  T extends SafeAction<infer Schema, infer Result> ? Result : never;

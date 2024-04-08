@@ -1,9 +1,11 @@
+"use server";
+
 import { z } from "zod";
 
 import { fetchTournamentResultsSchema } from "@/schemas";
 import { errorLog } from "@/utils/logger";
 
-import { publicProcedure } from "../trpc";
+import { action } from "./safeAction";
 
 const dbSchema = z.array(
   z.object({
@@ -42,6 +44,8 @@ const outputSchema = z.array(
     ),
   }),
 );
+
+export type TournamentResultsData = z.infer<typeof outputSchema>;
 
 const getEloDetails = (elo: string | null) => {
   if (elo === null || elo === "") {
@@ -102,10 +106,9 @@ const reportFetchError = async (url: string, error: any) => {
   }
 };
 
-export const fetchTournamentResults = publicProcedure
-  .input(fetchTournamentResultsSchema)
-  .output(outputSchema)
-  .query(async ({ input }) => {
+export const fetchTournamentResults = action(
+  fetchTournamentResultsSchema,
+  async (input) => {
     try {
       const headers = new Headers();
       const apiKey = process.env.RESULTS_API_KEY;
@@ -113,8 +116,6 @@ export const fetchTournamentResults = publicProcedure
       if (apiKey) {
         headers.append("api-key", apiKey);
       }
-
-      console.log(input.id);
 
       const rawResults = await fetch(
         `${process.env.RESULTS_SCRAPER_URL}${input.id}`,
@@ -130,8 +131,8 @@ export const fetchTournamentResults = publicProcedure
       }
 
       const parsedResults = dbSchema.parse(results);
-      return parsedResults.map<z.infer<typeof outputSchema>[number]>(
-        (player) => ({
+      return outputSchema.parse(
+        parsedResults.map<z.infer<typeof outputSchema>[number]>((player) => ({
           id: player.id,
           name: player.name,
           ...getEloDetails(player.elo),
@@ -140,17 +141,18 @@ export const fetchTournamentResults = publicProcedure
               result.colour === "B"
                 ? "white"
                 : result.colour === "N"
-                ? "black"
-                : "",
+                  ? "black"
+                  : "",
             opponent: result.opponent_name,
             ...getResultDetails(result),
             ...getEloDetails(result.opponent_elo),
           })),
-        }),
+        })),
       );
     } catch (error) {
       reportFetchError(input.id, error);
       errorLog(JSON.stringify(error, null, 2));
       throw error;
     }
-  });
+  },
+);

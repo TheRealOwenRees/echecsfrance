@@ -2,7 +2,11 @@ import { useTranslations } from "next-intl";
 import { FieldPath, FieldValues } from "react-hook-form";
 
 import { TimeControlColours } from "@/constants";
-import { SearchedTournament, trpc } from "@/utils/trpc";
+import { getTournamentDetails } from "@/server/getTournamentDetails";
+import {
+  SearchedTournament,
+  searchTournaments,
+} from "@/server/searchTournaments";
 
 import { AsyncSelectField, AsyncSelectFieldProps } from "./AsyncSelectField";
 
@@ -27,10 +31,9 @@ export const TournamentSelectField = <
   ...rest
 }: TournamentSelectFieldProps<TFieldValues, TFieldName>) => {
   const at = useTranslations("App");
-  const client = trpc.useContext();
 
   const loadOption = async (ffeId: string) => {
-    const tournament = await client.getTournamentDetails.fetch({ ffeId });
+    const { data: tournament } = await getTournamentDetails({ ffeId });
 
     return !tournament
       ? undefined
@@ -42,7 +45,7 @@ export const TournamentSelectField = <
   };
 
   const loadOptions = async (searchValue?: string) => {
-    const tournaments = await client.searchTournaments.fetch({
+    const { data: tournaments } = await searchTournaments({
       searchValue: searchValue ?? "",
     });
 
