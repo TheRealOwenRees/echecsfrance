@@ -27,7 +27,9 @@
     "title": "Échecs France",
     "tournaments": "Tournois",
     "clubs": "Clubs",
-    "elo": "Calculette Elo"
+    "elo": "Calculette Elo",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter"
   },
 
   "Footer": {
@@ -205,6 +207,25 @@
     "kFactorInfo5": "<b>10</b> une fois que le classement publié d'un joueur a atteint 2400 et reste à ce niveau par la suite, même s'il redescend en dessous de 2400.",
     "kFactorInfo6": "<b>40</b> pour tous les joueurs jusqu'à leur 18e anniversaire, tant que leur classement reste inférieur à 2300.",
 
-    "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste."
+    "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste.",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
+    "ERR_NO_TOURNAMENT_ID": "L'identifiant du tournoi fourni est incorrect"
+  },
+
+  "SignIn": {
+    "title": "Se connecter",
+    "info": "Connectez-vous pour accéder à des fonctionnalités supplémentaires, telles que la réception de notifications par e-mail pour les tournois dans votre région. Pas besoin de créer un compte, connectez-vous simplement avec votre adresse e-mail et nous vous enverrons un lien.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Votre e-mail",
+    "signInButton": "Se connecter",
+    "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
+    "checkEmail": "Veuillez vérifier votre e-mail pour un lien de connexion.",
+
+    "email": {
+      "subject": "Connexion à ${host}",
+      "button": "Se connecter",
+      "ignore": "Si vous n'avez pas demandé cela, vous pouvez ignorer en toute sécurité cet e-mail.",
+      "textMessage": "Cliquez sur le lien suivant pour vous connecter à ${host}: {url}\n\n"
+    }
   }
 }

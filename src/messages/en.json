@@ -27,7 +27,9 @@
     "title": "Échecs France",
     "tournaments": "Tournaments",
     "clubs": "Clubs",
-    "elo": "Elo Calculator"
+    "elo": "Elo Calculator",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
   },
 
   "Footer": {
@@ -204,6 +206,25 @@
     "kFactorInfo5": "10 once a player's published rating has reached 2400 and remains at that level subsequently, even if the rating drops below 2400.",
     "kFactorInfo6": "40 for all players until their 18th birthday, as long as their rating remains under 2300.",
 
-    "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists."
+    "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
+    "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
+  },
+
+  "SignIn": {
+    "title": "Sign In",
+    "info": "Sign in to access additional features, such as receiving email notifications for tournaments in your area.  There's no need to create an account, just sign in with your email address and we'll send you a link.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email",
+    "signInButton": "Sign In",
+    "failure": "Oops, something went wrong. Please try again.",
+    "checkEmail": "Please check your email for a sign-in link.",
+
+    "email": {
+      "subject": "Sign in to ${host}",
+      "button": "Sign in",
+      "ignore": "If you didn't request this, you can safely ignore this email.",
+      "textMessage": "Click the following link to sign in to ${host}: {url}\n\n"
+    }
   }
 }
