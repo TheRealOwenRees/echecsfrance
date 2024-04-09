@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 
+import AuthButton from "@/components/AuthButton";
 import { Link } from "@/utils/navigation";
 
 import Hamburger from "./Hamburger";
@@ -47,6 +48,8 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+
+            <AuthButton />
           </ul>
         </div>
       </div>

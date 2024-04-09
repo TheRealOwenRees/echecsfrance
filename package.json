@@ -12,6 +12,7 @@
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@auth/mongodb-adapter": "^2.5.0",
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
     "@hookform/resolvers": "^3.3.3",
@@ -29,11 +30,13 @@
     "leaflet.markercluster": "^1.5.3",
     "leaflet.smooth_marker_bouncing": "^3.0.3",
     "lodash": "^4.17.21",
-    "mongodb": "^6.1.0",
+    "mongodb": "^6.4.0",
     "next": "^14.0.4",
+    "next-auth": "^5.0.0-beta.16",
     "next-intl": "^3.3.2",
     "next-pwa": "^5.6.0",
     "next-safe-action": "^6.2.0",
+    "nodemailer": "^6.9.12",
     "postcss": "8.4.33",
     "react": "^18.2.0",
     "react-date-range": "^1.4.0",

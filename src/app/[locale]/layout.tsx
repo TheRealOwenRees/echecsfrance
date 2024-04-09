@@ -10,7 +10,6 @@ import "@/css/globals.css";
 import Providers from "@/providers";
 
 import Footer from "./(main)/components/Footer";
-import Navbar from "./(main)/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({
@@ -77,10 +76,11 @@ export default async function RootLayout({
 
             <Footer />
           </NextIntlClientProvider>
+
           <Script
             defer
             src="https://app.tinyanalytics.io/pixel/HyoumUokLr9exPgX"
-          ></Script>
+          />
         </Providers>
       </body>
     </html>

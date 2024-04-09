@@ -2,10 +2,12 @@
 
 /.idea/
 
+/.yarn/
+
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp.*
 
 # pwa
 sw.*
@@ -41,3 +43,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+certificates
