@@ -1,41 +1,9 @@
 import { LatLngLiteral } from "leaflet";
-import { ObjectId } from "mongodb";
 import { SafeAction } from "next-safe-action";
-import { z } from "zod";
+
+import { TournamentModel } from "./server/models/tournamentModel";
 
 export type Status = "scheduled" | "ongoing" | "finished" | "in-play";
-
-export const tournamentDataSchema = z.object({
-  tournament_id: z.string(),
-  town: z.string(),
-  department: z.string(),
-  country: z.string(),
-  tournament: z.string(),
-  url: z.string(),
-  time_control: z.string(),
-  norm_tournament: z.boolean().optional(),
-  date: z.string(),
-  start_date: z.string(),
-  end_date: z.string(),
-  coordinates: z.array(z.number()).min(2).max(2),
-  entry_method: z.enum(["manual", "auto"]),
-  pending: z.boolean().optional(),
-  status: z.enum(["scheduled", "ongoing", "finished", "in-play"]),
-});
-
-export type TournamentData = z.infer<typeof tournamentDataSchema> & {
-  _id: ObjectId;
-};
-
-export type ClubData = {
-  _id: ObjectId;
-  name: string;
-  url?: string;
-  address?: string;
-  email?: string;
-  website?: string;
-  coordinates: [number, number];
-};
 
 export enum TimeControl {
   Classic = "Classic",
@@ -60,7 +28,7 @@ export type Tournament = {
   status: Status;
 };
 
-export const tcMap: Record<TournamentData["time_control"], TimeControl> = {
+export const tcMap: Record<TournamentModel["time_control"], TimeControl> = {
   "Cadence Lente": TimeControl.Classic,
   Rapide: TimeControl.Rapid,
   Blitz: TimeControl.Blitz,

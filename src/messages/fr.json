@@ -39,7 +39,8 @@
 
   "FormValidation": {
     "required": "Requis",
-    "url": "L'URL n'est pas valide"
+    "url": "L'URL n'est pas valide",
+    "zone": "Veuillez dessiner au moins une région sur la carte"
   },
 
   "Home": {
@@ -222,10 +223,18 @@
     "checkEmail": "Veuillez vérifier votre e-mail pour un lien de connexion.",
 
     "email": {
-      "subject": "Connexion à ${host}",
+      "subject": "Connexion à {host}",
       "button": "Se connecter",
       "ignore": "Si vous n'avez pas demandé cela, vous pouvez ignorer en toute sécurité cet e-mail.",
-      "textMessage": "Cliquez sur le lien suivant pour vous connecter à ${host}: {url}\n\n"
+      "textMessage": "Cliquez sur le lien suivant pour vous connecter à {host}: {url}\n\n"
     }
+  },
+
+  "Zones": {
+    "zoneNameLabel": "Nom de la zone",
+    "zoneNamePlaceholder": "Votre nom pour la zone",
+    "notificationsLabel": "Notifications",
+    "notificationsInfo": "Vous pouvez choisir d'activer les notifications pour les cadences qui vous intéressent, et vous recevrez un e-mail lorsqu'un nouveau tournoi est ajouté dans cette zone.",
+    "saveButton": "Sauvegarder"
   }
 }
