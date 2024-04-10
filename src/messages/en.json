@@ -39,7 +39,8 @@
 
   "FormValidation": {
     "required": "Required",
-    "url": "Invalid URL"
+    "url": "Invalid URL",
+    "zone": "Please draw at least one region on the map"
   },
 
   "Home": {
@@ -221,10 +222,18 @@
     "checkEmail": "Please check your email for a sign-in link.",
 
     "email": {
-      "subject": "Sign in to ${host}",
+      "subject": "Sign in to {host}",
       "button": "Sign in",
       "ignore": "If you didn't request this, you can safely ignore this email.",
-      "textMessage": "Click the following link to sign in to ${host}: {url}\n\n"
+      "textMessage": "Click the following link to sign in to {host}: {url}\n\n"
     }
+  },
+
+  "Zones": {
+    "zoneNameLabel": "Zone name",
+    "zoneNamePlaceholder": "Name for your zone",
+    "notificationsLabel": "Notifications",
+    "notificationsInfo": "You can choose to turn on notifications for the time controls that interest you, and will receive an email when a new tournament is added to this zone.",
+    "saveButton": "Save"
   }
 }
