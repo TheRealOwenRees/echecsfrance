@@ -1,17 +1,16 @@
 "use server";
 
 import { format } from "date-fns";
-import { z } from "zod";
 
-import clientPromise from "@/lib/mongodb";
 import { addTournamentSchema } from "@/schemas";
-import { TournamentData } from "@/types";
+import { collections, dbConnect } from "@/server/mongodb";
 import { TimeControl } from "@/types";
 import { errorLog } from "@/utils/logger";
 
+import { TournamentModel } from "./models/tournamentModel";
 import { action } from "./safeAction";
 
-const tcMap: Record<TimeControl, TournamentData["time_control"]> = {
+const tcMap: Record<TimeControl, TournamentModel["time_control"]> = {
   [TimeControl.Classic]: "Cadence Lente",
   [TimeControl.Rapid]: "Rapide",
   [TimeControl.Blitz]: "Blitz",
@@ -20,12 +19,11 @@ const tcMap: Record<TimeControl, TournamentData["time_control"]> = {
 
 export const addTournament = action(addTournamentSchema, async (input) => {
   try {
-    const client = await clientPromise;
-    const db = client.db("tournamentsFranceDB").collection("tournaments");
+    await dbConnect();
 
     const { name, email, message, tournament } = input;
 
-    const tournamentData: Omit<TournamentData, "_id" | "tournament_id"> = {
+    const tournamentData: Omit<TournamentModel, "_id" | "tournament_id"> = {
       ...tournament,
       date: format(tournament.date, "dd/MM/yyyy"),
       start_date: format(tournament.date, "dd/MM/yyyy"),
@@ -37,7 +35,7 @@ export const addTournament = action(addTournamentSchema, async (input) => {
       status: "scheduled",
     };
 
-    const result = await db.insertOne(tournamentData);
+    const result = await collections.tournaments!.insertOne(tournamentData);
 
     if (result.insertedId) {
       const { tournament, country, date, time_control } = tournamentData;

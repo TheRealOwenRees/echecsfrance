@@ -1,7 +1,7 @@
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import NextAuth from "next-auth";
 
-import clientPromise from "@/lib/mongodb";
+import { clientPromise } from "@/server/mongodb";
 import Email from "@/utils/nodemailerProvider";
 
 export const {
