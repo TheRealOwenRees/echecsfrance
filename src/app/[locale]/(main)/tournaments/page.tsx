@@ -9,9 +9,9 @@ import { fr } from "date-fns/locale";
 import { groupBy } from "lodash";
 import { unstable_cache } from "next/cache";
 
-import clientPromise from "@/lib/mongodb";
-import { TournamentData } from "@/types";
-import { TimeControl, Tournament, tcMap, tournamentDataSchema } from "@/types";
+import { tournamentModelSchema } from "@/server/models/tournamentModel";
+import { collections, dbConnect } from "@/server/mongodb";
+import { TimeControl, Tournament, tcMap } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
@@ -20,11 +20,10 @@ setDefaultOptions({ locale: fr });
 
 const getTournaments = async () => {
   try {
-    const client = await clientPromise;
-    const db = client.db("tournamentsFranceDB");
-    const data = await db
-      .collection("tournaments")
-      .aggregate<TournamentData>([
+    await dbConnect();
+
+    const data = await collections
+      .tournaments!.aggregate([
         {
           $addFields: {
             dateParts: {
@@ -52,7 +51,7 @@ const getTournaments = async () => {
       .toArray();
 
     const bad = data.filter((t) => {
-      const result = tournamentDataSchema.safeParse(t);
+      const result = tournamentModelSchema.safeParse(t);
       if (result.success === false) {
         console.log(JSON.stringify(result, null, 2));
         console.log(JSON.stringify(t, null, 2));

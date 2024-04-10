@@ -3,10 +3,8 @@
 import { endOfDay } from "date-fns";
 import { z } from "zod";
 
-import clientPromise from "@/lib/mongodb";
-import { TournamentData } from "@/types";
+import { collections, dbConnect } from "@/server/mongodb";
 import { TimeControl, Tournament, tcMap } from "@/types";
-import { ExtractSafeActionResult } from "@/types";
 import { errorLog } from "@/utils/logger";
 import { removeDiacritics } from "@/utils/string";
 
@@ -32,8 +30,7 @@ export type SearchedTournament = Pick<
 
 export const searchTournaments = action(inputSchema, async (input) => {
   try {
-    const client = await clientPromise;
-    const db = client.db("tournamentsFranceDB");
+    await dbConnect();
 
     const searchTerms = input.searchValue
       .split(" ")
@@ -41,9 +38,8 @@ export const searchTournaments = action(inputSchema, async (input) => {
       .filter((s) => s !== "")
       .map((s) => ({ tournament_index: { $regex: s, $options: "i" } }));
 
-    const data = await db
-      .collection("tournaments")
-      .aggregate<TournamentData>([
+    const data = await collections
+      .tournaments!.aggregate([
         {
           $addFields: {
             dateParts: {

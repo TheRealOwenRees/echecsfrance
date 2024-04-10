@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 
-import clientPromise from "@/lib/mongodb";
-import { Club, ClubData } from "@/types";
+import { collections, dbConnect } from "@/server/mongodb";
+import { Club } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import ClubsDisplay from "./ClubsDisplay";
@@ -10,13 +10,8 @@ export const revalidate = 3600; // Revalidate cache every 6 hours
 
 const getClubs = async () => {
   try {
-    const client = await clientPromise;
-    const db = client.db("tournamentsFranceDB");
-    const data = await db
-      .collection("clubs")
-      .find<ClubData>({})
-      .sort({ name: 1 })
-      .toArray();
+    await dbConnect();
+    const data = await collections.clubs!.find({}).sort({ name: 1 }).toArray();
 
     return data
       .filter((c) => !!c.coordinates)

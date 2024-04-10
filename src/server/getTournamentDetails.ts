@@ -2,8 +2,7 @@
 
 import { z } from "zod";
 
-import clientPromise from "@/lib/mongodb";
-import { TournamentData } from "@/types";
+import { collections, dbConnect } from "@/server/mongodb";
 import { TimeControl, tcMap } from "@/types";
 import { errorLog } from "@/utils/logger";
 
@@ -15,11 +14,10 @@ const inputSchema = z.object({
 
 export const getTournamentDetails = action(inputSchema, async (input) => {
   try {
-    const client = await clientPromise;
-    const db = client.db("tournamentsFranceDB");
-    const t = await db
-      .collection("tournaments")
-      .findOne<TournamentData>({ tournament_id: input.ffeId });
+    await dbConnect();
+    const t = await collections.tournaments!.findOne({
+      tournament_id: input.ffeId,
+    });
 
     if (t === null) {
       return null;
@@ -29,7 +27,7 @@ export const getTournamentDetails = action(inputSchema, async (input) => {
 
     return {
       id: t._id.toString(),
-      ffeId: t.tournament_id,
+      ffeId: t.tournament_id!,
       tournament: t.tournament,
       town: t.town,
       department: t.department,
