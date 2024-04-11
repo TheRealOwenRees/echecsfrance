@@ -27,6 +27,11 @@ export const pathnames = {
     en: "/zones/create",
   },
 
+  "/zones/edit/[id]": {
+    fr: "/regions/modifier/[id]",
+    en: "/zones/edit/[id]",
+  },
+
   "/add-tournament": {
     fr: "/ajouter-un-tournoi",
     en: "/add-tournament",
@@ -36,6 +41,8 @@ export const pathnames = {
     fr: "/contactez-nous",
     en: "/contact-us",
   },
+
+  "[...rest]": "[...rest]",
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =

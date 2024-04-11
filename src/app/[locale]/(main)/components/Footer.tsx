@@ -2,17 +2,24 @@
 
 import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
-import { Link, usePathname } from "@/utils/navigation";
+import { Link, usePathname, useRouter } from "@/utils/navigation";
 
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Footer() {
   const t = useTranslations("Footer");
   const setBurgerMenuIsOpen = useSetAtom(burgerMenuIsOpenAtom);
+  const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
+
+  const changeLanguage = (lang: string) => {
+    router.push({ pathname, params: params as any }, { locale: lang });
+  };
 
   return (
     <footer
@@ -20,7 +27,7 @@ export default function Footer() {
       data-test="footer"
     >
       <div
-        className="flex items-center py-2 hover:[&_a]:opacity-80"
+        className="flex items-center py-2 hover:[&_a]:opacity-80 hover:[&_button]:opacity-80"
         onClick={() => setBurgerMenuIsOpen(false)}
       >
         <a
@@ -35,13 +42,9 @@ export default function Footer() {
           <FaRegEnvelope />
         </Link>
         <div className="mr-4 space-x-2 text-xs">
-          <Link href={pathname} locale="fr">
-            FR
-          </Link>
+          <button onClick={() => changeLanguage("fr")}>FR</button>
           <span>|</span>
-          <Link href={pathname} locale="en">
-            EN
-          </Link>
+          <button onClick={() => changeLanguage("en")}>EN</button>
         </div>
         <div className="text-xs hover:opacity-80">
           <ThemeSwitcher />

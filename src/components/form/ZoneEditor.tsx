@@ -19,30 +19,33 @@ export type ZoneEditorProps = {
 };
 
 export const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
-  const ref = React.useRef<L.FeatureGroup>(null);
+  const initialFeatures = React.useRef(value?.features);
+  const featureGroup = React.useRef<L.FeatureGroup>();
 
-  React.useEffect(() => {
-    if (ref.current?.getLayers().length === 0 && value) {
+  const setFeatureCollectionRef = (element: L.FeatureGroup) => {
+    featureGroup.current = element;
+
+    if (element?.getLayers().length === 0 && value) {
       L.geoJSON(value).eachLayer((layer) => {
         if (
           layer instanceof L.Polyline ||
           layer instanceof L.Polygon ||
           layer instanceof L.Marker
         ) {
-          if (layer?.feature?.properties.radius && ref.current) {
+          if (layer?.feature?.properties.radius && featureGroup.current) {
             new L.Circle(layer.feature.geometry.coordinates.slice().reverse(), {
               radius: layer.feature?.properties.radius,
-            }).addTo(ref.current);
+            }).addTo(featureGroup.current);
           } else {
-            ref.current?.addLayer(layer);
+            featureGroup.current?.addLayer(layer);
           }
         }
       });
     }
-  }, [value]);
+  };
 
   const handleChange = () => {
-    const geoJson = ref.current?.toGeoJSON();
+    const geoJson = featureGroup.current?.toGeoJSON();
     if (geoJson?.type === "FeatureCollection") {
       onChange(geoJson);
     }
@@ -54,13 +57,19 @@ export const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
       zoom={5}
       style={{ height: "600px", flexGrow: 1 }}
     >
-      <MapEvents />
+      <MapEvents
+        bounds={
+          (initialFeatures.current ?? []).length > 0
+            ? L.geoJson(initialFeatures.current).getBounds()
+            : undefined
+        }
+      />
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <FeatureGroup ref={ref}>
+      <FeatureGroup ref={setFeatureCollectionRef}>
         <EditControl
           position="topright"
           onEdited={handleChange}

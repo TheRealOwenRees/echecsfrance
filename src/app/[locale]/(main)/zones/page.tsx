@@ -57,7 +57,7 @@ const Zones = () => {
               ...(zone.rapidNotifications ? [TimeControl.Rapid] : []),
               ...(zone.blitzNotifications ? [TimeControl.Blitz] : []),
             ];
-            console.log(notifications);
+
             const notificationsList = format.list(
               notifications.map((tc) => at("timeControlEnumInline", { tc })),
               { type: "conjunction" },
@@ -84,12 +84,15 @@ const Zones = () => {
                   </div>
 
                   <div className="flex gap-4">
-                    <button
-                      type="button"
+                    <Link
+                      href={{
+                        pathname: "/zones/edit/[id]",
+                        params: { id: zone.id },
+                      }}
                       className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
                     >
                       {t("editButton")}
-                    </button>
+                    </Link>
                     <button
                       type="button"
                       className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"

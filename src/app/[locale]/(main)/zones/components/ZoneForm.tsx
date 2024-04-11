@@ -15,6 +15,7 @@ import { TimeControl } from "@/types";
 export type ZoneFormValues = z.infer<typeof zoneSchema>;
 
 type ZoneFormProps = {
+  zone?: ZoneFormValues;
   onSubmit: (data: ZoneFormValues) => Promise<void>;
   onCancel: () => void;
   submitTitle?: string;
@@ -22,6 +23,7 @@ type ZoneFormProps = {
 };
 
 export const ZoneForm = ({
+  zone,
   onSubmit,
   onCancel,
   submitTitle,
@@ -29,9 +31,11 @@ export const ZoneForm = ({
 }: ZoneFormProps) => {
   const t = useTranslations("Zones");
   const at = useTranslations("App");
+
+  // @ts-ignore - Type instantiation is excessively deep and possibly infinite
   const form = useForm<ZoneFormValues>({
     resolver: zodResolver(zoneSchema),
-    defaultValues: {
+    defaultValues: zone ?? {
       classicNotifications: false,
       rapidNotifications: false,
       blitzNotifications: false,

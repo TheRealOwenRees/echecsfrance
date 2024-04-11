@@ -243,6 +243,7 @@
     "addZoneButton": "Add a Region",
 
     "createTitle": "Create a new zone",
+    "editTitle": "Edit zone",
 
     "zoneNameLabel": "Zone name",
     "zoneNamePlaceholder": "Name for your zone",
