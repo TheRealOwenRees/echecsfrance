@@ -10,6 +10,7 @@ export const collections: {
   tournaments?: mongoDB.Collection<TournamentModel>;
   clubs?: mongoDB.Collection<ClubModel>;
   users?: mongoDB.Collection<UserModel>;
+  zones?: mongoDB.Collection<ZoneModel>;
 } = {};
 
 if (!process.env.MONGODB_URI) {
@@ -34,6 +35,7 @@ export async function dbConnect() {
 
   const userData: mongoDB.Db = client!.db("userData");
   collections.users = userData.collection("userData");
+  collections.zones = userData.collection("zones");
 
   const tournamentData: mongoDB.Db = client!.db("tournamentsFranceDB");
   collections.tournaments = tournamentData.collection("tournaments");

@@ -6,15 +6,10 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import "leaflet/dist/leaflet.css";
-import {
-  FeatureGroup,
-  MapContainer,
-  TileLayer,
-  ZoomControl,
-} from "react-leaflet";
+import { FeatureGroup, MapContainer, TileLayer } from "react-leaflet";
 import { EditControl } from "react-leaflet-draw";
 
-import MapEvents from "../MapEvents";
+import { MapEvents } from "@/components/MapEvents";
 
 const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
@@ -73,7 +68,7 @@ export const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
           onDeleted={handleChange}
           draw={{
             rectangle: false,
-            circle: true,
+            circle: false,
             polyline: false,
             polygon: true,
             marker: false,

@@ -13,18 +13,29 @@ import { mapBoundsAtom } from "@/atoms";
 // Add Leaflet.GestureHandling for improved desktop and mobile touch gestures
 L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
 
-const MapEvents = () => {
+const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
+const franceBounds = L.latLngBounds(
+  L.latLng(42.08, -5.12),
+  L.latLng(51.17, 9.53),
+);
+
+type MapEventsProps = {
+  bounds?: L.LatLngBounds;
+  updateMapBoundsAtom?: boolean;
+};
+
+export const MapEvents = ({
+  bounds = franceBounds,
+  updateMapBoundsAtom = false,
+}: MapEventsProps) => {
   const locale = useLocale();
   const t = useTranslations("Map");
   const map = useMap();
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const [isPending, startTransition] = useTransition();
 
-  const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
-  const franceBounds = L.latLngBounds(
-    L.latLng(42.08, -5.12),
-    L.latLng(51.17, 9.53),
-  );
+  const map = useMapEvent("moveend", () => {
+    if (!updateMapBoundsAtom) return;
 
   useMapEvent("moveend", () => {
     // Set the map bounds atoms when the user pans/zooms
@@ -35,7 +46,8 @@ const MapEvents = () => {
 
   // Viewport agnostic centering of France & max world bounds
   useEffect(() => {
-    map.setView(franceBounds.getCenter(), map.getBoundsZoom(franceBounds));
+    const zoom = map.getBoundsZoom(bounds);
+    map.setView(bounds.getCenter(), zoom === Infinity ? 10 : zoom);
     map.setMaxBounds(worldBounds);
     map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
 
@@ -65,5 +77,3 @@ const MapEvents = () => {
 
   return null;
 };
-
-export default MapEvents;

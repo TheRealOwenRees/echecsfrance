@@ -17,6 +17,16 @@ export const pathnames = {
     en: "/tournaments",
   },
 
+  "/zones": {
+    fr: "/regions",
+    en: "/zones",
+  },
+
+  "/zones/create": {
+    fr: "/regions/creer",
+    en: "/zones/create",
+  },
+
   "/add-tournament": {
     fr: "/ajouter-un-tournoi",
     en: "/add-tournament",
