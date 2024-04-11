@@ -244,6 +244,7 @@
     "addZoneButton": "Ajouter une région",
 
     "createTitle": "Créer une nouvelle région",
+    "editTitle": "Modifier région",
 
     "zoneNameLabel": "Nom de la région",
     "zoneNamePlaceholder": "Votre nom pour cette région",

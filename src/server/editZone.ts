@@ -1,6 +1,8 @@
 "use server";
 
+import { omit } from "lodash";
 import { ObjectId } from "mongodb";
+import { z } from "zod";
 
 import { auth } from "@/auth";
 import { zoneSchema } from "@/schemas";
@@ -10,7 +12,12 @@ import { errorLog } from "@/utils/logger";
 import { ZoneModel } from "./models/zoneModel";
 import { action } from "./safeAction";
 
-export const createZone = action(zoneSchema, async (input) => {
+const editZoneSchema = z.object({
+  id: z.string(),
+  zone: zoneSchema,
+});
+
+export const editZone = action(editZoneSchema, async ({ id, zone }) => {
   try {
     await dbConnect();
 
@@ -20,17 +27,24 @@ export const createZone = action(zoneSchema, async (input) => {
     }
 
     const zoneData: ZoneModel = {
-      ...input,
+      ...zone,
       userId: new ObjectId(user.user!.id!),
     };
 
-    const result = await collections.zones!.insertOne(zoneData);
+    const result = await collections.zones!.findOneAndUpdate(
+      { _id: new ObjectId(id), userId: new ObjectId(user.user!.id!) },
+      { $set: { _id: new ObjectId(id), ...zoneData } },
+    );
 
-    if (!result.acknowledged) {
-      throw new Error("ERR_ZONE_INSERT_FAILED");
+    if (!result) {
+      throw new Error("ERR_ZONE_UPDATE_FAILED");
     }
 
-    return true;
+    return {
+      ...omit(result, ["_id"]),
+      id: result._id.toString(),
+      userId: result.userId.toString(),
+    };
   } catch (error) {
     errorLog(error);
     throw error;
