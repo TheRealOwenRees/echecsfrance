@@ -13,7 +13,11 @@
     "selectPlaceholder": "Select...",
     "searchPlaceholder": "Search...",
     "noOptionsMessage": "No options found",
-    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}"
+    "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}",
+    "timeControlEnumInline": "{tc, select, Classic {classic} Rapid {rapid} Blitz {blitz} Other {other} other {{tc}}}",
+
+    "saveButton": "Save",
+    "cancelButton": "Cancel"
   },
 
   "Errors": {
@@ -230,10 +234,22 @@
   },
 
   "Zones": {
+    "title": "Your Zones",
+    "info": "You can set up zones to receive email notifications for tournaments in these areas. These zones can also be used to filter tournaments on the main map.",
+    "noNotifications": "You have not enabled email notifications for this zone.",
+    "withNotifications": "You will receive email notifications for new tournaments with <b>{list}</b> time control in this region.",
+    "editButton": "Edit",
+    "deleteButton": "Delete",
+    "addZoneButton": "Add a Region",
+
+    "createTitle": "Create a new zone",
+
     "zoneNameLabel": "Zone name",
     "zoneNamePlaceholder": "Name for your zone",
     "notificationsLabel": "Notifications",
     "notificationsInfo": "You can choose to turn on notifications for the time controls that interest you, and will receive an email when a new tournament is added to this zone.",
-    "saveButton": "Save"
+    "saveButton": "Save",
+
+    "createFailure": "Oops, something went wrong.  Please try again later."
   }
 }

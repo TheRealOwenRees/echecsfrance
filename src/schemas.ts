@@ -1,3 +1,4 @@
+import { zu } from "@infra-blocks/zod-utils";
 import { z } from "zod";
 
 import { TimeControl } from "@/types";
@@ -30,3 +31,16 @@ export const addTournamentSchema = z.object({
 export const fetchTournamentResultsSchema = z.object({
   id: z.string().min(1, { message: "FormValidation.required" }),
 });
+
+export const zoneSchema = z
+  .object({
+    name: z.string().min(1, { message: "FormValidation.required" }),
+    features: zu.geojson.featureCollection(),
+    classicNotifications: z.boolean(),
+    rapidNotifications: z.boolean(),
+    blitzNotifications: z.boolean(),
+  })
+  .refine((data) => data.features.features.length > 0, {
+    message: "FormValidation.zone",
+    path: ["features"],
+  });

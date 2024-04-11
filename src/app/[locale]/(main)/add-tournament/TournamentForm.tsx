@@ -59,7 +59,7 @@ const TournamentForm = () => {
     } catch (err: unknown) {
       console.log(err);
       setResponseMessage({
-        isSuccessful: true,
+        isSuccessful: false,
         message: t("failure"),
       });
 
