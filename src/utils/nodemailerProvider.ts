@@ -133,16 +133,20 @@ export default function Nodemailer(
     maxAge: 24 * 60 * 60,
 
     async sendVerificationRequest(params) {
+      const { identifier, url, provider } = params;
+
       let locale = "fr";
-      const { searchParams } = new URL(params.url);
+      const { searchParams } = new URL(url);
       if (searchParams.has("callbackUrl")) {
         const { pathname } = new URL(searchParams.get("callbackUrl")!);
-        locale = pathname.split("/")[1];
+        const maybeLocale = pathname.split("/")[1];
+        if (["en", "fr"].includes(maybeLocale)) {
+          locale = maybeLocale;
+        }
       }
 
       const t = await getTranslations({ locale, namespace: "SignIn" });
 
-      const { identifier, url, provider } = params;
       const { host } = new URL(url);
       const transport = createTransport(provider.server);
       const result = await transport.sendMail({
