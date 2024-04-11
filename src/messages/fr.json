@@ -237,6 +237,8 @@
   "Zones": {
     "title": "Vos régions",
     "info": "Vous pouvez définir des zones personnalisées pour recevoir des notifications par e-mail pour les tournois dans ces zones.  Ces zones peuvent aussi être utiliser pour filtrer les tournois sur la carte.",
+    "logonRequired": "Vous devez être connecté pour accéder à cette fonctionnalité afin que nous puissions stocker vos régions personnalisées. Vous n'avez pas besoin de créer un compte, connectez-vous simplement avec votre adresse e-mail et nous vous enverrons un lien.",
+
     "noNotifications": "Vous n'avez pas activé les notifications par email pour cette région.",
     "withNotifications": "Vous allez recevoir des notifications par e-mail pour les nouveaux tournois de cadences <b>{list}</b> dans cette région.",
     "editButton": "Modifier",

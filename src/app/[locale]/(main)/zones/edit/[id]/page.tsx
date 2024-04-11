@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
@@ -17,7 +17,6 @@ const EditZone = () => {
   const t = useTranslations("Zones");
   const router = useRouter();
   const params = useParams();
-  const queryClient = useQueryClient();
 
   const [responseMessage, setResponseMessage] = useState({
     isSuccessful: false,
@@ -75,7 +74,7 @@ const EditZone = () => {
   };
 
   return (
-    <div className="mx-auto max-w-screen-md px-4 pb-20 pt-8 lg:pt-16">
+    <div>
       <h2
         className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white"
         data-test="header2"

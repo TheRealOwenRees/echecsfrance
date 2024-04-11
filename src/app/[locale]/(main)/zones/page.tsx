@@ -34,7 +34,7 @@ const Zones = () => {
   const zones = data?.data ?? [];
 
   return (
-    <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
+    <div>
       <h2
         className="mb-4 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white"
         data-test="header2"

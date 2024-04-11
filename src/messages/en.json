@@ -219,6 +219,7 @@
   "SignIn": {
     "title": "Sign In",
     "info": "Sign in to access additional features, such as receiving email notifications for tournaments in your area.  There's no need to create an account, just sign in with your email address and we'll send you a link.",
+
     "emailLabel": "Email",
     "emailPlaceholder": "Your email",
     "signInButton": "Sign In",
@@ -236,6 +237,8 @@
   "Zones": {
     "title": "Your Zones",
     "info": "You can set up zones to receive email notifications for tournaments in these areas. These zones can also be used to filter tournaments on the main map.",
+    "logonRequired": "You must be signed in to access this feature so that we can store your personalized Zones. There's no need to create an account, just sign in with your email address and we'll send you a link.",
+
     "noNotifications": "You have not enabled email notifications for this zone.",
     "withNotifications": "You will receive email notifications for new tournaments with <b>{list}</b> time control in this region.",
     "editButton": "Edit",
