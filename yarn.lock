@@ -1759,6 +1759,32 @@
     javascript-natural-sort "0.7.1"
     lodash "^4.17.21"
 
+"@turf/boolean-point-in-polygon@^7.0.0-alpha.114":
+  version "7.0.0-alpha.114"
+  resolved "https://registry.yarnpkg.com/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-7.0.0-alpha.114.tgz#274faa9ccc402cfa42815914040c58d9f20cc290"
+  integrity sha512-ytxwVqHbbBCG5DsN5QLBO6PD21EnnhnqFiGkg6a4pEOv/y7TnapSQ8RTKVJfSUdA+MhJ+uu3aSXOVH44udgNfA==
+  dependencies:
+    "@turf/helpers" "^7.0.0-alpha.114+e0bdd0add"
+    "@turf/invariant" "^7.0.0-alpha.114+e0bdd0add"
+    point-in-polygon-hao "^1.1.0"
+    tslib "^2.6.2"
+
+"@turf/helpers@^7.0.0-alpha.114+e0bdd0add":
+  version "7.0.0-alpha.114"
+  resolved "https://registry.yarnpkg.com/@turf/helpers/-/helpers-7.0.0-alpha.114.tgz#03158ecd04c147165725c2e3994bb7190c23041c"
+  integrity sha512-hqoARkwAaFMK/8wOWDQhmvIxjUL2l9jUhn1GUzW3fsumImPxuHoJZbIZhiHjE7ceQngveCeUCtkiKw89lekN8w==
+  dependencies:
+    deep-equal "^2.2.3"
+    tslib "^2.6.2"
+
+"@turf/invariant@^7.0.0-alpha.114+e0bdd0add":
+  version "7.0.0-alpha.114"
+  resolved "https://registry.yarnpkg.com/@turf/invariant/-/invariant-7.0.0-alpha.114.tgz#184ab4a6021839b9953b497e0aa28267947cbedb"
+  integrity sha512-d6KGoItyg2FFj6JSXlS23Ymvt6YA3DwAbpTwKiHCkrDP5UtHQwli+yYvmY/Bo2eC3HyDAgk/YTutmv3mNiWaJA==
+  dependencies:
+    "@turf/helpers" "^7.0.0-alpha.114+e0bdd0add"
+    tslib "^2.6.2"
+
 "@types/aria-query@^5.0.1":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-5.0.4.tgz#1a31c3d378850d2778dabb6374d036dcba4ba708"
@@ -2632,7 +2658,7 @@ debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4:
   dependencies:
     ms "2.1.2"
 
-deep-equal@^2.0.5:
+deep-equal@^2.0.5, deep-equal@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-2.2.3.tgz#af89dafb23a396c7da3e862abc0be27cf51d56e1"
   integrity sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==
@@ -4663,6 +4689,11 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
+point-in-polygon-hao@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/point-in-polygon-hao/-/point-in-polygon-hao-1.1.0.tgz#37f5f4fbe14e89fa8a3bb7f67c9158079d2ede7c"
+  integrity sha512-3hTIM2j/v9Lio+wOyur3kckD4NxruZhpowUbEgmyikW+a2Kppjtu1eN+AhnMQtoHW46zld88JiYWv6fxpsDrTQ==
+
 possible-typed-array-names@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/possible-typed-array-names/-/possible-typed-array-names-1.0.0.tgz#89bb63c6fada2c3e90adc4a647beeeb39cc7bf8f"
@@ -5692,7 +5723,7 @@ tsconfig-paths@^3.15.0:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@^2.1.0, tslib@^2.4.0:
+tslib@^2.1.0, tslib@^2.4.0, tslib@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==

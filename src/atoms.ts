@@ -1,6 +1,6 @@
+import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
 import {
   endOfDay,
-  formatISO,
   isAfter,
   isBefore,
   parse,
@@ -8,9 +8,9 @@ import {
   startOfDay,
 } from "date-fns";
 import { fr } from "date-fns/locale";
+import { FeatureCollection } from "geojson";
 import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
-import { c } from "next-safe-action/dist/index-EKyvnpX_.mjs";
 
 import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
@@ -18,9 +18,18 @@ import { normalizedContains } from "@/utils/string";
 
 setDefaultOptions({ locale: fr });
 
+type RegionFilter =
+  | "all"
+  | "map"
+  | {
+      id: string;
+      name: string;
+      features: FeatureCollection;
+    };
+
 export const burgerMenuIsOpenAtom = atom(false);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
-export const syncVisibleAtom = atom(true);
+export const regionFilterAtom = atom<RegionFilter>("map");
 export const searchStringAtom = atom("");
 
 export const tournamentsAtom = atom<Tournament[]>([]);
@@ -41,8 +50,9 @@ export const {
 export const { debouncedValueAtom: debouncedHoveredListIdAtom } =
   atomWithDebounce<string | null>(null, 1000, 100);
 
-export const filteredTournamentsByTimeControlAtom = atom((get) => {
+export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
   const tournaments = get(tournamentsAtom);
+  const regionFilter = get(regionFilterAtom);
 
   const classic = get(classicAtom);
   const rapid = get(rapidAtom);
@@ -52,30 +62,43 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
   const dateRange = get(dateRangeAtom);
   const { startDate, endDate } = dateRange[0];
 
-  const filteredTournaments = tournaments.filter((tournament) => {
+  const filterByTimeControl = tournaments.filter((tournament) => {
     const tournamentDate = startOfDay(
       parse(tournament.date, "dd/MM/yyyy", new Date()),
     );
 
     return (
       !isBefore(tournamentDate, startDate) &&
-      (endDate === undefined || !isAfter(tournamentDate, endDate)) &&
-      !tournament.pending &&
-      tournament.status === "scheduled" &&
-      ((tournament.timeControl === TimeControl.Classic && classic) ||
-        (tournament.timeControl === TimeControl.Rapid && rapid) ||
-        (tournament.timeControl === TimeControl.Blitz && blitz) ||
-        (tournament.timeControl === TimeControl.Other && other))
+      (endDate === undefined ||
+        (!isAfter(tournamentDate, endDate) &&
+          !tournament.pending &&
+          tournament.status === "scheduled" &&
+          ((tournament.timeControl === TimeControl.Classic && classic) ||
+            (tournament.timeControl === TimeControl.Rapid && rapid) ||
+            (tournament.timeControl === TimeControl.Blitz && blitz) ||
+            (tournament.timeControl === TimeControl.Other && other))))
     );
   });
 
-  return filteredTournaments;
+  if (regionFilter === "all" || regionFilter === "map")
+    return filterByTimeControl;
+
+  return filterByTimeControl.filter((tournament) => {
+    return regionFilter.features?.features?.some(
+      (feature) =>
+        feature.geometry.type === "Polygon" &&
+        booleanPointInPolygon(
+          [tournament.latLng.lng, tournament.latLng.lat],
+          feature.geometry,
+        ),
+    );
+  });
 });
 
 export const filteredTournamentsListAtom = atom((get) => {
-  const tournaments = get(filteredTournamentsByTimeControlAtom);
+  const tournaments = get(filteredTournamentsByTimeControlAndZoneAtom);
   const mapBounds = get(mapBoundsAtom);
-  const syncVisible = get(syncVisibleAtom);
+  const regionFilter = get(regionFilterAtom);
   const normsOnly = get(normsOnlyAtom);
   const searchString = get(searchStringAtom).trim();
 
@@ -93,23 +116,41 @@ export const filteredTournamentsListAtom = atom((get) => {
   }
 
   // If we not syncing to the map, return all tournaments
-  if (mapBounds === null || !syncVisible) return filteredByNorm;
+  if (mapBounds === null || regionFilter !== "map") return filteredByNorm;
 
-  // Filter by those in the current map bounds
+  // Filter by the map bounds
   return filteredByNorm.filter((tournament) =>
     mapBounds.contains(tournament.latLng),
   );
 });
 
-export const filteredClubsListAtom = atom((get) => {
+export const filteredClubsByZoneAtom = atom((get) => {
   const clubs = get(clubsAtom);
+  const regionFilter = get(regionFilterAtom);
+
+  if (regionFilter === "all" || regionFilter === "map") return clubs;
+
+  return clubs.filter((club) => {
+    return regionFilter.features?.features?.some(
+      (feature) =>
+        feature.geometry.type === "Polygon" &&
+        booleanPointInPolygon(
+          [club.latLng.lng, club.latLng.lat],
+          feature.geometry,
+        ),
+    );
+  });
+});
+
+export const filteredClubsListAtom = atom((get) => {
+  const filteredByZone = get(filteredClubsByZoneAtom);
   const mapBounds = get(mapBoundsAtom);
-  const syncVisible = get(syncVisibleAtom);
+  const regionFilter = get(regionFilterAtom);
   const searchString = get(searchStringAtom).trim();
 
   // When searching, we search all the tournament, regardless of the map display
   if (searchString !== "") {
-    return clubs.filter(
+    return filteredByZone.filter(
       (club) =>
         normalizedContains(club.name, searchString) ||
         (club.address && normalizedContains(club.address, searchString)),
@@ -117,10 +158,10 @@ export const filteredClubsListAtom = atom((get) => {
   }
 
   // If we not syncing to the map, return all clubs
-  if (mapBounds === null || !syncVisible) return clubs;
+  if (mapBounds === null || regionFilter !== "map") return filteredByZone;
 
-  // Filter by those in the current map bounds
-  return clubs.filter((club) => mapBounds.contains(club.latLng));
+  // Filter by the map bounds
+  return filteredByZone.filter((club) => mapBounds.contains(club.latLng));
 });
 
 // Date picker atoms

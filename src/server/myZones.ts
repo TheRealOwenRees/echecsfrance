@@ -1,5 +1,6 @@
 "use server";
 
+import { FeatureCollection } from "geojson";
 import { omit } from "lodash";
 import { ObjectId } from "mongodb";
 import { z } from "zod";
@@ -7,7 +8,13 @@ import { z } from "zod";
 import { auth } from "@/auth";
 import { collections, dbConnect } from "@/server/mongodb";
 
+import { ZoneModel } from "./models/zoneModel";
 import { action } from "./safeAction";
+
+export type Zone = Omit<ZoneModel, "userId" | "features"> & {
+  id: string;
+  features: FeatureCollection;
+};
 
 export const myZones = action(z.void(), async () => {
   await dbConnect();
@@ -21,9 +28,11 @@ export const myZones = action(z.void(), async () => {
     .zones!.find({ userId: new ObjectId(user.user!.id!) })
     .toArray();
 
-  return zones.map((zone) => ({
-    ...omit(zone, ["_id"]),
+  const result: Zone[] = zones.map((zone) => ({
+    ...omit(zone, ["_id", "userId"]),
     id: zone._id.toString(),
-    userId: zone.userId.toString(),
+    features: zone.features as FeatureCollection,
   }));
+
+  return result;
 });

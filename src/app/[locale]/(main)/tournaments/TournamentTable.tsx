@@ -18,9 +18,11 @@ import {
   filteredTournamentsListAtom,
   hoveredMapIdAtom,
   normsOnlyAtom,
-  syncVisibleAtom,
+  regionFilterAtom,
 } from "@/atoms";
+import { RegionSelect } from "@/components/RegionSelect";
 import SearchBar from "@/components/SearchBar";
+import { Select } from "@/components/form/Select";
 import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
 import { DatePickerDirection } from "@/types";
@@ -36,7 +38,6 @@ const TournamentTable = () => {
 
   const filteredTournaments = useAtomValue(filteredTournamentsListAtom);
 
-  const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const [normsOnly, setNormsOnly] = useAtom(normsOnlyAtom);
   const hoveredMapId = useAtomValue(hoveredMapIdAtom);
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
@@ -91,16 +92,6 @@ const TournamentTable = () => {
             <input
               type="checkbox"
               className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
-              checked={syncVisible}
-              onChange={() => setSyncVisible(!syncVisible)}
-            />
-            {t("syncWithMapCheckbox")}
-          </label>
-
-          <label>
-            <input
-              type="checkbox"
-              className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
               checked={normsOnly}
               onChange={() => setNormsOnly(!normsOnly)}
             />
@@ -111,6 +102,8 @@ const TournamentTable = () => {
         <div className="hidden lg:block">
           <TimeControlFilters />
         </div>
+
+        <RegionSelect />
       </div>
 
       <div className="flex justify-center" ref={datePickerRef}>

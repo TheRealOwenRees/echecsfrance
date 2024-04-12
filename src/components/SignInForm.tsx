@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
@@ -36,6 +36,18 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
   });
+
+  useEffect(() => {
+    // Clear the response message when the email field changes
+    const subscription = form.watch((value, { name, type }) => {
+      if (type === "change") {
+        if (name === "email" && responseMessage.message === "") {
+          setResponseMessage({ isSuccessful: true, message: "" });
+        }
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [form, form.watch]);
 
   const onSubmit = async ({ email }: SignInFormValues) => {
     try {
