@@ -147,6 +147,8 @@ export default function Nodemailer(
 
       const t = await getTranslations({ locale, namespace: "SignIn" });
 
+      console.log("Connection URL", url);
+
       const { host } = new URL(url);
       const transport = createTransport(provider.server);
       const result = await transport.sendMail({

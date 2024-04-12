@@ -5,14 +5,14 @@ import L from "leaflet";
 import { useTranslations } from "next-intl";
 import { useMap } from "react-leaflet";
 
-import { filteredTournamentsByTimeControlAtom } from "@/atoms";
+import { filteredTournamentsByTimeControlAndZoneAtom } from "@/atoms";
 import { TimeControlColours } from "@/constants";
 import { TimeControl } from "@/types";
 
 const Legend = () => {
   const at = useTranslations("App");
   const map = useMap();
-  const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
+  const tournaments = useAtomValue(filteredTournamentsByTimeControlAndZoneAtom);
 
   const timeControls = useMemo(
     () =>

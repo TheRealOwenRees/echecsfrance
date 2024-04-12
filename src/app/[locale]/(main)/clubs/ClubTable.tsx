@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
@@ -12,17 +12,15 @@ import {
   debouncedHoveredMapIdAtom,
   filteredClubsListAtom,
   hoveredMapIdAtom,
-  syncVisibleAtom,
 } from "@/atoms";
+import { RegionSelect } from "@/components/RegionSelect";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 
 const ClubTable = () => {
   const t = useTranslations("Clubs");
-  const at = useTranslations("App");
 
   const filteredClubs = useAtomValue(filteredClubsListAtom);
-  const [syncVisible, setSyncVisible] = useAtom(syncVisibleAtom);
   const hoveredMapId = useAtomValue(hoveredMapIdAtom);
   const debouncedHoveredMapId = useAtomValue(debouncedHoveredMapIdAtom);
   const setHoveredListId = useSetAtom(debouncedHoveredListIdAtom);
@@ -45,18 +43,12 @@ const ClubTable = () => {
     >
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
         <SearchBar />
-
-        <div className="flex flex-col gap-0 text-gray-900 dark:text-white">
-          <label>
-            <input
-              type="checkbox"
-              className="mr-2 h-4 w-4 rounded border-gray-400 text-primary focus:ring-primary"
-              checked={syncVisible}
-              onChange={() => setSyncVisible(!syncVisible)}
-            />
-            {t("syncWithMapCheckbox")}
-          </label>
-        </div>
+        <RegionSelect
+          classNameOverrides={{
+            container: () => "flex flex-1",
+          }}
+        />
+        <div className="flex flex-col gap-0 text-gray-900 dark:text-white"></div>
       </div>
 
       <div className="overflow-x-scroll bg-red-50">

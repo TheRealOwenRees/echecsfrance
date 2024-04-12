@@ -10,7 +10,10 @@ import "leaflet.smooth_marker_bouncing";
 import "leaflet/dist/leaflet.css";
 import { countBy, groupBy } from "lodash";
 
-import { filteredTournamentsByTimeControlAtom, normsOnlyAtom } from "@/atoms";
+import {
+  filteredTournamentsByTimeControlAndZoneAtom,
+  normsOnlyAtom,
+} from "@/atoms";
 import { Map, MapMarker } from "@/components/Map";
 import { TimeControlColours } from "@/constants";
 import { generatePieSVG } from "@/lib/pie";
@@ -21,7 +24,7 @@ import TimeControlFilters from "./TimeControlFilters";
 import { TournamentMarker } from "./TournamentMarker";
 
 const TournamentMap = () => {
-  const tournaments = useAtomValue(filteredTournamentsByTimeControlAtom);
+  const tournaments = useAtomValue(filteredTournamentsByTimeControlAndZoneAtom);
   const normsOnly = useAtomValue(normsOnlyAtom);
 
   const filteredTournaments = useMemo(
