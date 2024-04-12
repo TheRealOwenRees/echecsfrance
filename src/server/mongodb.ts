@@ -1,7 +1,7 @@
 import mongoDB, { MongoClient } from "mongodb";
 
 import { TournamentModel } from "@/server/models/tournamentModel";
-import { UserModel } from "@/server/models/userModel";
+import { UserModel, VerificationModel } from "@/server/models/userModel";
 import { ZoneModel } from "@/server/models/zoneModel";
 
 import { ClubModel } from "./models/clubModel";
@@ -11,6 +11,7 @@ export const collections: {
   clubs?: mongoDB.Collection<ClubModel>;
   users?: mongoDB.Collection<UserModel>;
   zones?: mongoDB.Collection<ZoneModel>;
+  userVerificationTokens?: mongoDB.Collection<VerificationModel>;
 } = {};
 
 if (!process.env.MONGODB_URI) {
@@ -52,6 +53,9 @@ export async function dbConnect() {
 
   const userData: mongoDB.Db = p.db("userData");
   collections.users = userData.collection("userData");
+  collections.userVerificationTokens = userData.collection(
+    "userVerificationTokens",
+  );
   collections.zones = userData.collection("zones");
 
   const tournamentData: mongoDB.Db = p.db("tournamentsFranceDB");

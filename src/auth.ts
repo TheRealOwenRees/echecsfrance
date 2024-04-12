@@ -4,11 +4,15 @@ import NextAuth from "next-auth";
 import { clientPromise } from "@/server/mongodb";
 import Email from "@/utils/nodemailerProvider";
 
+export const adapter = MongoDBAdapter(clientPromise, {
+  databaseName: "userData",
+});
+
 export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  adapter: MongoDBAdapter(clientPromise, { databaseName: "userData" }),
+  adapter,
 
   providers: [
     Email({

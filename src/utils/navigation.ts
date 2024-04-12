@@ -41,6 +41,11 @@ export const pathnames = {
     fr: "/contactez-nous",
     en: "/contact-us",
   },
+
+  "/delete-account": {
+    fr: "/supprimer-compte",
+    en: "/delete-account",
+  },
 } satisfies Pathnames<typeof locales>;
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
