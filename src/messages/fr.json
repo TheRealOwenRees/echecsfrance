@@ -17,7 +17,9 @@
     "timeControlEnumInline": "{tc, select, Classic {lente} Rapid {rapide} Blitz {blitz} Other {autres} other {{tc}}}",
 
     "saveButton": "Sauvegarder",
-    "cancelButton": "Annuler"
+    "cancelButton": "Annuler",
+    "editButton": "Modifier",
+    "deleteButton": "Supprimer"
   },
 
   "Errors": {
@@ -241,8 +243,6 @@
 
     "noNotifications": "Vous n'avez pas activé les notifications par email pour cette région.",
     "withNotifications": "Vous allez recevoir des notifications par e-mail pour les nouveaux tournois de cadences <b>{list}</b> dans cette région.",
-    "editButton": "Modifier",
-    "deleteButton": "Supprimer",
     "addZoneButton": "Ajouter une région",
 
     "createTitle": "Créer une nouvelle région",
@@ -252,8 +252,10 @@
     "zoneNamePlaceholder": "Votre nom pour cette région",
     "notificationsLabel": "Notifications",
     "notificationsInfo": "Vous pouvez choisir d'activer les notifications pour les cadences qui vous intéressent, et vous recevrez un e-mail lorsqu'un nouveau tournoi est ajouté dans cette zone.",
-    "saveButton": "Sauvegarder",
 
-    "createFailure": "Oups, quelque chose s'est mal passé. Veuillez réessayer."
+    "createFailure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
+
+    "deleteZoneTitle": "Supprimer la région",
+    "deleteZoneInfo": "Êtes-vous sûr de vouloir supprimer cette région\u00a0?"
   }
 }

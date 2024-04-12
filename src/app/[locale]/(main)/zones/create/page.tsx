@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 
 import InfoMessage, { clearMessage } from "@/components/InfoMessage";
+import { useZones } from "@/hooks/useZones";
 import { createZone } from "@/server/createZone";
 import { useRouter } from "@/utils/navigation";
 
@@ -19,9 +20,13 @@ const CreateZone = () => {
     message: "",
   });
 
+  const { refetch } = useZones();
+
   const onSubmit = async (data: ZoneFormValues) => {
     try {
       await createZone(data);
+      await refetch();
+
       router.push("/zones");
     } catch (err: unknown) {
       console.log(err);

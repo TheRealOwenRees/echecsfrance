@@ -17,7 +17,9 @@
     "timeControlEnumInline": "{tc, select, Classic {classic} Rapid {rapid} Blitz {blitz} Other {other} other {{tc}}}",
 
     "saveButton": "Save",
-    "cancelButton": "Cancel"
+    "cancelButton": "Cancel",
+    "editButton": "Edit",
+    "deleteButton": "Delete"
   },
 
   "Errors": {
@@ -241,8 +243,6 @@
 
     "noNotifications": "You have not enabled email notifications for this zone.",
     "withNotifications": "You will receive email notifications for new tournaments with <b>{list}</b> time control in this region.",
-    "editButton": "Edit",
-    "deleteButton": "Delete",
     "addZoneButton": "Add a Region",
 
     "createTitle": "Create a new zone",
@@ -252,8 +252,10 @@
     "zoneNamePlaceholder": "Name for your zone",
     "notificationsLabel": "Notifications",
     "notificationsInfo": "You can choose to turn on notifications for the time controls that interest you, and will receive an email when a new tournament is added to this zone.",
-    "saveButton": "Save",
 
-    "createFailure": "Oops, something went wrong.  Please try again later."
+    "createFailure": "Oops, something went wrong.  Please try again later.",
+
+    "deleteZoneTitle": "Delete Zone",
+    "deleteZoneInfo": "Are you sure you want to delete this zone? This action cannot be undone."
   }
 }
