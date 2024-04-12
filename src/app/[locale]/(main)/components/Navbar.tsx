@@ -15,10 +15,7 @@ export default function Navbar() {
   ] as const;
 
   return (
-    <nav
-      className="relative mt-0 h-16 w-full overflow-x-clip border-b-[1px] bg-white px-5 dark:border-gray-700 dark:bg-gray-800"
-      data-test="navbar"
-    >
+    <nav className="relative mt-0 h-16 w-full overflow-x-clip border-b-[1px] bg-white px-5 dark:border-gray-700 dark:bg-gray-800">
       <div className="container mx-auto flex h-full items-center justify-between">
         <Link
           className="font-extrabold text-gray-900 no-underline hover:no-underline dark:text-white"
@@ -33,10 +30,7 @@ export default function Navbar() {
           <Hamburger />
         </div>
 
-        <div
-          className="hidden h-full justify-center md:flex md:w-1/2 md:justify-end"
-          data-test="desktop-menu"
-        >
+        <div className="hidden h-full justify-center md:flex md:w-1/2 md:justify-end">
           <ul className="list-reset flex h-full flex-1 items-center gap-14 text-gray-900 no-underline dark:text-white md:flex-none">
             {links.map(({ title, route }) => (
               <li key={route} className="h-full">

@@ -2,31 +2,36 @@
 
 import { useState } from "react";
 
+import { Menu } from "@headlessui/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { RxAvatar } from "react-icons/rx";
+
+import { useAuthMenuOptions } from "@/hooks/useAuthMenuOptions";
+
+import { DropdownMenu } from "./DropdownMenu";
 
 const AuthButton = () => {
   const t = useTranslations("Nav");
-  const router = useRouter();
-  const [signingOut, setSigningOut] = useState(false);
-  const { data: sessionData } = useSession();
+  const { data: sessionData, status } = useSession();
+  const menuItems = useAuthMenuOptions();
 
-  const handleSignOut = async () => {
-    setSigningOut(true);
-    try {
-      await signOut({ redirect: false });
-      router.push("/");
-    } finally {
-      setSigningOut(false);
-    }
-  };
+  if (status === "loading") {
+    return null;
+  }
 
   if (sessionData) {
     return (
-      <button disabled={signingOut} onClick={handleSignOut}>
-        {t("signOut")}
-      </button>
+      <DropdownMenu
+        items={menuItems}
+        containerClassName="flex items-center justify-center"
+        buttonComponent={
+          <Menu.Button>
+            <RxAvatar className="h-6 w-6" />
+          </Menu.Button>
+        }
+      />
     );
   }
 

@@ -3,11 +3,13 @@ import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
+import { useAuthMenuOptions } from "@/hooks/useAuthMenuOptions";
 import { Link } from "@/utils/navigation";
 
 const HamburgerMenu = () => {
   const t = useTranslations("Nav");
   const [burgerMenuIsOpen, setBurgerMenuIsOpen] = useAtom(burgerMenuIsOpenAtom);
+  const menuItems = useAuthMenuOptions();
 
   const closeMenu = () => setBurgerMenuIsOpen(false);
 
@@ -20,35 +22,41 @@ const HamburgerMenu = () => {
       )}
     >
       <ul className="list-reset text-white">
-        <li className="py-5 text-center text-xl">
-          <Link
-            onClick={closeMenu}
-            href="/tournaments"
-            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
-          >
+        <li className="py-3 text-center text-xl">
+          <Link onClick={closeMenu} href="/tournaments">
             {t("tournaments")}
           </Link>
         </li>
 
-        <li className="py-5 text-center text-xl">
-          <Link
-            onClick={closeMenu}
-            href="/clubs"
-            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
-          >
+        <li className="py-3 text-center text-xl">
+          <Link onClick={closeMenu} href="/clubs">
             {t("clubs")}
           </Link>
         </li>
 
-        <li className="py-5 text-center text-xl">
-          <Link
-            onClick={closeMenu}
-            href="/elo"
-            className="border-b-2 border-transparent transition-all duration-300 ease-in-out hover:border-white"
-          >
+        <li className="py-3 text-center text-xl">
+          <Link onClick={closeMenu} href="/elo">
             {t("elo")}
           </Link>
         </li>
+
+        <hr className="my-5" />
+
+        {menuItems.map(({ title, onClick, className, disabled }, i) => (
+          <li key={i} className="py-3 text-center text-xl">
+            <button
+              type="button"
+              disabled={disabled}
+              className={className}
+              onClick={() => {
+                onClick();
+                closeMenu();
+              }}
+            >
+              {title}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );

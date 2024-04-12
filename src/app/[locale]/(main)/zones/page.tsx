@@ -86,12 +86,17 @@ const Zones = () => {
 
               return (
                 <div
-                  className="flex gap-4 text-gray-900 dark:text-white"
+                  className="flex flex-col gap-4 text-gray-900 dark:text-white md:flex-row"
                   key={zone.id}
                 >
-                  <ZoneThumbnail features={zone.features} size={200} />
-                  <div className="flex flex-1 flex-col justify-between">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white md:hidden">
+                    {zone.name}
+                  </h3>
+
+                  <ZoneThumbnail features={zone.features} />
+
+                  <div className="flex flex-1 flex-col justify-between gap-4">
+                    <h3 className="hidden text-xl font-semibold text-gray-900 dark:text-white md:block">
                       {zone.name}
                     </h3>
 
