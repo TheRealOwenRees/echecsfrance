@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.5.0",
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^1.7.18",
     "@headlessui/tailwindcss": "^0.2.0",
     "@hookform/resolvers": "^3.3.3",
     "@infra-blocks/zod-utils": "^0.4.2",

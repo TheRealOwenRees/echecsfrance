@@ -6,10 +6,18 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
 import { SignInForm } from "@/components/SignInForm";
+import { Spinner } from "@/components/Spinner";
 
 export default function ZonesLayout({ children }: { children: ReactNode }) {
-  const { data: sessionData } = useSession();
+  const { data: sessionData, status } = useSession();
   const t = useTranslations("Zones");
+
+  if (status === "loading")
+    return (
+      <div className="mt-20 flex justify-center">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
