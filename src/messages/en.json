@@ -220,24 +220,6 @@
     "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
   },
 
-  "SignIn": {
-    "title": "Sign In",
-    "info": "Sign in to access additional features, such as receiving email notifications for tournaments in your area.  There's no need to create an account, just sign in with your email address and we'll send you a link.",
-
-    "emailLabel": "Email",
-    "emailPlaceholder": "Your email",
-    "signInButton": "Sign In",
-    "failure": "Oops, something went wrong. Please try again.",
-    "checkEmail": "Please check your email for a sign-in link.",
-
-    "email": {
-      "subject": "Sign in to {host}",
-      "button": "Sign in",
-      "ignore": "If you didn't request this, you can safely ignore this email.",
-      "textMessage": "Click the following link to sign in to {host}: {url}\n\n"
-    }
-  },
-
   "Zones": {
     "title": "Your Zones",
     "info": "You can set up zones to receive email notifications for tournaments in these areas. These zones can also be used to filter tournaments on the main map.",
@@ -259,5 +241,31 @@
 
     "deleteZoneTitle": "Delete Zone",
     "deleteZoneInfo": "Are you sure you want to delete this zone? This action cannot be undone."
+  },
+
+  "SignIn": {
+    "title": "Sign In",
+    "info": "Sign in to access additional features, such as receiving email notifications for tournaments in your area.  There's no need to create an account, just sign in with your email address and we'll send you a link.",
+
+    "emailLabel": "Email",
+    "emailPlaceholder": "Your email",
+    "signInButton": "Sign In",
+    "failure": "Oops, something went wrong. Please try again.",
+    "checkEmail": "Please check your email for a sign-in link.",
+
+    "email": {
+      "subject": "Sign in to {host}",
+      "button": "Sign in",
+      "ignore": "If you didn't request this, you can safely ignore this email.",
+      "textMessage": "Click the following link to sign in to {host}: {url}\n\n"
+    }
+  },
+
+  "DeleteAccount": {
+    "title": "Delete Account",
+    "info": "Are you sure you want to delete your account? This action cannot be undone.",
+    "deleteButton": "Delete Account",
+    "success": "Your account has been deleted.",
+    "failure": "Oops, something went wrong.  Please try again later."
   }
 }

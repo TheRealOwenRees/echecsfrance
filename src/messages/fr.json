@@ -221,23 +221,6 @@
     "ERR_NO_TOURNAMENT_ID": "L'identifiant du tournoi fourni est incorrect"
   },
 
-  "SignIn": {
-    "title": "Se connecter",
-    "info": "Connectez-vous pour accéder à des fonctionnalités supplémentaires, telles que la réception de notifications par e-mail pour les tournois dans votre région. Pas besoin de créer un compte, connectez-vous simplement avec votre adresse e-mail et nous vous enverrons un lien.",
-    "emailLabel": "E-mail",
-    "emailPlaceholder": "Votre e-mail",
-    "signInButton": "Se connecter",
-    "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
-    "checkEmail": "Veuillez vérifier votre e-mail pour un lien de connexion.",
-
-    "email": {
-      "subject": "Connexion à {host}",
-      "button": "Se connecter",
-      "ignore": "Si vous n'avez pas demandé cela, vous pouvez ignorer en toute sécurité cet e-mail.",
-      "textMessage": "Cliquez sur le lien suivant pour vous connecter à {host}: {url}\n\n"
-    }
-  },
-
   "Zones": {
     "title": "Vos régions",
     "info": "Vous pouvez définir des zones personnalisées pour recevoir des notifications par e-mail pour les tournois dans ces zones.  Ces zones peuvent aussi être utiliser pour filtrer les tournois sur la carte.",
@@ -259,5 +242,30 @@
 
     "deleteZoneTitle": "Supprimer la région",
     "deleteZoneInfo": "Êtes-vous sûr de vouloir supprimer cette région\u00a0?"
+  },
+
+  "SignIn": {
+    "title": "Se connecter",
+    "info": "Connectez-vous pour accéder à des fonctionnalités supplémentaires, telles que la réception de notifications par e-mail pour les tournois dans votre région. Pas besoin de créer un compte, connectez-vous simplement avec votre adresse e-mail et nous vous enverrons un lien.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Votre e-mail",
+    "signInButton": "Se connecter",
+    "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
+    "checkEmail": "Veuillez vérifier votre e-mail pour un lien de connexion.",
+
+    "email": {
+      "subject": "Connexion à {host}",
+      "button": "Se connecter",
+      "ignore": "Si vous n'avez pas demandé cela, vous pouvez ignorer en toute sécurité cet e-mail.",
+      "textMessage": "Cliquez sur le lien suivant pour vous connecter à {host}: {url}\n\n"
+    }
+  },
+
+  "DeleteAccount": {
+    "title": "Supprimer le compte",
+    "info": "Êtes-vous sûr de vouloir supprimer votre compte\u00a0? Cette action est irréversible.",
+    "deleteButton": "Supprimer le compte",
+    "success": "Votre compte a été supprimé avec succès.",
+    "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer."
   }
 }

@@ -43,11 +43,11 @@ export const useAuthMenuOptions = () => {
       onClick: () => router.push("/zones"),
       disabled: signingOut,
     },
-    // {
-    //   title: t("deleteAccount"),
-    //   onClick: handleSignOut,
-    //   disabled: signingOut,
-    // },
+    {
+      title: t("deleteAccount"),
+      onClick: () => router.push("/delete-account"),
+      disabled: signingOut,
+    },
     {
       title: t("signOut"),
       onClick: handleSignOut,
