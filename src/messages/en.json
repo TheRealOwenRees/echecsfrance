@@ -35,7 +35,9 @@
     "clubs": "Clubs",
     "elo": "Elo Calculator",
     "signIn": "Sign In",
-    "signOut": "Sign Out"
+    "signOut": "Sign Out",
+    "myZones": "My Zones",
+    "deleteAccount": "Delete my Account"
   },
 
   "Footer": {
