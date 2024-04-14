@@ -26,13 +26,13 @@ export const classNames = <Option, IsMulti extends boolean = false>(
   indicatorSeparator: () => "w-px text-gray-900 dark:text-white",
   control: (state) =>
     twMerge(
-      "group flex w-full items-center justify-between rounded-lg border p-3 text-sm",
-      "border-gray-300 bg-gray-50  text-gray-900 shadow-sm focus-within:border-primary-500 focus-within:ring-primary-500",
+      "group flex w-full items-center justify-between rounded-lg border p-2.5 text-sm",
+      "border-gray-300 bg-gray-50 text-gray-900 focus-within:border-primary-500 focus-within:ring-primary-500",
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-500 dark:focus-within:ring-primary-500",
 
       hasError && "ring-1 ring-error",
       state.isDisabled && "cursor-not-allowed",
-      state.isFocused && "border-primary ring ring-primary ring-opacity-50",
+      state.isFocused && "border-primary ring-1 ring-primary ring-opacity-50",
     ),
   multiValue: () => "bg-fieldGray border rounded-lg flex space-x-1 pl-1 m-1",
   multiValueLabel: () => "",
