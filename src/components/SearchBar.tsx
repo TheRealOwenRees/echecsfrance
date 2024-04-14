@@ -3,10 +3,15 @@ import { useTransition } from "react";
 import { useAtom } from "jotai/index";
 import { useTranslations } from "next-intl";
 import { IoCloseOutline } from "react-icons/io5";
+import { twMerge } from "tailwind-merge";
 
 import { searchStringAtom } from "@/atoms";
 
-const SearchBar = () => {
+type SearchBarProps = {
+  className?: string;
+};
+
+const SearchBar = ({ className }: SearchBarProps) => {
   const t = useTranslations("Tournaments");
   const [searchString, setSearchString] = useAtom(searchStringAtom);
   const [isPending, startTransition] = useTransition();
@@ -22,7 +27,7 @@ const SearchBar = () => {
       <label htmlFor="table-search" className="sr-only">
         {t("searchLabel")}
       </label>
-      <div className="relative mt-1">
+      <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
             className="h-5 w-5 text-gray-500 dark:text-gray-400"
@@ -49,7 +54,10 @@ const SearchBar = () => {
         <input
           type="search"
           id="table-search"
-          className="block rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-gray-900 focus:border-blue-500 focus:ring-blue-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          className={twMerge(
+            "block rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-primary-500",
+            className,
+          )}
           placeholder={t("searchPlaceholder")}
           value={searchString}
           onChange={(e) => updateSearchString(e.target.value)}
