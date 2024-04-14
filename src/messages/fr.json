@@ -80,7 +80,6 @@
     "searchLabel": "Rechercher",
     "searchPlaceholder": "Rechercher",
     "syncWithMapOption": "Seuls les tournois visibles dans la vue carte",
-    "ignoreMapOption": "Pas de filtre de région",
     "normsOnly": "Uniquement tournois à normes",
     "noneFound": "Pas de tournois trouvé",
     "date": "Date",
@@ -97,7 +96,7 @@
     "loading": "Téléchargement...",
     "searchLabel": "Rechercher",
     "searchPlaceholder": "Rechercher",
-    "syncWithMapCheckbox": "Clubs visibles sur la carte",
+    "syncWithMapOption": "Seuls les clubs visibles dans la vue carte",
     "noneFound": "Pas de club trouvé",
     "name": "Name",
     "ffe": "FFE",
@@ -230,6 +229,10 @@
     "noNotifications": "Vous n'avez pas activé les notifications par email pour cette région.",
     "withNotifications": "Vous allez recevoir des notifications par e-mail pour les nouveaux tournois de cadences <b>{list}</b> dans cette région.",
     "addZoneButton": "Ajouter une région",
+
+    "yourZonesSelectGroupHeader": "Your Zones",
+    "ignoreMapOption": "Pas de filtre de région",
+    "createZoneSelectOption": "Create a new zone",
 
     "createTitle": "Créer une nouvelle région",
     "editTitle": "Modifier région",

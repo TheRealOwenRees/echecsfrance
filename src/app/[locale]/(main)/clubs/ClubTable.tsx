@@ -44,6 +44,7 @@ const ClubTable = () => {
       <div className="z-10 flex w-full flex-wrap items-center justify-between gap-3 p-3">
         <SearchBar />
         <RegionSelect
+          syncTitle={t("syncWithMapOption")}
           classNameOverrides={{
             container: () => "flex flex-1",
           }}

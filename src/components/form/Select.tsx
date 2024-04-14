@@ -45,7 +45,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
       "border-gray-300 bg-gray-50  text-gray-900",
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
     ),
-  groupHeading: () => "ml-3 mt-2 mb-1 text-textGray text-sm uppercase",
+  groupHeading: () => "mx-3 mt-2 mb-1 text-textGray text-sm uppercase",
   option: ({ isFocused, isDisabled }) =>
     twMerge(
       "px-3 py-2 hover:cursor-pointer",

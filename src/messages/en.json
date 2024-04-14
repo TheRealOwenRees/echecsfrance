@@ -48,7 +48,7 @@
   "FormValidation": {
     "required": "Required",
     "url": "Invalid URL",
-    "zone": "Please draw at least one region on the map"
+    "zone": "Please draw at least one zone on the map"
   },
 
   "Home": {
@@ -81,7 +81,6 @@
     "searchLabel": "Search",
     "searchPlaceholder": "Search",
     "syncWithMapOption": "Only tournaments visible in the map view",
-    "ignoreMapOption": "No region-based filter",
     "normsOnly": "Only norm tournaments",
     "noneFound": "No tournaments found",
     "date": "Date",
@@ -98,7 +97,7 @@
     "loading": "Loading...",
     "searchLabel": "Search",
     "searchPlaceholder": "Search",
-    "syncWithMapCheckbox": "Clubs visible on the map",
+    "syncWithMapOption": "Only clubs visible in the map view",
     "noneFound": "No clubs found",
     "name": "Name",
     "ffe": "FFE",
@@ -227,8 +226,12 @@
     "logonRequired": "You must be signed in to access this feature so that we can store your personalized Zones. There's no need to create an account, just sign in with your email address and we'll send you a link.",
 
     "noNotifications": "You have not enabled email notifications for this zone.",
-    "withNotifications": "You will receive email notifications for new tournaments with <b>{list}</b> time control in this region.",
-    "addZoneButton": "Add a Region",
+    "withNotifications": "You will receive email notifications for new tournaments with <b>{list}</b> time control in this zone.",
+    "addZoneButton": "Add a Zone",
+
+    "yourZonesSelectGroupHeader": "Your Zones",
+    "createZoneSelectOption": "Create a new zone",
+    "ignoreMapOption": "No region-based filter",
 
     "createTitle": "Create a new zone",
     "editTitle": "Edit zone",
