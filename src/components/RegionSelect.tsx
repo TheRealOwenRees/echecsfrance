@@ -1,7 +1,13 @@
+import gd from "date-fns/locale/gd";
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { IoAdd } from "react-icons/io5";
-import { GroupBase, OptionsOrGroups, SingleValue } from "react-select";
+import {
+  GroupBase,
+  OnChangeValue,
+  OptionsOrGroups,
+  SingleValue,
+} from "react-select";
 
 import { regionFilterAtom } from "@/atoms";
 import { BaseOption, Select, SelectProps } from "@/components/form/Select";
@@ -9,7 +15,10 @@ import { useZones } from "@/hooks/useZones";
 import { Zone } from "@/server/myZones";
 import { useRouter } from "@/utils/navigation";
 
-type RegionSelectProps = Omit<SelectProps, "options" | "value" | "onChange"> & {
+type RegionSelectProps = Omit<
+  SelectProps<false, string, Zone | null>,
+  "options" | "value" | "onChange"
+> & {
   syncTitle: string;
 };
 
@@ -55,7 +64,9 @@ export const RegionSelect = ({
     },
   ];
 
-  const onChange = (option: SingleValue<RegionOption>) => {
+  const onChange = (
+    option: OnChangeValue<BaseOption<string, Zone | null>, false>,
+  ) => {
     if (!option) return;
     if (option.value === "create") {
       router.push("/zones/create");
@@ -99,9 +110,10 @@ export const RegionSelect = ({
           ? o.value === regionFilter
           : o.value === regionFilter.id,
       )}
-      formatGroupLabel={(g) => formatGroupLabel(g as GroupedOption)}
-      formatOptionLabel={(o) => formatOptionLabel(o as RegionOption)}
-      onChange={(v) => onChange(v as SingleValue<RegionOption>)}
+      isMulti={false}
+      formatGroupLabel={formatGroupLabel}
+      formatOptionLabel={formatOptionLabel}
+      onChange={onChange}
       {...selectProps}
     />
   );

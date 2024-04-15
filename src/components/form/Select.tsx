@@ -62,10 +62,7 @@ export type SelectProps<
   T = string,
   D = unknown,
 > = Prettify<
-  Omit<
-    Props<BaseOption<T, D>, IsMulti, GroupBase<BaseOption<T, D>>>,
-    "classNames"
-  > & {
+  Omit<Props<BaseOption<T, D>, IsMulti>, "classNames"> & {
     required?: boolean;
     separators?: boolean;
     hasError?: boolean;
