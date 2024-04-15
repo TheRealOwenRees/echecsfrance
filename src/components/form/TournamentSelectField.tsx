@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 import { useTranslations } from "next-intl";
 import { FieldPath, FieldValues } from "react-hook-form";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import { TimeControlColours } from "@/constants";
 import { getTournamentDetails } from "@/server/getTournamentDetails";
@@ -31,6 +34,8 @@ export const TournamentSelectField = <
   ...rest
 }: TournamentSelectFieldProps<TFieldValues, TFieldName>) => {
   const at = useTranslations("App");
+  const [selectedTournament, setSelectedTournament] =
+    useState<SearchedTournament | null>(null);
 
   const loadOption = async (ffeId: string) => {
     const { data: tournament } = await getTournamentDetails({ ffeId });
@@ -57,34 +62,49 @@ export const TournamentSelectField = <
   };
 
   return (
-    <AsyncSelectField
-      {...rest}
-      isSearchable
-      separators
-      loadOption={loadOption}
-      loadOptions={loadOptions}
-      isClearable={true}
-      formatOptionLabel={(option, context) => {
-        if (context.context === "value") return option.label;
-        return (
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center gap-2 text-xs uppercase">
-              <div className="flex-1">{option.data?.town}</div>
-              <div
-                className="ml-2 rounded-sm px-1 py-0.5 align-middle text-[9px]/[11px]  uppercase text-white"
-                style={{
-                  background: `${TimeControlColours[option.data!.timeControl]}`,
-                }}
-              >
-                {at("timeControlEnum", { tc: option.data?.timeControl })}
+    <div className="flex flex-col gap-2">
+      <AsyncSelectField
+        {...rest}
+        isSearchable
+        separators
+        loadOption={loadOption}
+        loadOptions={loadOptions}
+        isClearable={true}
+        onInformChange={(data) =>
+          setSelectedTournament(data ? data[0].data! : null)
+        }
+        formatOptionLabel={(option, context) => {
+          if (context.context === "value") return option.label;
+          return (
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 text-xs uppercase">
+                <div className="flex-1">{option.data?.town}</div>
+                <div
+                  className="ml-2 rounded-sm px-1 py-0.5 align-middle text-[9px]/[11px]  uppercase text-white"
+                  style={{
+                    background: `${TimeControlColours[option.data!.timeControl]}`,
+                  }}
+                >
+                  {at("timeControlEnum", { tc: option.data?.timeControl })}
+                </div>
+                <div className="text-xs">{option.data?.date}</div>
               </div>
-              <div className="text-xs">{option.data?.date}</div>
-            </div>
 
-            <div>{option.data?.tournament}</div>
-          </div>
-        );
-      }}
-    />
+              <div>{option.data?.tournament}</div>
+            </div>
+          );
+        }}
+      />
+      {selectedTournament && (
+        <a
+          href={selectedTournament.url}
+          target="_blank"
+          className="inline-flex items-center justify-end gap-1 text-xs text-primary hover:text-primary-800"
+        >
+          {selectedTournament.url}
+          <FaExternalLinkAlt />
+        </a>
+      )}
+    </div>
   );
 };

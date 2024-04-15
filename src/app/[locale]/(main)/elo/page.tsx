@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -15,6 +15,8 @@ import { SelectField } from "@/components/form/SelectField";
 import { TournamentSelectField } from "@/components/form/TournamentSelectField";
 import { fetchTournamentResultsSchema } from "@/schemas";
 import { fetchTournamentResults } from "@/server/fetchTournamentResults";
+import { SearchedTournament } from "@/server/searchTournaments";
+import { TimeControl } from "@/types";
 import { Link } from "@/utils/navigation";
 
 import { KFactor } from "./KFactor";
@@ -42,6 +44,7 @@ export default function Elo() {
     () => new URLSearchParams(Array.from(searchParams.entries())),
     [searchParams],
   );
+  const [tournament, setTournament] = useState<SearchedTournament | null>(null);
 
   const tournamentId = searchParams.get("tId") ?? "";
   const kFactorParam = searchParams.get("k");
@@ -205,6 +208,9 @@ export default function Elo() {
               control={form.control}
               placeholder={t("searchTournamentPlaceholder")}
               noOptionsMessage={() => t("noTournamentsFound")}
+              onInformChange={(tournaments) =>
+                setTournament(tournaments?.[0]?.data ?? null)
+              }
             />
 
             {isFetching && (
