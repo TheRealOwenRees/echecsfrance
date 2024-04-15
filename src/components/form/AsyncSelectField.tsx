@@ -32,6 +32,7 @@ export type AsyncSelectFieldProps<
       required?: boolean;
       loadOption: (id: T) => Promise<BaseOption<T, D> | undefined>;
       loadOptions: (searchString?: string) => Promise<BaseOption<T, D>[]>;
+      onInformChange?: (data: BaseOption<T, D>[] | null) => void;
       separators?: boolean;
     }
 >;
@@ -52,9 +53,11 @@ export const AsyncSelectField = <
 
   loadOption,
   loadOptions,
+  onInformChange,
 
   placeholder,
   separators,
+
   ...selectProps
 }: AsyncSelectFieldProps<TFieldValues, TFieldName, IsMulti, T, D>) => {
   const t = useTranslations("App");
@@ -92,6 +95,12 @@ export const AsyncSelectField = <
 
           setLoadingValues(false);
 
+          onInformChange?.(
+            values.map(
+              (v) => valueOptions.current.find((o) => o.value === v)!,
+            ) as BaseOption<T, D>[],
+          );
+
           // This forced a state update, which enures that the select is updated once the query has finished
           setLoadedInitialValues(true);
         }
@@ -102,7 +111,7 @@ export const AsyncSelectField = <
     };
 
     doLoad();
-  }, [value, setLoadingValues, loadOption]);
+  }, [value, setLoadingValues, loadOption, onInformChange]);
 
   const {
     formState: { errors },
@@ -133,15 +142,17 @@ export const AsyncSelectField = <
             newValue: OnChangeValue<BaseOption<T, D>, IsMulti>,
             actionMeta: ActionMeta<BaseOption<T, D>>,
           ) => {
-            console.log(newValue, actionMeta);
             if (isNil(newValue) || actionMeta.action === "clear") {
               onChange(null);
+              onInformChange?.(null);
               valueOptions.current = [];
             } else if (isArray(newValue)) {
               onChange(newValue.map((option) => option.value));
+              onInformChange?.(newValue);
               valueOptions.current = newValue;
             } else {
               onChange((newValue as BaseOption<T, D>).value);
+              onInformChange?.([newValue as BaseOption<T, D>]);
               valueOptions.current = [newValue as BaseOption<T, D>];
             }
           };
@@ -150,9 +161,9 @@ export const AsyncSelectField = <
             isNil(value) || value === ""
               ? null
               : isArray(value)
-              ? // @ts-ignore - this is too complex for TS to understand
-                value.map(valueToOption)
-              : valueToOption(value);
+                ? // @ts-ignore - this is too complex for TS to understand
+                  value.map(valueToOption)
+                : valueToOption(value);
 
           return (
             <AsyncSelect<BaseOption<T, D>, IsMulti>
