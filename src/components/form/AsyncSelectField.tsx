@@ -15,8 +15,7 @@ import AsyncSelect from "react-select/async";
 import { Prettify } from "@/types";
 
 import { Field, GenericFieldProps } from "./Field";
-import { classNames } from "./Select";
-import { BaseOption } from "./SelectField";
+import { BaseOption, classNames } from "./Select";
 
 export type AsyncSelectFieldProps<
   TFieldValues extends FieldValues = FieldValues,

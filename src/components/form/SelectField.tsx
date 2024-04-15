@@ -10,17 +10,10 @@ import {
 } from "react-hook-form";
 import { GroupBase, OnChangeValue } from "react-select";
 
-import { Select, SelectProps } from "@/components/form/Select";
+import { BaseOption, Select, SelectProps } from "@/components/form/Select";
 import { Prettify } from "@/types";
 
 import { Field, GenericFieldProps } from "./Field";
-
-export type BaseOption<T = string, D = unknown> = {
-  value: T;
-  label: string | JSX.Element;
-  disabled?: boolean;
-  data?: D;
-};
 
 export type SelectFieldProps<
   TFieldValues extends FieldValues = FieldValues,
