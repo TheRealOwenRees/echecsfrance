@@ -10,12 +10,13 @@ import { Label } from "@/components/form/Label";
 import { TextField } from "@/components/form/TextField";
 import { ZoneEditorField } from "@/components/form/ZoneEditorField";
 import { zoneSchema } from "@/schemas";
+import { Zone } from "@/server/myZones";
 import { TimeControl } from "@/types";
 
 export type ZoneFormValues = z.infer<typeof zoneSchema>;
 
 type ZoneFormProps = {
-  zone?: ZoneFormValues;
+  zone?: Zone;
   onSubmit: (data: ZoneFormValues) => Promise<void>;
   onCancel: () => void;
   submitTitle?: string;
@@ -35,15 +36,23 @@ export const ZoneForm = ({
   // @ts-ignore - Type instantiation is excessively deep and possibly infinite
   const form = useForm<ZoneFormValues>({
     resolver: zodResolver(zoneSchema),
-    defaultValues: zone ?? {
-      classicNotifications: false,
-      rapidNotifications: false,
-      blitzNotifications: false,
-      features: {
-        type: "FeatureCollection",
-        features: [],
-      },
-    },
+    defaultValues: zone
+      ? {
+          name: zone.name,
+          classicNotifications: zone.classicNotifications,
+          rapidNotifications: zone.rapidNotifications,
+          blitzNotifications: zone.blitzNotifications,
+          features: zone.features as ZoneFormValues["features"],
+        }
+      : {
+          classicNotifications: false,
+          rapidNotifications: false,
+          blitzNotifications: false,
+          features: {
+            type: "FeatureCollection",
+            features: [],
+          },
+        },
   });
 
   return (
