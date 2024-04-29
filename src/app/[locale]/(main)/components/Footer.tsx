@@ -24,7 +24,7 @@ export default function Footer() {
         onClick={() => setBurgerMenuIsOpen(false)}
       >
         <a
-          href="https://github.com/TheRealOwenRees/echecsfrance"
+          href="https://github.com/echecsfrance/echecsfrance"
           target="_blank"
           aria-label={t("githubAria")}
           className="mr-4"

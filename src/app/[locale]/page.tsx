@@ -156,7 +156,7 @@ export default function Home() {
                 target="_blank"
                 className="text-primary hover:bg-primary-700"
                 rel="noopener noreferrer"
-                href="https://github.com/TheRealOwenRees/echecsfrance"
+                href="https://github.com/echecsfrance/echecsfrance"
               >
                 {str}
               </a>
