@@ -190,7 +190,6 @@
     "kFactorInfo4": "<b>20</b> tant que le classement d'un joueur reste inférieur à 2400.",
     "kFactorInfo5": "<b>10</b> une fois que le classement publié d'un joueur a atteint 2400 et reste à ce niveau par la suite, même s'il redescend en dessous de 2400.",
     "kFactorInfo6": "<b>40</b> pour tous les joueurs jusqu'à leur 18e anniversaire, tant que leur classement reste inférieur à 2300.",
-    "kFactorInfo7": "<b>20</b> pour les classements RAPIDE et BLITZ pour tous les joueurs.",
 
     "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste.",
     "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
