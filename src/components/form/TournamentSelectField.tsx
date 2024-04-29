@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { on } from "events";
 import { useTranslations } from "next-intl";
 import { FieldPath, FieldValues } from "react-hook-form";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -31,6 +32,7 @@ export const TournamentSelectField = <
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
+  onInformChange,
   ...rest
 }: TournamentSelectFieldProps<TFieldValues, TFieldName>) => {
   const at = useTranslations("App");
@@ -70,9 +72,10 @@ export const TournamentSelectField = <
         loadOption={loadOption}
         loadOptions={loadOptions}
         isClearable={true}
-        onInformChange={(data) =>
-          setSelectedTournament(data ? data[0].data! : null)
-        }
+        onInformChange={(data) => {
+          setSelectedTournament(data ? data[0].data ?? null : null);
+          onInformChange?.(data);
+        }}
         formatOptionLabel={(option, context) => {
           if (context.context === "value") return option.label;
           return (
