@@ -5,18 +5,22 @@ import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
 import { TournamentResultsData } from "@/server/fetchTournamentResults";
+import { SearchedTournament } from "@/server/searchTournaments";
+import { TimeControl } from "@/types";
 import { getNewRating } from "@/utils/eloCalculator";
 
 type TournamentResultsProps = {
   results: TournamentResultsData;
   playerId: string;
   kFactor: number;
+  tournament?: SearchedTournament | null;
 };
 
 export const TournamentResults = ({
   results,
   playerId,
   kFactor,
+  tournament,
 }: TournamentResultsProps) => {
   const t = useTranslations("Elo");
 
@@ -193,8 +197,12 @@ export const TournamentResults = ({
       </table>
 
       {noChangeCount > 0 && (
-        <div className="mt-4 rounded border border-gray-500 p-4 text-center text-gray-500 dark:border-neutral-400 dark:text-neutral-400">
-          {t("noChangeInfo", { noChangeCount })}
+        <div className="mt-4 rounded border border-gray-500 p-4 text-gray-500 dark:border-neutral-400 dark:text-neutral-400">
+          <p>{t("noChangeInfo", { noChangeCount })}</p>
+
+          {tournament && tournament.timeControl !== TimeControl.Classic && (
+            <p className="mt-4">{t("noChangeRapidBlitzInfo")}</p>
+          )}
         </div>
       )}
 

@@ -181,6 +181,7 @@
     "initialRating": "Initial Rating: {rating}",
     "finalRating": "Final Rating: {rating} (<delta></delta>)",
     "noChangeInfo": "Note that {noChangeCount, plural, one {one of the games} other {# of the games}} resulted in no change to the Elo.  Forfeited games and games played against players that do not yet have a FIDE rating are not included in the calculation.",
+    "noChangeRapidBlitzInfo": "However, if the opponent has a classic rating, then this will actually be used by the FIDE when calculating the rating change for Rapid and Blitz tournaments, so the actual change may be different from that displayed here. Arbiters using Papi should have run a function that replaces all the estimated and national ratings with the classic rating, but in practice this is often forgotten.",
 
     "kFactorTitle": "What is the K-Factor?",
     "kFactorInfo1": "The purpose of the K-factor is to determine how much a player's chess rating should change after each game. It is based on the number of rated games a player has completed. This system helps ensure that players' ratings accurately reflect their skill levels while accommodating both new and experienced players.",

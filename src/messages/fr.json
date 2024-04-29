@@ -182,6 +182,7 @@
     "initialRating": "Classement initial\u00a0: {rating}",
     "finalRating": "Classement final\u00a0: {rating} (<delta></delta>)",
     "noChangeInfo": "Notez que {noChangeCount, plural, one {une de ces parties n'a pas modifié l'Elo} other {# de ces parties n'ont pas modifié l'Elo}}. Les parties perdues par forfait et les parties jouées contre des joueurs qui n'ont pas encore de classement FIDE ne sont pas prises en compte dans le calcul.",
+    "noChangeRapidBlitzInfo": "Cependant, si un adversaire a un classement Elo lent, alors celui-ci sera effectivement utilisé par la FIDE lors du calcul du changement d'Elo pour les tournois Rapides et Blitz, donc le changement réel peut être différent de celui affiché ici. Les arbitres utilisant Papi devraient exécuter une fonction qui remplace tous les Elo estimés et nationaux par le classement lent, mais en pratique, cela est souvent oublié.",
 
     "kFactorTitle": "Qu'est-ce que le coefficient K\u00a0?",
     "kFactorInfo1": "Le but du coefficient K est de déterminer dans quelle mesure le classement aux échecs d'un joueur devrait changer après chaque partie. Il est basé sur le nombre de parties classées qu'un joueur a complétées. Ce système vise à garantir que les classements des joueurs reflètent avec précision leur niveau de compétence tout en tenant compte à la fois des joueurs débutants et expérimentés.",

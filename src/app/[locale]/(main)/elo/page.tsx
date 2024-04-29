@@ -208,9 +208,9 @@ export default function Elo() {
               control={form.control}
               placeholder={t("searchTournamentPlaceholder")}
               noOptionsMessage={() => t("noTournamentsFound")}
-              onInformChange={(tournaments) =>
-                setTournament(tournaments?.[0]?.data ?? null)
-              }
+              onInformChange={(tournaments) => {
+                setTournament(tournaments?.[0]?.data ?? null);
+              }}
             />
 
             {isFetching && (
@@ -274,6 +274,7 @@ export default function Elo() {
               playerId={player}
               kFactor={parseInt(kFactor)}
               results={allResults?.data ?? []}
+              tournament={tournament}
             />
           )}
 
