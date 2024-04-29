@@ -156,7 +156,7 @@
     "currentEloLabel": "Your current Elo",
     "currentEloPlaceholder": "Elo",
     "yourKFactorLabel": "Your K-Factor",
-    "kFactorLabel": "Coefficient",
+    "kFactorLabel": "K-Factor",
     "kFactorPlaceholder": "K-Factor",
     "resultsTitle": "Results",
     "opponentEloPlaceholder": "Opponent Elo",
@@ -189,7 +189,6 @@
     "kFactorInfo4": "20 as long as a player's rating remains under 2400.",
     "kFactorInfo5": "10 once a player's published rating has reached 2400 and remains at that level subsequently, even if the rating drops below 2400.",
     "kFactorInfo6": "40 for all players until their 18th birthday, as long as their rating remains under 2300.",
-    "kFactorInfo7": "20 for RAPID and BLITZ ratings for all players.",
 
     "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
     "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",

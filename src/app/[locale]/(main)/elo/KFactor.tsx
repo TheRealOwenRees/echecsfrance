@@ -37,7 +37,6 @@ export const KFactor = ({ className }: KFactorProps) => {
               "kFactorInfo4",
               "kFactorInfo5",
               "kFactorInfo6",
-              "kFactorInfo7",
             ] as const
           ).map((key) => (
             <li
