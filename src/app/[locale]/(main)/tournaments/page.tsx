@@ -138,7 +138,6 @@ const getTournaments = async () => {
         town: t.town,
         department: t.department,
         date: t.date,
-        isoDate: formatISO(date),
         url: t.url,
         timeControl,
         latLng: { lat: t.coordinates[0], lng: t.coordinates[1] },
