@@ -54,7 +54,6 @@ export type Tournament = {
   url: string;
   timeControl: TimeControl;
   date: string;
-  isoDate: string;
   latLng: LatLngLiteral;
   norm: boolean;
   pending: boolean;

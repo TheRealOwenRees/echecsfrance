@@ -1,7 +1,16 @@
-import { formatISO, setDefaultOptions } from "date-fns";
+import {
+  endOfDay,
+  formatISO,
+  isAfter,
+  isBefore,
+  parse,
+  setDefaultOptions,
+  startOfDay,
+} from "date-fns";
 import { fr } from "date-fns/locale";
 import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
+import { c } from "next-safe-action/dist/index-EKyvnpX_.mjs";
 
 import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
@@ -41,23 +50,27 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
   const other = get(otherAtom);
 
   const dateRange = get(dateRangeAtom);
-  const startDate = formatISO(dateRange[0].startDate);
-  const endDate =
-    dateRange[0].endDate !== undefined
-      ? formatISO(dateRange[0].endDate)
-      : undefined;
+  const { startDate, endDate } = dateRange[0];
 
-  return tournaments.filter(
-    (tournament) =>
-      tournament.isoDate >= startDate &&
-      (endDate === undefined || tournament.isoDate <= endDate) &&
-      !tournament.pending &&
-      tournament.status === "scheduled" &&
-      ((tournament.timeControl === TimeControl.Classic && classic) ||
-        (tournament.timeControl === TimeControl.Rapid && rapid) ||
-        (tournament.timeControl === TimeControl.Blitz && blitz) ||
-        (tournament.timeControl === TimeControl.Other && other)),
-  );
+  const filteredTournaments = tournaments.filter((tournament) => {
+    const tournamentDate = startOfDay(
+      parse(tournament.date, "dd/MM/yyyy", new Date()),
+    );
+
+    return (
+      !isBefore(tournamentDate, startDate) &&
+      (endDate === undefined ||
+        (!isAfter(tournamentDate, endDate) &&
+          !tournament.pending &&
+          tournament.status === "scheduled" &&
+          ((tournament.timeControl === TimeControl.Classic && classic) ||
+            (tournament.timeControl === TimeControl.Rapid && rapid) ||
+            (tournament.timeControl === TimeControl.Blitz && blitz) ||
+            (tournament.timeControl === TimeControl.Other && other))))
+    );
+  });
+
+  return filteredTournaments;
 });
 
 export const filteredTournamentsListAtom = atom((get) => {
@@ -116,7 +129,10 @@ export const datePickerIsOpenAtom = atom(false);
 
 export const maxDateAtom = atom((get) => {
   const tournaments = get(tournamentsAtom);
-  const dateTimestamps = tournaments.map((t) => new Date(t.isoDate).getTime());
+  const dateTimestamps = tournaments.map((t) =>
+    endOfDay(parse(t.date, "dd/MM/yyyy", new Date())).getTime(),
+  );
+
   return new Date(Math.max(...dateTimestamps));
 });
 
