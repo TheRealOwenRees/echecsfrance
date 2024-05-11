@@ -59,14 +59,13 @@ export const filteredTournamentsByTimeControlAtom = atom((get) => {
 
     return (
       !isBefore(tournamentDate, startDate) &&
-      (endDate === undefined ||
-        (!isAfter(tournamentDate, endDate) &&
-          !tournament.pending &&
-          tournament.status === "scheduled" &&
-          ((tournament.timeControl === TimeControl.Classic && classic) ||
-            (tournament.timeControl === TimeControl.Rapid && rapid) ||
-            (tournament.timeControl === TimeControl.Blitz && blitz) ||
-            (tournament.timeControl === TimeControl.Other && other))))
+      (endDate === undefined || !isAfter(tournamentDate, endDate)) &&
+      !tournament.pending &&
+      tournament.status === "scheduled" &&
+      ((tournament.timeControl === TimeControl.Classic && classic) ||
+        (tournament.timeControl === TimeControl.Rapid && rapid) ||
+        (tournament.timeControl === TimeControl.Blitz && blitz) ||
+        (tournament.timeControl === TimeControl.Other && other))
     );
   });
 
