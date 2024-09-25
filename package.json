@@ -72,5 +72,6 @@
     "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.3"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
