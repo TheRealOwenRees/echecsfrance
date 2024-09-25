@@ -20,7 +20,6 @@ import {
   normsOnlyAtom,
   syncVisibleAtom,
 } from "@/atoms";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
@@ -119,8 +118,6 @@ const TournamentTable = () => {
           <DatePicker datePickerDirection={dateDirectionState} />
         )}
       </div>
-
-      <ScrollToTopButton />
 
       <div className="overflow-x-scroll">
         <table className="relative min-w-full table-fixed text-center text-xs lg:w-full">

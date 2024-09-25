@@ -14,7 +14,6 @@ import {
   hoveredMapIdAtom,
   syncVisibleAtom,
 } from "@/atoms";
-import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SearchBar from "@/components/SearchBar";
 import { useBreakpoint } from "@/hooks/tailwind";
 
@@ -59,8 +58,6 @@ const ClubTable = () => {
           </label>
         </div>
       </div>
-
-      <ScrollToTopButton />
 
       <div className="overflow-x-scroll bg-red-50">
         <table className="relative min-w-full table-fixed text-center text-xs lg:min-w-full">
