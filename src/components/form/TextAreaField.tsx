@@ -86,7 +86,7 @@ export const TextAreaField = <
                 aria-invalid={hasError}
                 disabled={disabled}
                 className={twMerge(
-                  "flex w-full content-center rounded-lg border p-3 text-sm",
+                  "flex w-full content-center rounded-lg border p-3",
                   "border-gray-300 bg-gray-50  text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500",
                   "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500",
                   hasError && "!border-orange-700 focus:!border-orange-700",

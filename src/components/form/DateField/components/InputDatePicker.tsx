@@ -37,7 +37,7 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
     return (
       <div
         className={twMerge(
-          "flex w-full content-center rounded-lg border p-3 text-sm",
+          "flex w-full content-center rounded-lg border p-3",
           "border-gray-300 bg-gray-50 text-gray-900 shadow-sm",
           "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 ",
           !error &&
@@ -50,7 +50,7 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
           inputRef={inputRef}
           mask={mask ?? ""}
           className={twMerge(
-            "w-full border-none bg-transparent text-sm outline-none ring-0 focus:outline-none focus:ring-0 focus:ring-offset-0",
+            "w-full border-none bg-transparent outline-none ring-0 focus:outline-none focus:ring-0 focus:ring-offset-0",
             "text-gray-900 dark:text-white",
             inputClass,
           )}
