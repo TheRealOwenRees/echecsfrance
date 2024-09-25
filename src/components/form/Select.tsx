@@ -26,7 +26,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
   indicatorSeparator: () => "w-px text-gray-900 dark:text-white",
   control: (state) =>
     twMerge(
-      "group flex w-full items-center justify-between rounded-lg border p-2.5 text-sm",
+      "group flex w-full items-center justify-between rounded-lg border p-2.5",
       "border-gray-300 bg-gray-50 text-gray-900 focus-within:border-primary-500 focus-within:ring-primary-500",
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus-within:border-primary-500 dark:focus-within:ring-primary-500",
 
