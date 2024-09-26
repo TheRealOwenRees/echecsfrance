@@ -7,9 +7,9 @@ import { adapter, auth } from "@/auth";
 import { collections, dbConnect } from "@/server/mongodb";
 import { errorLog } from "@/utils/logger";
 
-import { action } from "./safeAction";
+import { actionClient } from "./safeAction";
 
-export const deleteAccount = action(z.void(), async () => {
+export const deleteAccount = actionClient.action(async () => {
   try {
     await dbConnect();
 

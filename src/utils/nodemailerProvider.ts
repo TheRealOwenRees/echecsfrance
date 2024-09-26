@@ -110,7 +110,7 @@ export interface NodemailerConfig extends EmailConfig {
     theme: any;
     request: Request;
   }) => Awaitable<void>;
-  options: NodemailerUserConfig;
+  options?: NodemailerUserConfig;
 }
 
 export type NodemailerUserConfig = Omit<

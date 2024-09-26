@@ -3,20 +3,19 @@
 import { FeatureCollection } from "geojson";
 import { omit } from "lodash";
 import { ObjectId } from "mongodb";
-import { z } from "zod";
 
 import { auth } from "@/auth";
 import { collections, dbConnect } from "@/server/mongodb";
 
 import { ZoneModel } from "./models/zoneModel";
-import { action } from "./safeAction";
+import { actionClient } from "./safeAction";
 
 export type Zone = Omit<ZoneModel, "userId" | "features"> & {
   id: string;
   features: FeatureCollection;
 };
 
-export const myZones = action(z.void(), async () => {
+export const myZones = actionClient.action(async () => {
   await dbConnect();
 
   const user = await auth();

@@ -40,7 +40,8 @@ export const TournamentSelectField = <
     useState<SearchedTournament | null>(null);
 
   const loadOption = async (ffeId: string) => {
-    const { data: tournament } = await getTournamentDetails({ ffeId });
+    const result = await getTournamentDetails({ ffeId });
+    const tournament = result?.data;
 
     return !tournament
       ? undefined
@@ -52,9 +53,11 @@ export const TournamentSelectField = <
   };
 
   const loadOptions = async (searchValue?: string) => {
-    const { data: tournaments } = await searchTournaments({
+    const result = await searchTournaments({
       searchValue: searchValue ?? "",
     });
+
+    const tournaments = result?.data ?? [];
 
     return (tournaments ?? []).map((tournament) => ({
       value: tournament.ffeId,
@@ -73,7 +76,7 @@ export const TournamentSelectField = <
         loadOptions={loadOptions}
         isClearable={true}
         onInformChange={(data) => {
-          setSelectedTournament(data ? data[0].data ?? null : null);
+          setSelectedTournament(data ? (data[0].data ?? null) : null);
           onInformChange?.(data);
         }}
         formatOptionLabel={(option, context) => {
@@ -83,7 +86,7 @@ export const TournamentSelectField = <
               <div className="flex items-center gap-2 text-xs uppercase">
                 <div className="flex-1">{option.data?.town}</div>
                 <div
-                  className="ml-2 rounded-sm px-1 py-0.5 align-middle text-[9px]/[11px]  uppercase text-white"
+                  className="ml-2 rounded-sm px-1 py-0.5 align-middle text-[9px]/[11px] uppercase text-white"
                   style={{
                     background: `${TimeControlColours[option.data!.timeControl]}`,
                   }}

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { fetchTournamentResultsSchema } from "@/schemas";
 import { errorLog } from "@/utils/logger";
 
-import { action } from "./safeAction";
+import { actionClient } from "./safeAction";
 
 const dbSchema = z.array(
   z.object({
@@ -106,9 +106,10 @@ const reportFetchError = async (url: string, error: any) => {
   }
 };
 
-export const fetchTournamentResults = action(
-  fetchTournamentResultsSchema,
-  async (input) => {
+export const fetchTournamentResults = actionClient
+  .schema(fetchTournamentResultsSchema)
+  .action(async (input) => {
+    const { id } = input.parsedInput;
     try {
       const headers = new Headers();
       const apiKey = process.env.RESULTS_API_KEY;
@@ -118,7 +119,7 @@ export const fetchTournamentResults = action(
       }
 
       const rawResults = await fetch(
-        `${process.env.RESULTS_SCRAPER_URL}${input.id}`,
+        `${process.env.RESULTS_SCRAPER_URL}${id}`,
         {
           headers: headers,
         },
@@ -155,9 +156,8 @@ export const fetchTournamentResults = action(
         })),
       );
     } catch (error) {
-      reportFetchError(input.id, error);
+      reportFetchError(id, error);
       errorLog(JSON.stringify(error, null, 2));
       throw error;
     }
-  },
-);
+  });

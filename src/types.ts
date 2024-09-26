@@ -1,5 +1,4 @@
 import { LatLngLiteral } from "leaflet";
-import { SafeAction } from "next-safe-action";
 
 import { TournamentModel } from "./server/models/tournamentModel";
 
@@ -65,7 +64,5 @@ export type Path<T, K extends keyof T = keyof T> = K extends string
   ? T[K] extends Record<string, unknown>
     ? `${K}.${Path<T[K], keyof T[K]>}`
     : K
-  : never;
 
-export type ExtractSafeActionResult<T> =
-  T extends SafeAction<infer Schema, infer Result> ? Result : never;
+  : never;

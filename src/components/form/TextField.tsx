@@ -60,7 +60,7 @@ export const TextField = <
       ? isNaN(value)
         ? ""
         : value.toString()
-      : value ?? "";
+      : (value ?? "");
   };
 
   const output =

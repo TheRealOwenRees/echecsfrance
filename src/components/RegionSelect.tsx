@@ -79,8 +79,8 @@ export const RegionSelect = ({
   };
 
   const formatGroupLabel = (data: GroupedOption) => (
-    <div className="relative -translate-y-1/2 border-b-2 border-primary-500 text-xs font-bold uppercase text-primary-500 ">
-      <div className="relative top-1/2 inline-block translate-y-1/2 bg-gray-50 pr-2 dark:bg-gray-700 ">
+    <div className="relative -translate-y-1/2 border-b-2 border-primary-500 text-xs font-bold uppercase text-primary-500">
+      <div className="relative top-1/2 inline-block translate-y-1/2 bg-gray-50 pr-2 dark:bg-gray-700">
         {data.label}
       </div>
     </div>

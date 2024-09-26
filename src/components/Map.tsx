@@ -4,12 +4,7 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import React from "react";
 
 import { useAtomValue, useSetAtom } from "jotai";
-import L, {
-  DomUtil,
-  LatLngLiteral,
-  Marker,
-  MarkerClusterGroupOptions,
-} from "leaflet";
+import L, { DomUtil, LatLngLiteral, Marker } from "leaflet";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet.smooth_marker_bouncing";
@@ -70,7 +65,7 @@ type MapProps = {
   filters?: React.ReactNode;
   legend?: React.ReactNode;
   markers: MapMarker[];
-  iconCreateFunction?: MarkerClusterGroupOptions["iconCreateFunction"];
+  iconCreateFunction?: L.MarkerClusterGroupOptions["iconCreateFunction"];
 };
 
 export const Map = ({

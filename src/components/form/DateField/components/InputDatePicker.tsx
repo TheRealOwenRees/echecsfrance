@@ -39,7 +39,7 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
         className={twMerge(
           "flex w-full content-center rounded-lg border p-3",
           "border-gray-300 bg-gray-50 text-gray-900 shadow-sm",
-          "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 ",
+          "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400",
           !error &&
             "focus-within:border-primary-500 focus-within:ring-primary-500 dark:focus-within:border-primary-500 dark:focus-within:ring-primary-500",
           error && "!border-orange-700 focus:!border-orange-700",
