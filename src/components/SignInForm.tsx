@@ -47,7 +47,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
       }
     });
     return () => subscription.unsubscribe();
-  }, [form, form.watch]);
+  }, [form, form.watch, responseMessage.message]);
 
   const onSubmit = async ({ email }: SignInFormValues) => {
     try {

@@ -92,7 +92,7 @@ export const RadioGroupField = <
                   value={option.value}
                   className={({ checked }) =>
                     twMerge(
-                      "flex  flex-1 cursor-pointer items-center justify-center rounded-lg border px-5 py-3 text-center font-medium focus:outline-none",
+                      "flex flex-1 cursor-pointer items-center justify-center rounded-lg border px-5 py-3 text-center font-medium focus:outline-none",
                       "border-gray-300 bg-gray-50 text-gray-900",
                       "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
                       checked &&

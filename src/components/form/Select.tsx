@@ -42,7 +42,7 @@ export const classNames = <Option, IsMulti extends boolean = false>(
   menu: () =>
     twMerge(
       "!z-30 mt-2 rounded-lg border border-gray-200 bg-white p-1",
-      "border-gray-300 bg-gray-50  text-gray-900",
+      "border-gray-300 bg-gray-50 text-gray-900",
       "dark:border-gray-600 dark:bg-gray-700 dark:text-white",
     ),
   groupHeading: () => "mx-3 mt-2 mb-1 text-textGray text-sm uppercase",

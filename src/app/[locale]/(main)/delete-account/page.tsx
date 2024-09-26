@@ -23,7 +23,9 @@ export default function Contact() {
       setDeleting(true);
 
       const result = await deleteAccount();
-      if (result.serverError) {
+      if (result?.validationErrors) {
+        throw new Error("ERR_VALIDATION");
+      } else if (result?.serverError) {
         throw new Error(result.serverError);
       }
 
@@ -68,7 +70,7 @@ export default function Contact() {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="rounded-lg border border-primary px-5 py-3  text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+                className="rounded-lg border border-primary px-5 py-3 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
               >
                 {at("cancelButton")}
               </button>

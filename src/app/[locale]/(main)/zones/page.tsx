@@ -115,14 +115,14 @@ const Zones = () => {
                           pathname: "/zones/edit/[id]",
                           params: { id: zone.id },
                         }}
-                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
                       >
                         {at("editButton")}
                       </Link>
                       <button
                         type="button"
                         onClick={() => setDeletingZoneId(zone.id)}
-                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
                       >
                         {at("deleteButton")}
                       </button>
@@ -153,11 +153,11 @@ const Zones = () => {
       >
         <InfoMessage responseMessage={responseMessage} />
 
-        <div className="flex items-center justify-between  space-x-4 text-sm font-bold">
+        <div className="flex items-center justify-between space-x-4 text-sm font-bold">
           <button
             type="button"
             onClick={() => setDeletingZoneId(null)}
-            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
           >
             {at("cancelButton")}
           </button>

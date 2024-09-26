@@ -41,7 +41,9 @@ const EditZone = () => {
         zone: data,
       });
 
-      if (updatedZone.serverError) {
+      if (updatedZone?.validationErrors) {
+        throw new Error("ERR_VALIDATION");
+      } else if (updatedZone?.serverError) {
         throw new Error(updatedZone.serverError);
       }
 

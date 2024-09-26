@@ -55,7 +55,7 @@ const SearchBar = ({ className }: SearchBarProps) => {
           type="search"
           id="table-search"
           className={twMerge(
-            "block rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500  dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-primary-500",
+            "block rounded-lg border border-gray-300 bg-gray-50 p-2.5 px-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-primary-500",
             className,
           )}
           placeholder={t("searchPlaceholder")}

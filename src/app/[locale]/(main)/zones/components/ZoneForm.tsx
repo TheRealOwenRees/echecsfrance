@@ -102,7 +102,7 @@ export const ZoneForm = ({
         <div className="flex justify-end gap-4">
           <button
             onClick={onCancel}
-            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary  hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
           >
             {cancelTitle ?? at("cancelButton")}
           </button>

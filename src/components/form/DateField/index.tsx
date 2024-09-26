@@ -78,11 +78,7 @@ export const DateField = <
               portalId="calendar-portal"
               dateFormat={dateFormat}
               disabledKeyboardNavigation={true}
-              formatWeekDay={(day: string) => (
-                <div className="flex h-8 flex-col items-center justify-center">
-                  {day.slice(0, 3)}
-                </div>
-              )}
+              formatWeekDay={(day: string) => day.slice(0, 3)}
               weekDayClassName={() =>
                 "text-xs h-8 w-8 flex-1 bg-gray-50 text-gray-900 dark:bg-gray-700 dark:text-white"
               }
@@ -95,9 +91,13 @@ export const DateField = <
               onChange={field.onChange}
               onChangeRaw={(e) => {
                 // Called when the user types in the input
-                if (e.currentTarget.value) {
+                if (e?.currentTarget && "value" in e.currentTarget) {
                   const value = e.currentTarget.value;
-                  const date = parse(value, at("dateParseFormat"), new Date());
+                  const date = parse(
+                    value as string,
+                    at("dateParseFormat"),
+                    new Date(),
+                  );
                   if (
                     isValid(date) &&
                     date.getFullYear() >= min &&

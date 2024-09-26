@@ -42,7 +42,7 @@ export const DropdownMenu = ({
           </Menu.Button>
         )}
 
-        <Menu.Items className="z-20 flex w-auto items-start overflow-hidden rounded-md bg-neutral-200 focus:outline-none  dark:bg-neutral-600">
+        <Menu.Items className="z-20 flex w-auto items-start overflow-hidden rounded-md bg-neutral-200 focus:outline-none dark:bg-neutral-600">
           <div className="flex flex-col px-1 py-1">
             {items.map(({ title, onClick, className, disabled }, i) => (
               <Menu.Item key={i}>
