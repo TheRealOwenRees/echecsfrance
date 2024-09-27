@@ -124,6 +124,10 @@ export const fetchTournamentResults = action(
         },
       );
 
+      if (rawResults.status >= 500) {
+        throw new Error("ERR_TOURNAMENT_RESULTS_NOT_AVAILABLE");
+      }
+
       const results = await rawResults.json();
 
       if ("detail" in results && results.detail === "Not found") {
@@ -131,6 +135,7 @@ export const fetchTournamentResults = action(
       }
 
       const parsedResults = dbSchema.parse(results);
+
       return outputSchema.parse(
         parsedResults.map<z.infer<typeof outputSchema>[number]>((player) => ({
           id: player.id,

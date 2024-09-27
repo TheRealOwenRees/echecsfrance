@@ -10,7 +10,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { ErrorBox } from "@/components/ErrorBox";
 import { Spinner } from "@/components/Spinner";
+import { TranslatedError } from "@/components/TranslatedError";
 import { SelectField } from "@/components/form/SelectField";
 import { TournamentSelectField } from "@/components/form/TournamentSelectField";
 import { fetchTournamentResultsSchema } from "@/schemas";
@@ -170,10 +172,6 @@ export default function Elo() {
     }
   }, [searchParams, form, player, kFactor, tournamentId]);
 
-  if (error) {
-    console.error(error);
-  }
-
   const playerResults = allResults?.data?.find((p) => p.id === player);
 
   return (
@@ -277,6 +275,12 @@ export default function Elo() {
               tournament={tournament}
             />
           )}
+
+        {(!!error || allResults?.serverError) && (
+          <ErrorBox
+            error={<TranslatedError err={error ?? allResults?.serverError} />}
+          />
+        )}
 
         {((!hasTournamentId && !isFetching) || !!error) && (
           <>
