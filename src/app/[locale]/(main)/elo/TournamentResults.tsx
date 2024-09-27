@@ -4,6 +4,7 @@ import { last } from "lodash";
 import { useTranslations } from "next-intl";
 import { twMerge } from "tailwind-merge";
 
+import { ErrorBox } from "@/components/ErrorBox";
 import { TournamentResultsData } from "@/server/fetchTournamentResults";
 import { SearchedTournament } from "@/server/searchTournaments";
 import { TimeControl } from "@/types";
@@ -107,7 +108,7 @@ export const TournamentResults = ({
   ).length;
 
   if (playerResults.estimated || playerResults.national)
-    return <div className="my-8 text-center text-error">{t("needRating")}</div>;
+    return <ErrorBox error={t("needRating")} />;
 
   return (
     <>
