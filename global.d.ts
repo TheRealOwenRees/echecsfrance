@@ -3,7 +3,10 @@ import * as L from "leaflet";
 // Use type safe message keys with `next-intl`
 type Messages = typeof import("./src/messages/fr.json");
 
-declare interface IntlMessages extends Messages {}
+declare global {
+  // Use type safe message keys with `next-intl`
+  interface IntlMessages extends Messages {}
+}
 
 // For some reason, @types/leaflet.markercluster isn't being recognized
 // I'm including it here by hand

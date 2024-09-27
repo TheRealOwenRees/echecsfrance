@@ -217,20 +217,6 @@ export default function Elo() {
               </div>
             )}
 
-            {error instanceof Error && (
-              <div className="mt-8 text-center text-error">
-                {error.message.startsWith("ERR_")
-                  ? t(error.message as TranslationKey)
-                  : t.rich("unknownError", {
-                      contact: (chunks) => (
-                        <Link className="underline" href="/contact-us">
-                          {chunks}
-                        </Link>
-                      ),
-                    })}
-              </div>
-            )}
-
             {!isFetching && playerOptions.length > 0 && (
               <div>
                 <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
