@@ -16,6 +16,13 @@
     "timeControlEnum": "{tc, select, Classic {Classic} Rapid {Rapid} Blitz {Blitz} Other {Other} other {{tc}}}"
   },
 
+  "Errors": {
+    "ERR_UNEXPECTED": "An unexpected error occurred",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
+    "ERR_TOURNAMENT_RESULTS_NOT_AVAILABLE": "Results are not yet available for this tournament",
+    "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
+  },
+
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournaments",
@@ -191,8 +198,6 @@
     "kFactorInfo5": "10 once a player's published rating has reached 2400 and remains at that level subsequently, even if the rating drops below 2400.",
     "kFactorInfo6": "40 for all players until their 18th birthday, as long as their rating remains under 2300.",
 
-    "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists.",
-    "ERR_TOURNAMENT_NOT_FOUND": "Tournament not found",
-    "ERR_NO_TOURNAMENT_ID": "The link you provided is incorrect"
+    "unknownError": "We were unable to fetch results from this URL. Please <contact>contact us</contact> if the problem persists."
   }
 }

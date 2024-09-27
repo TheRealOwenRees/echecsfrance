@@ -16,6 +16,13 @@
     "timeControlEnum": "{tc, select, Classic {Cadence Lente} Rapid {Rapide} Blitz {Blitz} Other {Autres} other {{tc}}}"
   },
 
+  "Errors": {
+    "ERR_UNEXPECTED": "Une erreur inattendue est survenue",
+    "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
+    "ERR_TOURNAMENT_RESULTS_NOT_AVAILABLE": "Les résultats ne sont pas encore disponibles pour ce tournoi.",
+    "ERR_NO_TOURNAMENT_ID": "L'identifiant du tournoi fourni est incorrect"
+  },
+
   "Nav": {
     "title": "Échecs France",
     "tournaments": "Tournois",
@@ -192,8 +199,6 @@
     "kFactorInfo5": "<b>10</b> une fois que le classement publié d'un joueur a atteint 2400 et reste à ce niveau par la suite, même s'il redescend en dessous de 2400.",
     "kFactorInfo6": "<b>40</b> pour tous les joueurs jusqu'à leur 18e anniversaire, tant que leur classement reste inférieur à 2300.",
 
-    "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste.",
-    "ERR_TOURNAMENT_NOT_FOUND": "Tournoi introuvable",
-    "ERR_NO_TOURNAMENT_ID": "L'identifiant du tournoi fourni est incorrect"
+    "unknownError": "Nous n'avons pas pu récupérer les résultats à partir de cette URL. Veuillez <contact>nous contacter</contact> si le problème persiste."
   }
 }
