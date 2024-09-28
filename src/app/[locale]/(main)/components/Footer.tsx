@@ -4,6 +4,7 @@ import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
 import { Link, usePathname, useRouter } from "@/utils/navigation";
@@ -40,6 +41,13 @@ export default function Footer() {
         </a>
         <Link href="/contact-us" aria-label={t("contactAria")} className="mr-4">
           <FaRegEnvelope />
+        </Link>
+        <Link
+          href="/privacy"
+          aria-label={t("privacyPolicyAria")}
+          className="mr-4"
+        >
+          <MdOutlinePrivacyTip />
         </Link>
         <div className="mr-4 space-x-2 text-xs">
           <button onClick={() => changeLanguage("fr")}>FR</button>

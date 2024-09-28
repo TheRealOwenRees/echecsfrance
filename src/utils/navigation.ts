@@ -1,52 +1,62 @@
-import {
-  Pathnames,
-  createLocalizedPathnamesNavigation,
-} from "next-intl/navigation";
+import { createLocalizedPathnamesNavigation } from "next-intl/navigation";
+import { defineRouting } from "next-intl/routing";
 
 export const locales = ["fr", "en"] as const;
 
-// The `pathnames` object holds pairs of internal
-// and external paths, separated by locale.
-export const pathnames = {
-  "/": "/",
-  "/clubs": "/clubs",
-  "/elo": "/elo",
+export const routing = defineRouting({
+  locales,
+  defaultLocale: "fr",
+  localePrefix: "as-needed",
 
-  "/tournaments": {
-    fr: "/tournois",
-    en: "/tournaments",
-  },
+  pathnames: {
+    "/": "/",
+    "/clubs": "/clubs",
+    "/elo": "/elo",
 
-  "/zones": {
-    fr: "/regions",
-    en: "/zones",
-  },
+    "/tournaments": {
+      fr: "/tournois",
+      en: "/tournaments",
+    },
 
-  "/zones/create": {
-    fr: "/regions/creer",
-    en: "/zones/create",
-  },
+    "/zones": {
+      fr: "/regions",
+      en: "/zones",
+    },
 
-  "/zones/edit/[id]": {
-    fr: "/regions/modifier/[id]",
-    en: "/zones/edit/[id]",
-  },
+    "/zones/create": {
+      fr: "/regions/creer",
+      en: "/zones/create",
+    },
 
-  "/add-tournament": {
-    fr: "/ajouter-un-tournoi",
-    en: "/add-tournament",
-  },
+    "/zones/edit/[id]": {
+      fr: "/regions/modifier/[id]",
+      en: "/zones/edit/[id]",
+    },
 
-  "/contact-us": {
-    fr: "/contactez-nous",
-    en: "/contact-us",
-  },
+    "/add-tournament": {
+      fr: "/ajouter-un-tournoi",
+      en: "/add-tournament",
+    },
 
-  "/delete-account": {
-    fr: "/supprimer-compte",
-    en: "/delete-account",
+    "/contact-us": {
+      fr: "/contactez-nous",
+      en: "/contact-us",
+    },
+
+    "/delete-account": {
+      fr: "/supprimer-compte",
+      en: "/delete-account",
+    },
+
+    "/privacy": {
+      fr: "/politique-de-confidentialite",
+      en: "/privacy",
+    },
   },
-} satisfies Pathnames<typeof locales>;
+});
+
+export type Pathnames = keyof typeof routing.pathnames;
+export type Locale = (typeof routing.locales)[number];
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
-  createLocalizedPathnamesNavigation({ locales, pathnames });
+  createLocalizedPathnamesNavigation(routing);

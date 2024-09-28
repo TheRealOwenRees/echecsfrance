@@ -52,7 +52,7 @@ export async function dbConnect() {
   const p = await clientPromise;
 
   const userData: mongoDB.Db = p.db("userData");
-  collections.users = userData.collection("userData");
+  collections.users = userData.collection("users");
   collections.userVerificationTokens = userData.collection(
     "userVerificationTokens",
   );
