@@ -26,7 +26,7 @@ export async function generateMetadata({
   // While the `locale` is required, the namespace is optional and
   // identical to the parameter that `useTranslations` accepts.
   const t = await getTranslations({
-    locale: locale ?? "en",
+    locale: locale ?? "fr",
     namespace: "Metadata",
   });
 

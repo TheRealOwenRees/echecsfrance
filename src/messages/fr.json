@@ -42,7 +42,8 @@
 
   "Footer": {
     "githubAria": "Lien vers le dépôt GitHub",
-    "contactAria": "Contactez-nous"
+    "contactAria": "Contactez-nous",
+    "privacyPolicyAria": "Politique de confidentialité"
   },
 
   "FormValidation": {
@@ -267,5 +268,23 @@
     "deleteButton": "Supprimer le compte",
     "success": "Votre compte a été supprimé avec succès.",
     "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer."
+  },
+
+  "Privacy": {
+    "title": "Politique de Confidentialité",
+    "introTitle": "Introduction",
+    "introInfo": "Bienvenue sur EchecsFrance.com (« nous », « notre » ou « nos »). Nous sommes un projet open-source géré par des passionnés, sans intention commerciale. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons votre adresse email lorsque vous interagissez avec notre site web https://echecsfrance.com/ ou utilisez nos services. En utilisant notre site et nos services, vous acceptez les pratiques décrites dans cette politique.",
+    "informationTitle": "Informations que Nous Collectons",
+    "informationInfo": "La seule information personnelle que nous collectons, si vous choisissez de créer un compte, est votre adresse email. Aucune autre donnée personnelle n'est collectée.",
+    "useTitle": "Comment Nous Utilisons Votre Information",
+    "useInfo": "Nous utilisons votre adresse email uniquement dans le but de vous envoyer des notifications de tournois d'échecs que vous avez spécifiquement demandées. Votre adresse email n'est utilisée à aucune autre fin.",
+    "deleteTitle": "Suppression de Compte",
+    "deleteInfo": "Vous pouvez supprimer votre compte à tout moment, et votre adresse email sera définitivement supprimée de notre base de données.",
+    "shareTitle": "Partage de Données",
+    "shareInfo": "Nous ne partageons, ne vendons ni ne fournissons l'accès à votre adresse email à des tiers. Vos informations sont strictement confidentielles et sont utilisées uniquement dans le cadre de notre projet.",
+    "cookiesTitle": "Cookies et Suivi",
+    "cookiesInfo": "Nous ne suivons pas les utilisateurs de manière intrusive. Toutefois, nous utilisons <link>TinyAnalytics.io</link>, un outil d'analyse anonyme et conforme au RGPD (Règlement Général sur la Protection des Données), pour obtenir des statistiques d'utilisation anonymisées. Aucune donnée personnelle identifiable n'est collectée par cet outil, et son utilisation est strictement limitée à des fins d'amélioration de l'expérience utilisateur.",
+    "changesTitle": "Modifications de Cette Politique de Confidentialité",
+    "changesInfo": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Toutes les modifications seront publiées sur cette page, et nous vous encourageons à consulter régulièrement cette politique."
   }
 }
