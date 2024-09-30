@@ -42,12 +42,14 @@ export const ZoneForm = ({
           classicNotifications: zone.classicNotifications,
           rapidNotifications: zone.rapidNotifications,
           blitzNotifications: zone.blitzNotifications,
+          otherNotifications: zone.otherNotifications,
           features: zone.features as ZoneFormValues["features"],
         }
       : {
           classicNotifications: false,
           rapidNotifications: false,
           blitzNotifications: false,
+          otherNotifications: false,
           features: {
             type: "FeatureCollection",
             features: [],
@@ -55,11 +57,14 @@ export const ZoneForm = ({
         },
   });
 
+  const features = form.watch("features");
+  console.log(features);
+
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid grid-cols-3 items-start gap-6">
-          <div className="col-span-3">
+        <div className="grid grid-cols-4 items-start gap-6">
+          <div className="col-span-4">
             <TextField
               name="name"
               control={form.control}
@@ -69,7 +74,7 @@ export const ZoneForm = ({
             />
           </div>
 
-          <div className="col-span-3">
+          <div className="col-span-4">
             <div className="flex flex-col gap-4">
               <Label>{t("notificationsLabel")}</Label>
               <div className="font-light text-gray-500 dark:text-gray-400">
@@ -93,8 +98,13 @@ export const ZoneForm = ({
             control={form.control}
             label={at("timeControlEnum", { tc: TimeControl.Blitz })}
           />
+          <InlineSwitchField
+            name="otherNotifications"
+            control={form.control}
+            label={at("timeControlEnum", { tc: TimeControl.Other })}
+          />
 
-          <section id="map" className="z-0 col-span-3 flex h-auto">
+          <section id="map" className="z-0 col-span-4 flex h-auto">
             <ZoneEditorField name="features" control={form.control} />
           </section>
         </div>

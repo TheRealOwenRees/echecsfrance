@@ -77,6 +77,7 @@ const Zones = () => {
                 ...(zone.classicNotifications ? [TimeControl.Classic] : []),
                 ...(zone.rapidNotifications ? [TimeControl.Rapid] : []),
                 ...(zone.blitzNotifications ? [TimeControl.Blitz] : []),
+                ...(zone.otherNotifications ? [TimeControl.Other] : []),
               ];
 
               const notificationsList = format.list(
