@@ -21,9 +21,9 @@ export default function Footer() {
   const params = useParams();
   const { status } = useSession();
 
-  const changeLanguage = (lang: string) => {
+  const changeLanguage = async (lang: string) => {
     // Store the user's locale preference if they're authenticated
-    if (status === "authenticated") setUserLocale(lang);
+    if (status === "authenticated") await setUserLocale(lang);
 
     // Redirect to the same page with the new locale
     router.push({ pathname, params: params as any }, { locale: lang });
