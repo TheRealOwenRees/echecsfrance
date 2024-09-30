@@ -121,9 +121,6 @@ export type NodemailerUserConfig = Omit<
 export default function Nodemailer(
   config: NodemailerUserConfig,
 ): NodemailerConfig {
-  if (!config.server)
-    throw new AuthError("Nodemailer requires a `server` configuration");
-
   return {
     id: "nodemailer",
     type: "email",
@@ -150,6 +147,13 @@ export default function Nodemailer(
       console.log("Connection URL", url);
 
       const { host } = new URL(url);
+
+      console.log(config);
+      if (!(config.server as unknown as any)?.host) {
+        console.log(text({ url, host, t }));
+        return;
+      }
+
       const transport = createTransport(provider.server);
       const result = await transport.sendMail({
         to: identifier,
