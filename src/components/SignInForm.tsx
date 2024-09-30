@@ -34,8 +34,6 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
     message: "",
   });
 
-  console.log(path);
-
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
   });

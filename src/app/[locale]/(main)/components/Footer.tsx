@@ -1,12 +1,14 @@
 "use client";
 
 import { useSetAtom } from "jotai";
+import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
+import { setUserLocale } from "@/server/setUserLocale";
 import { Link, usePathname, useRouter } from "@/utils/routing";
 
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -17,14 +19,19 @@ export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
+  const { status } = useSession();
 
   const changeLanguage = (lang: string) => {
+    // Store the user's locale preference if they're authenticated
+    if (status === "authenticated") setUserLocale(lang);
+
+    // Redirect to the same page with the new locale
     router.push({ pathname, params: params as any }, { locale: lang });
   };
 
   return (
     <footer
-      className="fixed bottom-0 z-30 flex h-12 w-[100vw] flex-col items-center justify-center justify-items-center bg-primary-600 px-5 py-2 text-white dark:bg-gray-700"
+      className="fixed bottom-0 z-[1000] flex h-12 w-[100vw] flex-col items-center justify-center justify-items-center bg-primary-600 px-5 py-2 text-white dark:bg-gray-700"
       data-test="footer"
     >
       <div

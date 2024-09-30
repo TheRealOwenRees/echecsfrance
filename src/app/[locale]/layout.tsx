@@ -6,6 +6,7 @@ import { Inter, Julius_Sans_One } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 
+import { LocaleChecker } from "@/components/LocaleChecker";
 import "@/css/globals.css";
 import Providers from "@/providers";
 
@@ -70,9 +71,11 @@ export default async function RootLayout({
       <body>
         <Providers>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <div className="bg-white font-sans leading-normal tracking-normal dark:bg-gray-800">
-              {children}
-            </div>
+            <LocaleChecker>
+              <div className="bg-white font-sans leading-normal tracking-normal dark:bg-gray-800">
+                {children}
+              </div>
+            </LocaleChecker>
 
             <Footer />
           </NextIntlClientProvider>
