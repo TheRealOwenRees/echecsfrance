@@ -25,6 +25,7 @@
     "jotai": "^2.6.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
+    "leaflet-gesture-handling": "^1.2.2",
     "leaflet.markercluster": "^1.5.3",
     "leaflet.smooth_marker_bouncing": "^3.0.3",
     "lodash": "^4.17.21",
