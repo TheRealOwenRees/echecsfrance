@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+import { usePathname as useRawPathname } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { clearMessage } from "@/components/InfoMessage";
 import InfoMessage from "@/components/InfoMessage";
 import { TextField } from "@/components/form/TextField";
-import { usePathname } from "@/utils/navigation";
 
 const signInSchema = z.object({
   email: z.string().email(),
@@ -25,13 +25,16 @@ type SignInFormProps = {
 
 export const SignInForm = ({ callbackPath }: SignInFormProps) => {
   const t = useTranslations("SignIn");
-  const locale = useLocale();
-  const path = usePathname();
+
+  // We use the version from next/navigation to get the raw pathname in the current locale
+  const path = useRawPathname();
 
   const [responseMessage, setResponseMessage] = useState({
     isSuccessful: false,
     message: "",
   });
+
+  console.log(path);
 
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
@@ -54,7 +57,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
       const result = await signIn("nodemailer", {
         email,
         redirect: false,
-        callbackUrl: callbackPath ?? `/${locale}/${path}`,
+        callbackUrl: callbackPath ?? path,
       });
 
       if (result?.error) {

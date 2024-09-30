@@ -13,7 +13,7 @@ import { regionFilterAtom } from "@/atoms";
 import { BaseOption, Select, SelectProps } from "@/components/form/Select";
 import { useZones } from "@/hooks/useZones";
 import { Zone } from "@/server/myZones";
-import { useRouter } from "@/utils/navigation";
+import { useRouter } from "@/utils/routing";
 
 type RegionSelectProps = Omit<
   SelectProps<false, string, Zone | null>,

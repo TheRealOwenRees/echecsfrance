@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import InfoMessage, { clearMessage } from "@/components/InfoMessage";
 import { useZones } from "@/hooks/useZones";
 import { createZone } from "@/server/createZone";
-import { useRouter } from "@/utils/navigation";
+import { useRouter } from "@/utils/routing";
 
 import { ZoneForm, ZoneFormValues } from "../components/ZoneForm";
 

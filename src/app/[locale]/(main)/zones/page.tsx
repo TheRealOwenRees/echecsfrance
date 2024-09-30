@@ -12,7 +12,7 @@ import { Spinner } from "@/components/Spinner";
 import { useZones } from "@/hooks/useZones";
 import { deleteZone } from "@/server/deleteZone";
 import { TimeControl } from "@/types";
-import { Link, useRouter } from "@/utils/navigation";
+import { Link, useRouter } from "@/utils/routing";
 
 const ZoneThumbnail = dynamic(() => import("./components/ZoneThumbnail"), {
   ssr: false,

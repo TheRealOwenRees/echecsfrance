@@ -6,7 +6,7 @@ import { HiUserGroup } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
 import bannerImage from "@/img/banner.jpeg";
-import { Link } from "@/utils/navigation";
+import { Link } from "@/utils/routing";
 
 export default function Home() {
   const t = useTranslations("Home");
