@@ -1,7 +1,7 @@
 import mongoDB, { MongoClient } from "mongodb";
+import { User } from "next-auth";
 
 import { TournamentModel } from "@/server/models/tournamentModel";
-import { UserModel, VerificationModel } from "@/server/models/userModel";
 import { ZoneModel } from "@/server/models/zoneModel";
 
 import { ClubModel } from "./models/clubModel";
@@ -9,9 +9,8 @@ import { ClubModel } from "./models/clubModel";
 export const collections: {
   tournaments?: mongoDB.Collection<TournamentModel>;
   clubs?: mongoDB.Collection<ClubModel>;
-  users?: mongoDB.Collection<UserModel>;
+  users?: mongoDB.Collection<User>;
   zones?: mongoDB.Collection<ZoneModel>;
-  userVerificationTokens?: mongoDB.Collection<VerificationModel>;
 } = {};
 
 if (!process.env.MONGODB_URI) {
@@ -53,9 +52,6 @@ export async function dbConnect() {
 
   const userData: mongoDB.Db = p.db("userData");
   collections.users = userData.collection("users");
-  collections.userVerificationTokens = userData.collection(
-    "userVerificationTokens",
-  );
   collections.zones = userData.collection("zones");
 
   const tournamentData: mongoDB.Db = p.db("tournamentsFranceDB");

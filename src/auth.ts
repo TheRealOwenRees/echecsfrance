@@ -31,4 +31,12 @@ export const {
   pages: {
     signIn: "/auth/sign-in",
   },
+
+  callbacks: {
+    session: async ({ session, user }) => {
+      // Add the user's local to the session oject
+      session.user.locale = user.locale;
+      return session;
+    },
+  },
 });

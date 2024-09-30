@@ -36,7 +36,7 @@
     "elo": "Calculette Elo",
     "signIn": "Se connecter",
     "signOut": "Se déconnecter",
-    "myZones": "Mes Régions",
+    "myZones": "Vos Régions",
     "deleteAccount": "Supprimer le compte"
   },
 
@@ -220,16 +220,16 @@
 
   "Zones": {
     "title": "Vos régions",
-    "info": "Vous pouvez définir des zones personnalisées pour recevoir des notifications par e-mail pour les tournois dans ces zones.  Ces zones peuvent aussi être utiliser pour filtrer les tournois sur la carte.",
+    "info": "Vous pouvez définir des régions personnalisées pour recevoir des notifications par e-mail pour les tournois dans ces zones.  Ces régions peuvent aussi être utiliser pour filtrer les tournois sur la carte.",
     "logonRequired": "Vous devez être connecté pour accéder à cette fonctionnalité afin que nous puissions stocker vos régions personnalisées. Vous n'avez pas besoin de créer un compte, connectez-vous simplement avec votre adresse e-mail et nous vous enverrons un lien.",
 
     "noNotifications": "Vous n'avez pas activé les notifications par email pour cette région.",
     "withNotifications": "Vous allez recevoir des notifications par e-mail pour les nouveaux tournois de cadences <b>{list}</b> dans cette région.",
     "addZoneButton": "Ajouter une région",
 
-    "yourZonesSelectGroupHeader": "Your Zones",
+    "yourZonesSelectGroupHeader": "Vos régions",
     "ignoreMapOption": "Pas de filtre de région",
-    "createZoneSelectOption": "Create a new zone",
+    "createZoneSelectOption": "Créer une nouvelle région",
 
     "createTitle": "Créer une nouvelle région",
     "editTitle": "Modifier région",
@@ -237,7 +237,7 @@
     "zoneNameLabel": "Nom de la région",
     "zoneNamePlaceholder": "Votre nom pour cette région",
     "notificationsLabel": "Notifications",
-    "notificationsInfo": "Vous pouvez choisir d'activer les notifications pour les cadences qui vous intéressent, et vous recevrez un e-mail lorsqu'un nouveau tournoi est ajouté dans cette zone.",
+    "notificationsInfo": "Vous pouvez choisir d'activer les notifications pour les cadences qui vous intéressent, et vous recevrez un e-mail lorsqu'un nouveau tournoi est ajouté dans cette région.",
 
     "createFailure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
 
