@@ -1,28 +1,30 @@
 import { MetadataRoute } from "next";
 
-import { locales, pathnames } from "@/utils/navigation";
+import { Pathnames, routing } from "@/utils/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return locales.flatMap((locale) => {
+  return routing.locales.flatMap((locale) => {
     const prefix = `https://echecsfrance.com${
       locale === "fr" ? "" : `/${locale}`
     }`;
 
-    const paths = Object.keys(pathnames) as Array<keyof typeof pathnames>;
+    const paths = Object.keys(routing.pathnames) as Array<Pathnames>;
 
-    return paths.map((pathname) => {
-      const route = pathnames[pathname];
-      if (typeof route === "string") {
+    return paths
+      .filter((pathname) => !pathname.includes("["))
+      .map((pathname) => {
+        const route = routing.pathnames[pathname];
+        if (typeof route === "string") {
+          return {
+            url: `${prefix}${route}`,
+            lastModified: new Date(),
+          };
+        }
+
         return {
-          url: `${prefix}${route}`,
+          url: `${prefix}${route[locale]}`,
           lastModified: new Date(),
         };
-      }
-
-      return {
-        url: `${prefix}${route[locale]}`,
-        lastModified: new Date(),
-      };
-    });
+      });
   });
 }

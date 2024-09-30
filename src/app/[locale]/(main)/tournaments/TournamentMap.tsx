@@ -16,8 +16,8 @@ import {
 } from "@/atoms";
 import { Map, MapMarker } from "@/components/Map";
 import { TimeControlColours } from "@/constants";
-import { generatePieSVG } from "@/lib/pie";
 import { TimeControl } from "@/types";
+import { generatePieSVG } from "@/utils/pie";
 
 import Legend from "./Legend";
 import TimeControlFilters from "./TimeControlFilters";

@@ -7,7 +7,7 @@ import { FaGithub, FaRegEnvelope } from "react-icons/fa";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
-import { Link, usePathname, useRouter } from "@/utils/navigation";
+import { Link, usePathname, useRouter } from "@/utils/routing";
 
 import ThemeSwitcher from "./ThemeSwitcher";
 

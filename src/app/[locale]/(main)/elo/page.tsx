@@ -19,7 +19,7 @@ import { fetchTournamentResultsSchema } from "@/schemas";
 import { fetchTournamentResults } from "@/server/fetchTournamentResults";
 import { SearchedTournament } from "@/server/searchTournaments";
 import { TimeControl } from "@/types";
-import { Link } from "@/utils/navigation";
+import { Link } from "@/utils/routing";
 
 import { KFactor } from "./KFactor";
 import { ManualEloForm } from "./ManualEloForm";

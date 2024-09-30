@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 
 import InfoMessage from "@/components/InfoMessage";
 import { deleteAccount } from "@/server/deleteAccount";
-import { useRouter } from "@/utils/navigation";
+import { useRouter } from "@/utils/routing";
 
 export default function Contact() {
   const t = useTranslations("DeleteAccount");

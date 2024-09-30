@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
 import AuthButton from "@/components/AuthButton";
-import { Link } from "@/utils/navigation";
+import { Link } from "@/utils/routing";
 
 import Hamburger from "./Hamburger";
 

@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 import { burgerMenuIsOpenAtom } from "@/atoms";
 import { useAuthMenuOptions } from "@/hooks/useAuthMenuOptions";
-import { Link } from "@/utils/navigation";
+import { Link } from "@/utils/routing";
 
 const HamburgerMenu = () => {
   const t = useTranslations("Nav");

@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import InfoMessage, { clearMessage } from "@/components/InfoMessage";
 import { useZones } from "@/hooks/useZones";
 import { editZone } from "@/server/editZone";
-import { useRouter } from "@/utils/navigation";
+import { useRouter } from "@/utils/routing";
 
 import { ZoneForm, ZoneFormValues } from "../../components/ZoneForm";
 

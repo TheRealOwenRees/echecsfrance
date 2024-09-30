@@ -1,13 +1,27 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
 import { SignInForm } from "@/components/SignInForm";
+import { Locale, getPathname, routing } from "@/utils/routing";
 
 export default function SignIn() {
   const t = useTranslations("SignIn");
   const params = useSearchParams();
+  const locale = useLocale();
+
+  const allowedLocales = routing.locales as unknown as Array<string>;
+  const effectiveLocal = allowedLocales.includes(locale)
+    ? (locale as Locale)
+    : routing.defaultLocale;
+
+  const fallbackPath = getPathname({
+    locale: effectiveLocal,
+    href: { pathname: "/tournaments" },
+  });
+
+  const fallbackUrl = `/${effectiveLocal}${fallbackPath}`;
 
   return (
     <section className="grid place-items-center bg-white pb-20 dark:bg-gray-800">
@@ -22,9 +36,7 @@ export default function SignIn() {
           {t("info")}
         </p>
 
-        <SignInForm
-          callbackPath={params.get("callbackUrl") ?? "/tournaments"}
-        />
+        <SignInForm callbackPath={params.get("callbackUrl") ?? fallbackUrl} />
       </div>
     </section>
   );

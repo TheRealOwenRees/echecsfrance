@@ -40,7 +40,7 @@ export function html(params: {
         <tr>
           <td align="center"
             style="padding: 10px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-            ${t("email.subject", { host })}
+            ${t("email.subject", { host: escapedHost })}
           </td>
         </tr>
         <tr>
@@ -144,12 +144,10 @@ export default function Nodemailer(
 
       const t = await getTranslations({ locale, namespace: "SignIn" });
 
-      console.log("Connection URL", url);
-
       const { host } = new URL(url);
 
-      console.log(config);
       if (!(config.server as unknown as any)?.host) {
+        console.log("Connection URL", url);
         console.log(text({ url, host, t }));
         return;
       }
