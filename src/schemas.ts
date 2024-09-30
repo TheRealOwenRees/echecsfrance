@@ -39,6 +39,7 @@ export const zoneSchema = z
     classicNotifications: z.boolean(),
     rapidNotifications: z.boolean(),
     blitzNotifications: z.boolean(),
+    otherNotifications: z.boolean(),
   })
   .refine((data) => data.features.features.length > 0, {
     message: "FormValidation.zone",

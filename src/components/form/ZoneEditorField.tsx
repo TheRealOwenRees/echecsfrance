@@ -2,12 +2,7 @@ import React from "react";
 
 import { FeatureCollection } from "geojson";
 import dynamic from "next/dynamic";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues } from "react-hook-form";
 
 import { Prettify } from "@/types";
 
@@ -35,20 +30,7 @@ export const ZoneEditorField = <
 >(
   props: ZoneEditorFieldProps<TFieldValues, TFieldName>,
 ) => {
-  const {
-    name,
-    control,
-    label,
-    className,
-    labelClassName,
-
-    childrenWrapperClassName,
-    hideErrorMessage,
-
-    ...rest
-  } = props;
-
-  const form = useFormContext<TFieldValues>();
+  const { name, control, label, className, labelClassName } = props;
 
   return (
     <Field

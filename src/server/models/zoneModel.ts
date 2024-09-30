@@ -10,5 +10,6 @@ export type ZoneModel = {
   classicNotifications: boolean;
   rapidNotifications: boolean;
   blitzNotifications: boolean;
+  otherNotifications: boolean;
   features: z.infer<typeof featureCollection>;
 };
