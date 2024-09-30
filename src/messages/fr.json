@@ -58,6 +58,12 @@
     "getInvolved": "Échecs France est complètement gratuit, open source et ouvert aux contributions. Retrouvez-nous sur <link>GitHub</link> si vous souhaitez vous impliquer."
   },
 
+  "Map": {
+    "touch": "Utilisez deux doigts pour déplacer la carte",
+    "scroll": "Utilisez ctrl + défilement pour zoomer sur la carte",
+    "scrollMac": "Utilisez \u2318 + défilement pour zoomer sur la carte"
+  },
+
   "Tournaments": {
     "loading": "Téléchargement...",
     "searchLabel": "Rechercher",

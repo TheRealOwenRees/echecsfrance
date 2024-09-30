@@ -59,6 +59,12 @@
     "getInvolved": "Echecs France is completely free, open source and open to contributions.  Find us on <link>GitHub</link> if you want to get involved."
   },
 
+  "Map": {
+    "touch": "Use two fingers to move the map",
+    "scroll": "Use ctrl + scroll to zoom the map",
+    "scrollMac": "Use \u2318 + scroll to zoom the map"
+  },
+
   "Tournaments": {
     "loading": "Loading...",
     "searchLabel": "Search",

@@ -2,11 +2,21 @@ import { useEffect, useTransition } from "react";
 
 import { useSetAtom } from "jotai";
 import L from "leaflet";
-import { useMapEvent } from "react-leaflet";
+import { GestureHandling } from "leaflet-gesture-handling";
+import "leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+import "leaflet/dist/leaflet.css";
+import { useLocale, useTranslations } from "next-intl";
+import { useMap, useMapEvent } from "react-leaflet";
 
 import { mapBoundsAtom } from "@/atoms";
 
+// Add Leaflet.GestureHandling for improved desktop and mobile touch gestures
+L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
+
 const MapEvents = () => {
+  const locale = useLocale();
+  const t = useTranslations("Map");
+  const map = useMap();
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const [isPending, startTransition] = useTransition();
 
@@ -16,7 +26,7 @@ const MapEvents = () => {
     L.latLng(51.17, 9.53),
   );
 
-  const map = useMapEvent("moveend", () => {
+  useMapEvent("moveend", () => {
     // Set the map bounds atoms when the user pans/zooms
     startTransition(() => {
       setMapBounds(map.getBounds());
@@ -28,7 +38,30 @@ const MapEvents = () => {
     map.setView(franceBounds.getCenter(), map.getBoundsZoom(franceBounds));
     map.setMaxBounds(worldBounds);
     map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    map.addHandler("gestureHandling", GestureHandling);
+
+    // @ts-expect-error Typescript does not see additional handler here
+    map.gestureHandling.enable();
+  }, [map]);
+
+  useEffect(() => {
+    console.log("setting map language", locale);
+    // @ts-expect-error Typescript does not see additional handler here
+    map.options.gestureHandlingOptions.text = {
+      touch: t("touch"),
+      scroll: t("scroll"),
+      scrollMac: t("scrollMac"),
+    };
+
+    // We need to toggle the handler to update the text on prod.  No idea why.
+
+    // @ts-expect-error Typescript does not see additional handler here
+    map.gestureHandling.disable();
+
+    // @ts-expect-error Typescript does not see additional handler here
+    map.gestureHandling.enable();
+  }, [map, locale]);
 
   return null;
 };
