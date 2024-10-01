@@ -1,7 +1,10 @@
 import * as L from "leaflet";
 
-// For some reason, @types/leaflet.markercluster isn't being recognized
-// I'm including it here by hand
+declare module "leaflet.smooth_marker_bouncing";
+
+// For some reason, @types/leaflet.markercluster isn't being recognized when added as a package
+
+// I'm including it here by hand, and also including types for BouncingMarker and leaflet-gesture-handling
 declare module "leaflet" {
   class MarkerCluster extends Marker {
     /*
@@ -329,4 +332,36 @@ declare module "leaflet" {
   function markerClusterGroup(
     options?: MarkerClusterGroupOptions,
   ): MarkerClusterGroup;
+
+  // These have been added by hand and aren't part of the  @types/leaflet.markercluster that the above is a copy of
+
+  interface Map {
+    gestureHandling?: {
+      enable(): void;
+      disable(): void;
+    };
+  }
+
+  interface MapOptions {
+    gestureHandlingOptions?: {
+      duration?: number;
+      text?: {
+        touch: string;
+        scroll: string;
+        scrollMac: string;
+      };
+    };
+  }
+
+  // Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
+  declare class BouncingMarker extends Marker {
+    isBouncing(): boolean;
+    bounce(): void;
+    stopBouncing(): void;
+
+    _icon: HTMLElement;
+    _bouncingMotion?: {
+      bouncingAnimationPlaying: boolean;
+    };
+  }
 }

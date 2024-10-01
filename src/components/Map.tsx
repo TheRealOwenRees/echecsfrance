@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef } from "react";
 import React from "react";
 
 import { useAtomValue, useSetAtom } from "jotai";
-import L, { DomUtil, LatLngLiteral, Marker } from "leaflet";
+import L, { BouncingMarker, DomUtil, LatLngLiteral, Marker } from "leaflet";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet.smooth_marker_bouncing";
@@ -20,19 +20,6 @@ export type MarkerRef = {
   getMarker: () => L.Marker<any>;
   bounce: () => void;
 };
-
-// Declare a class type that adds in methods etc. defined by leaflet.smooth_marker_bouncing
-// to keep Typescript happy
-declare class BouncingMarker extends Marker {
-  isBouncing(): boolean;
-  bounce(): void;
-  stopBouncing(): void;
-
-  _icon: HTMLElement;
-  _bouncingMotion?: {
-    bouncingAnimationPlaying: boolean;
-  };
-}
 
 const stopBouncingMarkers = () => {
   const markers =

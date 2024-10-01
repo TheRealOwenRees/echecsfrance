@@ -52,27 +52,26 @@ export const MapEvents = ({
 
     map.addHandler("gestureHandling", GestureHandling);
 
-    // @ts-expect-error Typescript does not see additional handler here
-    map.gestureHandling.enable();
-  }, [map]);
+    map.gestureHandling?.enable();
+  }, [bounds, map]);
 
   useEffect(() => {
-    console.log("setting map language", locale);
-    // @ts-expect-error Typescript does not see additional handler here
-    map.options.gestureHandlingOptions.text = {
-      touch: t("touch"),
-      scroll: t("scroll"),
-      scrollMac: t("scrollMac"),
-    };
+    if (
+      "gestureHandlingOptions" in map.options &&
+      map.options.gestureHandlingOptions
+    ) {
+      map.options.gestureHandlingOptions.text = {
+        touch: t("touch"),
+        scroll: t("scroll"),
+        scrollMac: t("scrollMac"),
+      };
+    }
 
     // We need to toggle the handler to update the text on prod.  No idea why.
 
-    // @ts-expect-error Typescript does not see additional handler here
-    map.gestureHandling.disable();
-
-    // @ts-expect-error Typescript does not see additional handler here
-    map.gestureHandling.enable();
-  }, [map, locale]);
+    map.gestureHandling?.disable();
+    map.gestureHandling?.enable();
+  }, [map, locale, t]);
 
   return null;
 };
