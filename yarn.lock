@@ -1947,20 +1947,6 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
-"@types/leaflet.markercluster@^1.5.4":
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.4.tgz#2ab43417cf3f6a42d0f1baf4e1c8f659cf1dc3a1"
-  integrity sha512-tfMP8J62+wfsVLDLGh5Zh1JZxijCaBmVsMAX78MkLPwvPitmZZtSin5aWOVRhZrCS+pEOZwNzexbfWXlY+7yjg==
-  dependencies:
-    "@types/leaflet" "*"
-
-"@types/leaflet@*":
-  version "1.9.9"
-  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.9.tgz#5e469f1443c6796b59ad8300495bd82797345356"
-  integrity sha512-o0qD9ReJzWpGNIAY0O32NkpfM6rhV4sxnwVkz7x7Ah4Zy9sP+2T9Q3byccL5la1ZX416k+qiyvt8ksBavPPY7A==
-  dependencies:
-    "@types/geojson" "*"
-
 "@types/leaflet@^1.9.12":
   version "1.9.12"
   resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.12.tgz#a6626a0b3fba36fd34723d6e95b22e8024781ad6"
