@@ -34,10 +34,9 @@ export const MapEvents = ({
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const [isPending, startTransition] = useTransition();
 
-  const map = useMapEvent("moveend", () => {
+  useMapEvent("moveend", () => {
     if (!updateMapBoundsAtom) return;
 
-  useMapEvent("moveend", () => {
     // Set the map bounds atoms when the user pans/zooms
     startTransition(() => {
       setMapBounds(map.getBounds());
