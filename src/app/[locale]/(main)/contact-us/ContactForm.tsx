@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Button } from "@/components/Button";
 import InfoMessage from "@/components/InfoMessage";
 import { clearMessage } from "@/components/InfoMessage";
 import { TextAreaField } from "@/components/form/TextAreaField";
@@ -77,13 +78,9 @@ const ContactForm = () => {
           required
         />
 
-        <button
-          disabled={form.formState.isSubmitting}
-          type="submit"
-          className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-        >
+        <Button disabled={form.formState.isSubmitting} type="submit">
           {form.formState.isSubmitting ? t("sending") : t("sendButton")}
-        </button>
+        </Button>
 
         <InfoMessage responseMessage={responseMessage} />
       </form>

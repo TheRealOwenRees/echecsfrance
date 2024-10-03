@@ -37,7 +37,7 @@
     "signIn": "Se connecter",
     "signOut": "Se déconnecter",
     "myZones": "Vos Régions",
-    "deleteAccount": "Supprimer le compte"
+    "deleteAccount": "Supprimer mon compte"
   },
 
   "Footer": {
@@ -263,9 +263,9 @@
   },
 
   "DeleteAccount": {
-    "title": "Supprimer le compte",
+    "title": "Supprimer mon compte",
     "info": "Êtes-vous sûr de vouloir supprimer votre compte\u00a0? Cette action est irréversible.",
-    "deleteButton": "Supprimer le compte",
+    "deleteButton": "Supprimer mon compte",
     "success": "Votre compte a été supprimé avec succès.",
     "failure": "Oups, quelque chose s'est mal passé. Veuillez réessayer."
   },

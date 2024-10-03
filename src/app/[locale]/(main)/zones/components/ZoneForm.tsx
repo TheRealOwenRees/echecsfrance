@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Button } from "@/components/Button";
 import { InlineSwitchField } from "@/components/form/InlineSwitchField";
 import { Label } from "@/components/form/Label";
 import { TextField } from "@/components/form/TextField";
@@ -110,20 +111,13 @@ export const ZoneForm = ({
         </div>
 
         <div className="flex justify-end gap-4">
-          <button
-            onClick={onCancel}
-            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
-          >
+          <Button intent="secondary" onClick={onCancel}>
             {cancelTitle ?? at("cancelButton")}
-          </button>
+          </Button>
 
-          <button
-            disabled={form.formState.isSubmitting}
-            type="submit"
-            className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-          >
+          <Button disabled={form.formState.isSubmitting} type="submit">
             {submitTitle ?? at("saveButton")}
-          </button>
+          </Button>
         </div>
       </form>
     </FormProvider>

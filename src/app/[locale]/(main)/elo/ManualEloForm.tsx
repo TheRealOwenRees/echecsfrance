@@ -8,6 +8,7 @@ import { IoAdd, IoCloseOutline } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
+import { Button } from "@/components/Button";
 import { RadioGroupField } from "@/components/form/RadioGroupField";
 import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
@@ -176,26 +177,31 @@ export const ManualEloForm = () => {
                         }))}
                         required
                       />
+
                       {gameFields.length > 1 && (
-                        <button
-                          className="hidden h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:flex"
+                        <Button
+                          intent="tertiary"
+                          size="compacted"
+                          className="hidden h-8 w-8 sm:flex"
                           type="button"
                           onClick={() => removeGame(i)}
                         >
-                          <IoCloseOutline className="h-6 w-6 text-gray-900 transition-all duration-200 hover:text-primary dark:text-neutral-400 hover:dark:text-white" />
-                        </button>
+                          <IoCloseOutline className="h-6 w-6" />
+                        </Button>
                       )}
                     </div>
                   </div>
 
                   {gameFields.length > 1 && (
-                    <button
-                      className="flex h-8 w-8 items-center justify-center rounded-md bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-600 dark:hover:bg-neutral-700 sm:hidden"
+                    <Button
+                      intent="tertiary"
+                      size="compacted"
+                      className="flex h-8 w-8 sm:hidden"
                       type="button"
                       onClick={() => removeGame(i)}
                     >
-                      <IoCloseOutline className="h-6 w-6 text-gray-900 transition-all duration-200 hover:text-primary dark:text-neutral-400 hover:dark:text-white" />
-                    </button>
+                      <IoCloseOutline className="h-6 w-6" />
+                    </Button>
                   )}
                 </div>
 
@@ -244,26 +250,26 @@ export const ManualEloForm = () => {
 
         <div className="mt-8 flex justify-end gap-4">
           {!isDefault && (
-            <button
+            <Button
               onClick={() => {
                 form.reset();
               }}
               type="button"
-              className="px-5 py-3 text-center text-sm font-medium text-primary-600 hover:text-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:text-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+              intent="secondary"
             >
               {t("clearButton")}
-            </button>
+            </Button>
           )}
-          <button
+          <Button
             onClick={() => {
               appendGame({});
             }}
             type="button"
-            className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+            intent="primary"
           >
             <IoAdd className="mr-2 inline-block h-5 w-5" />
             {t("addGameButton")}
-          </button>
+          </Button>
         </div>
       </form>
     </FormProvider>

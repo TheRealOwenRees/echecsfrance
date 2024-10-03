@@ -6,6 +6,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { IoAdd } from "react-icons/io5";
 
+import { Button, buttonVariants } from "@/components/Button";
 import InfoMessage, { clearMessage } from "@/components/InfoMessage";
 import { Modal } from "@/components/Modal";
 import { Spinner } from "@/components/Spinner";
@@ -116,17 +117,18 @@ const Zones = () => {
                           pathname: "/zones/edit/[id]",
                           params: { id: zone.id },
                         }}
-                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+                        className={buttonVariants({ intent: "secondary" })}
                       >
                         {at("editButton")}
                       </Link>
-                      <button
+
+                      <Button
+                        intent="secondary"
                         type="button"
                         onClick={() => setDeletingZoneId(zone.id)}
-                        className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
                       >
                         {at("deleteButton")}
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -155,19 +157,15 @@ const Zones = () => {
         <InfoMessage responseMessage={responseMessage} />
 
         <div className="flex items-center justify-between space-x-4 text-sm font-bold">
-          <button
+          <Button
+            intent="secondary"
             type="button"
             onClick={() => setDeletingZoneId(null)}
-            className="rounded-lg border border-primary px-3 py-2 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
           >
             {at("cancelButton")}
-          </button>
-          <button
-            onClick={() => onDelete()}
-            className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-          >
-            {at("deleteButton")}
-          </button>
+          </Button>
+
+          <Button onClick={() => onDelete()}>{at("deleteButton")}</Button>
         </div>
       </Modal>
     </>

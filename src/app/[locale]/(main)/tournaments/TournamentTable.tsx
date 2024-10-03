@@ -85,6 +85,7 @@ const TournamentTable = () => {
             classNameOverrides={{
               container: () => "flex flex-1",
             }}
+            size="small"
           />
         </div>
 

@@ -12,6 +12,7 @@ import { twMerge } from "tailwind-merge";
 import { Prettify } from "@/types";
 
 import { Field, GenericFieldProps } from "./Field";
+import { inputVariants } from "./Input";
 
 type TextAreaFieldProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -72,33 +73,25 @@ export const TextAreaField = <
           control={control}
           name={name}
           render={({ field }) => (
-            <div className="relative">
-              {startIcon && (
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  {startIcon}
-                </div>
+            <textarea
+              {...form.register(name, {
+                required,
+              })}
+              aria-required={required}
+              aria-invalid={hasError}
+              disabled={disabled}
+              className={twMerge(
+                inputVariants({
+                  state: hasError ? "error" : disabled ? "disabled" : undefined,
+                }),
+                className,
               )}
-              <textarea
-                {...form.register(name, {
-                  required,
-                })}
-                aria-required={required}
-                aria-invalid={hasError}
-                disabled={disabled}
-                className={twMerge(
-                  "flex w-full content-center rounded-lg border p-3",
-                  "border-gray-300 bg-gray-50 text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500",
-                  "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500",
-                  hasError && "!border-orange-700 focus:!border-orange-700",
-                  disabled && "dark:bg-gray-50",
-                )}
-                {...rest}
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-                value={field.value}
-              />
-            </div>
+              {...rest}
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+              value={field.value}
+            />
           )}
         />
       </div>
