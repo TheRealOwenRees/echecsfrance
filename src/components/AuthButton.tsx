@@ -1,11 +1,8 @@
 "use client";
 
-import { useState } from "react";
-
-import { Button, Menu } from "@headlessui/react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { MenuButton } from "@headlessui/react";
+import { signIn, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { RxAvatar } from "react-icons/rx";
 
 import { useAuthMenuOptions } from "@/hooks/useAuthMenuOptions";
@@ -27,9 +24,9 @@ const AuthButton = () => {
         items={menuItems}
         containerClassName="flex items-center justify-center"
         buttonComponent={
-          <Menu.Button>
+          <MenuButton>
             <RxAvatar className="h-6 w-6" />
-          </Menu.Button>
+          </MenuButton>
         }
       />
     );
