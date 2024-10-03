@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Button } from "@/components/Button";
 import { clearMessage } from "@/components/InfoMessage";
 import InfoMessage from "@/components/InfoMessage";
 import LoadingMap from "@/components/LoadingMap";
@@ -174,12 +175,14 @@ const TournamentForm = () => {
               required
             />
           </div>
-          <div className="col-span-4 row-span-2 sm:col-span-2">
+
+          <div className="col-span-4 row-span-2 self-stretch sm:col-span-2">
             <TextAreaField
+              className="h-full"
+              childrenWrapperClassName="h-full"
               name="message"
               control={form.control}
               label={t("messageLabel")}
-              rows={6}
               placeholder={t("messagePlaceholder")}
             />
           </div>
@@ -207,21 +210,16 @@ const TournamentForm = () => {
             <Map />
           </section>
         </div>
-        <button
-          disabled={form.formState.isSubmitting}
-          type="submit"
-          className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-        >
-          {form.formState.isSubmitting ? t("sending") : t("sendButton")}
-        </button>
-        <button
-          onClick={() => form.reset()}
-          type="button"
-          className="ml-4 rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
-        >
-          {t("clearForm")}
-        </button>
 
+        <div className="flex gap-4">
+          <Button disabled={form.formState.isSubmitting} type="submit">
+            {form.formState.isSubmitting ? t("sending") : t("sendButton")}
+          </Button>
+
+          <Button onClick={() => form.reset()} type="button" intent="secondary">
+            {t("clearForm")}
+          </Button>
+        </div>
         <InfoMessage responseMessage={responseMessage} />
       </form>
     </FormProvider>

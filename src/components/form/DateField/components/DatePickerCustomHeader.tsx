@@ -7,6 +7,8 @@ import { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { twMerge } from "tailwind-merge";
 
+import { Button } from "@/components/Button";
+
 const chevronClasses = {
   chevronRoot: "h-4 w-4 dark:text-white",
   chevronClassDisabled: "!text-neutral-500",
@@ -23,7 +25,9 @@ export const DatePickerCustomHeader = ({
 
   return (
     <div className="mb-2 flex !w-full items-center justify-between border-b border-neutral-500 px-6 pb-4">
-      <button
+      <Button
+        intent="tertiary"
+        size="compacted"
         onClick={decreaseMonth}
         disabled={prevMonthButtonDisabled}
         className={chevronClasses.chevronRoot}
@@ -34,9 +38,10 @@ export const DatePickerCustomHeader = ({
             prevMonthButtonDisabled && chevronClasses.chevronClassDisabled,
           )}
         />
-      </button>
+      </Button>
       {format(date, "LLLL yyyy", { locale: locale === "fr" ? fr : enGB })}
-      <button
+      <Button
+        intent="tertiary"
         onClick={increaseMonth}
         disabled={nextMonthButtonDisabled}
         className={chevronClasses.chevronRoot}
@@ -47,7 +52,7 @@ export const DatePickerCustomHeader = ({
             nextMonthButtonDisabled && chevronClasses.chevronClassDisabled,
           )}
         />
-      </button>
+      </Button>
     </div>
   );
 };

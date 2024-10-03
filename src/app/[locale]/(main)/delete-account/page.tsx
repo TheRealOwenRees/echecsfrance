@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signOut } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
+import { Button } from "@/components/Button";
 import InfoMessage from "@/components/InfoMessage";
 import { deleteAccount } from "@/server/deleteAccount";
 import { useRouter } from "@/utils/routing";
@@ -67,21 +68,21 @@ export default function Contact() {
             )}
 
             <div className="flex items-center justify-center space-x-4 text-sm font-bold">
-              <button
+              <Button
                 type="button"
                 onClick={() => router.back()}
-                className="rounded-lg border border-primary px-5 py-3 text-center text-xs text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
+                intent="secondary"
               >
                 {at("cancelButton")}
-              </button>
+              </Button>
 
-              <button
+              <Button
                 onClick={() => onDeleteAccount()}
                 disabled={deleting}
-                className="rounded-lg bg-primary-600 px-5 py-3 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-fit"
+                intent="primary"
               >
                 {t("deleteButton")}
-              </button>
+              </Button>
             </div>
           </>
         )}

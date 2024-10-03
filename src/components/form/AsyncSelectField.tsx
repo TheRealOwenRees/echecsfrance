@@ -15,7 +15,7 @@ import AsyncSelect from "react-select/async";
 import { Prettify } from "@/types";
 
 import { Field, GenericFieldProps } from "./Field";
-import { BaseOption, classNames } from "./Select";
+import { BaseOption, createSelectClassNamesFn } from "./Select";
 
 export type AsyncSelectFieldProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -34,6 +34,7 @@ export type AsyncSelectFieldProps<
       loadOptions: (searchString?: string) => Promise<BaseOption<T, D>[]>;
       onInformChange?: (data: BaseOption<T, D>[] | null) => void;
       separators?: boolean;
+      size?: "small" | "medium";
     }
 >;
 
@@ -50,6 +51,7 @@ export const AsyncSelectField = <
   label,
   hideErrorMessage,
   required,
+  size,
 
   loadOption,
   loadOptions,
@@ -132,6 +134,10 @@ export const AsyncSelectField = <
     return options;
   };
 
+  const classNames = createSelectClassNamesFn<BaseOption<T, D>, IsMulti>({
+    size,
+  });
+
   return (
     <Field {...{ name, control, className, label, hideErrorMessage, required }}>
       <Controller
@@ -184,10 +190,7 @@ export const AsyncSelectField = <
                   },
                 }),
               }}
-              classNames={classNames<BaseOption<T, D>, IsMulti>(
-                hasError,
-                separators ?? false,
-              )}
+              classNames={classNames(hasError, separators ?? false)}
               {...selectProps}
             />
           );

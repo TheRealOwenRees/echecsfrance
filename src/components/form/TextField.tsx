@@ -12,13 +12,14 @@ import { twMerge } from "tailwind-merge";
 import { Prettify } from "@/types";
 
 import { Field, GenericFieldProps } from "./Field";
+import { Input, InputProps } from "./Input";
 
 type TextFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Prettify<
   GenericFieldProps<TFieldValues, TFieldName> &
-    Omit<React.HTMLProps<HTMLInputElement>, "ref" | "name"> & {
+    Omit<InputProps, "ref" | "name" | "size"> & {
       handleChanged?: (props: { name: string }) => void;
       startIcon?: React.ReactNode;
     }
@@ -89,39 +90,26 @@ export const TextField = <
           control={control}
           name={name}
           render={({ field }) => (
-            <div className="relative">
-              {startIcon && (
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  {startIcon}
-                </div>
-              )}
-              <input
-                type={type}
-                {...form.register(name, {
-                  valueAsNumber: type === "number",
-                  required,
-                })}
-                aria-required={required}
-                aria-invalid={hasError}
-                disabled={disabled}
-                className={twMerge(
-                  "flex w-full content-center rounded-lg border p-3",
-                  "border-gray-300 bg-gray-50 text-gray-900 shadow-sm focus:border-primary-500 focus:ring-primary-500",
-                  "dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500",
-                  hasError && "!border-orange-700 focus:!border-orange-700",
-                  disabled && "dark:bg-gray-50",
-                  startIcon && "pl-10",
-                )}
-                {...rest}
-                onChange={(e) => {
-                  field.onChange(output(e));
-                }}
-                value={input(field.value)}
-                onBlur={() => {
-                  if (handleChanged) handleChanged({ name });
-                }}
-              />
-            </div>
+            <Input
+              type={type}
+              {...form.register(name, {
+                valueAsNumber: type === "number",
+                required,
+              })}
+              hasError={hasError}
+              required={required}
+              disabled={disabled}
+              startIcon={startIcon}
+              className={twMerge(startIcon && "pl-10")}
+              {...rest}
+              onChange={(e) => {
+                field.onChange(output(e));
+              }}
+              value={input(field.value)}
+              onBlur={() => {
+                if (handleChanged) handleChanged({ name });
+              }}
+            />
           )}
         />
       </div>

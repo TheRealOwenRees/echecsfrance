@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Float } from "@headlessui-float/react";
-import { Menu } from "@headlessui/react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { IoMdMore } from "react-icons/io";
 import { twMerge } from "tailwind-merge";
 
@@ -37,15 +37,15 @@ export const DropdownMenu = ({
         leaveTo="transform opacity-0 scale-95"
       >
         {buttonComponent ?? (
-          <Menu.Button>
+          <MenuButton>
             <IoMdMore />
-          </Menu.Button>
+          </MenuButton>
         )}
 
-        <Menu.Items className="z-20 flex w-auto items-start overflow-hidden rounded-md bg-neutral-200 focus:outline-none dark:bg-neutral-600">
+        <MenuItems className="z-20 flex w-auto items-start overflow-hidden rounded-md bg-neutral-200 focus:outline-none dark:bg-neutral-600">
           <div className="flex flex-col px-1 py-1">
             {items.map(({ title, onClick, className, disabled }, i) => (
-              <Menu.Item key={i}>
+              <MenuItem key={i}>
                 <button
                   type="button"
                   className={twMerge(
@@ -61,10 +61,10 @@ export const DropdownMenu = ({
                 >
                   {title}
                 </button>
-              </Menu.Item>
+              </MenuItem>
             ))}
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Float>
     </Menu>
   );

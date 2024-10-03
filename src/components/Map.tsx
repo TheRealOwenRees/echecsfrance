@@ -16,6 +16,8 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import { debouncedHoveredListIdAtom, mapBoundsAtom } from "@/atoms";
 import { MapEvents } from "@/components/MapEvents";
 
+import { Button } from "./Button";
+
 export type MarkerRef = {
   getMarker: () => L.Marker<any>;
   bounce: () => void;
@@ -238,12 +240,14 @@ export const Map = ({
       </MapContainer>
 
       <div className="flex items-center justify-center lg:hidden">
-        <button
-          className="p-3 text-primary-900 dark:text-white"
+        <Button
+          intent="tertiary"
+          size="compacted"
+          className="p-3"
           onClick={onScrollToTable}
         >
           <FaAngleDoubleDown />
-        </button>
+        </Button>
       </div>
     </section>
   );

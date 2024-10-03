@@ -10,6 +10,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { Button } from "@/components/Button";
 import { ErrorBox } from "@/components/ErrorBox";
 import { Spinner } from "@/components/Spinner";
 import { TranslatedError } from "@/components/TranslatedError";
@@ -176,7 +177,7 @@ export default function Elo() {
 
   return (
     <section className="grid place-items-center bg-white pb-20 dark:bg-gray-800">
-      <div className="max-w-xl px-4 py-8 lg:py-16">
+      <div className="max-w-xxl px-4 py-8 lg:py-16">
         <h2
           className="mb-10 text-center text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white"
           data-test="header2"
@@ -189,13 +190,14 @@ export default function Elo() {
 
         {hasTournamentId && !isFetching && !error && (
           <div className="mx-auto mb-8 flex justify-center">
-            <button
+            <Button
+              intent="secondary"
               type="button"
               onClick={clearForm}
               className="rounded-lg border border-primary px-3 py-2 text-center text-sm text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:opacity-25 dark:text-white dark:focus:ring-primary-800 sm:w-fit"
             >
               {t("enterManualResultsButton")}
-            </button>
+            </Button>
           </div>
         )}
 

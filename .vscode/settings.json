@@ -53,5 +53,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "css.lint.unknownAtRules": "ignore",
-  "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*ClassName=\"([^\"]+)\""]
+  "tailwindCSS.experimental.classRegex": [
+    ["[a-zA-Z]*ClassName=\"([^\"]+)\""],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
 }
