@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { SetFieldValue } from "react-hook-form";
 
@@ -7,12 +7,9 @@ export interface FormPersistConfig {
   watch: (names?: string | string[]) => any;
   setValue: SetFieldValue<any>;
   exclude?: string[];
-  onDataRestored?: (data: any) => void;
   validate?: boolean;
   dirty?: boolean;
   touch?: boolean;
-  onTimeout?: () => void;
-  timeout?: number;
 }
 
 const useFormPersist = (
@@ -21,39 +18,36 @@ const useFormPersist = (
     storage,
     watch,
     setValue,
-    exclude = [],
-    onDataRestored,
+    exclude,
     validate = false,
     dirty = false,
     touch = false,
-    onTimeout,
-    timeout,
   }: FormPersistConfig,
 ) => {
   const watchedValues = watch();
 
-  const getStorage = () => storage || window.sessionStorage;
+  const getStorage = useCallback(
+    () => storage || window.sessionStorage,
+    [storage],
+  );
 
-  const clearStorage = () => getStorage().removeItem(name);
+  const clearStorage = useCallback(
+    () => getStorage().removeItem(name),
+    [getStorage, name],
+  );
 
   useEffect(() => {
-    const str = getStorage().getItem(name);
+    const storedValuesJSON = getStorage().getItem(name);
 
-    if (str) {
-      const { _timestamp = null, ...values } = JSON.parse(str);
+    if (storedValuesJSON) {
+      const values = JSON.parse(storedValuesJSON);
       const dataRestored: { [key: string]: any } = {};
-      const currTimestamp = Date.now();
-
-      if (timeout && currTimestamp - _timestamp > timeout) {
-        onTimeout && onTimeout();
-        clearStorage();
-        return;
-      }
 
       Object.keys(values).forEach((key) => {
-        const shouldSet = !exclude.includes(key);
+        const shouldSet = !exclude?.includes(key);
         if (shouldSet) {
           dataRestored[key] = values[key];
+
           setValue(key, values[key], {
             shouldValidate: validate,
             shouldDirty: dirty,
@@ -62,28 +56,32 @@ const useFormPersist = (
         }
       });
 
-      if (onDataRestored) {
-        onDataRestored(dataRestored);
-      }
-
       return () => getStorage().setItem(name, JSON.stringify(dataRestored));
     }
-  }, [storage, name, onDataRestored, setValue]);
+  }, [
+    storage,
+    name,
+    setValue,
+    clearStorage,
+    dirty,
+    exclude,
+    touch,
+    validate,
+    getStorage,
+  ]);
 
   useEffect(() => {
-    const values = exclude.length
-      ? Object.entries(watchedValues)
-          .filter(([key]) => !exclude.includes(key))
-          .reduce((obj, [key, val]) => Object.assign(obj, { [key]: val }), {})
-      : Object.assign({}, watchedValues);
+    const values =
+      (exclude?.length ?? 0) > 0
+        ? Object.entries(watchedValues)
+            .filter(([key]) => !exclude!.includes(key))
+            .reduce((obj, [key, val]) => Object.assign(obj, { [key]: val }), {})
+        : { ...watchedValues };
 
-    if (Object.entries(values).length) {
-      if (timeout !== undefined) {
-        values._timestamp = Date.now();
-      }
+    if (Object.entries(values).length > 0) {
       getStorage().setItem(name, JSON.stringify(values));
     }
-  }, [watchedValues, timeout]);
+  }, [watchedValues, exclude, getStorage, name]);
 
   return {
     clear: () => getStorage().removeItem(name),

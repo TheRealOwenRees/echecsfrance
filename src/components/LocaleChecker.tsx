@@ -37,7 +37,7 @@ export const LocaleChecker = ({ children }: LocaleCheckerProps) => {
     ) {
       router.push({ pathname, params: params as any }, { locale: userLocale });
     }
-  }, [locale, sessionData, status]);
+  }, [locale, sessionData, status, params, pathname, router, userLocale]);
 
   // To avoid flickering, we don't render the children until we have the user's locale
   if (status === "loading") return null;
