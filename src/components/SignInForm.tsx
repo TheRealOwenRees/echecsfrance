@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { Button } from "@headlessui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -13,6 +12,8 @@ import { z } from "zod";
 import { clearMessage } from "@/components/InfoMessage";
 import InfoMessage from "@/components/InfoMessage";
 import { TextField } from "@/components/form/TextField";
+
+import { Button } from "./Button";
 
 const signInSchema = z.object({
   email: z.string().email(),
@@ -83,7 +84,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <TextField
           name="email"
           control={form.control}
