@@ -155,9 +155,15 @@ export const fetchTournamentResults = actionClient
           })),
         })),
       );
-    } catch (error) {
-      reportFetchError(id, error);
-      errorLog(JSON.stringify(error, null, 2));
+    } catch (error: any) {
+      if (
+        !("message" in error) ||
+        error.message !== "ERR_TOURNAMENT_NOT_FOUND"
+      ) {
+        reportFetchError(id, error);
+        errorLog(JSON.stringify(error, null, 2));
+      }
+
       throw error;
     }
   });
