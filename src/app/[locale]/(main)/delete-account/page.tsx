@@ -50,10 +50,7 @@ export default function Contact() {
         </h2>
 
         {deleted ? (
-          <InfoMessage
-            className="text-center"
-            responseMessage={{ isSuccessful: true, message: t("success") }}
-          />
+          <InfoMessage className="mb-8" type="success" message={t("success")} />
         ) : (
           <>
             <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
@@ -62,8 +59,9 @@ export default function Contact() {
 
             {error && (
               <InfoMessage
-                className="mb-8 text-center"
-                responseMessage={{ isSuccessful: false, message: t("failure") }}
+                className="mb-8"
+                type="error"
+                message={t("failure")}
               />
             )}
 

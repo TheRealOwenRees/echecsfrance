@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
-import InfoMessage, { clearMessage } from "@/components/InfoMessage";
+import InfoMessage, { InfoMessageType } from "@/components/InfoMessage";
 import { useZones } from "@/hooks/useZones";
 import { editZone } from "@/server/editZone";
 import { useRouter } from "@/utils/routing";
@@ -17,10 +17,10 @@ const EditZone = () => {
   const router = useRouter();
   const params = useParams();
 
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
 
   const { zones, isFetching, refetch } = useZones();
 
@@ -51,11 +51,9 @@ const EditZone = () => {
       router.push("/zones");
     } catch (error) {
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("createFailure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -74,7 +72,13 @@ const EditZone = () => {
         zone={zone}
       />
 
-      <InfoMessage responseMessage={responseMessage} />
+      {responseMessage && (
+        <InfoMessage
+          message={responseMessage.message}
+          type={responseMessage.type}
+          onDismiss={() => setResponseMessage(null)}
+        />
+      )}
     </div>
   );
 };

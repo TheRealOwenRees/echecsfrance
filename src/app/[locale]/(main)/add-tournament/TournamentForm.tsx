@@ -9,7 +9,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/Button";
-import { clearMessage } from "@/components/InfoMessage";
+import { InfoMessageType } from "@/components/InfoMessage";
 import InfoMessage from "@/components/InfoMessage";
 import LoadingMap from "@/components/LoadingMap";
 import { DateField } from "@/components/form/DateField";
@@ -32,10 +32,10 @@ const TournamentForm = () => {
   const t = useTranslations("AddTournament");
   const at = useTranslations("App");
 
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
 
   const form = useForm<TournamentFormValues>({
     resolver: zodResolver(addTournamentSchema),
@@ -51,20 +51,18 @@ const TournamentForm = () => {
     try {
       await addTournament(data);
       setResponseMessage({
-        isSuccessful: true,
+        type: "success",
         message: t("success"),
       });
 
-      clearMessage(setResponseMessage);
       form.reset();
     } catch (err: unknown) {
       console.log(err);
+
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("failure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -220,7 +218,14 @@ const TournamentForm = () => {
             {t("clearForm")}
           </Button>
         </div>
-        <InfoMessage responseMessage={responseMessage} />
+
+        {responseMessage && (
+          <InfoMessage
+            message={responseMessage.message}
+            type={responseMessage.type}
+            onDismiss={() => setResponseMessage(null)}
+          />
+        )}
       </form>
     </FormProvider>
   );

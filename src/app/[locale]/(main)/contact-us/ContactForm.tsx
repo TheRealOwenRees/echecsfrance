@@ -9,7 +9,7 @@ import { z } from "zod";
 
 import { Button } from "@/components/Button";
 import InfoMessage from "@/components/InfoMessage";
-import { clearMessage } from "@/components/InfoMessage";
+import { InfoMessageType } from "@/components/InfoMessage";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { TextField } from "@/components/form/TextField";
 import { contactUsSchema } from "@/schemas";
@@ -20,10 +20,10 @@ type TournamentFormValues = z.infer<typeof contactUsSchema>;
 const ContactForm = () => {
   const t = useTranslations("Contact");
 
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
 
   const form = useForm<TournamentFormValues>({
     resolver: zodResolver(contactUsSchema),
@@ -33,20 +33,17 @@ const ContactForm = () => {
     try {
       await contactUs(data);
       setResponseMessage({
-        isSuccessful: true,
+        type: "success",
         message: t("success"),
       });
 
-      clearMessage(setResponseMessage);
       form.reset();
     } catch (err: unknown) {
       console.log(err);
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("failure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -82,7 +79,13 @@ const ContactForm = () => {
           {form.formState.isSubmitting ? t("sending") : t("sendButton")}
         </Button>
 
-        <InfoMessage responseMessage={responseMessage} />
+        {responseMessage && (
+          <InfoMessage
+            message={responseMessage.message}
+            type={responseMessage.type}
+            onDismiss={() => setResponseMessage(null)}
+          />
+        )}
       </form>
     </FormProvider>
   );

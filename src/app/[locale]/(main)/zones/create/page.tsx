@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useTranslations } from "next-intl";
 
-import InfoMessage, { clearMessage } from "@/components/InfoMessage";
+import InfoMessage, { InfoMessageType } from "@/components/InfoMessage";
 import { useZones } from "@/hooks/useZones";
 import { createZone } from "@/server/createZone";
 import { useRouter } from "@/utils/routing";
@@ -15,10 +15,10 @@ const CreateZone = () => {
   const t = useTranslations("Zones");
   const router = useRouter();
 
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
 
   const { refetch } = useZones();
 
@@ -31,11 +31,9 @@ const CreateZone = () => {
     } catch (err: unknown) {
       console.log(err);
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("createFailure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -48,8 +46,19 @@ const CreateZone = () => {
         {t("createTitle")}
       </h2>
 
-      <ZoneForm onSubmit={onSubmit} onCancel={() => router.push("/zones")} />
-      <InfoMessage responseMessage={responseMessage} />
+      <ZoneForm
+        withInfo
+        onSubmit={onSubmit}
+        onCancel={() => router.push("/zones")}
+      />
+
+      {responseMessage && (
+        <InfoMessage
+          message={responseMessage.message}
+          type={responseMessage.type}
+          onDismiss={() => setResponseMessage(null)}
+        />
+      )}
     </div>
   );
 };
