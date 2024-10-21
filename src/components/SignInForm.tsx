@@ -9,7 +9,7 @@ import { usePathname as useRawPathname } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { clearMessage } from "@/components/InfoMessage";
+import { InfoMessageType } from "@/components/InfoMessage";
 import InfoMessage from "@/components/InfoMessage";
 import { TextField } from "@/components/form/TextField";
 
@@ -31,10 +31,10 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
   // We use the version from next/navigation to get the raw pathname in the current locale
   const path = useRawPathname();
 
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
 
   const form = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
@@ -44,13 +44,13 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
     // Clear the response message when the email field changes
     const subscription = form.watch((value, { name, type }) => {
       if (type === "change") {
-        if (name === "email" && responseMessage.message === "") {
-          setResponseMessage({ isSuccessful: true, message: "" });
+        if (name === "email" && responseMessage !== null) {
+          setResponseMessage(null);
         }
       }
     });
     return () => subscription.unsubscribe();
-  }, [form, form.watch, responseMessage.message]);
+  }, [form, form.watch, responseMessage]);
 
   const onSubmit = async ({ email }: SignInFormValues) => {
     try {
@@ -64,7 +64,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
         throw new Error(result.error);
       } else if (result?.ok) {
         setResponseMessage({
-          isSuccessful: true,
+          type: "success",
           message: t("checkEmail"),
         });
 
@@ -74,11 +74,9 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
       console.log(err);
 
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("failure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -87,6 +85,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <TextField
           name="email"
+          type="email"
           control={form.control}
           label={t("emailLabel")}
           placeholder={t("emailPlaceholder")}
@@ -97,10 +96,12 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
           {t("signInButton")}
         </Button>
 
-        <InfoMessage
-          className="text-center"
-          responseMessage={responseMessage}
-        />
+        {responseMessage && (
+          <InfoMessage
+            message={responseMessage.message}
+            type={responseMessage.type}
+          />
+        )}
       </form>
     </FormProvider>
   );

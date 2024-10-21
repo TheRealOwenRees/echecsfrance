@@ -6,6 +6,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/Button";
+import InfoMessage from "@/components/InfoMessage";
 import { InlineSwitchField } from "@/components/form/InlineSwitchField";
 import { Label } from "@/components/form/Label";
 import { TextField } from "@/components/form/TextField";
@@ -20,6 +21,7 @@ type ZoneFormProps = {
   zone?: Zone;
   onSubmit: (data: ZoneFormValues) => Promise<void>;
   onCancel: () => void;
+  withInfo?: boolean;
   submitTitle?: string;
   cancelTitle?: string;
 };
@@ -28,6 +30,7 @@ export const ZoneForm = ({
   zone,
   onSubmit,
   onCancel,
+  withInfo,
   submitTitle,
   cancelTitle,
 }: ZoneFormProps) => {
@@ -58,8 +61,14 @@ export const ZoneForm = ({
         },
   });
 
-  const features = form.watch("features");
-  console.log(features);
+  const [cn, rn, bn, on] = form.watch([
+    "classicNotifications",
+    "rapidNotifications",
+    "blitzNotifications",
+    "otherNotifications",
+  ]);
+
+  const requestingNotifications = cn || rn || bn || on;
 
   return (
     <FormProvider {...form}>
@@ -89,21 +98,33 @@ export const ZoneForm = ({
             control={form.control}
             label={at("timeControlEnum", { tc: TimeControl.Classic })}
           />
+
           <InlineSwitchField
             name="rapidNotifications"
             control={form.control}
             label={at("timeControlEnum", { tc: TimeControl.Rapid })}
           />
+
           <InlineSwitchField
             name="blitzNotifications"
             control={form.control}
             label={at("timeControlEnum", { tc: TimeControl.Blitz })}
           />
+
           <InlineSwitchField
             name="otherNotifications"
             control={form.control}
             label={at("timeControlEnum", { tc: TimeControl.Other })}
           />
+
+          {withInfo && requestingNotifications && (
+            <div className="col-span-4">
+              <InfoMessage
+                type="info"
+                message={t.rich("firstNotificationInfo", { br: () => <br /> })}
+              />
+            </div>
+          )}
 
           <section id="map" className="z-0 col-span-4 flex h-auto">
             <ZoneEditorField name="features" control={form.control} />

@@ -238,6 +238,7 @@
     "zoneNamePlaceholder": "Votre nom pour cette région",
     "notificationsLabel": "Notifications",
     "notificationsInfo": "Vous pouvez choisir d'activer les notifications pour les cadences qui vous intéressent, et vous recevrez un e-mail lorsqu'un nouveau tournoi est ajouté dans cette région.",
+    "firstNotificationInfo": "Le premier email que vous recevrez listera tous les tournois actuels dans cette zone.<br></br>Les notifications suivantes ne listeront que les nouveaux tournois.",
 
     "createFailure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
 

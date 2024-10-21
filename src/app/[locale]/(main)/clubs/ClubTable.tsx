@@ -52,7 +52,7 @@ const ClubTable = () => {
         <div className="flex flex-col gap-0 text-gray-900 dark:text-white"></div>
       </div>
 
-      <div className="overflow-x-scroll bg-red-50">
+      <div className="overflow-x-scroll">
         <table className="relative min-w-full table-fixed text-center text-xs lg:min-w-full">
           <thead>
             <tr>

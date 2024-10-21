@@ -237,7 +237,7 @@
     "zoneNamePlaceholder": "Name for your zone",
     "notificationsLabel": "Notifications",
     "notificationsInfo": "You can choose to turn on notifications for the time controls that interest you, and will receive an email when a new tournament is added to this zone.",
-
+    "firstNotificationInfo": "The first email you receive will list all the current tournaments in this zone.<br></br>Subsequent notifications will only list new tournaments.",
     "createFailure": "Oops, something went wrong.  Please try again later.",
 
     "deleteZoneTitle": "Delete Zone",

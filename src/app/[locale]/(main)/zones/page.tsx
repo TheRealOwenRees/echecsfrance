@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { IoAdd } from "react-icons/io5";
 
 import { Button, buttonVariants } from "@/components/Button";
-import InfoMessage, { clearMessage } from "@/components/InfoMessage";
+import InfoMessage, { InfoMessageType } from "@/components/InfoMessage";
 import { Modal } from "@/components/Modal";
 import { Spinner } from "@/components/Spinner";
 import { useZones } from "@/hooks/useZones";
@@ -27,11 +27,10 @@ const Zones = () => {
   const format = useFormatter();
 
   const [deletingZoneId, setDeletingZoneId] = useState<string | null>(null);
-  const [responseMessage, setResponseMessage] = useState({
-    isSuccessful: false,
-    message: "",
-  });
-
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
   const { zones, isFetching, refetch } = useZones();
 
   const onDelete = async () => {
@@ -46,11 +45,9 @@ const Zones = () => {
     } catch (err: unknown) {
       console.log(err);
       setResponseMessage({
-        isSuccessful: false,
+        type: "error",
         message: t("createFailure"),
       });
-
-      clearMessage(setResponseMessage);
     }
   };
 
@@ -154,7 +151,13 @@ const Zones = () => {
         title={t("deleteZoneTitle")}
         subTitle={t("deleteZoneInfo")}
       >
-        <InfoMessage responseMessage={responseMessage} />
+        {responseMessage && (
+          <InfoMessage
+            message={responseMessage.message}
+            type={responseMessage.type}
+            onDismiss={() => setResponseMessage(null)}
+          />
+        )}
 
         <div className="flex items-center justify-between space-x-4 text-sm font-bold">
           <Button
