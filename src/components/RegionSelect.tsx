@@ -1,15 +1,12 @@
-import gd from "date-fns/locale/gd";
+import { useState } from "react";
+
 import { useAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { IoAdd } from "react-icons/io5";
-import {
-  GroupBase,
-  OnChangeValue,
-  OptionsOrGroups,
-  SingleValue,
-} from "react-select";
+import { GroupBase, OnChangeValue, OptionsOrGroups } from "react-select";
 
-import { regionFilterAtom } from "@/atoms";
+import { isFeature, regionFilterAtom } from "@/atoms";
+import { RegionSelectModal } from "@/components/RegionSelectModal";
 import { BaseOption, Select, SelectProps } from "@/components/form/Select";
 import { useZones } from "@/hooks/useZones";
 import { Zone } from "@/server/myZones";
@@ -32,12 +29,18 @@ export const RegionSelect = ({
   const t = useTranslations("Zones");
   const router = useRouter();
   const [regionFilter, setRegionFilter] = useAtom(regionFilterAtom);
+  const [isRegionModalOpen, setIsRegionModalOpen] = useState(false);
   const { zones } = useZones();
 
   const zoneFilterOptions: OptionsOrGroups<RegionOption, GroupedOption> = [
     {
       value: "map",
       label: syncTitle,
+      data: null,
+    },
+    {
+      value: "region",
+      label: t("RegionFilter.regionSelectValue"),
       data: null,
     },
     {
@@ -68,14 +71,22 @@ export const RegionSelect = ({
     option: OnChangeValue<BaseOption<string, Zone | null>, false>,
   ) => {
     if (!option) return;
+
     if (option.value === "create") {
       router.push("/zones/create");
       return;
     }
 
-    if (option.value === "map" || option.value === "all")
+    if (option.value === "region") {
+      setIsRegionModalOpen(true);
+      return;
+    }
+
+    if (option.value === "map" || option.value === "all") {
       setRegionFilter(option.value);
-    else setRegionFilter(option.data!);
+    } else {
+      setRegionFilter(option.data!);
+    }
   };
 
   const formatGroupLabel = (data: GroupedOption) => (
@@ -102,19 +113,43 @@ export const RegionSelect = ({
     "options" in groupOrOption ? groupOrOption.options : groupOrOption,
   );
 
+  const getValue = () => {
+    if (
+      regionFilter === "all" ||
+      regionFilter === "map" ||
+      regionFilter === "region"
+    ) {
+      return allOptions.find((o) => o.value === regionFilter);
+    }
+
+    if (isFeature(regionFilter) && regionFilter.properties) {
+      // Display the region name from properties.nom when it's a Feature
+      return {
+        value: "region",
+        label: regionFilter.properties.nom,
+        data: null,
+      };
+    }
+
+    return allOptions.find((o) => o.value === regionFilter.id);
+  };
+
   return (
-    <Select
-      options={zoneFilterOptions}
-      value={allOptions.find((o) =>
-        regionFilter === "all" || regionFilter === "map"
-          ? o.value === regionFilter
-          : o.value === regionFilter.id,
-      )}
-      isMulti={false}
-      formatGroupLabel={formatGroupLabel}
-      formatOptionLabel={formatOptionLabel}
-      onChange={onChange}
-      {...selectProps}
-    />
+    <>
+      <Select
+        options={zoneFilterOptions}
+        value={getValue()}
+        isMulti={false}
+        formatGroupLabel={formatGroupLabel}
+        formatOptionLabel={formatOptionLabel}
+        onChange={onChange}
+        {...selectProps}
+      />
+
+      <RegionSelectModal
+        isRegionModalOpen={isRegionModalOpen}
+        setIsRegionModalOpen={setIsRegionModalOpen}
+      />
+    </>
   );
 };

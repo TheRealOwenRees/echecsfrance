@@ -241,7 +241,12 @@
     "createFailure": "Oops, something went wrong.  Please try again later.",
 
     "deleteZoneTitle": "Delete Zone",
-    "deleteZoneInfo": "Are you sure you want to delete this zone? This action cannot be undone."
+    "deleteZoneInfo": "Are you sure you want to delete this zone? This action cannot be undone.",
+
+    "RegionFilter": {
+      "regionSelectValue": "By region",
+      "regionModalTitle": "Select region"
+    }
   },
 
   "SignIn": {

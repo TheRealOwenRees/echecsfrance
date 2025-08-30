@@ -1,10 +1,15 @@
 "use client";
 
+import { Feature, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
+import { useSetAtom } from "jotai";
 import { useHydrateAtoms } from "jotai/utils";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 
-import { clubsAtom } from "@/atoms";
+import { clubsAtom, regionFilterAtom } from "@/atoms";
 import LoadingMap from "@/components/LoadingMap";
+import regionNames from "@/resources/regionNames.json";
+import regionGeoJson from "@/resources/regionsGeoJson.json";
 import { Club } from "@/types";
 
 import ClubTable from "./ClubTable";
@@ -24,6 +29,31 @@ const ClubMap = dynamic(() => import("./ClubMap"), {
 
 export default function ClubsDisplay({ clubs }: ClubsDisplayProps) {
   useHydrateAtoms([[clubsAtom, clubs]]);
+  const setRegionFilter = useSetAtom(regionFilterAtom);
+
+  const searchParams = useSearchParams();
+  const regionSearchParam = searchParams.get("region");
+
+  if (regionSearchParam) {
+    const matchedRegion = regionNames.name.find(
+      (name) =>
+        name
+          .toLowerCase()
+          .replaceAll(" ", "-")
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "") === regionSearchParam.toLowerCase(),
+    );
+
+    const regionData = regionGeoJson.features.find(
+      (f) => f.properties.nom === matchedRegion,
+    );
+
+    if (regionData) {
+      setRegionFilter(
+        regionData as Feature<Polygon | MultiPolygon, GeoJsonProperties>,
+      );
+    }
+  }
 
   return (
     <main className="relative grid h-full w-full lg:grid-cols-2">

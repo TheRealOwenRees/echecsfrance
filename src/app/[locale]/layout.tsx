@@ -80,10 +80,10 @@ export default async function RootLayout({
             <Footer />
           </NextIntlClientProvider>
 
-          <Script
-            defer
-            src="https://app.tinyanalytics.io/pixel/HyoumUokLr9exPgX"
-          />
+          {/*<Script*/}
+          {/*  defer*/}
+          {/*  src="https://app.tinyanalytics.io/pixel/HyoumUokLr9exPgX"*/}
+          {/*/>*/}
         </Providers>
       </body>
     </html>

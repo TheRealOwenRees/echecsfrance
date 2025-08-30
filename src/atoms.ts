@@ -8,7 +8,13 @@ import {
   startOfDay,
 } from "date-fns";
 import { fr } from "date-fns/locale";
-import { FeatureCollection } from "geojson";
+import {
+  Feature,
+  FeatureCollection,
+  GeoJsonProperties,
+  MultiPolygon,
+  Polygon,
+} from "geojson";
 import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
 
@@ -21,11 +27,24 @@ setDefaultOptions({ locale: fr });
 type RegionFilter =
   | "all"
   | "map"
+  | "region"
+  | Feature<Polygon | MultiPolygon, GeoJsonProperties>
   | {
       id: string;
       name: string;
       features: FeatureCollection;
     };
+
+export function isFeature(obj: any): obj is Feature {
+  return (
+    obj &&
+    typeof obj === "object" &&
+    obj.type === "Feature" &&
+    obj.properties !== undefined &&
+    obj.geometry !== undefined &&
+    (obj.geometry.type === "Polygon" || obj.geometry.type === "MultiPolygon")
+  );
+}
 
 export const burgerMenuIsOpenAtom = atom(false);
 export const mapBoundsAtom = atom<LatLngBounds | null>(null);
@@ -79,8 +98,21 @@ export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
     );
   });
 
-  if (regionFilter === "all" || regionFilter === "map")
+  if (
+    regionFilter === "all" ||
+    regionFilter === "map" ||
+    regionFilter === "region"
+  )
     return filterByTimeControl;
+
+  if (isFeature(regionFilter)) {
+    return filterByTimeControl.filter((tournament) => {
+      return booleanPointInPolygon(
+        [tournament.latLng.lng, tournament.latLng.lat],
+        regionFilter.geometry,
+      );
+    });
+  }
 
   return filterByTimeControl.filter((tournament) => {
     return regionFilter.features?.features?.some(
@@ -127,7 +159,21 @@ export const filteredClubsByZoneAtom = atom((get) => {
   const clubs = get(clubsAtom);
   const regionFilter = get(regionFilterAtom);
 
-  if (regionFilter === "all" || regionFilter === "map") return clubs;
+  if (
+    regionFilter === "all" ||
+    regionFilter === "map" ||
+    regionFilter === "region"
+  )
+    return clubs;
+
+  if (isFeature(regionFilter)) {
+    return clubs.filter((club) => {
+      return booleanPointInPolygon(
+        [club.latLng.lng, club.latLng.lat],
+        regionFilter.geometry,
+      );
+    });
+  }
 
   return clubs.filter((club) => {
     return regionFilter.features?.features?.some(
