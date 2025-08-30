@@ -243,7 +243,12 @@
     "createFailure": "Oups, quelque chose s'est mal passé. Veuillez réessayer.",
 
     "deleteZoneTitle": "Supprimer la région",
-    "deleteZoneInfo": "Êtes-vous sûr de vouloir supprimer cette région\u00a0?"
+    "deleteZoneInfo": "Êtes-vous sûr de vouloir supprimer cette région\u00a0?",
+
+    "RegionFilter": {
+      "regionSelectValue": "Par région",
+      "regionModalTitle": "Selectionnez une région"
+    }
   },
 
   "SignIn": {
