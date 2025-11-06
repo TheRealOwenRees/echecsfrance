@@ -1,16 +1,16 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Inter, Julius_Sans_One } from "next/font/google";
 import { notFound } from "next/navigation";
-import Script from "next/script";
 
 import { LocaleChecker } from "@/components/LocaleChecker";
 import "@/css/globals.css";
 import Providers from "@/providers";
 
 import Footer from "./(main)/components/Footer";
+import { MatomoAnalytics } from "@/components/MatomoAnalytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({
@@ -67,6 +67,7 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#00A1F0" />
         <link rel="manifest" href="/manifest.webmanifest" />
+        <title>Échecs France</title>
       </head>
       <body>
         <Providers>
@@ -76,14 +77,12 @@ export default async function RootLayout({
                 {children}
               </div>
             </LocaleChecker>
-
             <Footer />
           </NextIntlClientProvider>
 
-          {/*<Script*/}
-          {/*  defer*/}
-          {/*  src="https://app.tinyanalytics.io/pixel/HyoumUokLr9exPgX"*/}
-          {/*/>*/}
+          <Suspense fallback={null}>
+            <MatomoAnalytics />
+          </Suspense>
         </Providers>
       </body>
     </html>
