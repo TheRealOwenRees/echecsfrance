@@ -5,7 +5,7 @@ import { GrLineChart } from "react-icons/gr";
 import { HiUserGroup } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
-import bannerImage from "@/img/banner.jpeg";
+import bannerImage from "/public/banner.jpeg";
 import { Link } from "@/utils/routing";
 
 export default function Home() {
