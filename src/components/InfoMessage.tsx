@@ -1,3 +1,5 @@
+import { type ReactNode } from "react";
+
 import {
   HiCheckCircle,
   HiInformationCircle,
@@ -14,7 +16,7 @@ const InfoMessage = ({
   className,
   onDismiss,
 }: {
-  message: React.ReactNode;
+  message: ReactNode;
   type: "success" | "error" | "info";
   onDismiss?: () => void;
   className?: string;
@@ -72,7 +74,11 @@ const InfoMessage = ({
                   button,
                 )}
               >
-                <HiXMark aria-hidden="true" className="h-5 w-5" />
+                <HiXMark
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  onClick={onDismiss}
+                />
               </button>
             </div>
           </div>

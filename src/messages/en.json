@@ -135,6 +135,37 @@
     "failure": "Sorry, something went wrong.  Please try again."
   },
 
+  "AddClub": {
+    "title": "Add a Club",
+    "info": "Fill in the form below and your club will be reviewed shortly",
+
+    "yourNameLabel": "Your Name",
+    "yourNamePlaceholder": "Your name",
+    "yourEmailLabel": "Your Email",
+    "yourEmailPlaceholder": "you@example.com",
+    "messageLabel": "Information complémentaire",
+    "messagePlaceholder": "Additional Info",
+
+    "clubNameLabel": "Club Name",
+    "clubNamePlaceholder": "Club name",
+    "addressLabel": "Address",
+    "addressPlaceholder": "Address",
+    "emailLabel": "Email",
+    "emailPlaceholder": "club@example.com",
+    "websiteLabel": "Website",
+    "websitePlaceholder": "www.example.com",
+
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude",
+
+    "sendButton": "Send",
+    "sending": "Sending...",
+    "clearForm": "Clear",
+
+    "success": "Thank you for your message.",
+    "failure": "Sorry, something went wrong.  Please try again."
+  },
+
   "AddTournament": {
     "title": "Add a Tournament",
     "info": "Fill in the form below and your tournament will be reviewed shortly.",
