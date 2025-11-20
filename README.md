@@ -4,13 +4,12 @@
 
 ![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance?style=for-the-badge)
 ![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance?style=for-the-badge)
-![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance?style=for-the-badge)
 
 ## A website displaying upcoming chess tournaments for the [FFE](http://www.echecs.asso.fr/) on a map
 
 ## Tech Stack
 
-This website is built in Typescript using:
+This website is built in TypeScript using:
 
 - [Next.js](https://nextjs.org/)
 - [Tailwind](https://tailwindcss.com/)

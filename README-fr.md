@@ -4,7 +4,6 @@
 
 ![GitHub](https://img.shields.io/github/license/therealowenrees/echecsfrance?style=for-the-badge)
 ![Vercel](https://vercelbadge.vercel.app/api/therealowenrees/echecsfrance?style=for-the-badge)
-![Depfu](https://img.shields.io/depfu/dependencies/github/TheRealOwenRees/echecsfrance?style=for-the-badge)
 
 ## Un site web indiquant sur une carte les prochains tournois d'échecs de la [FFE](http://www.echecs.asso.fr/)
 
