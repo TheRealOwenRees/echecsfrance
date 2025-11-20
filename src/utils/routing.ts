@@ -36,6 +36,11 @@ export const routing = defineRouting({
       en: "/add-tournament",
     },
 
+    "/add-club": {
+      fr: "/ajouter-un-club",
+      en: "/add-club",
+    },
+
     "/contact-us": {
       fr: "/contactez-nous",
       en: "/contact-us",

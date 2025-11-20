@@ -15,11 +15,11 @@ import { MapEvents } from "@/components/MapEvents";
 
 const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
-const Map = () => {
+const MapCoordinateSelection = ( { page }: {page: "club" | "tournament"}) => {
   const { control, setValue } = useFormContext();
 
-  const latValue = useWatch({ control, name: "tournament.coordinates.0" });
-  const lngValue = useWatch({ control, name: "tournament.coordinates.1" });
+  const latValue = useWatch({ control, name: `${page}.coordinates.0` });
+  const lngValue = useWatch({ control, name: `${page}.coordinates.1` });
 
   const setMapBounds = useSetAtom(mapBoundsAtom);
   const markerRef = useRef<L.Marker | null>(null);
@@ -31,17 +31,17 @@ const Map = () => {
         if (marker != null) {
           const position = marker.getLatLng();
           setValue(
-            "tournament.coordinates.0",
+            `${page}.coordinates.0`,
             Math.round((position.lat + Number.EPSILON) * 10000) / 10000,
           );
           setValue(
-            "tournament.coordinates.1",
+            `${page}.coordinates.1`,
             Math.round((position.lng + Number.EPSILON) * 10000) / 10000,
           );
         }
       },
     }),
-    [setValue],
+    [setValue, page],
   );
 
   return (
@@ -71,4 +71,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default MapCoordinateSelection;

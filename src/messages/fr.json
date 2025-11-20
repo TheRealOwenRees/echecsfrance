@@ -134,6 +134,37 @@
     "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
   },
 
+  "AddClub": {
+    "title": "Ajouter un Club",
+    "info": "Remplissez le formulaire ci-dessous et votre club sera examiné prochainement",
+
+    "yourNameLabel": "Votre Nom",
+    "yourNamePlaceholder": "Votre Nom",
+    "yourEmailLabel": "Votre adresse mail",
+    "yourEmailPlaceholder": "vous@exemple.com",
+    "messageLabel": "Information complémentaire",
+    "messagePlaceholder": "Information complémentaire",
+
+    "clubNameLabel": "Nom du Club",
+    "clubNamePlaceholder": "Nom du club",
+    "addressLabel": "Adresse",
+    "addressPlaceholder": "Adresse",
+    "emailLabel": "Adresse e-mail",
+    "emailPlaceholder": "club@exemple.com",
+    "websiteLabel": "Site Internet",
+    "websitePlaceholder": "www.example.com",
+
+    "latLabel": "Latitude",
+    "lngLabel": "Longitude",
+
+    "sendButton": "Envoi",
+    "sending": "Envoi en cours...",
+    "clearForm": "Réinitialiser",
+
+    "success": "Merci pour votre message.",
+    "failure": "Oops, quelque chose ne va pas. Veuillez réessayer SVP."
+  },
+
   "AddTournament": {
     "title": "Ajouter un Tournoi",
     "info": "Veuillez remplir le formulaire ci-dessous et votre tournoi sera validé très prochainement.",
@@ -166,7 +197,7 @@
     "yourEmailLabel": "Votre adresse mail",
     "yourEmailPlaceholder": "Votre adresse mail",
     "messageLabel": "Information complémentaire",
-    "messagePlaceholder": "Additional Info",
+    "messagePlaceholder": "Information complémentaire",
     "sendButton": "Envoi",
     "sending": "Envoi en cours...",
     "clearForm": "Réinitialiser",

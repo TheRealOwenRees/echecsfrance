@@ -9,6 +9,20 @@ export const contactUsSchema = z.object({
   message: z.string().min(1, { message: "FormValidation.required" }),
 });
 
+export const addClubSchema = z.object({
+  name: z.string().min(1, { message: "FormValidation.required" }),
+  email: z.string().email(),
+  message: z.string().optional(),
+
+  club: z.object({
+    name: z.string().min(1, { message: "FormValidation.required" }),
+    email: z.string().email().optional(),
+    address: z.string().min(1, { message: "FormValidation.required" }),
+    website: z.string().url({ message: "FormValidation.url" }).optional(),
+    coordinates: z.array(z.number()).length(2),
+  })
+})
+
 export const addTournamentSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),
   email: z.string().email(),
