@@ -1,0 +1,9 @@
+services:
+  mongodb:
+    image: mongo:8.2.2
+    container_name: echecsfrance-db-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+    - ./mongo/init:/docker-entrypoint-initdb.d
