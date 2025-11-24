@@ -11,9 +11,13 @@ export const addClub = actionClient
     try {
       const { name, email, message, club } = input.parsedInput;
 
+      console.log(club);
+
       const clubData = {
         name: club.name ?? "",
         address: club.address ?? "",
+        email: club.email ?? "",
+        website: club.website ?? "",
         coordinates: club.coordinates as [number, number],
         manual_entry: true,
         pending: true,
