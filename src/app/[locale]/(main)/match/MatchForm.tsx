@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import Select from "react-select";
 import { z } from "zod";
 
 import TeamSelection from "@/app/[locale]/(main)/match/components/TeamSelection";

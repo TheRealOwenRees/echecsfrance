@@ -21,7 +21,7 @@ interface IProps {
   clubOptions: {
     value: string;
     label: string;
-    url: string;
+    url: string | undefined;
   }[];
 }
 
@@ -42,7 +42,7 @@ const TeamSelection = ({ name, label, clubOptions }: IProps) => {
   });
 
   const selectedOption = clubOptions.find((c) => c.value === selectedDbId);
-  const selectedId = selectedOption?.url.split("=").pop();
+  const selectedId = selectedOption?.url?.split("=").pop();
 
   useEffect(() => {
     const fetchPlayers = async () => {
