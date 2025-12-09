@@ -20,8 +20,8 @@ export const addClubSchema = z.object({
     address: z.string().min(1, { message: "FormValidation.required" }),
     website: z.string().url({ message: "FormValidation.url" }).optional(),
     coordinates: z.array(z.number()).length(2),
-  })
-})
+  }),
+});
 
 export const addTournamentSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),
@@ -59,3 +59,24 @@ export const zoneSchema = z
     message: "FormValidation.zone",
     path: ["features"],
   });
+
+// export const fetchClubPlayersSchema = z.array(
+//   z.object({
+//     nrFFE: z.string(),
+//     name: z.string(),
+//     elo: z.string(),
+//     elo_rapid: z.string(),
+//     elo_blitz: z.string(),
+//     category: z.string(),
+//     club: z.string(),
+//   }),
+// );
+
+export const fetchClubPlayersSchema = z.object({
+  clubId: z.string(),
+});
+
+export const matchSchema = z.object({
+  team1: z.string(),
+  team2: z.string(),
+});

@@ -18,6 +18,7 @@ import {
 import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
 
+import { Player } from "@/interfaces";
 import { Club, TimeControl, Tournament } from "@/types";
 import atomWithDebounce from "@/utils/atomWithDebounce";
 import { normalizedContains } from "@/utils/string";
@@ -228,3 +229,5 @@ export const dateRangeAtom = atom<any>([
     key: "selection",
   },
 ]);
+
+export const clubPlayersAtom = atom<Record<string, Player[]>>({});

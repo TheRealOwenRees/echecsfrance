@@ -11,8 +11,6 @@ export const addClub = actionClient
     try {
       const { name, email, message, club } = input.parsedInput;
 
-      console.log(club);
-
       const clubData = {
         name: club.name ?? "",
         address: club.address ?? "",
