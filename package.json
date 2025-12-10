@@ -20,6 +20,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@infra-blocks/zod-utils": "^0.4.2",
     "@next/bundle-analyzer": "^14.0.4",
+    "@react-pdf/renderer": "^4.3.1",
     "@socialgouv/matomo-next": "^1.10.0",
     "@tanstack/react-query": "^5.29.0",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
