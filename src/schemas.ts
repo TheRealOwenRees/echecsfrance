@@ -60,23 +60,23 @@ export const zoneSchema = z
     path: ["features"],
   });
 
-// export const fetchClubPlayersSchema = z.array(
-//   z.object({
-//     nrFFE: z.string(),
-//     name: z.string(),
-//     elo: z.string(),
-//     elo_rapid: z.string(),
-//     elo_blitz: z.string(),
-//     category: z.string(),
-//     club: z.string(),
-//   }),
-// );
-
 export const fetchClubPlayersSchema = z.object({
   clubId: z.string(),
 });
 
+const matchPlayerSchema = z.object({
+  name: z.string(),
+  elo: z.string(),
+  nrFFE: z.string(),
+});
+
 export const matchSchema = z.object({
+  competition: z.string(),
+  date: z.string(),
+  ronde: z.number(),
+  lieu: z.string(),
   team1: z.string(),
   team2: z.string(),
+  team1_players: z.array(matchPlayerSchema),
+  team2_players: z.array(matchPlayerSchema),
 });

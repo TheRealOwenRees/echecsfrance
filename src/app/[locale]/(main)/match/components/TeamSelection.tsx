@@ -18,6 +18,7 @@ import { fetchClubPlayers } from "@/server/fetchClubPlayers";
 interface IProps {
   name: string;
   label: string;
+  className?: string;
   clubOptions: {
     value: string;
     label: string;
@@ -25,7 +26,7 @@ interface IProps {
   }[];
 }
 
-const TeamSelection = ({ name, label, clubOptions }: IProps) => {
+const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { control } = useFormContext();
@@ -81,7 +82,7 @@ const TeamSelection = ({ name, label, clubOptions }: IProps) => {
     })) || [];
 
   return (
-    <div className="col-span-2 space-y-4">
+    <div className={className}>
       <label className="mb-2 block text-sm font-medium text-gray-900">
         {label}
       </label>
