@@ -99,7 +99,7 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
             placeholder="Select a club..."
             onChange={(option) => {
               field.onChange(option?.value);
-              // Optional: Clear players if club changes, e.g. remove(0, fields.length)
+              remove();
             }}
             value={clubOptions.find((c) => c.value === field.value)}
             classNames={{
