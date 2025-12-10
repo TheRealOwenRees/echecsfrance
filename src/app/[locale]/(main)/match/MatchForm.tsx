@@ -1,49 +1,54 @@
 "use client";
 
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import Calendar from "@/app/[locale]/(main)/components/Calendar";
 import TeamSelection from "@/app/[locale]/(main)/match/components/TeamSelection";
+import { Button } from "@/components/Button";
+import InfoMessage, { InfoMessageType } from "@/components/InfoMessage";
 import { TextField } from "@/components/form/TextField";
 import { matchSchema } from "@/schemas";
+import { generateFeuilleDeMatch } from "@/server/generateFeuilleDeMatch";
 import { Club } from "@/types";
 
-type MatchFormValues = z.infer<typeof matchSchema>;
+export type MatchFormValues = z.infer<typeof matchSchema>;
 
 interface IProps {
   clubs: Club[];
 }
 
 const MatchForm = ({ clubs }: IProps) => {
+  const [responseMessage, setResponseMessage] = useState<{
+    type: InfoMessageType;
+    message: string;
+  } | null>(null);
+
   const form = useForm<MatchFormValues>({
-    // resolver: zodResolver(addTournamentSchema),
-    // defaultValues: {
-    //   tournament: {
-    //     norm_tournament: false,
-    //     coordinates: [47.0844, 2.3964],
-    //   },
-    // },
+    resolver: zodResolver(matchSchema),
   });
 
   const onSubmit = async (data: MatchFormValues) => {
+    console.log("submitting form with data: ", data);
     try {
-      console.log(data);
-      // await addTournament(data);
-      // setResponseMessage({
-      //   type: "success",
-      //   message: t("success"),
-      // });
+      await generateFeuilleDeMatch(data);
+
+      setResponseMessage({
+        type: "success",
+        message: "generated feuille de match",
+      });
 
       // form.reset(); // do not reset the form
     } catch (err: unknown) {
       console.log(err);
-      //
-      // setResponseMessage({
-      //   type: "error",
-      //   message: t("failure"),
-      // });
+
+      setResponseMessage({
+        type: "error",
+        message: "error creating feuille de match",
+      });
     }
   };
 
@@ -98,7 +103,24 @@ const MatchForm = ({ clubs }: IProps) => {
             className="col-span-3 space-y-4"
           />
         </div>
-        <button type="submit">Submit</button>
+
+        <div className="flex gap-4">
+          <Button disabled={form.formState.isSubmitting} type="submit">
+            {form.formState.isSubmitting ? "Generating" : "Generate"}
+          </Button>
+
+          <Button onClick={() => form.reset()} type="button" intent="secondary">
+            {"Clear"}
+          </Button>
+        </div>
+
+        {responseMessage && (
+          <InfoMessage
+            message={responseMessage.message}
+            type={responseMessage.type}
+            onDismiss={() => setResponseMessage(null)}
+          />
+        )}
       </form>
     </FormProvider>
   );

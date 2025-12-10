@@ -87,7 +87,6 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
         {label}
       </label>
 
-      {/* Team/Club Select */}
       <Controller
         name={name}
         control={control}
@@ -110,13 +109,12 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
         )}
       />
 
-      {/* Dynamic Player List */}
       <div className="space-y-3">
         {fields.map((field, index) => (
           <div key={field.id} className="flex items-center gap-2">
             <div className="flex-1">
               <Controller
-                name={`${name}_players.${index}.playerId`} // Saves as { playerId: "nrFFE_123" }
+                name={`${name}_players.${index}`} // Saves as { playerId: "nrFFE_123" }
                 control={control}
                 render={({ field: selectField }) => (
                   <Select
@@ -126,7 +124,6 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
                     isSearchable
                     placeholder="Search player..."
                     onChange={(option) => selectField.onChange(option?.value)}
-                    // Compare values using strict equality since value is now a string (nrFFE)
                     value={playerOptions.find(
                       (op) => op.value === selectField.value,
                     )}
@@ -149,14 +146,13 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
         ))}
       </div>
 
-      {/* Add Button */}
       {isLoading ? (
         <p className="text-sm text-gray-500">Loading players...</p>
       ) : (
         teamsPlayers[name]?.length > 0 && (
           <button
-            type="button" // Important to prevent form submission
-            onClick={() => append({ playerId: "" })} // Add new empty row to field array
+            type="button"
+            onClick={() => append({ nrFFE: "", name: "", elo: 0 })}
             className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800"
           >
             <FaPlus />

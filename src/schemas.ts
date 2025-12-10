@@ -72,7 +72,7 @@ const matchPlayerSchema = z.object({
 
 export const matchSchema = z.object({
   competition: z.string(),
-  date: z.string(),
+  date: z.date(),
   ronde: z.number(),
   lieu: z.string(),
   team1: z.string(),

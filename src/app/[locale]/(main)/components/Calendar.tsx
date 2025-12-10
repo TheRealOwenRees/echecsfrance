@@ -4,11 +4,8 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css";
-// main style file
 import "react-date-range/dist/theme/default.css";
 import { Control, useController } from "react-hook-form";
-
-// theme css file
 
 interface DateCalendarProps {
   control: Control<any>;
