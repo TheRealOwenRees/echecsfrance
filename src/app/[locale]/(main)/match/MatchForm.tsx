@@ -33,34 +33,24 @@ const MatchForm = ({ clubs }: IProps) => {
 
   const onSubmit = async (data: MatchFormValues) => {
     try {
-      await generateFeuilleDeMatch(data);
+      const result = await generateFeuilleDeMatch(data);
 
-      // // Destructure the result from the safe action
-      // const result = await generateFeuilleDeMatch(data);
-      //
-      // if (result?.data?.pdfBase64) {
-      //   // 1. Convert Base64 to Blob
-      //   const byteCharacters = atob(result.data.pdfBase64);
-      //   const byteNumbers = new Array(byteCharacters.length);
-      //   for (let i = 0; i < byteCharacters.length; i++) {
-      //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-      //   }
-      //   const byteArray = new Uint8Array(byteNumbers);
-      //   const blob = new Blob([byteArray], { type: "application/pdf" });
-      //
-      //   // 2. Create URL
-      //   const url = URL.createObjectURL(blob);
-      //
-      //   // 3. Open in new tab
-      //   window.open(url, "_blank");
-      // }
+      if (result?.data?.pdfBase64) {
+        const byteCharacters = atob(result.data.pdfBase64);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        window.open(url, "_blank");
+      }
 
       setResponseMessage({
         type: "success",
         message: "generated feuille de match",
       });
-
-      // form.reset(); // do not reset the form
     } catch (err: unknown) {
       console.log(err);
 
@@ -128,7 +118,13 @@ const MatchForm = ({ clubs }: IProps) => {
             {form.formState.isSubmitting ? "Generating" : "Generate"}
           </Button>
 
-          <Button onClick={() => form.reset()} type="button" intent="secondary">
+          <Button
+            onClick={() => {
+              form.reset();
+            }}
+            type="button"
+            intent="secondary"
+          >
             {"Clear"}
           </Button>
         </div>
