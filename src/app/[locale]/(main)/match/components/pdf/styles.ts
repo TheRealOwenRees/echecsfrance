@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
   boardHeaderRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    borderBottom: "1px solid black",
   },
   infoTable: {
     borderWidth: 1,
