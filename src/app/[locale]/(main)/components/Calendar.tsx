@@ -37,8 +37,8 @@ const DateCalendar = ({ control, name, label }: DateCalendarProps) => {
       )}
       <input
         readOnly
-        className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-b-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-300"
-        value={value ? format(value, "dd/MM/yyyy", { locale: fr }) : ""}
+        className="w-full rounded-md border border-gray-300 bg-gray-50 p-3 text-sm shadow-sm focus:border-b-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-300"
+        value={value ? format(value, "dd MMMM yyyy", { locale: fr }) : ""}
         onClick={() => setOpen((prev) => !prev)}
         placeholder="Sélectionner une date"
       />
