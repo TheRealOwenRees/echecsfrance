@@ -50,13 +50,14 @@ const MatchForm = ({ clubs }: IProps) => {
       return true;
     }
 
-    const team1Elos = team1Players
-      .filter((player) => player.elo !== "")
-      .map((player) => Number(player.elo?.split(" ")[0]));
+    function getEloArray(players: BoardPlayer[]) {
+      return players
+        .filter((player) => player.elo !== "")
+        .map((player) => Number(player.elo?.split(" ")[0]));
+    }
 
-    const team2Elos = team2Players
-      .filter((player) => player.elo !== "")
-      .map((player) => Number(player.elo?.split(" ")[0]));
+    const team1Elos = getEloArray(team1Players);
+    const team2Elos = getEloArray(team2Players);
 
     return !(!checkOrder(team1Elos) || !checkOrder(team2Elos));
   };
