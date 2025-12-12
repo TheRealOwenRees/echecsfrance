@@ -8,3 +8,18 @@ const formatDate = (inputDate: any) => {
 };
 
 export default formatDate;
+
+export const longDateLocaleString = ({
+  date,
+  locale,
+}: {
+  date: Date;
+  locale: string;
+}) => {
+  return date.toLocaleDateString(locale, {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+};

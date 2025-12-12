@@ -1,5 +1,7 @@
 import { Text, View } from "@react-pdf/renderer";
 
+import { longDateLocaleString } from "@/utils/formatDate";
+
 import { styles } from "./styles";
 
 interface IProps {
@@ -20,7 +22,7 @@ const InfoTable = ({ date, lieu, ronde }: IProps) => (
     {/* Data Row */}
     <View style={styles.infoRow}>
       <Text style={styles.infoCell}>
-        {date ? new Date(date).toLocaleDateString("fr-FR") : " "}
+        {date ? longDateLocaleString({ date, locale: "fr-FR" }) : ""}
       </Text>
       <Text style={styles.infoCell}>{lieu || " "}</Text>
       <Text style={[styles.infoCell, styles.lastCell]}>{ronde || " "}</Text>
