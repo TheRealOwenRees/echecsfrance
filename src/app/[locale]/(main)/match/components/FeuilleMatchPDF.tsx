@@ -84,9 +84,7 @@ export const FeuilleMatchPdf = ({ data }: IProps) => {
             marginTop: 10,
           }}
         >
-          <View
-            style={{ width: "35%", border: "1px solid black", padding: 10 }}
-          >
+          <View style={{ width: "35%", border: "1px solid black", padding: 8 }}>
             <Text style={{ textAlign: "center" }}>
               A RENVOYER AU PLUS TARD LE LENDEMAIN DU JOUR DE LA RENCONTRE A:
             </Text>

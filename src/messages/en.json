@@ -322,5 +322,9 @@
     "cookiesInfo": "We do not track users in an intrusive manner. However, we use <link>TinyAnalytics.io</link>, an anonymous, GDPR-friendly analytics tool, to gather anonymized usage statistics. No personally identifiable information is collected by this tool, and its usage is strictly limited to improving user experience.",
     "changesTitle": "Changes to This Privacy Policy",
     "changesInfo": "We may update this privacy policy from time to time. Any changes will be posted on this page, and we encourage you to review this policy periodically."
+  },
+  "FeuilleDeMatch": {
+    "title": "Match Sheet",
+    "subTitle": "Create a match sheet for your tournament"
   }
 }

@@ -323,5 +323,9 @@
     "cookiesInfo": "Nous ne suivons pas les utilisateurs de manière intrusive. Toutefois, nous utilisons <link>TinyAnalytics.io</link>, un outil d'analyse anonyme et conforme au RGPD (Règlement Général sur la Protection des Données), pour obtenir des statistiques d'utilisation anonymisées. Aucune donnée personnelle identifiable n'est collectée par cet outil, et son utilisation est strictement limitée à des fins d'amélioration de l'expérience utilisateur.",
     "changesTitle": "Modifications de Cette Politique de Confidentialité",
     "changesInfo": "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Toutes les modifications seront publiées sur cette page, et nous vous encourageons à consulter régulièrement cette politique."
+  },
+  "FeuilleDeMatch": {
+    "title": "Feuille de Match",
+    "subTitle": ""
   }
 }
