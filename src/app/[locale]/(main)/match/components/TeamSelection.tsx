@@ -2,6 +2,17 @@
 
 import { useEffect, useState } from "react";
 
+import {
+  DndContext,
+  PointerSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { useAtom } from "jotai";
 import {
   Controller,
@@ -14,6 +25,8 @@ import Select from "react-select";
 
 import { clubPlayersAtom } from "@/atoms";
 import { fetchClubPlayers } from "@/server/fetchClubPlayers";
+
+import SortablePlayerRow from "./SortablePlayerRow";
 
 interface IProps {
   name: string;
@@ -32,10 +45,16 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
   const { control } = useFormContext();
   const [teamsPlayers, setTeamsPlayers] = useAtom(clubPlayersAtom);
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: `${name}_players`, // e.g., "team1_players"
   });
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 6 },
+    }),
+  );
 
   const selectedDbId = useWatch({
     control,
@@ -118,42 +137,73 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
         )}
       />
 
-      <div className="space-y-3">
-        {fields.map((field, index) => (
-          <div key={field.id} className="flex items-center gap-2">
-            <div className="flex-1">
-              <Controller
-                name={`${name}_players.${index}`} // Saves as { playerId: "nrFFE_123" }
-                control={control}
-                render={({ field: selectField }) => (
-                  <Select
-                    {...selectField}
-                    instanceId={`${name}-player-${index}`}
-                    options={playerOptions}
-                    isSearchable
-                    placeholder="Search for a player..."
-                    onChange={(option) => selectField.onChange(option?.value)}
-                    value={playerOptions.find(
-                      (op) => op.value === selectField.value,
-                    )}
-                    classNames={{
-                      control: () => "border-gray-300 rounded-md shadow-sm",
-                    }}
-                  />
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={({ active, over }) => {
+          if (!over) return;
+          if (active.id === over.id) return;
+
+          const oldIndex = fields.findIndex((f) => f.id === active.id);
+          const newIndex = fields.findIndex((f) => f.id === over.id);
+
+          if (oldIndex === -1 || newIndex === -1) return;
+          move(oldIndex, newIndex);
+        }}
+      >
+        <SortableContext
+          items={fields.map((f) => f.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="space-y-3">
+            {fields.map((field, index) => (
+              <SortablePlayerRow
+                key={field.id}
+                field={field}
+                index={index}
+                renderField={(_field, i) => (
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1">
+                      <Controller
+                        name={`${name}_players.${i}`}
+                        control={control}
+                        render={({ field: selectField }) => (
+                          <Select
+                            {...selectField}
+                            instanceId={`${name}-player-${i}`}
+                            options={playerOptions}
+                            isSearchable
+                            placeholder="Search for a player..."
+                            onChange={(option) =>
+                              selectField.onChange(option?.value)
+                            }
+                            value={playerOptions.find(
+                              (op) => op.value === selectField.value,
+                            )}
+                            classNames={{
+                              control: () =>
+                                "border-gray-300 rounded-md shadow-sm",
+                            }}
+                          />
+                        )}
+                      />
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => remove(i)}
+                      className="p-2 text-red-500 hover:text-red-700"
+                      title="Remove player"
+                    >
+                      <FaMinus />
+                    </button>
+                  </div>
                 )}
               />
-            </div>
-            <button
-              type="button"
-              onClick={() => remove(index)}
-              className="p-2 text-red-500 hover:text-red-700"
-              title="Remove player"
-            >
-              <FaMinus />
-            </button>
+            ))}
           </div>
-        ))}
-      </div>
+        </SortableContext>
+      </DndContext>
 
       {isLoading ? (
         <p className="text-sm text-gray-500">Loading players...</p>
