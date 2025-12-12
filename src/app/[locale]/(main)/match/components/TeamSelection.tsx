@@ -71,15 +71,24 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
     fetchPlayers();
   }, [selectedId, name, setTeamsPlayers]);
 
-  const playerOptions =
-    teamsPlayers[name]?.map((player) => ({
+  const playerOptions = [
+    {
+      value: {
+        nrFFE: "",
+        name: "",
+        elo: "",
+      },
+      label: "-- EMPTY PLAYER --",
+    },
+    ...(teamsPlayers[name]?.map((player) => ({
       value: {
         nrFFE: player.nrFFE,
         name: player.name,
         elo: player.elo,
       },
       label: `${player.name} (${player.elo})`,
-    })) || [];
+    })) || []),
+  ];
 
   return (
     <div className={className}>
@@ -122,7 +131,7 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
                     instanceId={`${name}-player-${index}`}
                     options={playerOptions}
                     isSearchable
-                    placeholder="Search player..."
+                    placeholder="Search for a player..."
                     onChange={(option) => selectField.onChange(option?.value)}
                     value={playerOptions.find(
                       (op) => op.value === selectField.value,
@@ -152,7 +161,7 @@ const TeamSelection = ({ name, label, clubOptions, className }: IProps) => {
         teamsPlayers[name]?.length > 0 && (
           <button
             type="button"
-            onClick={() => append({ nrFFE: "", name: "", elo: 0 })}
+            onClick={() => append({ nrFFE: "", name: "", elo: "" })}
             className="flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800"
           >
             <FaPlus />

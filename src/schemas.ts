@@ -65,9 +65,9 @@ export const fetchClubPlayersSchema = z.object({
 });
 
 const matchPlayerSchema = z.object({
-  name: z.string(),
-  elo: z.string(),
-  nrFFE: z.string(),
+  name: z.string().optional(),
+  elo: z.string().optional(),
+  nrFFE: z.string().optional(),
 });
 
 export const matchSchema = z.object({
