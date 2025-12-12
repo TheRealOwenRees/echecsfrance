@@ -84,37 +84,46 @@ export const FeuilleMatchPdf = ({ data }: IProps) => {
             marginTop: 10,
           }}
         >
-          <View style={{ width: "33%", border: "1px solid black" }}>
-            <Text>
+          <View
+            style={{ width: "35%", border: "1px solid black", padding: 10 }}
+          >
+            <Text style={{ textAlign: "center" }}>
               A RENVOYER AU PLUS TARD LE LENDEMAIN DU JOUR DE LA RENCONTRE A:
             </Text>
-            <Text>Thierry Généreau</Text>
-            <Text>thierry.genereau@orange.fr</Text>
+            <Text style={{ textAlign: "center" }}>Thierry Généreau</Text>
+            <Text style={{ textAlign: "center" }}>
+              thierry.genereau@orange.fr
+            </Text>
           </View>
           <View style={{ width: "60%", flexDirection: "column" }}>
             <View
               style={{
                 flexDirection: "row",
+                justifyContent: "space-between",
                 gap: 10,
                 border: "1px solid black",
-                paddingVertical: 10,
+                height: 40,
                 columnGap: 80,
+                padding: 2,
               }}
             >
               <Text>Responsable de la rencontre:</Text>
-              <Text>Signature:</Text>
+              <Text style={{ marginRight: 100 }}>Signature:</Text>
             </View>
             <View
               style={{
                 flexDirection: "row",
+                justifyContent: "space-between",
                 gap: 10,
                 border: "1px solid black",
-                paddingVertical: 10,
                 columnGap: 80,
+                height: 40,
+                marginTop: 5,
+                padding: 2,
               }}
             >
               <Text>L'arbitre:</Text>
-              <Text>Signature:</Text>
+              <Text style={{ marginRight: 100 }}>Signature:</Text>
             </View>
           </View>
         </View>

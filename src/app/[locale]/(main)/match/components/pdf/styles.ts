@@ -1,7 +1,12 @@
 import { StyleSheet } from "@react-pdf/renderer";
 
 export const styles = StyleSheet.create({
-  page: { flexDirection: "column", padding: 30, fontSize: 10 },
+  page: {
+    flexDirection: "column",
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    fontSize: 10,
+  },
   header: { marginBottom: 10, textAlign: "center" },
   title: { fontSize: 18, fontWeight: "bold", marginBottom: 2 },
   section: { margin: 10, padding: 10, flexGrow: 1 },
