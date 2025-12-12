@@ -64,4 +64,16 @@ export const styles = StyleSheet.create({
   lastCell: {
     borderRightWidth: 0,
   },
+  footer: {
+    position: "absolute",
+    zIndex: 1,
+    bottom: 40,
+    left: 0,
+    right: 0,
+    fontSize: 8,
+  },
+  footerText: {
+    marginTop: 2,
+    textAlign: "center",
+  },
 });

@@ -1,17 +1,18 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
 
 import { type MatchFormValues } from "@/app/[locale]/(main)/match/MatchForm";
+import Footer from "@/app/[locale]/(main)/match/components/pdf/Footer";
 import Header from "@/app/[locale]/(main)/match/components/pdf/Header";
 import InfoTable from "@/app/[locale]/(main)/match/components/pdf/InfoTable";
 import Team from "@/app/[locale]/(main)/match/components/pdf/Team";
 
 import { styles } from "./pdf/styles";
 
-interface PdfProps {
+interface IProps {
   data: MatchFormValues;
 }
 
-export const FeuilleMatchPdf = ({ data }: PdfProps) => {
+export const FeuilleMatchPdf = ({ data }: IProps) => {
   const boardsCount = Math.max(
     data.team1_players?.length || 0,
     data.team2_players?.length || 0,
@@ -40,7 +41,6 @@ export const FeuilleMatchPdf = ({ data }: PdfProps) => {
             justifyContent: "space-between",
           }}
         >
-          {/* --- Team A Column --- */}
           <Team
             team={"A"}
             boards={boards}
@@ -48,7 +48,6 @@ export const FeuilleMatchPdf = ({ data }: PdfProps) => {
             teamName={data.team1}
           />
 
-          {/* --- Team B Column --- */}
           <Team
             team={"B"}
             boards={boards}
@@ -68,6 +67,8 @@ export const FeuilleMatchPdf = ({ data }: PdfProps) => {
           <Text>Arbitre</Text>
           <Text>Capitaine B</Text>
         </View>
+
+        <Footer />
       </Page>
     </Document>
   );
