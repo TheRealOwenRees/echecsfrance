@@ -69,12 +69,20 @@ const MatchForm = ({ clubs }: IProps) => {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-3/4 space-y-8">
-        <div className="grid grid-cols-6 items-start gap-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className="grid grid-cols-4 items-start gap-6">
           <div className="col-span-1">
             <Calendar name="date" control={form.control} label="Date" />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-3">
+            <TextField
+              name="lieu"
+              control={form.control}
+              label="Lieu"
+              required
+            />
+          </div>
+          <div className="col-span-3">
             <TextField
               name="competition"
               control={form.control}
@@ -91,25 +99,18 @@ const MatchForm = ({ clubs }: IProps) => {
               required
             />
           </div>
-          <div className="col-span-2">
-            <TextField
-              name="lieu"
-              control={form.control}
-              label="Lieu"
-              required
-            />
-          </div>
+
           <TeamSelection
             clubOptions={clubOptions}
             name="team1"
             label="Team 1"
-            className="col-span-3 space-y-4"
+            className="col-span-2 space-y-4"
           />
           <TeamSelection
             clubOptions={clubOptions}
             name="team2"
             label="Team 2"
-            className="col-span-3 space-y-4"
+            className="col-span-2 space-y-4"
           />
         </div>
 
