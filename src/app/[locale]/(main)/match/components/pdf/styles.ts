@@ -2,8 +2,8 @@ import { StyleSheet } from "@react-pdf/renderer";
 
 export const styles = StyleSheet.create({
   page: { flexDirection: "column", padding: 30, fontSize: 10 },
-  header: { marginBottom: 20, textAlign: "center" },
-  title: { fontSize: 18, fontWeight: "bold", marginBottom: 4 },
+  header: { marginBottom: 10, textAlign: "center" },
+  title: { fontSize: 18, fontWeight: "bold", marginBottom: 2 },
   section: { margin: 10, padding: 10, flexGrow: 1 },
   row: {
     flexDirection: "row",
@@ -19,14 +19,6 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderLeftColor: "#000",
   },
-  // headerRow: {
-  //   flexDirection: "row",
-  //   backgroundColor: "#E4E4E4",
-  //   borderBottomWidth: 1,
-  //   borderBottomColor: "#000",
-  //   height: 30,
-  //   alignItems: "center",
-  // },
   boardHeaderRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -36,7 +28,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#000",
     marginTop: 5,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   infoRow: {
     flexDirection: "row",

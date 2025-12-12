@@ -107,9 +107,10 @@ const Team = ({ team, teamName, teamPlayers, boards }: IProps) => {
           paddingBottom: 2,
         }}
       >
-        <Text>Gain: 1</Text>
-        <Text>Null: X</Text>
-        <Text>Perte: 0</Text>
+        <Text>GAIN: 1</Text>
+        <Text>NULL: X</Text>
+        <Text>PERTE: 0</Text>
+        <Text>FORFAIT: Voir réglement</Text>
       </View>
     </View>
   );

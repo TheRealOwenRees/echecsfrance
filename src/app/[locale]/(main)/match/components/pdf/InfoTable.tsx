@@ -8,14 +8,16 @@ interface IProps {
   date: Date;
   lieu: string;
   ronde: number;
+  competition: string;
 }
 
-const InfoTable = ({ date, lieu, ronde }: IProps) => (
+const InfoTable = ({ date, lieu, ronde, competition }: IProps) => (
   <View style={styles.infoTable}>
     {/* Header Row */}
     <View style={styles.infoRow}>
       <Text style={styles.infoCellHeader}>DATE</Text>
       <Text style={styles.infoCellHeader}>LIEU</Text>
+      <Text style={styles.infoCellHeader}>COMPETITION</Text>
       <Text style={[styles.infoCellHeader, styles.lastCell]}>RONDE</Text>
     </View>
 
@@ -25,6 +27,7 @@ const InfoTable = ({ date, lieu, ronde }: IProps) => (
         {date ? longDateLocaleString({ date, locale: "fr-FR" }) : ""}
       </Text>
       <Text style={styles.infoCell}>{lieu || " "}</Text>
+      <Text style={styles.infoCell}>{competition || " "}</Text>
       <Text style={[styles.infoCell, styles.lastCell]}>{ronde || " "}</Text>
     </View>
   </View>

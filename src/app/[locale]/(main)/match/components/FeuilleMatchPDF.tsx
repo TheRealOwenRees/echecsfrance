@@ -4,6 +4,7 @@ import { type MatchFormValues } from "@/app/[locale]/(main)/match/MatchForm";
 import Footer from "@/app/[locale]/(main)/match/components/pdf/Footer";
 import Header from "@/app/[locale]/(main)/match/components/pdf/Header";
 import InfoTable from "@/app/[locale]/(main)/match/components/pdf/InfoTable";
+import MatchSignaturePoints from "@/app/[locale]/(main)/match/components/pdf/MatchSignaturePoints";
 import Team from "@/app/[locale]/(main)/match/components/pdf/Team";
 
 import { styles } from "./pdf/styles";
@@ -25,18 +26,20 @@ export const FeuilleMatchPdf = ({ data }: IProps) => {
       <Page size="A4" orientation={"landscape"} style={styles.page}>
         <Header />
 
-        <View style={{ width: "75%", marginTop: 20, marginLeft: 100 }}>
-          <Text style={{ fontWeight: "bold", fontSize: 14, marginLeft: 100 }}>
-            {data.competition}
-          </Text>
-          <InfoTable date={data.date} lieu={data.lieu} ronde={data.ronde} />
+        <View style={{ width: "90%", marginLeft: "auto", marginRight: "auto" }}>
+          <InfoTable
+            date={data.date}
+            lieu={data.lieu}
+            ronde={data.ronde}
+            competition={data.competition}
+          />
         </View>
 
         {/* Main Content: Two Columns for Teams */}
         <View
           style={{
             width: "100%",
-            marginTop: 20,
+            marginTop: 5,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
@@ -58,14 +61,62 @@ export const FeuilleMatchPdf = ({ data }: IProps) => {
 
         <View
           style={{
-            marginTop: 50,
+            marginTop: 10,
             flexDirection: "row",
             justifyContent: "space-around",
+            width: "100%",
           }}
         >
-          <Text>Capitaine A</Text>
-          <Text>Arbitre</Text>
-          <Text>Capitaine B</Text>
+          <MatchSignaturePoints>
+            Nom et signature du Capitaine A
+          </MatchSignaturePoints>
+
+          <MatchSignaturePoints>
+            Nom et signature du Capitaine B
+          </MatchSignaturePoints>
+        </View>
+
+        <View
+          style={{
+            width: "75%",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginTop: 10,
+          }}
+        >
+          <View style={{ width: "33%", border: "1px solid black" }}>
+            <Text>
+              A RENVOYER AU PLUS TARD LE LENDEMAIN DU JOUR DE LA RENCONTRE A:
+            </Text>
+            <Text>Thierry Généreau</Text>
+            <Text>thierry.genereau@orange.fr</Text>
+          </View>
+          <View style={{ width: "60%", flexDirection: "column" }}>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 10,
+                border: "1px solid black",
+                paddingVertical: 10,
+                columnGap: 80,
+              }}
+            >
+              <Text>Responsable de la rencontre:</Text>
+              <Text>Signature:</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 10,
+                border: "1px solid black",
+                paddingVertical: 10,
+                columnGap: 80,
+              }}
+            >
+              <Text>L'arbitre:</Text>
+              <Text>Signature:</Text>
+            </View>
+          </View>
         </View>
 
         <Footer />
