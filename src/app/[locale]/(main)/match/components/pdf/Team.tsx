@@ -9,7 +9,7 @@ const teamBHeaderText = "CLUB SE DEPLACANT (Noirs échiquier 1)";
 interface IProps {
   team: "A" | "B";
   teamName: string;
-  teamPlayers: Pick<Player, "name" | "elo" | "nrFFE">[];
+  teamPlayers: Partial<Pick<Player, "name" | "elo" | "nrFFE">>[];
   boards: unknown[];
 }
 
