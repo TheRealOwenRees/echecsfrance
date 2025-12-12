@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   page: {
     flexDirection: "column",
     paddingHorizontal: 30,
-    paddingVertical: 10,
+    paddingVertical: 20,
     fontSize: 10,
   },
   header: { marginBottom: 10, textAlign: "center" },
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
   footer: {
     position: "absolute",
     zIndex: 1,
-    bottom: 40,
+    bottom: 10,
     left: 0,
     right: 0,
     fontSize: 8,
