@@ -54,6 +54,7 @@ const ContactForm = () => {
           name="email"
           control={form.control}
           label={t("emailLabel")}
+          aria-label={t("emailLabel")}
           placeholder={t("emailPlaceholder")}
           required
         />
@@ -62,6 +63,7 @@ const ContactForm = () => {
           name="subject"
           control={form.control}
           label={t("subjectLabel")}
+          aria-label={t("subjectLabel")}
           placeholder={t("subjectPlaceholder")}
           required
         />
@@ -71,6 +73,7 @@ const ContactForm = () => {
           control={form.control}
           rows={6}
           label={t("messageLabel")}
+          aria-label={t("messageLabel")}
           placeholder={t("messagePlaceholder")}
           required
         />
