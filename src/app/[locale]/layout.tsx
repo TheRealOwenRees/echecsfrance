@@ -6,11 +6,11 @@ import { Inter, Julius_Sans_One } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { LocaleChecker } from "@/components/LocaleChecker";
+import { MatomoAnalytics } from "@/components/MatomoAnalytics";
 import "@/css/globals.css";
 import Providers from "@/providers";
 
 import Footer from "./(main)/components/Footer";
-import { MatomoAnalytics } from "@/components/MatomoAnalytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const title = Julius_Sans_One({
@@ -31,10 +31,20 @@ export async function generateMetadata({
     namespace: "Metadata",
   });
 
+  const baseUrl = "https://echecsfrance.com";
+  const canonicalPath = locale === "fr" ? "" : `/${locale}`;
+
   return {
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),
+    alternates: {
+      canonical: `${baseUrl}${canonicalPath}`,
+      languages: {
+        fr: baseUrl,
+        en: `${baseUrl}/en`,
+      },
+    },
   };
 }
 
