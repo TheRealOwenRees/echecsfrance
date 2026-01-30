@@ -6,8 +6,10 @@ import {
 } from "date-fns";
 import { fr } from "date-fns/locale";
 import { groupBy } from "lodash";
+import { Metadata } from "next";
 import { unstable_cache } from "next/cache";
 
+import { baseUrl } from "@/constants";
 import { tournamentModelSchema } from "@/server/models/tournamentModel";
 import { collections, dbConnect } from "@/server/mongodb";
 import { TimeControl, Tournament, tcMap } from "@/types";
@@ -16,6 +18,25 @@ import { errorLog } from "@/utils/logger";
 import TournamentsDisplay from "./TournamentsDisplay";
 
 setDefaultOptions({ locale: fr });
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale?: string };
+}): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical:
+        locale === "fr"
+          ? `${baseUrl}/tournois`
+          : `${baseUrl}/${locale}/tournaments`,
+      languages: {
+        fr: `${baseUrl}/tournois`,
+        en: `${baseUrl}/en/tournaments`,
+      },
+    },
+  };
+}
 
 const getTournaments = async () => {
   try {

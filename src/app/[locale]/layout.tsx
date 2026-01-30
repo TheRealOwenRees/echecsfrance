@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 
 import { LocaleChecker } from "@/components/LocaleChecker";
 import { MatomoAnalytics } from "@/components/MatomoAnalytics";
+import { baseUrl } from "@/constants";
 import "@/css/globals.css";
 import Providers from "@/providers";
 
@@ -31,15 +32,12 @@ export async function generateMetadata({
     namespace: "Metadata",
   });
 
-  const baseUrl = "https://echecsfrance.com";
-  const canonicalPath = locale === "fr" ? "" : `/${locale}`;
-
   return {
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),
     alternates: {
-      canonical: `${baseUrl}${canonicalPath}`,
+      canonical: locale === "fr" ? baseUrl : `${baseUrl}/${locale}`,
       languages: {
         fr: baseUrl,
         en: `${baseUrl}/en`,
@@ -67,7 +65,7 @@ export default async function RootLayout({
       <head>
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no, viewport-fit=cover"
         />
 
         <meta name="application-name" content="Echecs France" />

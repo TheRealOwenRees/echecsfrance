@@ -6,3 +6,5 @@ export const TimeControlColours = {
   [TimeControl.Blitz]: "#ddce20",
   [TimeControl.Other]: "#ea5f17",
 };
+
+export const baseUrl = "https://echecsfrance.com";
