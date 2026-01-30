@@ -18,6 +18,7 @@ export default function Home() {
           src={bannerImage}
           alt="banner"
           sizes="100vw"
+          priority={true}
           style={{
             width: "100%",
             height: "auto",

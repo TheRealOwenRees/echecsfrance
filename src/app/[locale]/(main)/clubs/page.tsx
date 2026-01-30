@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import { unstable_cache } from "next/cache";
 
+import { baseUrl } from "@/constants";
 import { collections, dbConnect } from "@/server/mongodb";
 import { Club } from "@/types";
 import { filterClubsByManualEntry } from "@/utils/clubFilters";
@@ -8,6 +10,23 @@ import { errorLog } from "@/utils/logger";
 import ClubsDisplay from "./ClubsDisplay";
 
 export const revalidate = 3600; // Revalidate cache every 6 hours
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale?: string };
+}): Promise<Metadata> {
+  return {
+    alternates: {
+      canonical:
+        locale === "fr" ? `${baseUrl}/clubs` : `${baseUrl}/${locale}/clubs`,
+      languages: {
+        fr: `${baseUrl}/clubs`,
+        en: `${baseUrl}/en/clubs`,
+      },
+    },
+  };
+}
 
 const getClubs = async () => {
   try {
