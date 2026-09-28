@@ -1,12 +1,7 @@
 import React from "react";
 
 import { Switch, SwitchProps } from "@headlessui/react";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { Prettify } from "@/types";
@@ -16,10 +11,7 @@ import { Field, GenericFieldProps } from "./Field";
 type SwitchFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = Prettify<
-  GenericFieldProps<TFieldValues, TFieldName> &
-    Omit<SwitchProps<"button">, "name">
->;
+> = Prettify<GenericFieldProps<TFieldValues, TFieldName> & Omit<SwitchProps<"button">, "name">>;
 
 export const SwitchField = <
   TFieldValues extends FieldValues = FieldValues,
@@ -27,21 +19,7 @@ export const SwitchField = <
 >(
   props: SwitchFieldProps<TFieldValues, TFieldName>,
 ) => {
-  const {
-    name,
-    control,
-    label,
-    disabled,
-    className,
-    labelClassName,
-
-    childrenWrapperClassName,
-    hideErrorMessage,
-
-    ...rest
-  } = props;
-  const form = useFormContext<TFieldValues>();
-
+  const { name, control, label, disabled, className, labelClassName, ...rest } = props;
   return (
     <Field
       {...{

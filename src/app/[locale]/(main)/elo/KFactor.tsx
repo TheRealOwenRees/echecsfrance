@@ -23,29 +23,17 @@ export const KFactor = ({ className }: KFactorProps) => {
       </Disclosure.Button>
 
       <Disclosure.Panel className="mt-4">
-        <p className="text-sm text-gray-500 dark:text-neutral-400">
-          {t("kFactorInfo1")}
-        </p>
-        <p className="mt-4 text-sm text-gray-500 dark:text-neutral-400">
-          {t("kFactorInfo2")}
-        </p>
+        <p className="text-sm text-gray-500 dark:text-neutral-400">{t("kFactorInfo1")}</p>
+        <p className="mt-4 text-sm text-gray-500 dark:text-neutral-400">{t("kFactorInfo2")}</p>
 
         <ul className="mb-8 ml-4 mt-3 list-outside list-disc">
-          {(
-            [
-              "kFactorInfo3",
-              "kFactorInfo4",
-              "kFactorInfo5",
-              "kFactorInfo6",
-            ] as const
-          ).map((key) => (
-            <li
-              key={key}
-              className="mt-2 text-sm text-gray-500 dark:text-neutral-400"
-            >
-              {t.rich(key, { b: (str) => <b>{str}</b> })}
-            </li>
-          ))}
+          {(["kFactorInfo3", "kFactorInfo4", "kFactorInfo5", "kFactorInfo6"] as const).map(
+            (key) => (
+              <li key={key} className="mt-2 text-sm text-gray-500 dark:text-neutral-400">
+                {t.rich(key, { b: (str) => <b>{str}</b> })}
+              </li>
+            ),
+          )}
         </ul>
       </Disclosure.Panel>
     </Disclosure>

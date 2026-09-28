@@ -20,8 +20,7 @@ const Hamburger = () => {
         <div
           className={twMerge(
             "h-0.5 w-8 bg-gray-600 transition-all duration-300 ease-in-out dark:bg-white",
-            burgerMenuIsOpen &&
-              "translate-x-[1px] translate-y-2.5 rotate-45 bg-white",
+            burgerMenuIsOpen && "translate-x-[1px] translate-y-2.5 rotate-45 bg-white",
           )}
         ></div>
         <div

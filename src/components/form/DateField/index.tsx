@@ -1,16 +1,11 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 import { getYear, isValid, parse } from "date-fns";
 import fr from "date-fns/locale/fr";
 import { get } from "lodash";
 import { useLocale, useTranslations } from "next-intl";
 import DatePicker, { registerLocale } from "react-datepicker";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { Prettify } from "@/types";
@@ -45,10 +40,8 @@ export const DateField = <
   dateFormat = "dd/MM/yyyy",
   className,
   datePickerPopperClass,
-
   name,
   control,
-  required,
   ...otherFieldProps
 }: DateFieldProps<TFieldValues, TFieldName>) => {
   const locale = useLocale();
@@ -93,11 +86,7 @@ export const DateField = <
                 // Called when the user types in the input
                 if (e?.currentTarget && "value" in e.currentTarget) {
                   const value = e.currentTarget.value;
-                  const date = parse(
-                    value as string,
-                    at("dateParseFormat"),
-                    new Date(),
-                  );
+                  const date = parse(value as string, at("dateParseFormat"), new Date());
                   if (
                     isValid(date) &&
                     date.getFullYear() >= min &&
@@ -124,9 +113,7 @@ export const DateField = <
               minDate={minDate}
               showFullMonthYearPicker
               maxDate={maxDate}
-              renderCustomHeader={(props) => (
-                <DatePickerCustomHeader {...props} />
-              )}
+              renderCustomHeader={(props) => <DatePickerCustomHeader {...props} />}
               customInput={
                 <InputDatePicker
                   mask={at("dateMask")}

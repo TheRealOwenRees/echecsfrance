@@ -46,11 +46,7 @@ const CreateZone = () => {
         {t("createTitle")}
       </h2>
 
-      <ZoneForm
-        withInfo
-        onSubmit={onSubmit}
-        onCancel={() => router.push("/zones")}
-      />
+      <ZoneForm withInfo onSubmit={onSubmit} onCancel={() => router.push("/zones")} />
 
       {responseMessage && (
         <InfoMessage

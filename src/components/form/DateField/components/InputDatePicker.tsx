@@ -12,10 +12,7 @@ interface InputProps {
 }
 
 type AllProps = Omit<
-  React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  >,
+  React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
   "ref"
 > &
   InputProps;
@@ -24,12 +21,13 @@ export const InputDatePicker = forwardRef<HTMLInputElement, AllProps>(
   (
     {
       error,
+      // oxlint-disable-next-line no-unused-vars
       className,
+      // oxlint-disable-next-line no-unused-vars
       children,
       inputContainerClass,
       inputClass,
       mask,
-
       ...props
     },
     inputRef,

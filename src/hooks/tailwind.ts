@@ -14,7 +14,7 @@ const isSSR =
 const isBrowser = !isSSR;
 const useIsomorphicEffect = isBrowser ? useLayoutEffect : useEffect;
 
-export type CreatorReturnType = {
+type CreatorReturnType = {
   useBreakpoint<B>(breakpoint: B, defaultValue?: boolean): boolean;
   useBreakpointEffect<B>(breakpoint: B, effect: (match: boolean) => void): void;
   useBreakpointValue<B, T, U>(breakpoint: B, valid: T, invalid: U): T | U;
@@ -22,9 +22,7 @@ export type CreatorReturnType = {
 
 function create(screens: object | undefined) {
   if (!screens) {
-    throw new Error(
-      "Failed to create breakpoint hooks, given `screens` value is invalid.",
-    );
+    throw new Error("Failed to create breakpoint hooks, given `screens` value is invalid.");
   }
 
   function useBreakpoint(breakpoint: string, defaultValue: boolean = false) {
@@ -67,10 +65,7 @@ function create(screens: object | undefined) {
     invalid: U,
   ) {
     const match = useBreakpoint(breakpoint);
-    const value = useMemo(
-      () => (match ? valid : invalid),
-      [invalid, match, valid],
-    );
+    const value = useMemo(() => (match ? valid : invalid), [invalid, match, valid]);
     return value;
   }
 
@@ -81,5 +76,6 @@ function create(screens: object | undefined) {
   } as CreatorReturnType;
 }
 
-export const { useBreakpoint, useBreakpointEffect, useBreakpointValue } =
-  create(config.theme!.screens);
+export const { useBreakpoint } = create(
+  config.theme!.screens,
+);

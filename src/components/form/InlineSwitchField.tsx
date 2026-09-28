@@ -1,18 +1,12 @@
-import React from "react";
-
 import { SwitchProps } from "@headlessui/react";
 import { Controller, FieldPath, FieldValues } from "react-hook-form";
-import { twMerge } from "tailwind-merge";
-
 import { Field, GenericFieldProps } from "@/components/form/Field";
-
 import { InlineSwitch } from "./InlineSwitch";
 
 type InlineSwitchFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = GenericFieldProps<TFieldValues, TFieldName> &
-  Omit<SwitchProps<"button">, "name">;
+> = GenericFieldProps<TFieldValues, TFieldName> & Omit<SwitchProps<"button">, "name">;
 
 export const InlineSwitchField = <
   TFieldValues extends FieldValues = FieldValues,

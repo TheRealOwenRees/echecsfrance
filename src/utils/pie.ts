@@ -20,19 +20,7 @@ function getDAttribute(radius: number, startAngle: number, endAngle: number) {
   const end = polarToCartesian(radius, endAngle);
 
   const largeArcFlag = endAngle - startAngle <= 180 ? 0 : 1;
-  const d = [
-    "M",
-    start.x,
-    start.y,
-    "A",
-    radius,
-    radius,
-    0,
-    largeArcFlag,
-    1,
-    end.x,
-    end.y,
-  ];
+  const d = ["M", start.x, start.y, "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y];
 
   if (isCircle) {
     d.push("Z");
@@ -55,11 +43,7 @@ type PieSlice = {
   colour: string;
 };
 
-export function generatePieSVG(
-  className: string,
-  radius: number,
-  values: PieSlice[],
-) {
+export function generatePieSVG(className: string, radius: number, values: PieSlice[]) {
   type Sector = {
     colour: string;
     degrees: number;
@@ -80,5 +64,5 @@ export function generatePieSVG(
     return [...prev, [to, path(getDAttribute(radius, from, to), value.colour)]];
   }, []);
 
-  return svg(className, radius * 2, paths.map(([to, path]) => path).join(""));
+  return svg(className, radius * 2, paths.map(([_to, path]) => path).join(""));
 }

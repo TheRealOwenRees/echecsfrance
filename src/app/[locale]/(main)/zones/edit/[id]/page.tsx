@@ -49,7 +49,7 @@ const EditZone = () => {
 
       await refetch();
       router.push("/zones");
-    } catch (error) {
+    } catch {
       setResponseMessage({
         type: "error",
         message: t("createFailure"),
@@ -66,11 +66,7 @@ const EditZone = () => {
         {t("editTitle")}
       </h2>
 
-      <ZoneForm
-        onSubmit={onSubmit}
-        onCancel={() => router.push("/zones")}
-        zone={zone}
-      />
+      <ZoneForm onSubmit={onSubmit} onCancel={() => router.push("/zones")} zone={zone} />
 
       {responseMessage && (
         <InfoMessage

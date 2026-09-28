@@ -12,6 +12,8 @@ import "leaflet/dist/leaflet.css";
 import { FaAngleDoubleDown } from "react-icons/fa";
 import { LayerGroup, MapContainer, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
+import "react-leaflet-cluster/lib/assets/MarkerCluster.css";
+import "react-leaflet-cluster/lib/assets/MarkerCluster.Default.css";
 
 import { debouncedHoveredListIdAtom, mapBoundsAtom } from "@/atoms";
 import { MapEvents } from "@/components/MapEvents";
@@ -57,12 +59,7 @@ type MapProps = {
   iconCreateFunction?: L.MarkerClusterGroupOptions["iconCreateFunction"];
 };
 
-export const Map = ({
-  filters,
-  legend,
-  markers: markers,
-  iconCreateFunction,
-}: MapProps) => {
+export const Map = ({ filters, legend, markers, iconCreateFunction }: MapProps) => {
   const setMapBounds = useSetAtom(mapBoundsAtom);
 
   const hoveredListTournamentId = useAtomValue(debouncedHoveredListIdAtom);
@@ -80,17 +77,13 @@ export const Map = ({
 
   const expandAndBounceIfNeeded = useCallback(() => {
     if (hoveredListTournamentId) {
-      const marker = markers.find((m) =>
-        m.tableIds.includes(hoveredListTournamentId),
-      );
+      const marker = markers.find((m) => m.tableIds.includes(hoveredListTournamentId));
 
       if (marker) {
         const markerRef = markerRefs.current[marker.markerId];
         if (markerRef) {
           if (clusterRef.current) {
-            const visibleMarker = clusterRef.current.getVisibleParent(
-              markerRef.getMarker(),
-            );
+            const visibleMarker = clusterRef.current.getVisibleParent(markerRef.getMarker());
             if (!visibleMarker) return;
 
             // @ts-ignore
@@ -138,9 +131,7 @@ export const Map = ({
       // Once expanded, bounce the appropriate marker
 
       if (hoveredListTournamentId) {
-        const marker = markers.find((m) =>
-          m.tableIds.includes(hoveredListTournamentId),
-        );
+        const marker = markers.find((m) => m.tableIds.includes(hoveredListTournamentId));
         if (!marker) return;
 
         expandedClusterMarkerRef.current = e.cluster;
@@ -157,8 +148,7 @@ export const Map = ({
 
   const onUnSpiderified = useCallback(
     (e: L.MarkerClusterSpiderfyEvent) => {
-      if (expandedClusterMarkerRef.current === e.cluster)
-        expandedClusterMarkerRef.current = null;
+      if (expandedClusterMarkerRef.current === e.cluster) expandedClusterMarkerRef.current = null;
 
       // Once closed, we can expand the next group if needed
       expandAndBounceIfNeeded();
@@ -186,18 +176,22 @@ export const Map = ({
     // Expand/contract as hoveredListTournamentId changes
     if (expandAndBounceIfNeeded()) return;
 
-    if (expandedClusterMarkerRef.current)
-      expandedClusterMarkerRef.current.unspiderfy();
+    if (expandedClusterMarkerRef.current) expandedClusterMarkerRef.current.unspiderfy();
   }, [expandAndBounceIfNeeded, hoveredListTournamentId]);
 
   const referencedMarkers = useMemo(
     () =>
       markers.map((marker) =>
-        React.cloneElement(marker.component, {
-          ref: (ref: MarkerRef) => {
-            markerRefs.current[marker.markerId] = ref;
+        React.cloneElement(
+          marker.component as React.ReactElement<{
+            ref?: (ref: MarkerRef) => void;
+          }>,
+          {
+            ref: (ref: MarkerRef) => {
+              markerRefs.current[marker.markerId] = ref;
+            },
           },
-        }),
+        ),
       ),
     [markers],
   );
@@ -240,12 +234,7 @@ export const Map = ({
       </MapContainer>
 
       <div className="flex items-center justify-center lg:hidden">
-        <Button
-          intent="tertiary"
-          size="compacted"
-          className="p-3"
-          onClick={onScrollToTable}
-        >
+        <Button intent="tertiary" size="compacted" className="p-3" onClick={onScrollToTable}>
           <FaAngleDoubleDown />
         </Button>
       </div>

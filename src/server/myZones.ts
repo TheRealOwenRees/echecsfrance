@@ -23,9 +23,7 @@ export const myZones = actionClient.action(async () => {
     throw new Error("You must be logged in to fetch your zones");
   }
 
-  const zones = await collections
-    .zones!.find({ userId: new ObjectId(user.user!.id!) })
-    .toArray();
+  const zones = await collections.zones!.find({ userId: new ObjectId(user.user!.id!) }).toArray();
 
   const result: Zone[] = zones.map((zone) => ({
     ...omit(zone, ["_id", "userId"]),

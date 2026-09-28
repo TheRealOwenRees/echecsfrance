@@ -53,8 +53,7 @@ export default function EloClient() {
   const kFactorParam = searchParams.get("k");
   const player = searchParams.get("player") ?? "";
 
-  const kFactor =
-    kFactorParam && kFactors.includes(kFactorParam) ? kFactorParam : "20";
+  const kFactor = kFactorParam && kFactors.includes(kFactorParam) ? kFactorParam : "20";
 
   const hasTournamentId = !isEmpty(tournamentId.trim());
 
@@ -109,11 +108,7 @@ export default function EloClient() {
     const subscription = form.watch((value, { name, type }) => {
       let update = false;
       if (type === "change") {
-        if (
-          name === "tournamentId" &&
-          value.tournamentId !== tournamentId &&
-          value.tournamentId
-        ) {
+        if (name === "tournamentId" && value.tournamentId !== tournamentId && value.tournamentId) {
           current.set("tId", value.tournamentId);
           update = true;
         } else if (
@@ -122,18 +117,10 @@ export default function EloClient() {
           value.tournamentId === null
         ) {
           clearForm();
-        } else if (
-          name === "player" &&
-          value.player !== player &&
-          value.player
-        ) {
+        } else if (name === "player" && value.player !== player && value.player) {
           current.set("player", value.player);
           update = true;
-        } else if (
-          name === "kFactor" &&
-          value.kFactor !== kFactor &&
-          value.kFactor
-        ) {
+        } else if (name === "kFactor" && value.kFactor !== kFactor && value.kFactor) {
           current.set("k", value.kFactor);
           update = true;
         }
@@ -146,17 +133,7 @@ export default function EloClient() {
       }
     });
     return () => subscription.unsubscribe();
-  }, [
-    clearForm,
-    current,
-    form,
-    form.watch,
-    kFactor,
-    pathname,
-    player,
-    router,
-    tournamentId,
-  ]);
+  }, [clearForm, current, form, form.watch, kFactor, pathname, player, router, tournamentId]);
 
   useEffect(() => {
     // When the URL changes, we update the form values
@@ -184,9 +161,7 @@ export default function EloClient() {
         >
           {t("title")}
         </h2>
-        <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400">
-          {t("info")}
-        </p>
+        <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400">{t("info")}</p>
 
         {hasTournamentId && !isFetching && !error && (
           <div className="mx-auto mb-8 flex justify-center">
@@ -251,23 +226,17 @@ export default function EloClient() {
           </form>
         </FormProvider>
 
-        {hasTournamentId &&
-          !isFetching &&
-          player &&
-          playerResults &&
-          !error && (
-            <TournamentResults
-              playerId={player}
-              kFactor={parseInt(kFactor)}
-              results={allResults?.data ?? []}
-              tournament={tournament}
-            />
-          )}
+        {hasTournamentId && !isFetching && player && playerResults && !error && (
+          <TournamentResults
+            playerId={player}
+            kFactor={parseInt(kFactor)}
+            results={allResults?.data ?? []}
+            tournament={tournament}
+          />
+        )}
 
         {(!!error || allResults?.serverError) && (
-          <ErrorBox
-            error={<TranslatedError err={error ?? allResults?.serverError} />}
-          />
+          <ErrorBox error={<TranslatedError err={error ?? allResults?.serverError} />} />
         )}
 
         {((!hasTournamentId && !isFetching) || !!error) && (

@@ -3,17 +3,14 @@
 import { useCallback, useMemo } from "react";
 
 import { useAtomValue } from "jotai";
-import L, { LatLngLiteral } from "leaflet";
+import L from "leaflet";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet.smooth_marker_bouncing";
 import "leaflet/dist/leaflet.css";
 import { countBy, groupBy } from "lodash";
 
-import {
-  filteredTournamentsByTimeControlAndZoneAtom,
-  normsOnlyAtom,
-} from "@/atoms";
+import { filteredTournamentsByTimeControlAndZoneAtom, normsOnlyAtom } from "@/atoms";
 import { Map, MapMarker } from "@/components/Map";
 import { TimeControlColours } from "@/constants";
 import { TimeControl } from "@/types";
@@ -49,15 +46,12 @@ const TournamentMap = () => {
         ${generatePieSVG(
           "absolute w-[30px]",
           15,
-          [
-            TimeControl.Classic,
-            TimeControl.Rapid,
-            TimeControl.Blitz,
-            TimeControl.Other,
-          ].map((tc) => ({
-            value: timeControlCounts[tc] ?? 0,
-            colour: TimeControlColours[tc],
-          })),
+          [TimeControl.Classic, TimeControl.Rapid, TimeControl.Blitz, TimeControl.Other].map(
+            (tc) => ({
+              value: timeControlCounts[tc] ?? 0,
+              colour: TimeControlColours[tc],
+            }),
+          ),
         )}
         <span class="text-white font-semibold relative z-[300]">${childCount}</span>
       </div>
@@ -77,9 +71,7 @@ const TournamentMap = () => {
         return {
           markerId: groupId,
           tableIds: tournamentGroup.map((t) => t.id),
-          component: (
-            <TournamentMarker key={groupId} tournamentGroup={tournamentGroup} />
-          ),
+          component: <TournamentMarker key={groupId} tournamentGroup={tournamentGroup} />,
         };
       }),
     [groupedTournaments],

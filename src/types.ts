@@ -2,7 +2,7 @@ import { LatLngLiteral } from "leaflet";
 
 import { TournamentModel } from "./server/models/tournamentModel";
 
-export type Status = "scheduled" | "ongoing" | "finished" | "in-play";
+type Status = "scheduled" | "ongoing" | "finished" | "in-play";
 
 export enum TimeControl {
   Classic = "Classic",
@@ -43,14 +43,7 @@ export type Club = {
   latLng: LatLngLiteral;
 };
 
-export type ResponseMessage = {
-  isSuccessful: boolean;
-  message: string;
-};
-
 export type DatePickerDirection = "horizontal" | "vertical";
-
-export type ScrollableElement = Window | HTMLElement;
 
 // Prettify takes a type as its argument and returns a new type that has the same properties as the original type,
 // but the properties are not intersected. This means that the new type is easier to read and understand.
@@ -64,5 +57,4 @@ export type Path<T, K extends keyof T = keyof T> = K extends string
   ? T[K] extends Record<string, unknown>
     ? `${K}.${Path<T[K], keyof T[K]>}`
     : K
-
   : never;

@@ -5,51 +5,41 @@ export default function atomWithDebounce<T>(
   delayMilliseconds = 500,
   delayOnResetMilliseconds = 500,
 ) {
-  const prevTimeoutAtom = atom<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
+  const prevTimeoutAtom = atom<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // DO NOT EXPORT currentValueAtom as using this atom to set state can cause
   // inconsistent state between currentValueAtom and debouncedValueAtom
   const _currentValueAtom = atom(initialValue);
   const isDebouncingAtom = atom(false);
 
-  const debouncedValueAtom = atom(
-    initialValue,
-    (get, set, update: SetStateAction<T>) => {
-      clearTimeout(get(prevTimeoutAtom));
+  const debouncedValueAtom = atom(initialValue, (get, set, update: SetStateAction<T>) => {
+    clearTimeout(get(prevTimeoutAtom));
 
-      const prevValue = get(_currentValueAtom);
-      const nextValue =
-        typeof update === "function"
-          ? (update as (prev: T) => T)(prevValue)
-          : update;
+    const prevValue = get(_currentValueAtom);
+    const nextValue = typeof update === "function" ? (update as (prev: T) => T)(prevValue) : update;
 
-      const onDebounceStart = () => {
-        set(_currentValueAtom, nextValue);
-        set(isDebouncingAtom, true);
-      };
+    const onDebounceStart = () => {
+      set(_currentValueAtom, nextValue);
+      set(isDebouncingAtom, true);
+    };
 
-      const onDebounceEnd = () => {
-        set(debouncedValueAtom, nextValue);
-        set(isDebouncingAtom, false);
-      };
+    const onDebounceEnd = () => {
+      set(debouncedValueAtom, nextValue);
+      set(isDebouncingAtom, false);
+    };
 
-      onDebounceStart();
+    onDebounceStart();
 
-      const nextTimeoutId = setTimeout(
-        () => {
-          onDebounceEnd();
-        },
-        nextValue === initialValue
-          ? delayOnResetMilliseconds
-          : delayMilliseconds,
-      );
+    const nextTimeoutId = setTimeout(
+      () => {
+        onDebounceEnd();
+      },
+      nextValue === initialValue ? delayOnResetMilliseconds : delayMilliseconds,
+    );
 
-      // set previous timeout atom in case it needs to get cleared
-      set(prevTimeoutAtom, nextTimeoutId);
-    },
-  );
+    // set previous timeout atom in case it needs to get cleared
+    set(prevTimeoutAtom, nextTimeoutId);
+  });
 
   // exported atom setter to clear timeout if needed
   const clearTimeoutAtom = atom(null, (get, set) => {

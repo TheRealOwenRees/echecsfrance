@@ -8,17 +8,13 @@ import { Prettify } from "@/types";
 
 export type BaseOption<T = string, D = unknown> = {
   value: T;
-  label: string | JSX.Element;
+  label: string | React.JSX.Element;
   disabled?: boolean;
   data?: D;
 };
 
 export const createSelectClassNamesFn =
-  <Option, IsMulti extends boolean = false>({
-    size,
-  }: {
-    size?: "small" | "medium";
-  }) =>
+  <Option, IsMulti extends boolean = false>({ size }: { size?: "small" | "medium" }) =>
   (
     hasError: boolean,
     separators: boolean,
@@ -26,8 +22,7 @@ export const createSelectClassNamesFn =
     container: () => "w-full",
     valueContainer: () => "text-gray-900 dark:text-white",
     indicatorsContainer: () => "flex items-center self-stretch shrink-0",
-    clearIndicator: () =>
-      "flex items-center pr-2 text-gray-900 dark:text-white",
+    clearIndicator: () => "flex items-center pr-2 text-gray-900 dark:text-white",
     dropdownIndicator: () =>
       "pointer-events-none flex items-center pr-2 text-gray-900 dark:text-white",
     indicatorSeparator: () => "w-px text-gray-900 dark:text-white",
@@ -45,8 +40,7 @@ export const createSelectClassNamesFn =
     multiValue: () => "bg-fieldGray border rounded-lg flex space-x-1 pl-1 m-1",
     multiValueLabel: () => "",
     multiValueRemove: () => "items-center px-1 hover:text-primary",
-    placeholder: () =>
-      "block truncate pr-2 placeholder-gray dark:placeholder-gray-400",
+    placeholder: () => "block truncate pr-2 placeholder-gray dark:placeholder-gray-400",
     menu: () =>
       twMerge(
         "!z-30 mt-2 rounded-lg border border-gray-200 bg-white p-1",
@@ -65,33 +59,18 @@ export const createSelectClassNamesFn =
       "text-textGray p-2 bg-gray-50 border border-dashed border-gray-200 rounded-sm",
   });
 
-export type SelectProps<
-  IsMulti extends boolean = false,
-  T = string,
-  D = unknown,
-> = Prettify<
+export type SelectProps<IsMulti extends boolean = false, T = string, D = unknown> = Prettify<
   Omit<Props<BaseOption<T, D>, IsMulti>, "classNames"> & {
     required?: boolean;
     separators?: boolean;
     hasError?: boolean;
     size?: "small" | "medium";
-    classNameOverrides?: ClassNamesConfig<
-      BaseOption<T, D>,
-      IsMulti,
-      GroupBase<BaseOption<T, D>>
-    >;
+    classNameOverrides?: ClassNamesConfig<BaseOption<T, D>, IsMulti, GroupBase<BaseOption<T, D>>>;
   }
 >;
 
-export const Select = <
-  IsMulti extends boolean = false,
-  T = string,
-  D = unknown,
->({
-  className,
-  required,
+export const Select = <IsMulti extends boolean = false, T = string, D = unknown>({
   size,
-
   placeholder,
   separators,
   hasError,
@@ -121,7 +100,7 @@ export const Select = <
       }}
       classNames={{
         ...classNames(hasError ?? false, separators ?? false),
-        ...(classNameOverrides ?? {}),
+        ...classNameOverrides,
       }}
       {...selectProps}
     />

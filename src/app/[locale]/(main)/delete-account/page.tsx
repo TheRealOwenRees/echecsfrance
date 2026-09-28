@@ -57,28 +57,14 @@ export default function Contact() {
               {t("info")}
             </p>
 
-            {error && (
-              <InfoMessage
-                className="mb-8"
-                type="error"
-                message={t("failure")}
-              />
-            )}
+            {error && <InfoMessage className="mb-8" type="error" message={t("failure")} />}
 
             <div className="flex items-center justify-center space-x-4 text-sm font-bold">
-              <Button
-                type="button"
-                onClick={() => router.back()}
-                intent="secondary"
-              >
+              <Button type="button" onClick={() => router.back()} intent="secondary">
                 {at("cancelButton")}
               </Button>
 
-              <Button
-                onClick={() => onDeleteAccount()}
-                disabled={deleting}
-                intent="primary"
-              >
+              <Button onClick={() => onDeleteAccount()} disabled={deleting} intent="primary">
                 {t("deleteButton")}
               </Button>
             </div>

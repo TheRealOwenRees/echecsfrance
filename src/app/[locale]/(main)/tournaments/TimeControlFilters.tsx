@@ -1,13 +1,7 @@
 import { useAtom, useAtomValue } from "jotai";
 import { useTranslations } from "next-intl";
 
-import {
-  blitzAtom,
-  classicAtom,
-  otherAtom,
-  rapidAtom,
-  tournamentsAtom,
-} from "@/atoms";
+import { blitzAtom, classicAtom, otherAtom, rapidAtom, tournamentsAtom } from "@/atoms";
 import { TimeControl } from "@/types";
 
 const TimeControlFilters = () => {

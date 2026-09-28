@@ -101,11 +101,7 @@ const TournamentForm = () => {
               name="tournament.time_control"
               control={form.control}
               label={t("tcLabel")}
-              options={[
-                TimeControl.Classic,
-                TimeControl.Rapid,
-                TimeControl.Blitz,
-              ].map((tc) => ({
+              options={[TimeControl.Classic, TimeControl.Rapid, TimeControl.Blitz].map((tc) => ({
                 value: tc,
                 label: at("timeControlEnum", { tc }),
               }))}

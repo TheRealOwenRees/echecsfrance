@@ -6,16 +6,15 @@ const useDatePickerWidth = ({
   datePickerRef,
   setDateDirectionState,
 }: {
-  datePickerRef: RefObject<HTMLDivElement>;
+  datePickerRef: RefObject<HTMLDivElement | null>;
   setDateDirectionState: Dispatch<SetStateAction<DatePickerDirection>>;
 }) => {
   useEffect(() => {
     const updateDatePickerDirection = () => {
       const datePickerWidth = datePickerRef.current?.offsetWidth ?? 0;
       const isLg = datePickerWidth >= 680;
-      isLg
-        ? setDateDirectionState("horizontal")
-        : setDateDirectionState("vertical");
+      // oxlint-disable-next-line no-unused-expressions
+      isLg ? setDateDirectionState("horizontal") : setDateDirectionState("vertical");
     };
     updateDatePickerDirection();
 

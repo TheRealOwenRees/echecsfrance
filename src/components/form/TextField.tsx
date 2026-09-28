@@ -1,12 +1,7 @@
 import React from "react";
 
 import { get } from "lodash";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { Prettify } from "@/types";
@@ -57,11 +52,7 @@ export const TextField = <
   const hasError = !!get(errors, name)?.message;
 
   const input = (value: string | number) => {
-    return typeof value === "number"
-      ? isNaN(value)
-        ? ""
-        : value.toString()
-      : (value ?? "");
+    return typeof value === "number" ? (isNaN(value) ? "" : value.toString()) : (value ?? "");
   };
 
   const output =

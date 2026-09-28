@@ -12,6 +12,8 @@
 # pwa
 sw.*
 workbox*.*
+swe-worker*.*
+!src/app/sw.ts
 
 # testing
 /coverage

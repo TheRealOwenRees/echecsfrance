@@ -20,8 +20,8 @@ export const addClubSchema = z.object({
     address: z.string().min(1, { message: "FormValidation.required" }),
     website: z.string().url({ message: "FormValidation.url" }).optional(),
     coordinates: z.array(z.number()).length(2),
-  })
-})
+  }),
+});
 
 export const addTournamentSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),

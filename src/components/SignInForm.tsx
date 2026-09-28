@@ -97,10 +97,7 @@ export const SignInForm = ({ callbackPath }: SignInFormProps) => {
         </Button>
 
         {responseMessage && (
-          <InfoMessage
-            message={responseMessage.message}
-            type={responseMessage.type}
-          />
+          <InfoMessage message={responseMessage.message} type={responseMessage.type} />
         )}
       </form>
     </FormProvider>

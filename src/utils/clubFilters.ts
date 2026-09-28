@@ -21,11 +21,7 @@ export const filterClubsByManualEntry = (clubData: IClub[]): IClub[] =>
 
       const existing = acc[key];
 
-      if (
-        club.manual_entry === true &&
-        existing.manual_entry !== true &&
-        club.pending !== true
-      ) {
+      if (club.manual_entry === true && existing.manual_entry !== true && club.pending !== true) {
         acc[key] = club;
       }
 

@@ -17,39 +17,37 @@ const editZoneSchema = z.object({
   zone: zoneSchema,
 });
 
-export const editZone = actionClient
-  .schema(editZoneSchema)
-  .action(async (input) => {
-    const { id, zone } = input.parsedInput;
-    try {
-      await dbConnect();
+export const editZone = actionClient.schema(editZoneSchema).action(async (input) => {
+  const { id, zone } = input.parsedInput;
+  try {
+    await dbConnect();
 
-      const user = await auth();
-      if (!user?.user) {
-        throw new Error("You must be logged in to create a zone");
-      }
-
-      const zoneData: ZoneModel = {
-        ...zone,
-        userId: new ObjectId(user.user!.id!),
-      };
-
-      const result = await collections.zones!.findOneAndUpdate(
-        { _id: new ObjectId(id), userId: new ObjectId(user.user!.id!) },
-        { $set: { _id: new ObjectId(id), ...zoneData } },
-      );
-
-      if (!result) {
-        throw new Error("ERR_ZONE_UPDATE_FAILED");
-      }
-
-      return {
-        ...omit(result, ["_id"]),
-        id: result._id.toString(),
-        userId: result.userId.toString(),
-      };
-    } catch (error) {
-      errorLog(error);
-      throw error;
+    const user = await auth();
+    if (!user?.user) {
+      throw new Error("You must be logged in to create a zone");
     }
-  });
+
+    const zoneData: ZoneModel = {
+      ...zone,
+      userId: new ObjectId(user.user!.id!),
+    };
+
+    const result = await collections.zones!.findOneAndUpdate(
+      { _id: new ObjectId(id), userId: new ObjectId(user.user!.id!) },
+      { $set: { _id: new ObjectId(id), ...zoneData } },
+    );
+
+    if (!result) {
+      throw new Error("ERR_ZONE_UPDATE_FAILED");
+    }
+
+    return {
+      ...omit(result, ["_id"]),
+      id: result._id.toString(),
+      userId: result.userId.toString(),
+    };
+  } catch (error) {
+    errorLog(error);
+    throw error;
+  }
+});

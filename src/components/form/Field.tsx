@@ -1,12 +1,7 @@
 import { ReactNode } from "react";
 
 import { get } from "lodash";
-import {
-  Control,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Control, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { Prettify } from "@/types";
@@ -70,13 +65,7 @@ export const Field = <
         </Label>
       ) : null}
 
-      <div
-        className={twMerge(
-          "flex w-full",
-          label && "mt-2",
-          childrenWrapperClassName,
-        )}
-      >
+      <div className={twMerge("flex w-full", label && "mt-2", childrenWrapperClassName)}>
         {children}
       </div>
 
