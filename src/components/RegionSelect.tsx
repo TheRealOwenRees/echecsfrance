@@ -22,10 +22,7 @@ type RegionSelectProps = Omit<
 type RegionOption = BaseOption<string, Zone | null>;
 type GroupedOption = GroupBase<RegionOption>;
 
-export const RegionSelect = ({
-  syncTitle,
-  ...selectProps
-}: RegionSelectProps) => {
+export const RegionSelect = ({ syncTitle, ...selectProps }: RegionSelectProps) => {
   const t = useTranslations("Zones");
   const router = useRouter();
   const [regionFilter, setRegionFilter] = useAtom(regionFilterAtom);
@@ -67,9 +64,7 @@ export const RegionSelect = ({
     },
   ];
 
-  const onChange = (
-    option: OnChangeValue<BaseOption<string, Zone | null>, false>,
-  ) => {
+  const onChange = (option: OnChangeValue<BaseOption<string, Zone | null>, false>) => {
     if (!option) return;
 
     if (option.value === "create") {
@@ -114,11 +109,7 @@ export const RegionSelect = ({
   );
 
   const getValue = () => {
-    if (
-      regionFilter === "all" ||
-      regionFilter === "map" ||
-      regionFilter === "region"
-    ) {
+    if (regionFilter === "all" || regionFilter === "map" || regionFilter === "region") {
       return allOptions.find((o) => o.value === regionFilter);
     }
 

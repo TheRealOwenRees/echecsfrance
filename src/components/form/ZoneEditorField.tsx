@@ -20,8 +20,7 @@ type ZoneEditorFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Prettify<
-  GenericFieldProps<TFieldValues, TFieldName> &
-    Omit<ZoneEditorProps, "value" | "onChange">
+  GenericFieldProps<TFieldValues, TFieldName> & Omit<ZoneEditorProps, "value" | "onChange">
 >;
 
 export const ZoneEditorField = <

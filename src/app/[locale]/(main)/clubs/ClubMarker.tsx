@@ -94,10 +94,7 @@ export const ClubMarker = forwardRef<MarkerRef, ClubMarkerProps>(
               )}
               {club.email && (
                 <div>
-                  <a
-                    href={`mailto:${club.email}`}
-                    className="text-primary hover:text-primary-800"
-                  >
+                  <a href={`mailto:${club.email}`} className="text-primary hover:text-primary-800">
                     {club.email}
                   </a>
                 </div>

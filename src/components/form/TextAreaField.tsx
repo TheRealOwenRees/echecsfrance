@@ -1,12 +1,7 @@
-import React from "react";
+import type { HTMLProps, ReactNode } from "react";
 
 import { get } from "lodash";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 
 import { Prettify } from "@/types";
@@ -19,9 +14,9 @@ type TextAreaFieldProps<
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Prettify<
   GenericFieldProps<TFieldValues, TFieldName> &
-    Omit<React.HTMLProps<HTMLTextAreaElement>, "ref" | "name"> & {
+    Omit<HTMLProps<HTMLTextAreaElement>, "ref" | "name"> & {
       handleChanged?: (props: { name: string }) => void;
-      startIcon?: React.ReactNode;
+      startIcon?: ReactNode;
       required?: boolean;
     }
 >;
@@ -40,11 +35,7 @@ export const TextAreaField = <
     labelClassName,
     childrenWrapperClassName,
     hideErrorMessage = false,
-
-    startIcon,
-    handleChanged,
     required,
-
     disabled,
     ...rest
   } = props;

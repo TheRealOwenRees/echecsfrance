@@ -49,11 +49,7 @@ export default function Footer() {
         <Link href="/contact-us" aria-label={t("contactAria")} className="mr-4">
           <FaRegEnvelope />
         </Link>
-        <Link
-          href="/privacy"
-          aria-label={t("privacyPolicyAria")}
-          className="mr-4"
-        >
+        <Link href="/privacy" aria-label={t("privacyPolicyAria")} className="mr-4">
           <MdOutlinePrivacyTip />
         </Link>
         <div className="mr-4 space-x-2 text-xs">

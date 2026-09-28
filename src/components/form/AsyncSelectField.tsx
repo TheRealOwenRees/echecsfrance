@@ -2,13 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { get, isArray, isNil } from "lodash";
 import { useTranslations } from "next-intl";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-  useWatch,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext, useWatch } from "react-hook-form";
 import { ActionMeta, GroupBase, OnChangeValue, Props } from "react-select";
 import AsyncSelect from "react-select/async";
 
@@ -52,19 +46,16 @@ export const AsyncSelectField = <
   hideErrorMessage,
   required,
   size,
-
   loadOption,
   loadOptions,
   onInformChange,
-
   placeholder,
   separators,
-
   ...selectProps
 }: AsyncSelectFieldProps<TFieldValues, TFieldName, IsMulti, T, D>) => {
   const t = useTranslations("App");
   const [loadingValues, setLoadingValues] = useState(false);
-  const [loadedInitialValues, setLoadedInitialValues] = useState(false);
+  const [_loadedInitialValues, setLoadedInitialValues] = useState(false);
   const [loadingOptions, setLoadingOptions] = useState(false);
   const valueOptions = useRef<BaseOption<T, D>[]>([]);
   const searchOptions = useRef<BaseOption<T, D>[]>([]);
@@ -78,8 +69,7 @@ export const AsyncSelectField = <
         const values = !value ? [] : isArray(value) ? value : [value];
 
         const unFetchedValues = values.filter(
-          (v) =>
-            valueOptions.current.find((o) => o.value === value) === undefined,
+          () => valueOptions.current.find((o) => o.value === value) === undefined,
         );
 
         if (unFetchedValues.length > 0) {
@@ -98,9 +88,10 @@ export const AsyncSelectField = <
           setLoadingValues(false);
 
           onInformChange?.(
-            values.map(
-              (v) => valueOptions.current.find((o) => o.value === v)!,
-            ) as BaseOption<T, D>[],
+            values.map((v) => valueOptions.current.find((o) => o.value === v)!) as BaseOption<
+              T,
+              D
+            >[],
           );
 
           // This forced a state update, which enures that the select is updated once the query has finished
@@ -122,9 +113,10 @@ export const AsyncSelectField = <
   const hasError = !!get(errors, name)?.message;
 
   const valueToOption = (value: T) =>
-    [...valueOptions.current, ...searchOptions.current].find(
-      (o) => o.value === value,
-    ) ?? { value, label: "" };
+    [...valueOptions.current, ...searchOptions.current].find((o) => o.value === value) ?? {
+      value,
+      label: "",
+    };
 
   const fetchOptions = async (searchString?: string) => {
     setLoadingOptions(true);

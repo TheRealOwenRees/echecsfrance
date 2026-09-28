@@ -15,7 +15,7 @@ import { MapEvents } from "@/components/MapEvents";
 
 const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
-const MapCoordinateSelection = ( { page }: {page: "club" | "tournament"}) => {
+const MapCoordinateSelection = ({ page }: { page: "club" | "tournament" }) => {
   const { control, setValue } = useFormContext();
 
   const latValue = useWatch({ control, name: `${page}.coordinates.0` });

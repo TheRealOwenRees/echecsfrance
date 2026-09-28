@@ -22,9 +22,7 @@ const TournamentMap = dynamic(() => import("./TournamentMap"), {
   loading: LoadingMap,
 });
 
-export default function TournamentsDisplay({
-  tournaments,
-}: TournamentsDisplayProps) {
+export default function TournamentsDisplay({ tournaments }: TournamentsDisplayProps) {
   useHydrateAtoms([[tournamentsAtom, tournaments]]);
 
   return (

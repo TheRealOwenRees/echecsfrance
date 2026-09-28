@@ -1,21 +1,17 @@
-import React from "react";
-
+import type { ReactNode } from 'react'
 import { Switch, SwitchProps } from "@headlessui/react";
 import { twMerge } from "tailwind-merge";
 
 export const InlineSwitch = (
   props: {
-    label?: React.ReactNode;
+    label?: ReactNode;
     tooltip?: string;
     tooltipId?: string;
   } & SwitchProps<"button">,
 ) => {
   const {
     label,
-    tooltip,
-    tooltipId,
     disabled,
-
     ...rest
   } = props;
 

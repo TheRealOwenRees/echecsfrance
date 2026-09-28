@@ -12,14 +12,14 @@ import ClubsDisplay from "./ClubsDisplay";
 export const revalidate = 3600; // Revalidate cache every 6 hours
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   return {
     alternates: {
-      canonical:
-        locale === "fr" ? `${baseUrl}/clubs` : `${baseUrl}/${locale}/clubs`,
+      canonical: locale === "fr" ? `${baseUrl}/clubs` : `${baseUrl}/${locale}/clubs`,
       languages: {
         fr: `${baseUrl}/clubs`,
         en: `${baseUrl}/en/clubs`,

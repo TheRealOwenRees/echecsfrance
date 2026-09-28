@@ -14,10 +14,7 @@ import { mapBoundsAtom } from "@/atoms";
 L.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
 
 const worldBounds = L.latLngBounds(L.latLng(-90, -180), L.latLng(90, 180));
-const franceBounds = L.latLngBounds(
-  L.latLng(42.08, -5.12),
-  L.latLng(51.17, 9.53),
-);
+const franceBounds = L.latLngBounds(L.latLng(42.08, -5.12), L.latLng(51.17, 9.53));
 
 type MapEventsProps = {
   bounds?: L.LatLngBounds;
@@ -32,7 +29,7 @@ export const MapEvents = ({
   const t = useTranslations("Map");
   const map = useMap();
   const setMapBounds = useSetAtom(mapBoundsAtom);
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition();
 
   useMapEvent("moveend", () => {
     if (!updateMapBoundsAtom) return;
@@ -49,17 +46,12 @@ export const MapEvents = ({
     map.setView(bounds.getCenter(), zoom === Infinity ? 10 : zoom);
     map.setMaxBounds(worldBounds);
     map.options.maxBoundsViscosity = 1.0; // Prevents going past bounds while dragging
-
     map.addHandler("gestureHandling", GestureHandling);
-
     map.gestureHandling?.enable();
   }, [bounds, map]);
 
   useEffect(() => {
-    if (
-      "gestureHandlingOptions" in map.options &&
-      map.options.gestureHandlingOptions
-    ) {
+    if ("gestureHandlingOptions" in map.options && map.options.gestureHandlingOptions) {
       map.options.gestureHandlingOptions.text = {
         touch: t("touch"),
         scroll: t("scroll"),

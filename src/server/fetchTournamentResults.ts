@@ -58,9 +58,7 @@ const getEloDetails = (elo: string | null) => {
   };
 };
 
-const getResultDetails = (
-  results: z.infer<typeof dbSchema>[number]["results"][number],
-) => {
+const getResultDetails = (results: z.infer<typeof dbSchema>[number]["results"][number]) => {
   if (results.opponent_name === null) {
     return { result: 0, lostByForfeit: true, wonByForfeit: false };
   }
@@ -118,12 +116,9 @@ export const fetchTournamentResults = actionClient
         headers.append("api-key", apiKey);
       }
 
-      const rawResults = await fetch(
-        `${process.env.RESULTS_SCRAPER_URL}${id}`,
-        {
-          headers: headers,
-        },
-      );
+      const rawResults = await fetch(`${process.env.RESULTS_SCRAPER_URL}${id}`, {
+        headers: headers,
+      });
 
       if (rawResults.status >= 500) {
         throw new Error("ERR_TOURNAMENT_RESULTS_NOT_AVAILABLE");
@@ -143,12 +138,7 @@ export const fetchTournamentResults = actionClient
           name: player.name,
           ...getEloDetails(player.elo),
           results: player.results.map((result) => ({
-            colour:
-              result.colour === "B"
-                ? "white"
-                : result.colour === "N"
-                  ? "black"
-                  : "",
+            colour: result.colour === "B" ? "white" : result.colour === "N" ? "black" : "",
             opponent: result.opponent_name,
             ...getResultDetails(result),
             ...getEloDetails(result.opponent_elo),
@@ -156,10 +146,7 @@ export const fetchTournamentResults = actionClient
         })),
       );
     } catch (error: any) {
-      if (
-        !("message" in error) ||
-        error.message !== "ERR_TOURNAMENT_NOT_FOUND"
-      ) {
+      if (!("message" in error) || error.message !== "ERR_TOURNAMENT_NOT_FOUND") {
         reportFetchError(id, error);
         errorLog(JSON.stringify(error, null, 2));
       }

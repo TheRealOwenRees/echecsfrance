@@ -12,12 +12,12 @@ import { Zone } from "@/server/myZones";
 
 const center: LatLngLiteral = { lat: 47.0844, lng: 2.3964 };
 
-export type ZoneThumbnailProps = {
+type ZoneThumbnailProps = {
   features: Zone["features"];
   className?: string;
 };
 
-export const ZoneThumbnail = ({ features, className }: ZoneThumbnailProps) => {
+const ZoneThumbnail = ({ features, className }: ZoneThumbnailProps) => {
   return (
     <MapContainer
       center={center}

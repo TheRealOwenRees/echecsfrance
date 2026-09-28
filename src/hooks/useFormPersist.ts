@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 
 import { SetFieldValue } from "react-hook-form";
 
-export interface FormPersistConfig {
+interface FormPersistConfig {
   storage?: Storage;
   watch: (names?: string | string[]) => any;
   setValue: SetFieldValue<any>;
@@ -26,15 +26,9 @@ const useFormPersist = (
 ) => {
   const watchedValues = watch();
 
-  const getStorage = useCallback(
-    () => storage || window.sessionStorage,
-    [storage],
-  );
+  const getStorage = useCallback(() => storage || window.sessionStorage, [storage]);
 
-  const clearStorage = useCallback(
-    () => getStorage().removeItem(name),
-    [getStorage, name],
-  );
+  const clearStorage = useCallback(() => getStorage().removeItem(name), [getStorage, name]);
 
   useEffect(() => {
     const storedValuesJSON = getStorage().getItem(name);
@@ -58,17 +52,7 @@ const useFormPersist = (
 
       return () => getStorage().setItem(name, JSON.stringify(dataRestored));
     }
-  }, [
-    storage,
-    name,
-    setValue,
-    clearStorage,
-    dirty,
-    exclude,
-    touch,
-    validate,
-    getStorage,
-  ]);
+  }, [storage, name, setValue, clearStorage, dirty, exclude, touch, validate, getStorage]);
 
   useEffect(() => {
     const values =

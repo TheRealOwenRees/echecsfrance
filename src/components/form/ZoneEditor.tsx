@@ -18,9 +18,9 @@ export type ZoneEditorProps = {
   onChange: (geoJson: FeatureCollection) => void;
 };
 
-export const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
+const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
   const initialFeatures = React.useRef(value?.features);
-  const featureGroup = React.useRef<L.FeatureGroup>();
+  const featureGroup = React.useRef<L.FeatureGroup | null>(null);
 
   const setFeatureCollectionRef = (element: L.FeatureGroup) => {
     featureGroup.current = element;
@@ -52,11 +52,7 @@ export const ZoneEditor = ({ value, onChange }: ZoneEditorProps) => {
   };
 
   return (
-    <MapContainer
-      center={center}
-      zoom={5}
-      style={{ height: "600px", flexGrow: 1 }}
-    >
+    <MapContainer center={center} zoom={5} style={{ height: "600px", flexGrow: 1 }}>
       <MapEvents
         bounds={
           (initialFeatures.current ?? []).length > 0

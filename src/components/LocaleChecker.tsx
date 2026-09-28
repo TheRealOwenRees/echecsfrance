@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
@@ -10,11 +10,11 @@ import { setUserLocale } from "@/server/setUserLocale";
 import { usePathname, useRouter } from "@/utils/routing";
 
 type LocaleCheckerProps = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
 export const LocaleChecker = ({ children }: LocaleCheckerProps) => {
-  const { data: sessionData, status, update } = useSession();
+  const { data: sessionData, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -30,23 +30,14 @@ export const LocaleChecker = ({ children }: LocaleCheckerProps) => {
 
     // If the user is authenticated and has a preferred locale that is different from the user's locale,
     // then we update redirect to the user's preference
-    if (
-      status === "authenticated" &&
-      userLocale !== undefined &&
-      userLocale !== locale
-    ) {
+    if (status === "authenticated" && userLocale !== undefined && userLocale !== locale) {
       router.push({ pathname, params: params as any }, { locale: userLocale });
     }
   }, [locale, sessionData, status, params, pathname, router, userLocale]);
 
   // To avoid flickering, we don't render the children until we have the user's locale
   if (status === "loading") return null;
-  if (
-    status === "authenticated" &&
-    userLocale !== undefined &&
-    userLocale !== locale
-  )
-    return null;
+  if (status === "authenticated" && userLocale !== undefined && userLocale !== locale) return null;
 
   return children;
 };

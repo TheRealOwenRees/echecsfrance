@@ -6,4 +6,4 @@ services:
     ports:
       - "27017:27017"
     volumes:
-    - ./mongo/init:/docker-entrypoint-initdb.d
+      - ./mongo/init:/docker-entrypoint-initdb.d

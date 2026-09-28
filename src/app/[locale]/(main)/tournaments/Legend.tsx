@@ -16,12 +16,9 @@ const Legend = () => {
 
   const timeControls = useMemo(
     () =>
-      [
-        TimeControl.Classic,
-        TimeControl.Rapid,
-        TimeControl.Blitz,
-        TimeControl.Other,
-      ].filter((tc) => tournaments.some((t) => t.timeControl === tc)),
+      [TimeControl.Classic, TimeControl.Rapid, TimeControl.Blitz, TimeControl.Other].filter((tc) =>
+        tournaments.some((t) => t.timeControl === tc),
+      ),
     [tournaments],
   );
 

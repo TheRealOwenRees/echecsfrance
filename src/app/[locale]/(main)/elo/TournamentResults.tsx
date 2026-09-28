@@ -78,19 +78,13 @@ export const TournamentResults = ({
 
             return {
               rating: acc.rating + delta,
-              deltas: [
-                ...acc.deltas,
-                { rating: acc.rating + delta, delta, ...info },
-              ],
+              deltas: [...acc.deltas, { rating: acc.rating + delta, delta, ...info }],
             };
           }
 
           return {
             rating: acc.rating,
-            deltas: [
-              ...acc.deltas,
-              { rating: acc.rating, delta: undefined, ...info },
-            ],
+            deltas: [...acc.deltas, { rating: acc.rating, delta: undefined, ...info }],
           };
         },
         { rating: currentElo!, deltas: [] },
@@ -98,9 +92,7 @@ export const TournamentResults = ({
     : { rating: currentElo!, deltas: [] };
 
   const deltas = calculations.deltas;
-  const totalDelta = Math.round(
-    deltas.reduce((acc, delta) => acc + (delta.delta ?? 0), 0),
-  );
+  const totalDelta = Math.round(deltas.reduce((acc, delta) => acc + (delta.delta ?? 0), 0));
 
   const noChangeCount = (deltas ?? []).filter(
     ({ wonByForfeit, lostByForfeit, estimated, national }) =>
@@ -121,16 +113,12 @@ export const TournamentResults = ({
           {deltas.map((delta, i) => {
             const { estimated, national, lostByForfeit, wonByForfeit } = delta;
             const opponentElo = delta.opponentElo
-              ? ` (${delta.opponentElo} ${
-                  estimated ? "E" : national ? "N" : "F"
-                })`
+              ? ` (${delta.opponentElo} ${estimated ? "E" : national ? "N" : "F"})`
               : "";
 
             const opponentName = delta.opponentName ? (
               <span>
-                <span className="whitespace-nowrap font-bold">
-                  {delta.opponentName}
-                </span>
+                <span className="whitespace-nowrap font-bold">{delta.opponentName}</span>
                 {opponentElo}
               </span>
             ) : (
@@ -140,11 +128,8 @@ export const TournamentResults = ({
             const playedWhite = delta.colour === "white";
 
             const whitePlayer = playedWhite ? playerResults.name : opponentName;
-            const blackPlayer = !playedWhite
-              ? playerResults.name
-              : opponentName;
-            const noChange =
-              wonByForfeit || lostByForfeit || estimated || national;
+            const blackPlayer = !playedWhite ? playerResults.name : opponentName;
+            const noChange = wonByForfeit || lostByForfeit || estimated || national;
 
             const forfeit = delta.opponentName === null;
 
@@ -173,9 +158,7 @@ export const TournamentResults = ({
                     {blackPlayer}
                   </td>
                 )}
-                <td className="whitespace-nowrap px-2 pb-2 text-center">
-                  {!forfeit && result}
-                </td>
+                <td className="whitespace-nowrap px-2 pb-2 text-center">{!forfeit && result}</td>
                 <td className="pb-2 text-right">
                   {noChange ? (
                     "-"

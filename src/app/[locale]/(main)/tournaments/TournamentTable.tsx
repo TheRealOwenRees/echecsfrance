@@ -43,19 +43,14 @@ const TournamentTable = () => {
 
   const setDateRange = useSetAtom(dateRangeAtom);
   const [datePickerIsOpen, setDatePickerIsOpen] = useAtom(datePickerIsOpenAtom);
-  const [dateDirectionState, setDateDirectionState] =
-    useState<DatePickerDirection>("horizontal");
-  const datePickerColour = datePickerIsOpen
-    ? "text-primary-600"
-    : "text-gray-500";
+  const [dateDirectionState, setDateDirectionState] = useState<DatePickerDirection>("horizontal");
+  const datePickerColour = datePickerIsOpen ? "text-primary-600" : "text-gray-500";
 
   useDatePickerWidth({ datePickerRef, setDateDirectionState });
 
   useEffect(() => {
     if (!isLg || debouncedHoveredMapId === null) return;
-    const tournamentRow = document.querySelector(
-      `[data-group-id="${debouncedHoveredMapId}"]`,
-    );
+    const tournamentRow = document.querySelector(`[data-group-id="${debouncedHoveredMapId}"]`);
 
     tournamentRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapId, isLg]);
@@ -112,9 +107,7 @@ const TournamentTable = () => {
       </div>
 
       <div className="flex justify-center" ref={datePickerRef}>
-        {datePickerIsOpen && (
-          <DatePicker datePickerDirection={dateDirectionState} />
-        )}
+        {datePickerIsOpen && <DatePicker datePickerDirection={dateDirectionState} />}
       </div>
 
       <div className="overflow-x-scroll">
@@ -156,23 +149,15 @@ const TournamentTable = () => {
                   onMouseLeave={() => setHoveredListId(null)}
                   className={twMerge(
                     "scroll-m-20 bg-white text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900",
-                    hoveredMapId === tournament.groupId &&
-                      "bg-gray-200 dark:bg-gray-900",
+                    hoveredMapId === tournament.groupId && "bg-gray-200 dark:bg-gray-900",
                   )}
                 >
-                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
-                    {tournament.date}
-                  </td>
-                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
-                    {tournament.town}
-                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">{tournament.date}</td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">{tournament.town}</td>
                   <td className="px-1 py-2 text-left sm:px-3 sm:py-3 lg:px-3 lg:py-3">
                     <span>
                       {tournament.norm && (
-                        <FaTrophy
-                          className="mr-2 inline-block h-4 w-4"
-                          data-norm="norm"
-                        />
+                        <FaTrophy className="mr-2 inline-block h-4 w-4" data-norm="norm" />
                       )}
                       {tournament.tournament}
                     </span>

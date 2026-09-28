@@ -1,25 +1,16 @@
+import type { LabelHTMLAttributes, ReactNode, DetailedHTMLProps } from "react";
 import { twMerge } from "tailwind-merge";
-
 import { Prettify } from "@/types";
 
 type LabelProps = Prettify<
-  React.DetailedHTMLProps<
-    React.LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
-  > & {
+  DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> & {
     required?: boolean;
     className?: string;
-    tooltip?: React.ReactNode;
+    tooltip?: ReactNode;
   }
 >;
 
-export const Label = ({
-  required,
-  className,
-  children,
-  tooltip,
-  ...labelProps
-}: LabelProps) => {
+export const Label = ({ required, className, children, ...labelProps }: LabelProps) => {
   return (
     <label
       {...labelProps}
