@@ -76,6 +76,4 @@ function create(screens: object | undefined) {
   } as CreatorReturnType;
 }
 
-export const { useBreakpoint } = create(
-  config.theme!.screens,
-);
+export const { useBreakpoint } = create(config.theme!.screens);

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 import { Switch, SwitchProps } from "@headlessui/react";
 import { twMerge } from "tailwind-merge";
 
@@ -9,11 +9,7 @@ export const InlineSwitch = (
     tooltipId?: string;
   } & SwitchProps<"button">,
 ) => {
-  const {
-    label,
-    disabled,
-    ...rest
-  } = props;
+  const { label, disabled, ...rest } = props;
 
   return (
     <Switch.Group>

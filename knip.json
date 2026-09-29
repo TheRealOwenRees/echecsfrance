@@ -1,10 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignore": [
-    "src/app/sw.ts",
-    "src/i18n.ts",
-    "src/__tests__/clubs/helpers/clubData.ts"
-  ],
+  "ignore": ["src/app/sw.ts", "src/i18n.ts", "src/__tests__/clubs/helpers/clubData.ts"],
   "ignoreDependencies": [
     "leaflet.markercluster",
     "serwist",
