@@ -54,7 +54,7 @@ export default async function RootLayout({
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
-  // oxlint-disable-next-line no-unused-vars
+    // oxlint-disable-next-line no-unused-vars
   } catch (error) {
     notFound();
   }
