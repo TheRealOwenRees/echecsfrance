@@ -30,12 +30,7 @@ export const Modal = ({
   ...dialogProps
 }: ModalProps) => (
   <Transition appear show={open} as={Fragment}>
-    <Dialog
-      as="div"
-      className="relative z-[2000]"
-      onClose={onClose}
-      {...dialogProps}
-    >
+    <Dialog as="div" className="relative z-[2000]" onClose={onClose} {...dialogProps}>
       <Transition.Child
         as={Fragment}
         enter="ease-out duration-300"
@@ -45,9 +40,7 @@ export const Modal = ({
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div
-          className={twMerge("fixed inset-0 bg-neutral-900/50", overlayClass)}
-        />
+        <div className={twMerge("fixed inset-0 bg-neutral-900/50", overlayClass)} />
       </Transition.Child>
 
       <div className="fixed inset-0 overflow-y-auto">

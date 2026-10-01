@@ -63,20 +63,16 @@ export const ManualEloForm = () => {
     storage: window.localStorage,
   });
 
+  // oxlint-disable-next-line no-unused-vars
   const onSubmit = async (data: EloFormValues) => {};
 
-  const [currentElo, kFactor, games] = form.watch([
-    "currentElo",
-    "kFactor",
-    "games",
-  ]);
+  const [currentElo, kFactor, games] = form.watch(["currentElo", "kFactor", "games"]);
 
   const isDefault =
     isEmpty(currentElo) &&
     kFactor === "20" &&
     games?.length === 1 &&
-    (isEmpty(games[0]) ||
-      (isEmpty(games[0]?.opponentElo) && isEmpty(games[0]?.result)));
+    (isEmpty(games[0]) || (isEmpty(games[0]?.opponentElo) && isEmpty(games[0]?.result)));
 
   type Deltas = {
     rating: number;
@@ -86,13 +82,8 @@ export const ManualEloForm = () => {
   const calculations = !Number.isNaN(currentElo)
     ? (games ?? []).reduce<Deltas>(
         (acc, game) => {
-          if (
-            !isNil(game?.opponentElo) &&
-            !Number.isNaN(game?.opponentElo) &&
-            game?.result
-          ) {
-            const result =
-              game?.result === "win" ? 1 : game?.result === "loss" ? 0 : 0.5;
+          if (!isNil(game?.opponentElo) && !Number.isNaN(game?.opponentElo) && game?.result) {
+            const result = game?.result === "win" ? 1 : game?.result === "loss" ? 0 : 0.5;
 
             const { delta } = getNewRating(
               currentElo!,
@@ -117,9 +108,7 @@ export const ManualEloForm = () => {
 
   const deltas = calculations.deltas;
   const hasDeltas = deltas.some((d) => d.delta !== undefined);
-  const totalDelta = Math.round(
-    deltas.reduce((acc, delta) => acc + (delta.delta ?? 0), 0),
-  );
+  const totalDelta = Math.round(deltas.reduce((acc, delta) => acc + (delta.delta ?? 0), 0));
 
   return (
     <FormProvider {...form}>
@@ -149,9 +138,7 @@ export const ManualEloForm = () => {
 
         <KFactor className="mt-2" />
 
-        <h3 className="my-4 text-lg text-gray-900 dark:text-white">
-          {t("resultsTitle")}
-        </h3>
+        <h3 className="my-4 text-lg text-gray-900 dark:text-white">{t("resultsTitle")}</h3>
 
         <div className="flex w-full flex-col gap-6 sm:gap-2">
           {gameFields.map((game, i) => {

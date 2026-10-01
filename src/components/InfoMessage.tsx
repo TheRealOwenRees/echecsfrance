@@ -1,11 +1,6 @@
 import { type ReactNode } from "react";
 
-import {
-  HiCheckCircle,
-  HiInformationCircle,
-  HiXCircle,
-  HiXMark,
-} from "react-icons/hi2";
+import { HiCheckCircle, HiInformationCircle, HiXCircle, HiXMark } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
 export type InfoMessageType = "success" | "error" | "info";
@@ -74,11 +69,7 @@ const InfoMessage = ({
                   button,
                 )}
               >
-                <HiXMark
-                  aria-hidden="true"
-                  className="h-5 w-5"
-                  onClick={onDismiss}
-                />
+                <HiXMark aria-hidden="true" className="h-5 w-5" onClick={onDismiss} />
               </button>
             </div>
           </div>

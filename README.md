@@ -24,8 +24,8 @@ and is deployed on [Vercel](https://vercel.com/)
 
 ## Required VSCode plugins
 
-- ESLint
-- Prettier - Code formatter
+- Oxlint
+- Oxfmt
 
 ## Recommended VSCode plugins
 

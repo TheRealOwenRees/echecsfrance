@@ -5,8 +5,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7315"),
     name: '"Le Gambit "de Muret',
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=1264",
-    address:
-      "Maison des Associations 5 Sq des Combattants d'Afrique du Nord Salle B3 31600 MURET",
+    address: "Maison des Associations 5 Sq des Combattants d'Afrique du Nord Salle B3 31600 MURET",
     email: "gambitdemuret@gmail.com",
     website: "http://www.gambit-de-muret.webou.net",
     coordinates: [43.46106289999999, 1.3218611],
@@ -191,8 +190,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7336"),
     name: "ASSM - Ass sportive St Medard en Jalles",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=3104",
-    address:
-      "Complexe Sportif R. Monseau rue Charles Capsec 33160 ST MEDARD EN JALLES",
+    address: "Complexe Sportif R. Monseau rue Charles Capsec 33160 ST MEDARD EN JALLES",
     email: "stephane.bastin1805@gmail.com",
     website: "",
     coordinates: [44.8839858, -0.7063288999999999],
@@ -255,8 +253,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd74c5"),
     name: "Albertville Savoie Echecs",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=3200",
-    address:
-      "Maison des Associations 21 rue Georges Lamarque 73200 ALBERTVILLE",
+    address: "Maison des Associations 21 rue Georges Lamarque 73200 ALBERTVILLE",
     email: "albertville.savoie.echecs@gmail.com",
     website: "https://www.albertville-savoie-echecs.fr",
     coordinates: [45.6680374, 6.377434999999999],
@@ -302,8 +299,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7241"),
     name: "Amicale Echecs de Divonne les Bains",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=3410",
-    address:
-      "Bet Adonide Res Divona Park 268 Bld des Epinettes 01220 DIVONNE LES BAINS",
+    address: "Bet Adonide Res Divona Park 268 Bld des Epinettes 01220 DIVONNE LES BAINS",
     email: "echecs@lalieu.com",
     website: "",
     coordinates: [46.3464497, 6.1342244],
@@ -321,8 +317,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7324"),
     name: "Arcachon Echecs",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=98",
-    address:
-      "Nouveau Cercle Arcachonnais 195 boulevard de la Plage 33120 ARCACHON",
+    address: "Nouveau Cercle Arcachonnais 195 boulevard de la Plage 33120 ARCACHON",
     email: "regislegendre@free.fr",
     website: "http://www.ncarcachon.fr/",
     coordinates: [44.6626304, -1.1692262],
@@ -340,8 +335,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd75b8"),
     name: "Arcueil Chessland",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=678",
-    address:
-      "1-2 rue Fernand Forest groupe Scolaire Jean Mace Cote Gardienne 94110 ARCUEIL",
+    address: "1-2 rue Fernand Forest groupe Scolaire Jean Mace Cote Gardienne 94110 ARCUEIL",
     email: "matoz@wanadoo.fr",
     website: "http://www.arcueil-chessland.fr/",
     coordinates: [48.79920260000001, 2.3391093],
@@ -458,8 +452,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd726a"),
     name: "Aubenas Vals Echiquier Cévenol",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=505",
-    address:
-      "Centre Socio Culturel Le palabre 6 rue Albert Seibel 07200 AUBENAS",
+    address: "Centre Socio Culturel Le palabre 6 rue Albert Seibel 07200 AUBENAS",
     email: "jean.louis.bourquard@free.fr",
     website: "http://aubenasvals-echecs.fr",
     coordinates: [44.6173697, 4.388114],
@@ -522,8 +515,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7262"),
     name: "Azur Chess Club",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=2680",
-    address:
-      "Res le Marco Polo Ketch D 2e Etage 312 Bld des Ecureuils 06210 MANDELIEU LA NAPOULE",
+    address: "Res le Marco Polo Ketch D 2e Etage 312 Bld des Ecureuils 06210 MANDELIEU LA NAPOULE",
     email: "eric.sighirdjian@sfr.fr",
     website: "http://azurchessclub.fr",
     coordinates: [43.5420528, 6.9443551],
@@ -749,8 +741,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7524"),
     name: 'C.E. Fontenay le Fleury "Les Fous Furieux"',
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=819",
-    address:
-      "Maison des Associations 5 rue Jean Jaures 78330 FONTENAY LE FLEURY",
+    address: "Maison des Associations 5 rue Jean Jaures 78330 FONTENAY LE FLEURY",
     email: "poutoune@club-internet.fr",
     website: "https://echecs-fontenaylefleury.org",
     coordinates: [48.8147484, 2.048536],
@@ -804,8 +795,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7594"),
     name: "C.E. de  Bois-Colombes",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=689",
-    address:
-      "Espace Associations 26 rue d'Estienne d'Orves 92270 BOIS COLOMBES",
+    address: "Espace Associations 26 rue d'Estienne d'Orves 92270 BOIS COLOMBES",
     email: "contact@bois-colombes-echecs.com",
     website: "https://www.bois-colombes-echecs.com",
     coordinates: [48.9156126, 2.2716207],
@@ -896,8 +886,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd7312"),
     name: "C.L. Léo Lagrange - Colomiers",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=1239",
-    address:
-      "Salle Municipale 1 place Leo Lagrange ex place du Val d'Aran 31770 COLOMIERS",
+    address: "Salle Municipale 1 place Leo Lagrange ex place du Val d'Aran 31770 COLOMIERS",
     email: "colomiersclubdechecs@gmail.com",
     website: "http://colomiers.chess.free.fr",
     coordinates: [43.6117764, 1.3285075],
@@ -906,8 +895,7 @@ export const clubData = [
     _id: new ObjectId("690586c9e06ce80de6cd759f"),
     name: "C.S.M. Puteaux Echecs",
     url: "http://www.echecs.asso.fr/FicheClub.aspx?Ref=928",
-    address:
-      "Palais des Sports ile de Puteaux 2 Voie Georges Hassoux 92800 PUTEAUX",
+    address: "Palais des Sports ile de Puteaux 2 Voie Georges Hassoux 92800 PUTEAUX",
     email: "csmpe@free.fr",
     website: "http://csmpe.free.fr",
     coordinates: [48.8788229, 2.2457232],

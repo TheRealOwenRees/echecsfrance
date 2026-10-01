@@ -1,18 +1,17 @@
-import { AuthError } from "next-auth";
 import { EmailConfig } from "next-auth/providers/email";
 import { getTranslations } from "next-intl/server";
 import { createTransport } from "nodemailer";
 import type { Transport, TransportOptions } from "nodemailer";
-import * as JSONTransport from "nodemailer/lib/json-transport/index.js";
-import * as SendmailTransport from "nodemailer/lib/sendmail-transport/index.js";
-import * as SESTransport from "nodemailer/lib/ses-transport/index.js";
-import * as SMTPPool from "nodemailer/lib/smtp-pool/index.js";
-import * as SMTPTransport from "nodemailer/lib/smtp-transport/index.js";
-import * as StreamTransport from "nodemailer/lib/stream-transport/index.js";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
+import SMTPPool from "nodemailer/lib/smtp-pool";
+import SendmailTransport from "nodemailer/lib/sendmail-transport";
+import StreamTransport from "nodemailer/lib/stream-transport";
+import JSONTransport from "nodemailer/lib/json-transport";
+import SESTransport from "nodemailer/lib/ses-transport";
 
 type Awaitable<T> = T | PromiseLike<T>;
 
-export function html(params: {
+function html(params: {
   url: string;
   host: string;
   t: Awaited<ReturnType<typeof getTranslations<"SignIn">>>;
@@ -44,7 +43,7 @@ export function html(params: {
           </td>
         </tr>
         <tr>
-          <td align="center" style="padding: 20px 0;">
+          <td align="center" style="padding: 20px 0px;">
             <table border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td align="center" style="border-radius: 5px;" bgcolor="${color.buttonBackground}">
@@ -70,7 +69,7 @@ export function html(params: {
 }
 
 /** Email Text body (fallback for email clients that don't render HTML, e.g. feature phones) */
-export function text({
+function text({
   url,
   host,
   t,
@@ -113,14 +112,9 @@ export interface NodemailerConfig extends EmailConfig {
   options?: NodemailerUserConfig;
 }
 
-export type NodemailerUserConfig = Omit<
-  Partial<NodemailerConfig>,
-  "options" | "type"
->;
+export type NodemailerUserConfig = Omit<Partial<NodemailerConfig>, "options" | "type">;
 
-export default function Nodemailer(
-  config: NodemailerUserConfig,
-): NodemailerConfig {
+export default function Nodemailer(config: NodemailerUserConfig): NodemailerConfig {
   return {
     id: "nodemailer",
     type: "email",

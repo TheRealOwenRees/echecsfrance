@@ -3,11 +3,7 @@ import { clamp, last } from "lodash";
 // Fide uses the following table to establish the chance of winning based on the difference in elo.
 // https://handbook.fide.com/chapter/B022017
 
-const differenceToProbability: [
-  start: number,
-  end: number,
-  winChance: number,
-][] = [
+const differenceToProbability: [start: number, end: number, winChance: number][] = [
   [0, 3, 0.5],
   [4, 10, 0.51],
   [11, 17, 0.52],
@@ -69,15 +65,11 @@ export const getNewRating = (
 ) => {
   const differenceInElo = clamp(opponentRating - rating, -400, Infinity);
   const tableRow = (differenceToProbability.find(
-    ([start, end]) =>
-      Math.abs(differenceInElo) >= start && Math.abs(differenceInElo) <= end,
+    ([start, end]) => Math.abs(differenceInElo) >= start && Math.abs(differenceInElo) <= end,
   ) ?? last(differenceToProbability)!)[2];
 
   const probabilityOfWinning = differenceInElo < 0 ? tableRow : 1 - tableRow;
-  const delta =
-    Math.round(
-      kFactor * (result - probabilityOfWinning + Number.EPSILON) * 100,
-    ) / 100;
+  const delta = Math.round(kFactor * (result - probabilityOfWinning + Number.EPSILON) * 100) / 100;
 
   return {
     delta,

@@ -160,11 +160,7 @@ const Zones = () => {
         )}
 
         <div className="flex items-center justify-between space-x-4 text-sm font-bold">
-          <Button
-            intent="secondary"
-            type="button"
-            onClick={() => setDeletingZoneId(null)}
-          >
+          <Button intent="secondary" type="button" onClick={() => setDeletingZoneId(null)}>
             {at("cancelButton")}
           </Button>
 

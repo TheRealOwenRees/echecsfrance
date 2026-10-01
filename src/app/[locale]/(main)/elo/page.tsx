@@ -4,14 +4,14 @@ import EloClient from "@/app/[locale]/(main)/elo/EloClient";
 import { baseUrl } from "@/constants";
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   return {
     alternates: {
-      canonical:
-        locale === "fr" ? `${baseUrl}/elo` : `${baseUrl}/${locale}/elo`,
+      canonical: locale === "fr" ? `${baseUrl}/elo` : `${baseUrl}/${locale}/elo`,
       languages: {
         fr: `${baseUrl}/elo`,
         en: `${baseUrl}/en/elo`,

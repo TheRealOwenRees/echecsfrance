@@ -1,16 +1,12 @@
 import { useState } from "react";
 
-import { on } from "events";
 import { useTranslations } from "next-intl";
 import { FieldPath, FieldValues } from "react-hook-form";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 import { TimeControlColours } from "@/constants";
 import { getTournamentDetails } from "@/server/getTournamentDetails";
-import {
-  SearchedTournament,
-  searchTournaments,
-} from "@/server/searchTournaments";
+import { SearchedTournament, searchTournaments } from "@/server/searchTournaments";
 
 import { AsyncSelectField, AsyncSelectFieldProps } from "./AsyncSelectField";
 
@@ -18,13 +14,7 @@ type TournamentSelectFieldProps<
   TFieldValues extends FieldValues = FieldValues,
   TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<
-  AsyncSelectFieldProps<
-    TFieldValues,
-    TFieldName,
-    false,
-    string,
-    SearchedTournament
-  >,
+  AsyncSelectFieldProps<TFieldValues, TFieldName, false, string, SearchedTournament>,
   "loadOptions" | "loadOption" | "separators"
 >;
 
@@ -36,8 +26,7 @@ export const TournamentSelectField = <
   ...rest
 }: TournamentSelectFieldProps<TFieldValues, TFieldName>) => {
   const at = useTranslations("App");
-  const [selectedTournament, setSelectedTournament] =
-    useState<SearchedTournament | null>(null);
+  const [selectedTournament, setSelectedTournament] = useState<SearchedTournament | null>(null);
 
   const loadOption = async (ffeId: string) => {
     const result = await getTournamentDetails({ ffeId });
@@ -91,7 +80,7 @@ export const TournamentSelectField = <
                     background: `${TimeControlColours[option.data!.timeControl]}`,
                   }}
                 >
-                  {at("timeControlEnum", { tc: option.data?.timeControl })}
+                  {at("timeControlEnum", { tc: option.data!.timeControl })}
                 </div>
                 <div className="text-xs">{option.data?.date}</div>
               </div>

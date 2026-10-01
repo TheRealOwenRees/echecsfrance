@@ -9,25 +9,23 @@ import { errorLog } from "@/utils/logger";
 
 import { actionClient } from "./safeAction";
 
-export const setUserLocale = actionClient
-  .schema(z.string())
-  .action(async (input) => {
-    try {
-      await dbConnect();
+export const setUserLocale = actionClient.schema(z.string()).action(async (input) => {
+  try {
+    await dbConnect();
 
-      const user = await auth();
-      if (!user?.user) {
-        throw new Error("You must be logged update your locale");
-      }
-
-      await collections.users!.findOneAndUpdate(
-        { _id: new ObjectId(user.user.id) },
-        { $set: { locale: input.parsedInput } },
-      );
-
-      return true;
-    } catch (error) {
-      errorLog(error);
-      throw error;
+    const user = await auth();
+    if (!user?.user) {
+      throw new Error("You must be logged update your locale");
     }
-  });
+
+    await collections.users!.findOneAndUpdate(
+      { _id: new ObjectId(user.user.id) },
+      { $set: { locale: input.parsedInput } },
+    );
+
+    return true;
+  } catch (error) {
+    errorLog(error);
+    throw error;
+  }
+});

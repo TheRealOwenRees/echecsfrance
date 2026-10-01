@@ -9,9 +9,7 @@ export const useDynamicViewportUnits = () => {
   const isMobile = function () {
     if (
       /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
-      (navigator.userAgent.match(/Mac/) &&
-        navigator.maxTouchPoints &&
-        navigator.maxTouchPoints > 2)
+      (navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2)
     ) {
       return true;
     }

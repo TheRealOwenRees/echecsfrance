@@ -3,7 +3,6 @@ import { useTransition } from "react";
 import { useAtom } from "jotai/index";
 import { useTranslations } from "next-intl";
 import { IoCloseOutline } from "react-icons/io5";
-import { twMerge } from "tailwind-merge";
 
 import { searchStringAtom } from "@/atoms";
 
@@ -14,10 +13,11 @@ type SearchBarProps = {
   className?: string;
 };
 
+// oxlint-disable-next-line no-unused-vars
 const SearchBar = ({ className }: SearchBarProps) => {
   const t = useTranslations("Tournaments");
   const [searchString, setSearchString] = useAtom(searchStringAtom);
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition();
 
   const updateSearchString = (str: string) => {
     startTransition(() => {
@@ -53,11 +53,7 @@ const SearchBar = ({ className }: SearchBarProps) => {
           }
           endIcon={
             searchString !== "" && (
-              <Button
-                intent="tertiary"
-                size="compacted"
-                onClick={() => setSearchString("")}
-              >
+              <Button intent="tertiary" size="compacted" onClick={() => setSearchString("")}>
                 <IoCloseOutline className="h-5 w-5" />
               </Button>
             )

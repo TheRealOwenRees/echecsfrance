@@ -1,20 +1,7 @@
 import booleanPointInPolygon from "@turf/boolean-point-in-polygon";
-import {
-  endOfDay,
-  isAfter,
-  isBefore,
-  parse,
-  setDefaultOptions,
-  startOfDay,
-} from "date-fns";
+import { endOfDay, isAfter, isBefore, parse, setDefaultOptions, startOfDay } from "date-fns";
 import { fr } from "date-fns/locale";
-import {
-  Feature,
-  FeatureCollection,
-  GeoJsonProperties,
-  MultiPolygon,
-  Polygon,
-} from "geojson";
+import { Feature, FeatureCollection, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
 import { atom } from "jotai";
 import { LatLngBounds } from "leaflet";
 
@@ -61,13 +48,14 @@ export const otherAtom = atom(true);
 
 export const clubsAtom = atom<Club[]>([]);
 
-export const {
-  currentValueAtom: hoveredMapIdAtom,
-  debouncedValueAtom: debouncedHoveredMapIdAtom,
-} = atomWithDebounce<string | null>(null);
+export const { currentValueAtom: hoveredMapIdAtom, debouncedValueAtom: debouncedHoveredMapIdAtom } =
+  atomWithDebounce<string | null>(null);
 
-export const { debouncedValueAtom: debouncedHoveredListIdAtom } =
-  atomWithDebounce<string | null>(null, 1000, 100);
+export const { debouncedValueAtom: debouncedHoveredListIdAtom } = atomWithDebounce<string | null>(
+  null,
+  1000,
+  100,
+);
 
 export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
   const tournaments = get(tournamentsAtom);
@@ -82,9 +70,7 @@ export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
   const { startDate, endDate } = dateRange[0];
 
   const filterByTimeControl = tournaments.filter((tournament) => {
-    const tournamentDate = startOfDay(
-      parse(tournament.date, "dd/MM/yyyy", new Date()),
-    );
+    const tournamentDate = startOfDay(parse(tournament.date, "dd/MM/yyyy", new Date()));
 
     return (
       !isBefore(tournamentDate, startDate) &&
@@ -98,11 +84,7 @@ export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
     );
   });
 
-  if (
-    regionFilter === "all" ||
-    regionFilter === "map" ||
-    regionFilter === "region"
-  )
+  if (regionFilter === "all" || regionFilter === "map" || regionFilter === "region")
     return filterByTimeControl;
 
   if (isFeature(regionFilter)) {
@@ -118,10 +100,7 @@ export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
     return regionFilter.features?.features?.some(
       (feature) =>
         feature.geometry.type === "Polygon" &&
-        booleanPointInPolygon(
-          [tournament.latLng.lng, tournament.latLng.lat],
-          feature.geometry,
-        ),
+        booleanPointInPolygon([tournament.latLng.lng, tournament.latLng.lat], feature.geometry),
     );
   });
 });
@@ -133,16 +112,13 @@ export const filteredTournamentsListAtom = atom((get) => {
   const normsOnly = get(normsOnlyAtom);
   const searchString = get(searchStringAtom).trim();
 
-  const filteredByNorm = normsOnly
-    ? tournaments.filter((t) => t.norm)
-    : tournaments;
+  const filteredByNorm = normsOnly ? tournaments.filter((t) => t.norm) : tournaments;
 
   // When searching, we search all the tournament, regardless of the map display
   if (searchString !== "") {
     return filteredByNorm.filter(
       (t) =>
-        normalizedContains(t.town, searchString) ||
-        normalizedContains(t.tournament, searchString),
+        normalizedContains(t.town, searchString) || normalizedContains(t.tournament, searchString),
     );
   }
 
@@ -150,28 +126,18 @@ export const filteredTournamentsListAtom = atom((get) => {
   if (mapBounds === null || regionFilter !== "map") return filteredByNorm;
 
   // Filter by the map bounds
-  return filteredByNorm.filter((tournament) =>
-    mapBounds.contains(tournament.latLng),
-  );
+  return filteredByNorm.filter((tournament) => mapBounds.contains(tournament.latLng));
 });
 
 export const filteredClubsByZoneAtom = atom((get) => {
   const clubs = get(clubsAtom);
   const regionFilter = get(regionFilterAtom);
 
-  if (
-    regionFilter === "all" ||
-    regionFilter === "map" ||
-    regionFilter === "region"
-  )
-    return clubs;
+  if (regionFilter === "all" || regionFilter === "map" || regionFilter === "region") return clubs;
 
   if (isFeature(regionFilter)) {
     return clubs.filter((club) => {
-      return booleanPointInPolygon(
-        [club.latLng.lng, club.latLng.lat],
-        regionFilter.geometry,
-      );
+      return booleanPointInPolygon([club.latLng.lng, club.latLng.lat], regionFilter.geometry);
     });
   }
 
@@ -179,10 +145,7 @@ export const filteredClubsByZoneAtom = atom((get) => {
     return regionFilter.features?.features?.some(
       (feature) =>
         feature.geometry.type === "Polygon" &&
-        booleanPointInPolygon(
-          [club.latLng.lng, club.latLng.lat],
-          feature.geometry,
-        ),
+        booleanPointInPolygon([club.latLng.lng, club.latLng.lat], feature.geometry),
     );
   });
 });

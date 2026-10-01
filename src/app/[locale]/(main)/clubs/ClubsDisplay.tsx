@@ -44,14 +44,10 @@ export default function ClubsDisplay({ clubs }: ClubsDisplayProps) {
           .replace(/[\u0300-\u036f]/g, "") === regionSearchParam.toLowerCase(),
     );
 
-    const regionData = regionGeoJson.features.find(
-      (f) => f.properties.nom === matchedRegion,
-    );
+    const regionData = regionGeoJson.features.find((f) => f.properties.nom === matchedRegion);
 
     if (regionData) {
-      setRegionFilter(
-        regionData as Feature<Polygon | MultiPolygon, GeoJsonProperties>,
-      );
+      setRegionFilter(regionData as Feature<Polygon | MultiPolygon, GeoJsonProperties>);
     }
   }
 

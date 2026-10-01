@@ -1,23 +1,14 @@
 import React from "react";
 
 import { RadioGroup } from "@headlessui/react";
-import { isNil } from "lodash";
-import { useTranslations } from "next-intl";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
-
 import { Prettify } from "@/types";
-
 import { Field, GenericFieldProps } from "./Field";
 
-export type BaseOption<T = string, D = unknown> = {
+type BaseOption<T = string, D = unknown> = {
   value: T;
-  label: string | JSX.Element;
+  label: string | React.JSX.Element;
   disabled?: boolean;
   data?: D;
 };
@@ -51,15 +42,12 @@ export const RadioGroupField = <
 
   options,
 }: RadioGroupFieldProps<TFieldValues, TFieldName, T, D>) => {
-  const t = useTranslations("App");
   const form = useFormContext<TFieldValues>();
 
   const {
+    // oxlint-disable-next-line no-unused-vars
     formState: { errors },
   } = form;
-
-  const valueToOption = (value: T): BaseOption<T, D> =>
-    options.find((o) => o.value === value) ?? { value, label: "" };
 
   return (
     <Field
@@ -78,8 +66,6 @@ export const RadioGroupField = <
         name={name}
         control={control}
         render={({ field: { onChange, value } }) => {
-          const optionValue = isNil(value) ? null : valueToOption(value);
-
           return (
             <RadioGroup
               value={value}

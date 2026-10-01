@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "ignore": ["src/app/sw.ts", "src/i18n.ts", "src/__tests__/clubs/helpers/clubData.ts"],
+  "ignoreDependencies": [
+    "leaflet.markercluster",
+    "serwist",
+    "sharp",
+    "superjson",
+    "@swc-jotai/react-refresh",
+    "@testing-library/jest-dom",
+    "@headlessui/tailwindcss",
+    "@next/bundle-analyzer",
+    "@serwist/next",
+    "oxfmt",
+    "oxlint",
+    "vitest"
+  ],
+  "tags": ["-lintignore"]
+}

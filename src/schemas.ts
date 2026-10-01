@@ -4,28 +4,28 @@ import { z } from "zod";
 import { TimeControl } from "@/types";
 
 export const contactUsSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   subject: z.string().min(1, { message: "FormValidation.required" }),
   message: z.string().min(1, { message: "FormValidation.required" }),
 });
 
 export const addClubSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().optional(),
 
   club: z.object({
     name: z.string().min(1, { message: "FormValidation.required" }),
-    email: z.string().email().optional(),
+    email: z.email().optional(),
     address: z.string().min(1, { message: "FormValidation.required" }),
-    website: z.string().url({ message: "FormValidation.url" }).optional(),
+    website: z.url({ message: "FormValidation.url" }).optional(),
     coordinates: z.array(z.number()).length(2),
-  })
-})
+  }),
+});
 
 export const addTournamentSchema = z.object({
   name: z.string().min(1, { message: "FormValidation.required" }),
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().optional(),
 
   tournament: z.object({
@@ -33,8 +33,8 @@ export const addTournamentSchema = z.object({
     town: z.string().min(1, { message: "FormValidation.required" }),
     department: z.string().min(1, { message: "FormValidation.required" }),
     tournament: z.string().min(1, { message: "FormValidation.required" }),
-    url: z.string().url({ message: "FormValidation.url" }),
-    time_control: z.nativeEnum(TimeControl),
+    url: z.url({ message: "FormValidation.url" }),
+    time_control: z.enum(TimeControl),
     norm_tournament: z.boolean(),
     date: z.date(),
     coordinates: z.array(z.number()).length(2),

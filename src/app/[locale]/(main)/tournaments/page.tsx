@@ -1,9 +1,4 @@
-import {
-  differenceInDays,
-  isSameDay,
-  parse,
-  setDefaultOptions,
-} from "date-fns";
+import { differenceInDays, isSameDay, parse, setDefaultOptions } from "date-fns";
 import { fr } from "date-fns/locale";
 import { groupBy } from "lodash";
 import { Metadata } from "next";
@@ -20,16 +15,14 @@ import TournamentsDisplay from "./TournamentsDisplay";
 setDefaultOptions({ locale: fr });
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   return {
     alternates: {
-      canonical:
-        locale === "fr"
-          ? `${baseUrl}/tournois`
-          : `${baseUrl}/${locale}/tournaments`,
+      canonical: locale === "fr" ? `${baseUrl}/tournois` : `${baseUrl}/${locale}/tournaments`,
       languages: {
         fr: `${baseUrl}/tournois`,
         en: `${baseUrl}/en/tournaments`,
@@ -107,10 +100,7 @@ const getTournaments = async () => {
     const goodData = data.filter((t) => !badIds.includes(t._id.toString()));
 
     // Group the tournaments by their location
-    const groupedByLocation = groupBy(
-      goodData,
-      (t) => `${t.coordinates[0]}_${t.coordinates[1]}`,
-    );
+    const groupedByLocation = groupBy(goodData, (t) => `${t.coordinates[0]}_${t.coordinates[1]}`);
 
     // For each location, create an array of arrays of contiguous dates for this location
     const dateRangesByLocation: Record<string, Date[][]> = {};
@@ -140,9 +130,7 @@ const getTournaments = async () => {
       const location = `${t.coordinates[0]}_${t.coordinates[1]}`;
       const date = parse(t.date, "dd/MM/yyyy", new Date());
       const dateRanges = dateRangesByLocation[location];
-      const rangeIndex = dateRanges.findIndex((ranges) =>
-        ranges.some((d) => isSameDay(d, date)),
-      );
+      const rangeIndex = dateRanges.findIndex((ranges) => ranges.some((d) => isSameDay(d, date)));
 
       // We place each tournament into a group based on location and date and time control, so that
       // we can display a single map marker.

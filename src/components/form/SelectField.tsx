@@ -1,13 +1,5 @@
-import React from "react";
-
 import { flatMap, get, isArray, isNil, isObject } from "lodash";
-import { useTranslations } from "next-intl";
-import {
-  Controller,
-  FieldPath,
-  FieldValues,
-  useFormContext,
-} from "react-hook-form";
+import { Controller, FieldPath, FieldValues, useFormContext } from "react-hook-form";
 import { GroupBase, OnChangeValue } from "react-select";
 
 import { BaseOption, Select, SelectProps } from "@/components/form/Select";
@@ -23,10 +15,7 @@ export type SelectFieldProps<
   D = unknown,
 > = Prettify<
   GenericFieldProps<TFieldValues, TFieldName> &
-    Omit<
-      SelectProps<IsMulti, T, D>,
-      "onChange" | "value" | "classNames" | "name"
-    > & {
+    Omit<SelectProps<IsMulti, T, D>, "onChange" | "value" | "classNames" | "name"> & {
       required?: boolean;
       separators?: boolean;
     }
@@ -47,13 +36,9 @@ export const SelectField = <
   label,
   hideErrorMessage,
   required,
-
-  placeholder,
-  separators,
   options,
   ...selectProps
 }: SelectFieldProps<TFieldValues, TFieldName, IsMulti, T, D>) => {
-  const t = useTranslations("App");
   const form = useFormContext<TFieldValues>();
 
   const {
@@ -64,8 +49,7 @@ export const SelectField = <
 
   const isGroup = (
     option: BaseOption<T, D> | GroupBase<BaseOption<T, D>>,
-  ): option is GroupBase<BaseOption<T, D>> =>
-    isObject(option) && "options" in option;
+  ): option is GroupBase<BaseOption<T, D>> => isObject(option) && "options" in option;
 
   const flattenedOptions = flatMap(options, (option) => {
     return isGroup(option) ? option.options : option;
@@ -91,9 +75,7 @@ export const SelectField = <
         name={name}
         control={control}
         render={({ field: { onChange, value } }) => {
-          const onSelectChange = (
-            newValue: OnChangeValue<BaseOption<T, D>, IsMulti>,
-          ) => {
+          const onSelectChange = (newValue: OnChangeValue<BaseOption<T, D>, IsMulti>) => {
             if (isNil(newValue)) onChange(null);
             else if (isArray(newValue)) {
               onChange(newValue.map((option) => option.value));

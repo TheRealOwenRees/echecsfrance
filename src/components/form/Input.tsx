@@ -1,3 +1,4 @@
+import type { ComponentProps, ReactNode } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
@@ -26,12 +27,12 @@ export const inputVariants = cva(
   },
 );
 
-export type InputVariants = VariantProps<typeof inputVariants>;
-export type InputProps = Omit<React.ComponentProps<"input">, "size"> &
+type InputVariants = VariantProps<typeof inputVariants>;
+export type InputProps = Omit<ComponentProps<"input">, "size"> &
   Omit<InputVariants, "state"> & {
     hasError?: boolean;
-    startIcon?: React.ReactNode;
-    endIcon?: React.ReactNode;
+    startIcon?: ReactNode;
+    endIcon?: ReactNode;
   };
 
 export const Input = ({

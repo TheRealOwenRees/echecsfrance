@@ -4,16 +4,14 @@ import SignInClient from "@/app/[locale]/(main)/auth/sign-in/SignInClient";
 import { baseUrl } from "@/constants";
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   return {
     alternates: {
-      canonical:
-        locale === "fr"
-          ? `${baseUrl}/auth/sign-in`
-          : `${baseUrl}/${locale}/auth/sign-in`,
+      canonical: locale === "fr" ? `${baseUrl}/auth/sign-in` : `${baseUrl}/${locale}/auth/sign-in`,
       languages: {
         fr: `${baseUrl}/auth/sign-in`,
         en: `${baseUrl}/en/auth/sign-in`,

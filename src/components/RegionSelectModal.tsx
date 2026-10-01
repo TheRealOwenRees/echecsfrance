@@ -1,11 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import {
-  type Feature,
-  GeoJsonProperties,
-  MultiPolygon,
-  Polygon,
-} from "geojson";
+import { type Feature, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
 import { useSetAtom } from "jotai";
 import { useTranslations } from "next-intl";
 import { IoClose } from "react-icons/io5";
@@ -20,10 +15,7 @@ interface IProps {
   setIsRegionModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const RegionSelectModal = ({
-  isRegionModalOpen,
-  setIsRegionModalOpen,
-}: IProps) => {
+export const RegionSelectModal = ({ isRegionModalOpen, setIsRegionModalOpen }: IProps) => {
   const t = useTranslations("Zones");
   const setRegionFilter = useSetAtom(regionFilterAtom);
 
@@ -32,13 +24,9 @@ export const RegionSelectModal = ({
   };
 
   const handleRegionSelect = (region: string) => {
-    const regionData = regionGeoJson.features.find(
-      (f) => f.properties.nom === region,
-    );
+    const regionData = regionGeoJson.features.find((f) => f.properties.nom === region);
     if (regionData) {
-      setRegionFilter(
-        regionData as Feature<Polygon | MultiPolygon, GeoJsonProperties>,
-      );
+      setRegionFilter(regionData as Feature<Polygon | MultiPolygon, GeoJsonProperties>);
       handleCloseModal();
     }
   };

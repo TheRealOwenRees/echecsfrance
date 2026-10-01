@@ -5,7 +5,7 @@ import { GrLineChart } from "react-icons/gr";
 import { HiUserGroup } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
-import bannerImage from "/public/banner.jpeg";
+import bannerImage from "./banner.jpeg";
 import { Link } from "@/utils/routing";
 
 export default function Home() {
@@ -45,18 +45,11 @@ export default function Home() {
           >
             {t("title")}
           </h1>
-          <p className={twMerge("text-sm", "sm:text-lg", "md:text-xl")}>
-            {t("purpose")}
-          </p>
+          <p className={twMerge("text-sm", "sm:text-lg", "md:text-xl")}>{t("purpose")}</p>
         </div>
 
         <div className="absolute -bottom-[2px] w-full text-white dark:text-gray-800">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100%"
-            height="auto"
-            viewBox="0 0 1440 128"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 1440 128">
             <path
               fill="currentColor"
               d="M0,471 L1440,471 L1440,386.338583 C1331.33333,357.446194 1239,343 1163,343 C821.995497,343 821.995497,463.944882 426,463.944882 C262.447846,463.944882 120.447846,438.076115 0,386.338583 L0,471 Z"
@@ -85,9 +78,7 @@ export default function Home() {
             <div className="flex items-center justify-center text-5xl">
               <GiTrophyCup />
             </div>
-            <h2 className="text-center text-2xl font-semibold">
-              {t("tournamentsTitle")}
-            </h2>
+            <h2 className="text-center text-2xl font-semibold">{t("tournamentsTitle")}</h2>
 
             <p className="">{t("tournamentsInfo")}</p>
 
@@ -110,9 +101,7 @@ export default function Home() {
             <div className="flex items-center justify-center text-5xl">
               <HiUserGroup />
             </div>
-            <h2 className="text-center text-2xl font-semibold">
-              {t("clubsTitle")}
-            </h2>
+            <h2 className="text-center text-2xl font-semibold">{t("clubsTitle")}</h2>
             <p className="">{t("clubsInfo")}</p>
 
             <Link
@@ -134,9 +123,7 @@ export default function Home() {
             <div className="flex items-center justify-center text-5xl">
               <GrLineChart />
             </div>
-            <h2 className="text-center text-2xl font-semibold">
-              {t("eloTitle")}
-            </h2>
+            <h2 className="text-center text-2xl font-semibold">{t("eloTitle")}</h2>
             <p className="">{t("eloInfo")}</p>
 
             <Link

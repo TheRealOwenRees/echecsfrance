@@ -29,9 +29,7 @@ const ClubTable = () => {
 
   useEffect(() => {
     if (!isLg || debouncedHoveredMapId === null) return;
-    const clubRow = document.querySelector(
-      `[data-group-id="${debouncedHoveredMapId}"]`,
-    );
+    const clubRow = document.querySelector(`[data-group-id="${debouncedHoveredMapId}"]`);
 
     clubRow?.scrollIntoView({ behavior: "smooth" });
   }, [debouncedHoveredMapId, isLg]);
@@ -87,9 +85,7 @@ const ClubTable = () => {
                     hoveredMapId === club.id && "bg-gray-200 dark:bg-gray-900",
                   )}
                 >
-                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">
-                    {club.name}
-                  </td>
+                  <td className="px-1 py-2 sm:px-3 sm:py-3 lg:px-3 lg:py-3">{club.name}</td>
                   <td className="px-1 py-2 text-left sm:px-3 sm:py-3 lg:px-3 lg:py-3">
                     {club.address && <div>{club.address}</div>}
                     {club.website && (

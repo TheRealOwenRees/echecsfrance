@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from "react";
+import { type ReactNode, Suspense } from "react";
 
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -20,13 +20,10 @@ const title = Julius_Sans_One({
   variable: "--font-title",
 });
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale?: string };
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ locale?: string }> }) {
   // While the `locale` is required, the namespace is optional and
   // identical to the parameter that `useTranslations` accepts.
+  const { locale } = await params;
   const t = await getTranslations({
     locale: locale ?? "fr",
     namespace: "Metadata",
@@ -48,14 +45,16 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: ReactNode;
-  params: { locale?: string };
+  params: Promise<{ locale?: string }>;
 }) {
+  const { locale } = await params;
   let messages;
   try {
     messages = (await import(`@/messages/${locale}.json`)).default;
+    // oxlint-disable-next-line no-unused-vars
   } catch (error) {
     notFound();
   }

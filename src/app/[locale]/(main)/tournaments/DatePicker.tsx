@@ -8,11 +8,7 @@ import "react-date-range/dist/theme/default.css";
 import { dateRangeAtom, maxDateAtom } from "@/atoms";
 import { DatePickerDirection } from "@/types";
 
-const DatePicker = ({
-  datePickerDirection,
-}: {
-  datePickerDirection: DatePickerDirection;
-}) => {
+const DatePicker = ({ datePickerDirection }: { datePickerDirection: DatePickerDirection }) => {
   const [dateRange, setDateRange] = useAtom(dateRangeAtom);
   const maxDate = useAtomValue(maxDateAtom);
 

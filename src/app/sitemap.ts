@@ -4,9 +4,7 @@ import { Pathnames, routing } from "@/utils/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routing.locales.flatMap((locale) => {
-    const prefix = `https://echecsfrance.com${
-      locale === "fr" ? "" : `/${locale}`
-    }`;
+    const prefix = `https://echecsfrance.com${locale === "fr" ? "" : `/${locale}`}`;
 
     const paths = Object.keys(routing.pathnames) as Array<Pathnames>;
 

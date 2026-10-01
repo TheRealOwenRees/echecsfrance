@@ -1,23 +1,26 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { trackAppRouter } from "@socialgouv/matomo-next";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
 const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
+const isMatomoEnabled = Boolean(MATOMO_URL && MATOMO_SITE_ID);
 
 export function MatomoAnalytics() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    if (!isMatomoEnabled) return;
+
     trackAppRouter({
-      url: MATOMO_URL || "",
-      siteId: MATOMO_SITE_ID || "",
+      url: MATOMO_URL as string,
+      siteId: MATOMO_SITE_ID as string,
       pathname,
-      searchParams, // Pass URLSearchParams object directly
-      // Optional: Enable additional features
+      searchParams,
       enableHeatmapSessionRecording: false,
       enableHeartBeatTimer: true,
       cleanUrl: true,
