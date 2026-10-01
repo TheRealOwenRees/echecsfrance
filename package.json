@@ -10,7 +10,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "oxlint",
-    "typeCheck": "tsc -p ./tsconfig.json",
+    "typeCheck": "tsc -p ./tsconfig.json --incremental false",
     "postinstall": "patch-package",
     "format": "oxfmt --check",
     "format:fix": "oxfmt",
