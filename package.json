@@ -17,7 +17,7 @@
     "knip": "knip",
     "knip:prod": "knip --production",
     "knip:ci": "knip --production --cache",
-    "check": "yarn format && yarn lint && yarn typeCheck && yarn test:ci && yarn knip && yarn knip:prod"
+    "verify": "yarn format && yarn lint && yarn typeCheck && yarn test:ci && yarn knip && yarn knip:prod"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.5.2",
