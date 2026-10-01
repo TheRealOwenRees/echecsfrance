@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "vitest --config vitetest.config.ts",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "test:coverage": "vitest --coverage",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
@@ -14,16 +16,14 @@
     "format:fix": "oxfmt",
     "knip": "knip",
     "knip:prod": "knip --production",
-    "knip:ci": "knip --production --cache"
+    "knip:ci": "knip --production --cache",
+    "check": "yarn format && yarn lint && yarn typeCheck && yarn test:ci && yarn knip && yarn knip:prod"
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.5.2",
     "@headlessui/react": "^2.1.8",
-    "@headlessui/tailwindcss": "^0.2.1",
     "@hookform/resolvers": "^3.9.0",
-    "@infra-blocks/zod-utils": "^0.4.2",
-    "@next/bundle-analyzer": "^16.3.6",
-    "@serwist/next": "^9.5.12",
+    "@infra-blocks/zod-utils": "^0.31.0",
     "@socialgouv/matomo-next": "^1.14.2",
     "@tanstack/react-query": "^5.29.0",
     "@turf/boolean-point-in-polygon": "^7.0.0-alpha.114",
@@ -32,7 +32,6 @@
     "date-fns": "^4.1.0",
     "geojson": "^0.5.0",
     "jotai": "^2.6.1",
-    "knip": "^6.38.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "leaflet-draw": "^1.0.4",
@@ -46,9 +45,6 @@
     "next-intl": "^4.14.7",
     "next-safe-action": "^7.9.3",
     "nodemailer": "^10.0.12",
-    "oxfmt": "^0.71.0",
-    "oxlint": "^1.86.0",
-    "postcss": "^8.4.47",
     "react": "^19.3.0",
     "react-date-range": "^2.0.1",
     "react-datepicker": "^7.4.0",
@@ -62,15 +58,15 @@
     "react-select": "^5.7.4",
     "react-tooltip": "^5.18.0",
     "serwist": "^9.5.12",
-    "sharp": "^0.33.0",
+    "sharp": "^0.35.5",
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss": "^3.3.5",
-    "typescript": "^7.0.2",
-    "vitest": "^4.0.12",
-    "zod": "^3.22.4"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@headlessui/tailwindcss": "^0.2.1",
+    "@next/bundle-analyzer": "^16.3.6",
+    "@serwist/next": "^9.5.12",
     "@swc-jotai/react-refresh": "^0.2.0",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.15",
@@ -82,7 +78,15 @@
     "@types/react-date-range": "^1.4.9",
     "@types/react-dom": "^19.3.0",
     "@types/react-input-mask": "^3.0.2",
-    "patch-package": "^8.0.1"
+    "knip": "^6.38.0",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "patch-package": "^8.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^7.0.2",
+    "vite": "8.3.2",
+    "vitest": "^5.0.3"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
