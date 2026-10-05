@@ -319,7 +319,7 @@
     "shareTitle": "Data Sharing",
     "shareInfo": "We do not share, sell, or provide access to your email address to any third parties. Your information is kept strictly confidential and is only used within our project.",
     "cookiesTitle": "Cookies and Tracking",
-    "cookiesInfo": "We do not track users in an intrusive manner. However, we use <link>TinyAnalytics.io</link>, an anonymous, GDPR-friendly analytics tool, to gather anonymized usage statistics. No personally identifiable information is collected by this tool, and its usage is strictly limited to improving user experience.",
+    "cookiesInfo": "We do not track users in an intrusive manner. However, we use <link>Matomo</link>, an anonymous, GDPR-friendly analytics tool, to gather anonymized usage statistics. No personally identifiable information is collected by this tool, and its usage is strictly limited to improving user experience.",
     "changesTitle": "Changes to This Privacy Policy",
     "changesInfo": "We may update this privacy policy from time to time. Any changes will be posted on this page, and we encourage you to review this policy periodically."
   }

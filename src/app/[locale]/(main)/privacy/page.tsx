@@ -33,7 +33,7 @@ export default function Contact() {
           <p>
             {t.rich("cookiesInfo", {
               link: (str) => (
-                <a href="https://tinyanalytics.io" target="_blank" rel="noopener noreferrer">
+                <a href="https://matomo.org" target="_blank" rel="noopener noreferrer">
                   {str}
                 </a>
               ),
