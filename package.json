@@ -43,7 +43,7 @@
     "next": "^16.3.6",
     "next-auth": "^5.0.0-beta.32",
     "next-intl": "^4.14.7",
-    "next-safe-action": "^7.9.3",
+    "next-safe-action": "^8.7.3",
     "nodemailer": "^10.0.12",
     "react": "^19.3.0",
     "react-date-range": "^2.0.1",

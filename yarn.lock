@@ -2861,10 +2861,10 @@ next-intl@^4.14.7:
     next-intl-swc-plugin-extractor "4.14.8"
     use-intl "^4.14.8"
 
-next-safe-action@^7.9.3:
-  version "7.10.8"
-  resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-7.10.8.tgz#eb740abc5e5826486efcaaef9f77ccc389bdf8d6"
-  integrity sha512-cTBoPWtvQ0t83N0a5zaveOh9vP2g3//d0hgzPJ4ch1EXCyt9+bavbVNgyOYbzWUwFerppHeFXPYsg7pbRulLQw==
+next-safe-action@^8.7.3:
+  version "8.7.3"
+  resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-8.7.3.tgz#4d127f2bfcbd5be9561921094a94e55b16a6c584"
+  integrity sha512-tz6wMMBOSGyEclSDChpj5izLLErUbwqcufXN4a6lyD83pgPni9GWVniLH0zEzPWcKIkkyEiQyrjOhWcqxBKy6A==
 
 next@^16.3.6:
   version "16.3.7"
