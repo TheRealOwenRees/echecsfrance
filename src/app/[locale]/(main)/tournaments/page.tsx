@@ -7,7 +7,7 @@ import { unstable_cache } from "next/cache";
 import { baseUrl } from "@/constants";
 import { tournamentModelSchema } from "@/server/models/tournamentModel";
 import { collections, dbConnect } from "@/server/mongodb";
-import { TimeControl, Tournament, tcMap } from "@/types";
+import { tcMap, TimeControl, Tournament } from "@/types";
 import { errorLog } from "@/utils/logger";
 
 import TournamentsDisplay from "./TournamentsDisplay";
@@ -65,7 +65,7 @@ const getTournaments = async () => {
 
     const bad = data.filter((t) => {
       const result = tournamentModelSchema.safeParse(t);
-      if (result.success === false) {
+      if (!result.success) {
         console.log(JSON.stringify(result, null, 2));
         console.log(JSON.stringify(t, null, 2));
 
@@ -93,7 +93,7 @@ const getTournaments = async () => {
         }
       }
 
-      return result.success === false;
+      return !result.success;
     });
 
     const badIds = bad.map((t) => t._id.toString());
@@ -108,7 +108,7 @@ const getTournaments = async () => {
       const tournaments = groupedByLocation[location];
 
       // Note that this works since the tournaments are sorted by date
-      const dateRanges = tournaments.reduce<Date[][]>(
+      dateRangesByLocation[location] = tournaments.reduce<Date[][]>(
         (acc, tournament) => {
           const group = acc[acc.length - 1];
           const date = parse(tournament.date, "dd/MM/yyyy", new Date());
@@ -122,8 +122,6 @@ const getTournaments = async () => {
         },
         [[]],
       );
-
-      dateRangesByLocation[location] = dateRanges;
     }
 
     return goodData.map<Tournament>((t) => {
@@ -136,6 +134,11 @@ const getTournaments = async () => {
       // we can display a single map marker.
       const timeControl = tcMap[t.time_control] ?? TimeControl.Other;
       const groupId = `${location}_${rangeIndex}_${timeControl}`;
+
+      // calculate duration of the tournament in days, parsing the French locale date
+      const startDateISO = parse(t.start_date, "dd/MM/yyyy", new Date());
+      const endDateISO = parse(t.end_date, "dd/MM/yyyy", new Date());
+      const durationDays = differenceInDays(endDateISO, startDateISO) + 1;
 
       return {
         id: t._id.toString(),
@@ -151,6 +154,9 @@ const getTournaments = async () => {
         norm: t.norm_tournament ?? false,
         pending: t.pending ?? false,
         status: t.status,
+        startDate: t.start_date,
+        endDate: t.end_date,
+        durationDays,
       };
     });
   } catch (error) {
@@ -162,8 +168,7 @@ const getTournaments = async () => {
 export default async function Tournaments() {
   const tournaments = await unstable_cache(
     async () => {
-      const data = await getTournaments();
-      return data;
+      return getTournaments();
     },
     ["tournaments"],
     {

@@ -41,6 +41,9 @@ export const searchStringAtom = atom("");
 export const tournamentsAtom = atom<Tournament[]>([]);
 export const normsOnlyAtom = atom(false);
 
+export type DurationFilter = "any" | "1" | "2" | "3+";
+export const durationFilterAtom = atom<DurationFilter>("any");
+
 export const classicAtom = atom(true);
 export const rapidAtom = atom(true);
 export const blitzAtom = atom(true);
@@ -69,14 +72,23 @@ export const filteredTournamentsByTimeControlAndZoneAtom = atom((get) => {
   const dateRange = get(dateRangeAtom);
   const { startDate, endDate } = dateRange[0];
 
+  const durationFilter = get(durationFilterAtom);
+
   const filterByTimeControl = tournaments.filter((tournament) => {
     const tournamentDate = startOfDay(parse(tournament.date, "dd/MM/yyyy", new Date()));
+
+    const durationMatch =
+      durationFilter === "any" ||
+      (durationFilter === "1" && tournament.durationDays === 1) ||
+      (durationFilter === "2" && tournament.durationDays === 2) ||
+      (durationFilter === "3+" && tournament.durationDays >= 3);
 
     return (
       !isBefore(tournamentDate, startDate) &&
       (endDate === undefined || !isAfter(tournamentDate, endDate)) &&
       !tournament.pending &&
       tournament.status === "scheduled" &&
+      durationMatch &&
       ((tournament.timeControl === TimeControl.Classic && classic) ||
         (tournament.timeControl === TimeControl.Rapid && rapid) ||
         (tournament.timeControl === TimeControl.Blitz && blitz) ||

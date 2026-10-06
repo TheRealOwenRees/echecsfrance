@@ -82,7 +82,7 @@
     "searchLabel": "Search",
     "searchPlaceholder": "Search",
     "syncWithMapOption": "Only tournaments visible in the map view",
-    "normsOnly": "Only norm tournaments",
+    "normsOnly": "Norms tournaments",
     "noneFound": "No tournaments found",
     "date": "Date",
     "town": "Town",
@@ -91,7 +91,11 @@
     "timeControl": "Time Control",
     "approx": "Geo-location is approximative",
     "norm": "Norm Tournament",
-    "clearButton": "Clear"
+    "clearButton": "Clear",
+    "durationAny": "Any",
+    "duration1Day": "1 day",
+    "duration2Days": "2 days",
+    "duration3PlusDays": "3+ days"
   },
 
   "Clubs": {

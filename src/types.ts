@@ -25,6 +25,9 @@ export type Tournament = {
   norm: boolean;
   pending: boolean;
   status: Status;
+  startDate: string;
+  endDate: string;
+  durationDays: number;
 };
 
 export const tcMap: Record<TournamentModel["time_control"], TimeControl> = {
