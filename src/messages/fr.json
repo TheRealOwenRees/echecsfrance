@@ -81,7 +81,7 @@
     "searchLabel": "Rechercher",
     "searchPlaceholder": "Rechercher",
     "syncWithMapOption": "Seuls les tournois visibles dans la vue carte",
-    "normsOnly": "Uniquement tournois à normes",
+    "normsOnly": "Tournois à normes",
     "noneFound": "Pas de tournois trouvé",
     "date": "Date",
     "town": "Ville",
@@ -90,7 +90,11 @@
     "timeControl": "Cadence",
     "approx": "Géolocalisation approximative",
     "norm": "Tournoi à norme",
-    "clearButton": "Effacer"
+    "clearButton": "Effacer",
+    "durationAny": "Tous",
+    "duration1Day": "1 jour",
+    "duration2Days": "2 jours",
+    "duration3PlusDays": "3+ jours"
   },
 
   "Clubs": {

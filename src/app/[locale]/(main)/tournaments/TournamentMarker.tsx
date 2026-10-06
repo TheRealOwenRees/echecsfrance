@@ -4,7 +4,6 @@ import { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
 
 import { useSetAtom } from "jotai";
 import L from "leaflet";
-import { last } from "lodash";
 import { useTranslations } from "next-intl";
 import { FaTrophy } from "react-icons/fa";
 import { Marker, MarkerProps, Popup } from "react-leaflet";
@@ -37,7 +36,7 @@ export const TournamentMarker = forwardRef<MarkerRef, TournamentMarkerProps>(
       [],
     );
 
-    const { date, latLng, groupId, timeControl } = tournamentGroup[0];
+    const { startDate, endDate, latLng, groupId, timeControl } = tournamentGroup[0];
 
     const setHoveredMapId = useSetAtom(debouncedHoveredMapIdAtom);
 
@@ -58,9 +57,6 @@ export const TournamentMarker = forwardRef<MarkerRef, TournamentMarkerProps>(
       [timeControl],
     );
 
-    const startDate = date;
-    const endDate = last(tournamentGroup)!.date;
-
     return (
       <Marker
         ref={markerRef}
@@ -74,10 +70,7 @@ export const TournamentMarker = forwardRef<MarkerRef, TournamentMarkerProps>(
       >
         <Popup maxWidth={10000}>
           <div className="flex max-w-[calc(100vw-80px)] flex-col gap-3 lg:max-w-[calc(100vw/2-80px)]">
-            <b>
-              {date}
-              {endDate !== startDate && ` - ${endDate}`}
-            </b>
+            <b>{startDate !== endDate ? `${startDate} -> ${endDate}` : startDate}</b>
 
             <div className="flex flex-col gap-0">
               {tournamentGroup.map((tournament) => (

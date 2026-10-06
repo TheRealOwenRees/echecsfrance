@@ -25,6 +25,7 @@ import { useBreakpoint } from "@/hooks/tailwind";
 import useDatePickerWidth from "@/hooks/useDatePickerWidth";
 import { DatePickerDirection } from "@/types";
 
+import DurationFilter from "./DurationFilter";
 import TimeControlFilters from "./TimeControlFilters";
 
 const TournamentTable = () => {
@@ -75,6 +76,7 @@ const TournamentTable = () => {
       <div className="z-10 flex w-full flex-wrap items-center justify-start gap-3 p-3">
         <div className="flex w-full flex-col gap-3 sm:flex-row">
           <SearchBar className="w-full sm:w-auto" />
+
           <RegionSelect
             syncTitle={t("syncWithMapOption")}
             classNameOverrides={{
@@ -88,6 +90,8 @@ const TournamentTable = () => {
           className={`cursor-pointer text-3xl ${datePickerColour}`}
           onClick={handleDatePickerClick}
         />
+
+        <DurationFilter />
 
         <div className="flex text-gray-900 dark:text-white">
           <label>
