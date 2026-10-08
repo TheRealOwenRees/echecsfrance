@@ -56,7 +56,7 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-leaflet-draw": "^0.20.4",
     "react-select": "^5.7.4",
-    "react-tooltip": "^5.18.0",
+    "react-tooltip": "^6.0.8",
     "serwist": "^9.5.13",
     "sharp": "^0.35.5",
     "superjson": "^2.2.1",
