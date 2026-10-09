@@ -525,10 +525,10 @@
   resolved "https://registry.yarnpkg.com/@infra-blocks/types/-/types-0.26.0.tgz#d8d30734f89580bfa75f79f3667a9073b5c60e2a"
   integrity sha512-llWLEXwZcMhfWypmhAutzEEnEkAh6fxj4OFV/BFylQJEjM9TViiGz1cjRgFdi40hTYnEv7Js6Uxx9YRtAy5aCQ==
 
-"@infra-blocks/zod-utils@^0.31.0":
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/@infra-blocks/zod-utils/-/zod-utils-0.31.0.tgz#58eea54cc48ad7c05f296072b1aff8f3dd5fddf4"
-  integrity sha512-srxAIGKQ92CifsdWunpNSMgFtRCDGbe+Leefhvwn135s6zKg3qgLXbjd1KnjZsIpYzWYo4GxQ7uV19s4Fhyh9Q==
+"@infra-blocks/zod-utils@^0.32.0":
+  version "0.32.0"
+  resolved "https://registry.yarnpkg.com/@infra-blocks/zod-utils/-/zod-utils-0.32.0.tgz#6a4d0cd0fd899eb499fcf75d9a4a9e8aee650372"
+  integrity sha512-t7qyuCluZ1GdP7iJgUqynoqym1JWE3kcR5cOZKEmFGkABo01kSju8e89XOneD555B9HHDqSit3H3K+O60yfw5g==
   dependencies:
     "@infra-blocks/types" "^0.26.0"
     bytes "^3.1.2"
