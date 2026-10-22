@@ -1327,10 +1327,10 @@
   resolved "https://registry.yarnpkg.com/@socialgouv/matomo-next/-/matomo-next-1.14.2.tgz#d35c6ede79308682a30d34b596c986013c4298cb"
   integrity sha512-K7blGIQdkV9+ihxxtR/ABxeMsTTet/MiIluPW7BMkBBmoTOhWKzIfxzjc1MrLvZHC5aInCLeuNdW8hRMi4jkog==
 
-"@swc-jotai/react-refresh@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@swc-jotai/react-refresh/-/react-refresh-0.2.0.tgz#c8b082f76841f9871274d3a98a4e60a172729726"
-  integrity sha512-LDkIeVcaL8sop/MHLP3RsUHj73fQ0kU7eYhJj7SuU4eAbx7xE3eeEgCjhTyPB3aYimSHwOk8/c71buLMV9SvPA==
+"@swc-jotai/react-refresh@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@swc-jotai/react-refresh/-/react-refresh-0.5.0.tgz#c4b145ed6862e1c0d4de8b9a9be250463afa0634"
+  integrity sha512-TXCQJ/eZ8mZXGnO0W1nK73VKGDt5dVsrPd3wSYypLOth5tSdBRtbU2opYeUJEXY4iUI5sVu1zUAmRJSJ7V+h8A==
 
 "@swc/core-darwin-arm64@1.16.12":
   version "1.16.12"
