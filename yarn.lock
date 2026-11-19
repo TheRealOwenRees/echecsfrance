@@ -598,57 +598,57 @@
   dependencies:
     "@tybys/wasm-util" "^0.10.3"
 
-"@next/bundle-analyzer@^16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-16.4.3.tgz#b8f7dbc449e1154848dcf497e566cddbc810b583"
-  integrity sha512-FGcLziT2rqvGZTxZUjnCzwjCANnigN9vrbCm+1hQtzXbbtc1bXBTRmkXohVqyB/ReF5bOjpM2bNJQhz0PfLk9Q==
+"@next/bundle-analyzer@^16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-16.4.6.tgz#861b99a5a537714c8a33b549a34d2395497969c2"
+  integrity sha512-Evp2ETZoDcqpg5LZPeJNG51o1Bc5vH+LPSP+BmSkdjeykMCh1fMB/shs3bJVbTOxYp7wC3Ed3HLo0jgX1BdxNA==
   dependencies:
     webpack-bundle-analyzer "4.10.1"
 
-"@next/env@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-16.4.3.tgz#d8ba69249f251dd732bd26e9f60fa9ae0048f860"
-  integrity sha512-a7tz1QCcWWkwC/rPJcPMJk/UNRu9CFhDd3OHYE5hddbJrs8BqRTalxI6GlKCWEGzRLHN+S/B7a4PAHCtm25aBQ==
+"@next/env@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-16.4.6.tgz#a3417875856d1d28cd276a9b6581cc18e09410ff"
+  integrity sha512-SunBjJ6t+oBtecS3dTjdVuMhUogP5wD/vrGL5EVuQYM1iS4O5ilL51HkiJ3sPjMzRHiCChvr4dbaSJbR7F3lxA==
 
-"@next/swc-darwin-arm64@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.4.3.tgz#f1bfe04b838d021ac209c31627f4ca55970b0a55"
-  integrity sha512-4yq5EXBt+VDtAZwTyfijaFp5D2C5oz3Ikw5a2kiX2K9nw72vrZX2q5UuAlkPtUMO1tQz6JTKpaKWjS7OOefTDQ==
+"@next/swc-darwin-arm64@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.4.6.tgz#12ef59eb2a31f4320d7b8d2b26d98c6442cd8cc9"
+  integrity sha512-kJ4VVZkley17xKaJx72QN2IBqjrj7zenCQZaUF0l9ShS/1Mt2kW4+Z5KGG6vgr3L/J562xTOizVyM1iA/u5nlg==
 
-"@next/swc-darwin-x64@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-darwin-x64/-/swc-darwin-x64-16.4.3.tgz#36e6f68309adb7d583ad8e4d84269823cb07b42e"
-  integrity sha512-1Rvkn/LUhnEF8WxnRkOrqGhbwXui1bkWFxONKIbN+r7C+9KHDSZ+iUoj4CzymVMWUyZIyx9szcb9+kbKhD500A==
+"@next/swc-darwin-x64@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-darwin-x64/-/swc-darwin-x64-16.4.6.tgz#659bef508bfa7bc644d6449904a20cbee690dbd3"
+  integrity sha512-eIPGZIqC+8JKaeZmvnCANJQF4xWkkHqSnAAajtFxgwDMAOnCgxNvP52SeWZ41PyVwoe+Le/NQuZSaQ8j7YshSA==
 
-"@next/swc-linux-arm64-gnu@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-16.4.3.tgz#5d88516dfee1b9c9983c2e01711af53316350466"
-  integrity sha512-dCKpXErGg3abUM6t5JTJV/ottVBTStJB5lRJTbgdUdQaQ+jNHiK56Hsc0YAEg/rinSh42hYG3HWiYmEMdilnxg==
+"@next/swc-linux-arm64-gnu@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-16.4.6.tgz#efec64c2f4ad4270416ddd3c1a30eb87b33db18a"
+  integrity sha512-9nI6O8vvczH2D9ZNdMGqb/3NuT15T9ksOZnAmx9/gjF2cOi74+xxyf1Hk96uIMfm14c9y6wHeBq6SH8g6udvcA==
 
-"@next/swc-linux-arm64-musl@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-16.4.3.tgz#5862ffa593503c1f05f6fd1e1c2e576d601ff9f8"
-  integrity sha512-WwYbhWkhYBvBtib1K4W0kL8MW2snBD2A5b3SN4vPpqalZbZs5+bQ1yzAdepVoOqrFfEW3dmREy4Zs1MrWcrFbw==
+"@next/swc-linux-arm64-musl@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-16.4.6.tgz#f7f663ebc7210dc360d44a3d85e0bb79af5931c5"
+  integrity sha512-7/qPhTxDp2ScluOJOhLuhWmlA17o1yZ0SIgpISBCpBxXgtnK4+KGywBpFkfLPiU1rnSM1faFGzYkH6i7JdTrqA==
 
-"@next/swc-linux-x64-gnu@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-16.4.3.tgz#b07fbf4c4079aec7a16fe77e326c17cd8916c003"
-  integrity sha512-QymWvfUwDEC5/lpJOsxX5VAbyoR2D13+2Jsjz4be7gT4LPqEgdpkeLIR/HFfCLgKzoMhpJbp6I/JnogyNZHcaA==
+"@next/swc-linux-x64-gnu@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-16.4.6.tgz#1bc1c10eb94808f526333e03950e11fb0cd83ae6"
+  integrity sha512-oOpbNa8XOW1qCGd9VvzC4fbkkRxEls7/WI6tz+YHC0xRA7KpV1U7DrAnCPjzVyOk/karzWEepCOcTIDmwK8FwQ==
 
-"@next/swc-linux-x64-musl@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-16.4.3.tgz#d99bad243ee934def3ef70d0dc36c0d8d5ae937a"
-  integrity sha512-Vmjd9D7DpA4Vv3cUlr82QWgJD/BQZmns801vtC5VWHg6jCIA4a5vMKpQnfrM2pyCrp2eV0ENdUg4PlN3bAc2Yw==
+"@next/swc-linux-x64-musl@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-16.4.6.tgz#15d014065483233623d1126f5e94fc599bdb5ec1"
+  integrity sha512-aM8CZ+OR2EwXaAYw7KGkW2GDmNDsLBIRe1MMRZCJPTdw/xhTD0IMUVO4sf3KqrzuRouGzwwLZn34+gFeVXiUQA==
 
-"@next/swc-win32-arm64-msvc@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-16.4.3.tgz#2bf83de8fffb25b1b03b92869ca9edd028a3139f"
-  integrity sha512-lG1pPdPLk7gTyGb00n5JIMLdBJgjb+UEhSdZvFbhUMg0DyC6z4B7RnpSKF9VCd4imkLObVbXOFA0kFCpw7yFow==
+"@next/swc-win32-arm64-msvc@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-16.4.6.tgz#150f6424c2e7ee31b14be5937d5596ed60cd3278"
+  integrity sha512-U0p7/tEtqvHX2crhd841CDwKtp5CFkKXVjOhmfccR3Pvp64sj8KBwRqsvltqLOwVBbj0NtkxwXSDpEHYGbxeXQ==
 
-"@next/swc-win32-x64-msvc@16.4.3":
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-16.4.3.tgz#c215211b5481900fe850f57fa8afdefcd8bca37d"
-  integrity sha512-NmQC9RkJdnPXRaMxtkCzobB3teVjqF33oSOnwDfi+XYGWWYpt+xlGK3mtktSKLbdjwaWbJu2OkkMiRFGUUncKg==
+"@next/swc-win32-x64-msvc@16.4.6":
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-16.4.6.tgz#78d5010d48e4d73073d62d4a085025ad59965595"
+  integrity sha512-3ZG15/5WIdlTQsIEvc9sPTTSL5XFrlLklIKmfF4fwsDnoAhu6NcBDXsk3mbGxNyo6aVLEGex+fHCv2MahY7a9g==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1270,57 +1270,57 @@
   resolved "https://registry.yarnpkg.com/@schummar/icu-type-parser/-/icu-type-parser-1.21.5.tgz#75989085bbbf80ee325874a0137437bde77e9baf"
   integrity sha512-bXHSaW5jRTmke9Vd0h5P7BtWZG9Znqb8gSDxZnxaGSJnGwPLDPfS+3g0BKzeWqzgZPsIVZkM7m2tbo18cm5HBw==
 
-"@serwist/build@9.5.13":
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/@serwist/build/-/build-9.5.13.tgz#5e88bdfdcbaf0ad75fa3d2f59ff505eb12000bb4"
-  integrity sha512-3seu43B26paWNKixMJTJWXBJx8c07e+WZvPOUH5V/AByYfAoL4TKh9vMri8zukyj52shDyChs2Qjji5NObprMQ==
+"@serwist/build@9.5.14":
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/@serwist/build/-/build-9.5.14.tgz#d83533b969068f6a8448b294841233986d8a41c5"
+  integrity sha512-jUk+LUdKGO4lRKfCf/VhJvhUO14HquPd9ygU6QAMURdJFOyQ1IjfYswjq4fHA1PRU5LfU6eCgSNQLVdCgS0wug==
   dependencies:
-    "@serwist/utils" "9.5.13"
+    "@serwist/utils" "9.5.14"
     common-tags "1.8.2"
     glob "13.0.6"
     pretty-bytes "6.1.1"
     source-map "0.8.0"
     type-fest "5.10.0"
-    zod "4.6.5"
+    zod "~4.6.7"
 
-"@serwist/next@^9.5.13":
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/@serwist/next/-/next-9.5.13.tgz#f8ec3c7f04773caeb4dc1a257340d3667ba82e12"
-  integrity sha512-NyRUmZIhfN+8p/rWLWRlULt+0YGN6G90R2WKbYj8cq0/4VDhDaOrFXyI458Ym98ApQHrNwkUhgPzZMxQoxxWWA==
+"@serwist/next@^9.5.14":
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/@serwist/next/-/next-9.5.14.tgz#81616eb15b31af1151c10180ceb4addd1e4b76a7"
+  integrity sha512-woBsLQMhPIzJ7gwWDbxwtKevl/MJD1/8BABQw3uuE680Xa1steQcINY8wxGGa/DsQLtnd3OyY0HwX+V2RleUdw==
   dependencies:
-    "@serwist/build" "9.5.13"
-    "@serwist/utils" "9.5.13"
-    "@serwist/webpack-plugin" "9.5.13"
-    "@serwist/window" "9.5.13"
+    "@serwist/build" "9.5.14"
+    "@serwist/utils" "9.5.14"
+    "@serwist/webpack-plugin" "9.5.14"
+    "@serwist/window" "9.5.14"
     browserslist "^4.29.3"
     glob "13.0.6"
     kolorist "1.8.0"
     semver "7.8.5"
-    serwist "9.5.13"
-    zod "4.6.5"
+    serwist "9.5.14"
+    zod "~4.6.7"
 
-"@serwist/utils@9.5.13":
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/@serwist/utils/-/utils-9.5.13.tgz#1c9681fda7fe181a38381f59f9156c65878e0e86"
-  integrity sha512-jJJSvl0pSc6udJ7pN2u0oduOfQqSY6oJNjbIc82YcVnkpzj1O+qFHYdrR6tu9bspa30Nc8ZVV+VncOcyguvk5w==
+"@serwist/utils@9.5.14":
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/@serwist/utils/-/utils-9.5.14.tgz#b7314113497ebe055d606d2f688a3db5f1aeb9ee"
+  integrity sha512-Ssr34/t6y4ri2O9cdXs3obx56dnWzAgmsFTgjA675IXgx6NvBTssaSweXarNoW/qJW2Eywf1HP5yPubYTPMPVw==
 
-"@serwist/webpack-plugin@9.5.13":
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/@serwist/webpack-plugin/-/webpack-plugin-9.5.13.tgz#bdc70bb66a475bbc14584c274758cd016832e0f5"
-  integrity sha512-pXfrV0kVUjoXGOu7D+1xEz06tsDgBNiqV5YXvvBpVLQrIsXOnUTs5H4VLZ2p7OjfuPt8Ho5QFrS6xt08hTPxRA==
+"@serwist/webpack-plugin@9.5.14":
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/@serwist/webpack-plugin/-/webpack-plugin-9.5.14.tgz#0f3c28102716d612237beb67d3045071bd08d495"
+  integrity sha512-L1paXdBGoElQjSD1hGqf0avn8g7FdaeWUJJn0bbXqO97QhB67Z58OwnPhr7HVGe/GyeK8wE7RPg05kTpAkdptw==
   dependencies:
-    "@serwist/build" "9.5.13"
-    "@serwist/utils" "9.5.13"
+    "@serwist/build" "9.5.14"
+    "@serwist/utils" "9.5.14"
     pretty-bytes "6.1.1"
-    zod "4.6.5"
+    zod "~4.6.7"
 
-"@serwist/window@9.5.13":
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/@serwist/window/-/window-9.5.13.tgz#a7a1914d87b8a488f7a874ad40772afcd06489c0"
-  integrity sha512-1xOBy3Cpe1qZ33GwQSeQk8fyklYc7wZsYzpmHq37RowRMaHvrKQkUFTUoZPyQG5YWwmvDbFVgOGba7UbXNhHfQ==
+"@serwist/window@9.5.14":
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/@serwist/window/-/window-9.5.14.tgz#253e44dc53f52336bfab67d5d6d8540f24e1d42d"
+  integrity sha512-FOlDrbCqfcZ28P1H3Hy9OTo6GCNU9tkhbqOXEdgcGzlzkSuntOcPmiyZlqV+4bFdwzWUpVsT3OxHHnhDQ+hanQ==
   dependencies:
     "@types/trusted-types" "2.0.7"
-    serwist "9.5.13"
+    serwist "9.5.14"
 
 "@socialgouv/matomo-next@^1.14.2":
   version "1.14.2"
@@ -2855,26 +2855,26 @@ next-safe-action@^7.9.3:
   resolved "https://registry.yarnpkg.com/next-safe-action/-/next-safe-action-7.10.8.tgz#eb740abc5e5826486efcaaef9f77ccc389bdf8d6"
   integrity sha512-cTBoPWtvQ0t83N0a5zaveOh9vP2g3//d0hgzPJ4ch1EXCyt9+bavbVNgyOYbzWUwFerppHeFXPYsg7pbRulLQw==
 
-next@^16.4.3:
-  version "16.4.3"
-  resolved "https://registry.yarnpkg.com/next/-/next-16.4.3.tgz#72f79702e8537608f3227a01adac1213754821d2"
-  integrity sha512-OqxKTGi9u80FydydsMNYNjnuje9Au+kvHlt2GZ//ftdpDHm1dxKqAaENoOOTX5wKzn+9vaKUNIfZeyZUuLhCnA==
+next@^16.4.6:
+  version "16.4.6"
+  resolved "https://registry.yarnpkg.com/next/-/next-16.4.6.tgz#ce48f58e195a8eb224e58a2d136451f17c19d5cf"
+  integrity sha512-QZJiYhaZLJMo2KpkQGQIwvmd79WVsAWeYIU554a8d7zArS3si/IRy3lBNV/rtYhE70oLwdLYhPAXLPx8HwcwtA==
   dependencies:
-    "@next/env" "16.4.3"
+    "@next/env" "16.4.6"
     "@swc/helpers" "0.5.23"
     baseline-browser-mapping "^2.9.19"
     caniuse-lite "^1.0.30001579"
     postcss "8.5.23"
     styled-jsx "5.1.6"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "16.4.3"
-    "@next/swc-darwin-x64" "16.4.3"
-    "@next/swc-linux-arm64-gnu" "16.4.3"
-    "@next/swc-linux-arm64-musl" "16.4.3"
-    "@next/swc-linux-x64-gnu" "16.4.3"
-    "@next/swc-linux-x64-musl" "16.4.3"
-    "@next/swc-win32-arm64-msvc" "16.4.3"
-    "@next/swc-win32-x64-msvc" "16.4.3"
+    "@next/swc-darwin-arm64" "16.4.6"
+    "@next/swc-darwin-x64" "16.4.6"
+    "@next/swc-linux-arm64-gnu" "16.4.6"
+    "@next/swc-linux-arm64-musl" "16.4.6"
+    "@next/swc-linux-x64-gnu" "16.4.6"
+    "@next/swc-linux-x64-musl" "16.4.6"
+    "@next/swc-win32-arm64-msvc" "16.4.6"
+    "@next/swc-win32-x64-msvc" "16.4.6"
     sharp "^0.35.5"
 
 node-addon-api@^7.0.0:
@@ -3476,12 +3476,12 @@ semver@7.8.5, semver@^7.5.3, semver@^7.8.5:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.8.5.tgz#39b646037dd50c14fb451e7e4cac58ed8b863f69"
   integrity sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==
 
-serwist@9.5.13, serwist@^9.5.13:
-  version "9.5.13"
-  resolved "https://registry.yarnpkg.com/serwist/-/serwist-9.5.13.tgz#eafb48675618b27113f6a9e85b045e1f3e59d629"
-  integrity sha512-ZpskCei2d5Zcljeb6QvYP94pV5xY3GCdbOk0hOzMSEPFOqJDwJvMpQq7i1r/psuR1WQCsKX6p7UpLle6sTPYjw==
+serwist@9.5.14, serwist@^9.5.14:
+  version "9.5.14"
+  resolved "https://registry.yarnpkg.com/serwist/-/serwist-9.5.14.tgz#1c850e89d7d727ed2f681e0e22065dc38fb3e0ab"
+  integrity sha512-DsKXY8b3hAFxHrnSDugzm29fKGHF9tnAKqvUdbGU3Ui8QHE9izeh+j1na95m3ANk/yIIAvmbpxA8XS0cs3H8Lw==
   dependencies:
-    "@serwist/utils" "9.5.13"
+    "@serwist/utils" "9.5.14"
     idb "8.0.3"
 
 set-function-length@^1.2.2:
@@ -3948,7 +3948,7 @@ yaml@^2.2.2, yaml@^2.9.1:
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-2.9.1.tgz#c16233fb31944e705cfefaff38795587f57588ce"
   integrity sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==
 
-zod@4.6.5, zod@^4.2.1, zod@^4.4.3, zod@^4.6.5:
-  version "4.6.5"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.5.tgz#e3af3edbdc260239c52f73caad05dbbffe6e82cd"
-  integrity sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==
+zod@^4.2.1, zod@^4.4.3, zod@^4.6.5, zod@~4.6.7:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.7.tgz#e806cf64a7f4e37635ce9f2f52c04c3766f75e5b"
+  integrity sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==
