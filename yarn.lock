@@ -2596,10 +2596,10 @@ leaflet.markercluster@^1.5.3:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.3.tgz#9cdb52a4eab92671832e1ef9899669e80efc4056"
   integrity sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==
 
-leaflet.smooth_marker_bouncing@3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/leaflet.smooth_marker_bouncing/-/leaflet.smooth_marker_bouncing-3.0.3.tgz#3b082cb33d4fa7ea8475f43b1b7db515fca968a8"
-  integrity sha512-Y+1MJ1nX0vy/NjvzW4Kq2gE3Pnpz3fgP3dZJQNMQW90bFQ8d2TjXrqazP5oWKNUWjvrVVzfMv/FrB7vUFmsLDA==
+leaflet.smooth_marker_bouncing@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/leaflet.smooth_marker_bouncing/-/leaflet.smooth_marker_bouncing-3.1.1.tgz#1f67d9bda721d8ab5c4c95e9e959543e9f1a72e6"
+  integrity sha512-jziCIfr/uBSxt/3UQA4KRKlPINpGTzO7CLhMDR2lC0ZWrLI/LlQJVY4FGINzodrWJOReUX2ASMbM/+UC+7Bhsw==
 
 leaflet@^1.9.4:
   version "1.9.4"
